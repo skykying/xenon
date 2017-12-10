@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/workspaceXenonGit.iml" filepath="$PROJECT_DIR$/workspaceXenonGit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xenon-android-library/xenon-android-library.iml" filepath="$PROJECT_DIR$/xenon-android-library/xenon-android-library.iml" />
     </modules>
   </component>
 </project>

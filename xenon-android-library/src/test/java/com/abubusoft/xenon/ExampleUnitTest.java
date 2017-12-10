@@ -1,4 +1,4 @@
-package com.abubusoft.xenon;
+package com.abubusoft.xenonn;
 
 import org.junit.Test;
 

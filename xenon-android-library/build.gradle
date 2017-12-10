@@ -25,6 +25,9 @@ android {
 }
 
 dependencies {
+    annotationProcessor 'com.abubusoft:kripton-processor:3.0.2'
+    implementation 'com.abubusoft:kripton-android-library:3.0.2'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:appcompat-v7:26.1.0'

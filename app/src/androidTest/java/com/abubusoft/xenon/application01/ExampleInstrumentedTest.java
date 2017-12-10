@@ -1,4 +1,4 @@
-package com.abubusoft.xenon.application01;
+package com.abubusoft.xenonn.application01;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
