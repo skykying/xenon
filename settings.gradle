@@ -1,1 +1,1 @@
-include ':app', ':xenon-android-library'
+include ':app', ':xenon-android-library', ':xenon-box2d-library'
