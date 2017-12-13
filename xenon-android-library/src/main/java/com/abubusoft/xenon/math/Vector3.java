@@ -249,7 +249,7 @@ public class Vector3 extends Point3 {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.elio.util.Copy#copy()
+	 * @see com.abubusoft.xenon.core.util.Copy#copy()
 	 */
 	@Override
 	public Vector3 copy() {

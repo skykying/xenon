@@ -9,9 +9,9 @@ import java.nio.ByteOrder;
 import javax.microedition.khronos.opengles.GL10;
 
 import com.abubusoft.xenon.opengl.ArgonGL;
-import org.abubu.elio.graphic.BitmapManager;
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.util.IOUtility;
+import com.abubusoft.xenon.core.graphic.BitmapManager;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
 import android.graphics.Bitmap;

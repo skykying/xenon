@@ -6,7 +6,7 @@ import com.abubusoft.xenon.entity.BaseEntity;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.texture.TextureReference;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * Space partiniong.

@@ -10,7 +10,7 @@ import com.abubusoft.xenon.ScreenInfo;
 import com.abubusoft.xenon.entity.Entity;
 import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.mesh.Mesh;
-import org.abubu.elio.Uncryptable;
+import com.abubusoft.xenon.core.Uncryptable;
 
 /**
  * Rappresenta un sistema di partizionamento dello spazio 2D/3D.

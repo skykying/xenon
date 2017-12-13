@@ -28,8 +28,8 @@ import com.abubusoft.xenon.shader.drawers.ShaderDrawer;
 import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.texture.TextureOptions;
-import org.abubu.elio.Uncryptable;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.Uncryptable;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * <p>

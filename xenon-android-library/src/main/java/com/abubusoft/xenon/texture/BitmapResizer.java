@@ -5,7 +5,7 @@ package com.abubusoft.xenon.texture;
 
 import com.abubusoft.xenon.math.ArgonMath;
 import com.abubusoft.xenon.math.SizeI2;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 
-import static org.abubu.elio.graphic.BitmapManager.wrapBitmap;
+import static com.abubusoft.xenon.core.graphic.BitmapManager.wrapBitmap;
 
 /**
  * wrapped

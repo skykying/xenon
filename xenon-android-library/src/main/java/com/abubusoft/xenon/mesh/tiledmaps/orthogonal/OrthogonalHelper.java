@@ -7,7 +7,7 @@ import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.tiledmaps.ObjBase;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * <p>

@@ -5,8 +5,8 @@ package com.abubusoft.xenon.engine;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.abubu.elio.collections.SmartQueue;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.collections.SmartQueue;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * Questo gestore di input funziona così: nel thread per la ricezione dell'input richiede di inserire il metodo per la creazione dei messaggi da inserire nella coda di input. Nella creazione della scena invece viene registrato un listener

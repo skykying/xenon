@@ -7,7 +7,7 @@ import com.abubusoft.xenon.android.listener.ArgonGestureDetector;
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLSurfaceView16;
 import com.abubusoft.xenon.opengl.ArgonGLDefaultRenderer;
 import com.abubusoft.xenon.opengl.ArgonGLRenderer;
-import org.abubu.elio.Uncryptable;
+import com.abubusoft.xenon.core.Uncryptable;
 
 import android.content.Context;
 

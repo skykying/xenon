@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.texture;
 
-import org.abubu.elio.util.Copy;
+import com.abubusoft.xenon.core.util.Copy;
 
 /**
  * Rappresenta un puntatore ad una texture. E' sempre bene utilizzare le referenze alle texture piuttosto che

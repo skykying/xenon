@@ -18,7 +18,7 @@ import com.abubusoft.xenon.settings.ArgonSettings;
 import com.abubusoft.xenon.shader.ShaderManager;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.vbo.BufferManager;
-import org.abubu.elio.android.ElioPreferenceActivityManager;
+import com.abubusoft.xenon.core.android.ElioPreferenceActivityManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;

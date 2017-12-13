@@ -23,7 +23,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLView;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;

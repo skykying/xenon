@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
  * @author Francesco Benincasa
  * 
  */
-public interface Argon extends Uncryptable {
+public interface Argon {
 
 	/**
 	 * <p>Da avviare in fase di avvio dell'applicazione</p>

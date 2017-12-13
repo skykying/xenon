@@ -26,7 +26,6 @@
  */
 package com.abubusoft.xenon.box2d.callbacks;
 
-import com.abubusoft.xenon.box2d.common.Settings;
 
 /**
  * Contact impulses for reporting. Impulses are used instead of forces because sub-step forces may

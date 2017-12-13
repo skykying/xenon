@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.abubusoft.xenon.opengl.ArgonGL;
 import com.abubusoft.xenon.vbo.AttributeBuffer.AttributeDimensionType;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.opengl.GLES20;
 

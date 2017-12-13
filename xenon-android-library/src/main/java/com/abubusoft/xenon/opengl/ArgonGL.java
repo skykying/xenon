@@ -8,7 +8,7 @@ import javax.microedition.khronos.egl.EGL10;
 import com.abubusoft.xenon.ScreenInfo;
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLSurfaceView16;
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLView;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.content.Context;
 import android.graphics.Bitmap;

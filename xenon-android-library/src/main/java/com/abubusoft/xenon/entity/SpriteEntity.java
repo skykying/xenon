@@ -22,7 +22,7 @@ public class SpriteEntity extends Entity<MeshSprite> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.abubu.elio.util.Copy#copy()
+	 * @see com.abubusoft.xenon.core.util.Copy#copy()
 	 */
 	@Override
 	public SpriteEntity copy() {

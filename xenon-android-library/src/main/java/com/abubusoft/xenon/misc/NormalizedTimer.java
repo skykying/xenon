@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.misc;
 
-import org.abubu.elio.util.Copy;
+import com.abubusoft.xenon.core.util.Copy;
 
 /**
  * Rappresenta un touchTimer normalizzato. Viene aggiornato in millisecondi.

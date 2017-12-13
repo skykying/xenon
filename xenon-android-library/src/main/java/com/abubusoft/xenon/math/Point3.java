@@ -9,7 +9,7 @@ import static org.abubu.argon.math.ArgonMath.abs;
 
 import java.io.Serializable;
 
-import org.abubu.elio.util.Copy;
+import com.abubusoft.xenon.core.util.Copy;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;
@@ -83,7 +83,7 @@ public class Point3 implements Copy, Serializable {
 	
 
 	/* (non-Javadoc)
-	 * @see org.abubu.elio.util.Copy#copyInto(java.lang.Object)
+	 * @see com.abubusoft.xenon.core.util.Copy#copyInto(java.lang.Object)
 	 */
 	public void copyInto(Point3 dest)
 	{
@@ -128,7 +128,7 @@ public class Point3 implements Copy, Serializable {
 	
 
 	/* (non-Javadoc)
-	 * @see org.abubu.elio.util.Copy#copy()
+	 * @see com.abubusoft.xenon.core.util.Copy#copy()
 	 */
 	public Point3 copy()
 	{

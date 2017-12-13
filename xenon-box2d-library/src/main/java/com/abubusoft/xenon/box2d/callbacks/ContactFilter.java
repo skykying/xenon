@@ -26,8 +26,6 @@
  */
 package com.abubusoft.xenon.box2d.callbacks;
 
-import com.abubusoft.xenon.box2d.dynamics.Filter;
-import com.abubusoft.xenon.box2d.dynamics.Fixture;
 
 // updated to rev 100
 /**

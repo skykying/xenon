@@ -14,7 +14,7 @@ import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.math.Sphere;
 import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.scenemanagement.internal.ZComparator;
-import org.abubu.elio.util.ElioCollection;
+import com.abubusoft.xenon.core.util.ElioCollection;
 
 /**
  * Un semplice gestore di spazio. Come per il {@link PlainPartitioning}, le

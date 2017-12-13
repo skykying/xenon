@@ -59,11 +59,6 @@ public class OBBViewportTransform implements IViewportTransform {
   public Vec2 getExtents() {
     return box.extents;
   }
-  
-  @Override
-  public Mat22 getMat22Representation() {
-    return box.R;
-  }
 
   public void setExtents(Vec2 argExtents) {
     box.extents.set(argExtents);
@@ -117,24 +112,24 @@ public class OBBViewportTransform implements IViewportTransform {
 
   private final Mat22 inv = new Mat22();
 
-  public void getScreenVectorToWorld(Vec2 screen, Vec2 world) {
+  public void getScreenVectorToWorld(float screenX, float screenY, float worldX, float worldY) {
     box.R.invertToOut(inv);
-    inv.mulToOut(screen, world);
+    inv.mulToOut(screenX, screenY, worldX, worldY);
     if (yFlip) {
-      yFlipMat.mulToOut(world, world);
+    	yFlipMat.mulToOut(worldX, worldY, worldX, worldY);
     }
   }
 
-  public void getWorldVectorToScreen(Vec2 world, Vec2 screen) {
-    box.R.mulToOut(world, screen);
+  public void getWorldVectorToScreen(float worldX, float worldY, float screenX, float screenY) {
+    box.R.mulToOut(worldX, worldY, screenX, screenY);
     if (yFlip) {
-      yFlipMat.mulToOut(screen, screen);
+      yFlipMat.mulToOut(screenX, screenY, screenX, screenY);
     }
   }
 
-  public void getWorldToScreen(Vec2 world, Vec2 screen) {
-    screen.x = world.x - box.center.x;
-    screen.y = world.y - box.center.y;
+  public void getWorldToScreen(float worldX, float worldY, Vec2 screen) {
+    screen.x = worldX - box.center.x;
+    screen.y = worldY - box.center.y;
     box.R.mulToOut(screen, screen);
     if (yFlip) {
       yFlipMat.mulToOut(screen, screen);
@@ -145,9 +140,9 @@ public class OBBViewportTransform implements IViewportTransform {
 
   private final Mat22 inv2 = new Mat22();
 
-  public void getScreenToWorld(Vec2 screen, Vec2 world) {
-    world.x = screen.x - box.extents.x;
-    world.y = screen.y - box.extents.y;
+  public void getScreenToWorld(float screenX, float screenY, Vec2 world) {
+    world.x = screenX - box.extents.x;
+    world.y = screenY - box.extents.y;
     if (yFlip) {
       yFlipMat.mulToOut(world, world);
     }

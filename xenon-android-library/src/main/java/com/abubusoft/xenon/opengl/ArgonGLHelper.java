@@ -15,7 +15,7 @@ import com.abubusoft.xenon.ArgonBeanContext;
 import com.abubusoft.xenon.ArgonBeanType;
 import com.abubusoft.xenon.DeviceInfo;
 import com.abubusoft.xenon.android.ArgonGLDebugFlags;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.opengl.GLES10;
 import android.opengl.GLES20;

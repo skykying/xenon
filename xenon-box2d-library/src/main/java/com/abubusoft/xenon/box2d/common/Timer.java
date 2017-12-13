@@ -23,6 +23,9 @@
  ******************************************************************************/
 package com.abubusoft.xenon.box2d.common;
 
+import android.os.SystemClock;
+import android.util.TimeUtils;
+
 /**
  * Timer for profiling
  * 
@@ -37,10 +40,12 @@ public class Timer {
   }
 
   public void reset() {
+	//  resetNanos=  SystemClock.elapsedRealtime();
     resetNanos = System.nanoTime();
   }
 
   public float getMilliseconds() {
+	//  return resetNanos - resetNanos;
     return (System.nanoTime() - resetNanos) / 1000 * 1f / 1000;
   }
 }

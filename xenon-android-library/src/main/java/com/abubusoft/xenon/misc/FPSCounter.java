@@ -1,8 +1,8 @@
 package com.abubusoft.xenon.misc;
 
 import com.abubusoft.xenon.opengl.OnFPSUpdateListener;
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.logger.ElioLoggerLevelType;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
 
 import android.os.SystemClock;
 

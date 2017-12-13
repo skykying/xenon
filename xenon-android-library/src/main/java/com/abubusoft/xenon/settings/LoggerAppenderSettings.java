@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.settings;
 
-import org.abubu.elio.Uncryptable;
-import org.abubu.elio.logger.ElioLoggerLevelType;
+import com.abubusoft.xenon.core.Uncryptable;
+import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;

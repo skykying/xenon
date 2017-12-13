@@ -24,7 +24,7 @@ import com.abubusoft.xenon.android.surfaceview16.ArgonGLView;
 import com.abubusoft.xenon.opengl.ArgonGLRenderer;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.settings.ArgonSettings;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.annotation.TargetApi;
 import android.content.Context;

@@ -11,8 +11,8 @@ import com.abubusoft.xenon.android.surfaceview.ConfigOptions.DepthSizeType;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.DisplayFormatType;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.MultiSampleType;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.StencilSizeType;
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.logger.ElioLoggerLevelType;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
 
 public abstract class ConfigChooserHelper16 {
 	// costanti per il multisampling su tegra (https://code.google.com/p/gdc2011-android-opengl/source/browse/trunk/src/com/example/gdc11/MultisampleConfigChooser.java?r=2)

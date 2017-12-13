@@ -29,7 +29,7 @@ import java.nio.ByteOrder;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLSurface;
 
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * Common base class for EGL surfaces.

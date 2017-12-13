@@ -10,11 +10,11 @@ import com.abubusoft.xenon.settings.ArgonSettings;
 import com.abubusoft.xenon.settings.ArgonSettingsFactory;
 import com.abubusoft.xenon.settings.ArgonSettingsReader;
 import com.abubusoft.xenon.settings.LoggerAppenderSettings;
-import org.abubu.elio.ElioRuntimeException;
-import org.abubu.elio.application.ApplicationInfo;
-import org.abubu.elio.application.ApplicationManager;
-import org.abubu.elio.application.ApplicationUpgradePolicy;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.application.ApplicationInfo;
+import com.abubusoft.xenon.core.application.ApplicationManager;
+import com.abubusoft.xenon.core.application.ApplicationUpgradePolicy;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.app.Application;
 

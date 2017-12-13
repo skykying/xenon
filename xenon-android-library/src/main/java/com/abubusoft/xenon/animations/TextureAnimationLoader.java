@@ -9,8 +9,8 @@ import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.texture.AtlasTexture;
 import com.abubusoft.xenon.texture.AtlasTextureOptions;
 import com.abubusoft.xenon.texture.TextureRegion;
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.util.IOUtility;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
 

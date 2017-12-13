@@ -16,10 +16,10 @@ import com.abubusoft.xenon.vbo.ColorBuffer;
 import com.abubusoft.xenon.vbo.IndexBuffer;
 import com.abubusoft.xenon.vbo.TextureBuffer;
 import com.abubusoft.xenon.vbo.VertexBuffer;
-import org.abubu.elio.ElioRuntimeException;
-import org.abubu.elio.Uncryptable;
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.util.IOUtility;
+import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.Uncryptable;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
 import android.opengl.GLES20;

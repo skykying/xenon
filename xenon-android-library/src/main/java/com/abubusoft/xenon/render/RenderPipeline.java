@@ -20,7 +20,7 @@ import com.abubusoft.xenon.texture.RenderedTexture;
 import com.abubusoft.xenon.texture.RenderedTextureOptions;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.content.Context;
 import android.graphics.Color;

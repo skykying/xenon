@@ -20,7 +20,7 @@ import com.abubusoft.xenon.opengl.ArgonGL;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
 import com.abubusoft.xenon.vbo.BufferManager;
 import com.abubusoft.xenon.vbo.VertexBuffer;
-import org.abubu.elio.Uncryptable;
+import com.abubusoft.xenon.core.Uncryptable;
 
 /**
  * drawer per le mappe ortogonali. Per il momento usa il codice nell'abstract map handler

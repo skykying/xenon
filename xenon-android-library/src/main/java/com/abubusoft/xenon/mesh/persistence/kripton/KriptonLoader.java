@@ -7,8 +7,8 @@ import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshOptions;
 import com.abubusoft.xenon.vbo.AbstractBuffer;
 import com.abubusoft.xenon.vbo.BufferHelper;
-import org.abubu.elio.ElioRuntimeException;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.content.Context;
 

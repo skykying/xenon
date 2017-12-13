@@ -6,7 +6,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.tmx.loader.TMXException;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.loader.TMXLoaderHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.loader.TMXLoaderType;
 import com.abubusoft.xenon.texture.TextureFilterType;
-import org.abubu.elio.util.ResourceUtility;
+import com.abubusoft.xenon.core.util.ResourceUtility;
 
 import android.content.Context;
 

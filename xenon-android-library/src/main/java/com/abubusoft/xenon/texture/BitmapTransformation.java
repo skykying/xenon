@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.texture;
 
-import org.abubu.elio.Uncryptable;
+import com.abubusoft.xenon.core.Uncryptable;
 
 import android.graphics.Bitmap;
 

@@ -6,7 +6,7 @@ import com.abubusoft.xenon.animations.TiledMapAnimation;
 import com.abubusoft.xenon.mesh.MeshOptions;
 import com.abubusoft.xenon.mesh.tiledmaps.ObjDefinition;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import org.abubu.elio.util.ResourceUtility;
+import com.abubusoft.xenon.core.util.ResourceUtility;
 
 import android.content.Context;
 

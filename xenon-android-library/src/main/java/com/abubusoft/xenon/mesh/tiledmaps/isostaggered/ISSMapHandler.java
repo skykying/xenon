@@ -21,7 +21,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
 import com.abubusoft.xenon.opengl.ArgonGL;
 import com.abubusoft.xenon.shader.drawers.LineDrawer;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
-import org.abubu.elio.Uncryptable;
+import com.abubusoft.xenon.core.Uncryptable;
 
 import android.graphics.Color;
 

@@ -8,7 +8,7 @@ import com.abubusoft.xenon.mesh.MeshSprite;
 import com.abubusoft.xenon.mesh.MeshTile;
 import com.abubusoft.xenon.texture.TextureRegion;
 import com.abubusoft.xenon.vbo.TextureBuffer;
-import org.abubu.elio.ElioRuntimeException;
+import com.abubusoft.xenon.core.ElioRuntimeException;
 
 /**
  * <p>

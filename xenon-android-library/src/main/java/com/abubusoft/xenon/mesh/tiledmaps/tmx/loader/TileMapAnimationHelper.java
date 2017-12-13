@@ -12,7 +12,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.TileAnimationFrame;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 import com.abubusoft.xenon.mesh.tiledmaps.Layer.LayerType;
-import org.abubu.elio.ElioRuntimeException;
+import com.abubusoft.xenon.core.ElioRuntimeException;
 
 /**
  * 

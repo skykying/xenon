@@ -3,8 +3,8 @@ package com.abubusoft.xenon;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.ClientVersionType;
 import com.abubusoft.xenon.engine.Phase;
-import org.abubu.elio.config.Config;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.config.Config;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

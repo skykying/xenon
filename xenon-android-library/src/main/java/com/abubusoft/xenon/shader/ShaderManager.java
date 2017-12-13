@@ -8,7 +8,7 @@ import java.util.HashMap;
 import com.abubusoft.xenon.ArgonBeanContext;
 import com.abubusoft.xenon.ArgonBeanType;
 import com.abubusoft.xenon.opengl.ArgonGL;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.content.Context;
 import android.util.SparseArray;

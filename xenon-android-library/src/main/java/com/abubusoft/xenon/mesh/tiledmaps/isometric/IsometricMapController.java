@@ -5,7 +5,7 @@ import com.abubusoft.xenon.math.ArgonMath;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 import com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers.AbstractMapController;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 public class IsometricMapController extends AbstractMapController {
 

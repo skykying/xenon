@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon;
 
-import org.abubu.elio.config.ConfigBase;
+import com.abubusoft.xenon.core.config.ConfigBase;
 
 /**
  * <p></p>

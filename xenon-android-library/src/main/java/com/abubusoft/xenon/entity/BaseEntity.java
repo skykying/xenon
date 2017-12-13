@@ -5,7 +5,6 @@ package com.abubusoft.xenon.entity;
 
 import java.io.Serializable;
 
-import com.abubusoft.xenon.Uncryptable;
 import com.abubusoft.xenon.math.Point3;
 
 /**
@@ -15,7 +14,7 @@ import com.abubusoft.xenon.math.Point3;
  * @author Francesco Benincasa
  *
  */
-public class BaseEntity implements Serializable, Uncryptable {
+public class BaseEntity implements Serializable {
 	
 	/**
 	 * Costruttore di default

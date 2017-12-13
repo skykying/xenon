@@ -1,14 +1,13 @@
 package com.abubusoft.xenon.settings;
 
-import com.abubusoft.xenon.Uncryptable;
 import com.abubusoft.xenon.android.listener.ArgonGestureDefaultListenerImpl;
-import org.abubu.elio.application.ApplicationUpgradePolicyImpl;
+import com.abubusoft.xenon.core.application.ApplicationUpgradePolicyImpl;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;
 
 @BindType
-public class ApplicationSettings implements Uncryptable {
+public class ApplicationSettings {
 	
 	/**
 	 * Costruttore
@@ -17,7 +16,7 @@ public class ApplicationSettings implements Uncryptable {
 	{
 		resetConfig=false;
 		gestureListenerClazz=ArgonGestureDefaultListenerImpl.class.getName(); // "org.abubu.argon.android.listener.ArgonGestureDefaultListenerImpl";
-		upgradePolicyClazz=ApplicationUpgradePolicyImpl.class.getName(); //"org.abubu.elio.application.ApplicationUpgradePolicyImpl";
+		upgradePolicyClazz=ApplicationUpgradePolicyImpl.class.getName(); //"com.abubusoft.xenon.core.application.ApplicationUpgradePolicyImpl";
 	}
 	
 	/**

@@ -2,7 +2,7 @@ package com.abubusoft.xenon;
 
 import com.abubusoft.xenon.android.ScreenDensityClassType;
 import com.abubusoft.xenon.opengl.ArgonGL;
-import org.abubu.elio.util.ResourceUtility;
+import com.abubusoft.xenon.core.util.ResourceUtility;
 
 import android.content.Context;
 import android.graphics.Point;

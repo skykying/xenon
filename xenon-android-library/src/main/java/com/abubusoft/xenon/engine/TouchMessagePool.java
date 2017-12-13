@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.engine;
 
-import org.abubu.elio.collections.ObjectPool;
+import com.abubusoft.xenon.core.collections.ObjectPool;
 
 /**
  * @author Francesco Benincasa

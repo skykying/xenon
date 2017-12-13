@@ -53,7 +53,7 @@ public class Entity<E extends Mesh> extends BaseEntity {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.abubu.elio.util.Copy#copy()
+	 * @see com.abubusoft.xenon.core.util.Copy#copy()
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

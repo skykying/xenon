@@ -10,11 +10,11 @@ import com.abubusoft.xenon.opengl.ArgonGLExtension;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.opengl.AsyncOperationManager.AsyncTextureInfoLoader;
 import com.abubusoft.xenon.texture.TextureInfo.TextureLoadType;
-import org.abubu.elio.graphic.BitmapUtility;
-import org.abubu.elio.graphic.SampledBitmapFactory;
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.logger.ElioLoggerLevelType;
-import org.abubu.elio.util.IOUtility;
+import com.abubusoft.xenon.core.graphic.BitmapUtility;
+import com.abubusoft.xenon.core.graphic.SampledBitmapFactory;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
+import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -22,7 +22,7 @@ import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 
-import static org.abubu.elio.graphic.BitmapManager.wrapBitmap;
+import static com.abubusoft.xenon.core.graphic.BitmapManager.wrapBitmap;
 
 /**
  * Permette di convertire una bitmap in una texture. La bitmap viene recuperata da un file, da una risorsa o passata direttamente. Il sistema si preoccupa di effettuare delle

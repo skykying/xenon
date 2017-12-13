@@ -17,8 +17,8 @@ import com.abubusoft.xenon.vbo.AttributeBuffer;
 import com.abubusoft.xenon.vbo.BufferManager;
 import com.abubusoft.xenon.vbo.TextureBuffer;
 import com.abubusoft.xenon.vbo.VertexBuffer;
-import org.abubu.elio.ElioRuntimeException;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.content.Context;
 import android.graphics.Color;

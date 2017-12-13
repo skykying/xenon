@@ -2,7 +2,7 @@ package com.abubusoft.xenon.mesh.modifiers;
 
 import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshSprite;
-import org.abubu.elio.ElioRuntimeException;
+import com.abubusoft.xenon.core.ElioRuntimeException;
 
 import android.graphics.Color;
 

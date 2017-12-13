@@ -3,15 +3,15 @@
  */
 package com.abubusoft.xenon.texture;
 
-import static org.abubu.elio.graphic.BitmapManager.wrapBitmap;
+import static com.abubusoft.xenon.core.graphic.BitmapManager.wrapBitmap;
 
 import com.abubusoft.xenon.math.SizeI2;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.opengl.AsyncOperationManager.AsyncTextureInfoLoader;
 import com.abubusoft.xenon.texture.TextureInfo.TextureLoadType;
 import com.abubusoft.xenon.texture.TextureInfo.TextureType;
-import org.abubu.elio.graphic.BitmapUtility;
-import org.abubu.elio.graphic.SampledBitmapFactory;
+import com.abubusoft.xenon.core.graphic.BitmapUtility;
+import com.abubusoft.xenon.core.graphic.SampledBitmapFactory;
 
 import android.content.Context;
 import android.graphics.Bitmap;

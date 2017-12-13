@@ -8,7 +8,7 @@ import com.abubusoft.xenon.android.surfaceview.ConfigOptions.DisplayFormatType;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.MultiSampleType;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.StencilSizeType;
 import com.abubusoft.xenon.android.surfaceview16.ExtendedConfigOptions;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.annotation.TargetApi;
 import android.opengl.EGL14;

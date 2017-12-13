@@ -22,8 +22,8 @@ import com.abubusoft.xenon.shader.ShaderTiledMap;
 import com.abubusoft.xenon.texture.AtlasTexture;
 import com.abubusoft.xenon.vbo.BufferAllocationOptions;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.logger.ElioLoggerLevelType;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
 import org.xml.sax.Attributes;
 
 import android.annotation.SuppressLint;

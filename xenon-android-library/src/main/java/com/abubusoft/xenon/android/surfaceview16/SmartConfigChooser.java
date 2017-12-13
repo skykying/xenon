@@ -11,7 +11,7 @@ import com.abubusoft.xenon.android.surfaceview.ConfigOptions.DisplayFormatType;
 import com.abubusoft.xenon.opengl.ArgonEGL;
 import com.abubusoft.xenon.opengl.ArgonGLConfigChooser;
 import com.abubusoft.xenon.opengl.ArgonGLDefaultRenderer;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * Consente di selezionare una configurazione in modo smart: se la memoria del device è inferiore al giga, allora forziamo il format del display a RGB_565. Questo per evitare sui dispositivi tipo Nexus 7 che ci siano dei problemi di

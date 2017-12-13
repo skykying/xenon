@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.mesh;
 
-import org.abubu.elio.ElioRuntimeException;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * Classe di utilità.

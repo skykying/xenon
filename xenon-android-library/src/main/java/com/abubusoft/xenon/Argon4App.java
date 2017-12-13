@@ -3,8 +3,9 @@
  */
 package com.abubusoft.xenon;
 
+import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.android.ArgonWallpaper;
-import org.abubu.elio.logger.ElioLogger;
+
 
 import android.app.Activity;
 
@@ -27,7 +28,7 @@ public class Argon4App extends Argon4BaseImpl<ArgonApplication4App>  {
 	 * @throws Exception
 	 */
 	public void onActivityCreated(Activity activity) throws Exception {
-		ElioLogger.info("onActivityCreated");
+		Logger.info("onActivityCreated");
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class Argon4App extends Argon4BaseImpl<ArgonApplication4App>  {
 	 * @throws Exception
 	 */
 	public void onServiceCreated(ArgonWallpaper service) throws Exception {
-		ElioLogger.info("onServiceCreated");		
+		Logger.info("onServiceCreated");
 	}
 
 	/**

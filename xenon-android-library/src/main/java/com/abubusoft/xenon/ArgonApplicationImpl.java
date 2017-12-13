@@ -1,7 +1,7 @@
 package com.abubusoft.xenon;
 
-import org.abubu.elio.logger.ElioLogger;
-import org.abubu.elio.logger.ElioLoggerLevelType;
+import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
 
 import android.app.Activity;
 import android.content.Context;

@@ -4,15 +4,13 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 
-import com.abubusoft.xenon.Uncryptable;
-
 /**
  * Interfaccia per la gestione delle gesture
  * 
  * @author Francesco Benincasa
  * 
  */
-public interface ArgonGestureListener extends GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, ScaleGestureDetector.OnScaleGestureListener, Uncryptable {
+public interface ArgonGestureListener extends GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, ScaleGestureDetector.OnScaleGestureListener {
 
 	/**
 	 * <p>

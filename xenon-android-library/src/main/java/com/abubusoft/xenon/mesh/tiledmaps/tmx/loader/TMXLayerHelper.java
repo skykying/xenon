@@ -15,7 +15,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.Layer;
 import com.abubusoft.xenon.mesh.tiledmaps.Tile;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 import org.xml.sax.Attributes;
 
 import android.util.Base64;

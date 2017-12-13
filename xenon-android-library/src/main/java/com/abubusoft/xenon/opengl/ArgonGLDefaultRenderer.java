@@ -7,7 +7,7 @@ import com.abubusoft.xenon.android.ArgonService4OpenGL;
 import com.abubusoft.xenon.engine.Phase;
 import com.abubusoft.xenon.engine.TouchManager;
 import com.abubusoft.xenon.misc.FPSCounter;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.opengl.GLES20;
 import android.view.MotionEvent;

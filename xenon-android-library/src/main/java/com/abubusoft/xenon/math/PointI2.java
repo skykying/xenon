@@ -7,7 +7,7 @@ import static org.abubu.argon.math.ArgonMath.power2;
 import static org.abubu.argon.math.ArgonMath.sqrt;
 import static org.abubu.argon.math.ArgonMath.abs;
 
-import org.abubu.elio.util.Copy;
+import com.abubusoft.xenon.core.util.Copy;
 
 import com.abubusoft.kripton.annotation.BindType;
 
@@ -77,7 +77,7 @@ public class PointI2 implements Copy {
 	
 
 	/* (non-Javadoc)
-	 * @see org.abubu.elio.util.Copy#copy()
+	 * @see com.abubusoft.xenon.core.util.Copy#copy()
 	 */
 	public PointI2 copy()
 	{

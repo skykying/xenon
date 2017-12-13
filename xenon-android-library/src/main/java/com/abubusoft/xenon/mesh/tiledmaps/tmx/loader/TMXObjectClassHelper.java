@@ -9,7 +9,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.ObjDefinition;
 import com.abubusoft.xenon.mesh.tiledmaps.ObjectLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.graphics.Rect;
 

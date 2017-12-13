@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.audio.exception;
 
-import org.abubu.elio.ElioRuntimeException;
+import com.abubusoft.xenon.core.ElioRuntimeException;
 
 
 /**

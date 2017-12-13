@@ -3,7 +3,7 @@ package com.abubusoft.xenon.mesh.persistence.androidxml;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.abubu.elio.ElioRuntimeException;
+import com.abubusoft.xenon.core.ElioRuntimeException;
 
 import com.abubusoft.kripton.KriptonBinder;
 

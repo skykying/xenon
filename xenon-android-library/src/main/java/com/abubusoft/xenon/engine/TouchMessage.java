@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.engine;
 
-import org.abubu.elio.collections.PooledObject;
+import com.abubusoft.xenon.core.collections.PooledObject;
 
 /**
  * @author Francesco Benincasa

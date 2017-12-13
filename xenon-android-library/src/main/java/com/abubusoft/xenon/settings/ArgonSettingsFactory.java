@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.settings;
 
-import org.abubu.elio.Uncryptable;
+import com.abubusoft.xenon.core.Uncryptable;
 
 
 /**

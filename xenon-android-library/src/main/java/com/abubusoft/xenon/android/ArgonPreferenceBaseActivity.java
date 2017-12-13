@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.android;
 
-import org.abubu.elio.android.ElioPreferenceActivity;
+import com.abubusoft.xenon.core.android.ElioPreferenceActivity;
 
 import android.os.Bundle;
 

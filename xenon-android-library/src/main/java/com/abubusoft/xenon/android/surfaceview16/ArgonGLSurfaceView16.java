@@ -36,7 +36,7 @@ import com.abubusoft.xenon.opengl.ArgonGLConfigChooser;
 import com.abubusoft.xenon.opengl.ArgonGLRenderer;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.settings.ArgonSettings;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.content.Context;
 import android.opengl.EGL14;

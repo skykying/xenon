@@ -9,7 +9,7 @@ import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.opengl.AsyncOperationManager.AsyncTextureInfoLoader;
 import com.abubusoft.xenon.texture.TextureInfo.TextureLoadType;
 import com.abubusoft.xenon.texture.TextureInfo.TextureType;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;

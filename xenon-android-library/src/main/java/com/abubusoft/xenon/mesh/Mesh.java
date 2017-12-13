@@ -8,7 +8,7 @@ import com.abubusoft.xenon.vbo.ColorBuffer;
 import com.abubusoft.xenon.vbo.IndexBuffer;
 import com.abubusoft.xenon.vbo.TextureBuffer;
 import com.abubusoft.xenon.vbo.VertexBuffer;
-import org.abubu.elio.Uncryptable;
+import com.abubusoft.xenon.core.Uncryptable;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindDisabled;

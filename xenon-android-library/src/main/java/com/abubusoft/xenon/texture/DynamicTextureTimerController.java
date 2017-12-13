@@ -3,7 +3,7 @@ package com.abubusoft.xenon.texture;
 import com.abubusoft.xenon.misc.NormalizedTimer;
 import com.abubusoft.xenon.misc.NormalizedTimer.TypeNormalizedTimer;
 import com.abubusoft.xenon.texture.DynamicTexture.DynamicTextureController;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * <p>

@@ -4,7 +4,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.internal.MapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.isometric.IsometricMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.isostaggered.ISSMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.orthogonal.OrthogonalMapHandler;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * 

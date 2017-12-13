@@ -4,10 +4,9 @@ import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;
 import com.abubusoft.kripton.annotation.BindXml;
 import com.abubusoft.kripton.xml.XmlType;
-import com.abubusoft.xenon.Uncryptable;
 
 @BindType("settings")
-public class ArgonSettings implements Uncryptable {
+public class ArgonSettings {
 	
 	public ArgonSettings()
 	{

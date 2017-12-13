@@ -21,7 +21,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.path.MovementMapFactory;
 import com.abubusoft.xenon.mesh.tiledmaps.path.Path;
 import com.abubusoft.xenon.mesh.tiledmaps.path.PathFinder;
 import com.abubusoft.xenon.opengl.ArgonGL;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * @author Francesco Benincasa

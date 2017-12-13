@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.texture;
 
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.graphics.SurfaceTexture;
 

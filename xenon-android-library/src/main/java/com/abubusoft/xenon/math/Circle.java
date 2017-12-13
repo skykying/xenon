@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.math;
 
-import org.abubu.elio.util.Copy;
+import com.abubusoft.xenon.core.util.Copy;
 
 /**
  * @author Francesco Benincasa

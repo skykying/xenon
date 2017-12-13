@@ -21,7 +21,7 @@ import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.texture.TextureRepeatType;
 import com.abubusoft.xenon.vbo.BufferAllocationOptions;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
-import org.abubu.elio.ElioRuntimeException;
+import com.abubusoft.xenon.core.ElioRuntimeException;
 import org.xml.sax.Attributes;
 
 import android.content.Context;

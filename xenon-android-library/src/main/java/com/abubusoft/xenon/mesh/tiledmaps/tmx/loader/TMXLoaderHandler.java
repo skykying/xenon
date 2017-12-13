@@ -19,7 +19,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.tmx.LayerAttributes;
 import com.abubusoft.xenon.texture.TextureFilterType;
 import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.texture.TextureRepeatType;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;

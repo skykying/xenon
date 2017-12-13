@@ -26,8 +26,8 @@
 package com.abubusoft.xenon.animations;
 
 import com.abubusoft.xenon.animations.AnimationHandler.StatusType;
-import org.abubu.elio.collections.SmartQueue;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.collections.SmartQueue;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 /**
  * A {@code Timeline} can be used to define a free from animation of any {@link javafx.beans.value.WritableValue}, e.g. all {@link javafx.beans.property.Property JavaFX Properties}

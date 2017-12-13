@@ -10,7 +10,7 @@ import com.abubusoft.xenon.misc.Clock;
 import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureAsyncLoaderListener;
 import com.abubusoft.xenon.texture.TextureInfo;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;

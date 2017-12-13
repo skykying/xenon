@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon;
 
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
