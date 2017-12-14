@@ -48,7 +48,7 @@ public abstract class TiledLayerHandler extends AbstractLayerHandler<TiledLayer>
 	public FloatBuffer textureIndex;
 	
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.mesh.tiledmaps.internal.AbstractLayerHandler#onBuildView(org.abubu.argon.mesh.tiledmaps.internal.TiledMapView)
+	 * @see com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractLayerHandler#onBuildView(com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView)
 	 */
 	@Override
 	public void onBuildView(TiledMapView view) {

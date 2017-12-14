@@ -6,11 +6,9 @@ import com.abubusoft.xenon.ArgonBeanType;
 import com.abubusoft.xenon.ArgonStartupTask;
 import com.abubusoft.xenon.R;
 import com.abubusoft.xenon.settings.ArgonSettings;
-import com.abubusoft.xenon.core.application.ApplicationInfo;
-import com.abubusoft.xenon.core.application.ApplicationManager;
 import com.abubusoft.kripton.android.Logger;
-import com.abubusoft.xenon.core.logger.LoggerLevelType;
 import com.abubusoft.xenon.core.util.ResourceUtility;
+import com.abubusoft.xenon.settings.LoggerLevelType;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -44,18 +42,18 @@ public class ArgonActivitySplash extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.argon_splash_layout);
+		//setContentView(R.layout.argon_splash_layout);
 
 		// costruiamo settings per timeout splash screen
-		ApplicationInfo info = ApplicationManager.instance().info;
+		//ApplicationInfo info = ApplicationManager.instance().info;
 
-		String version = info.version.toString();
+		//String version = info.version.toString();
 
 		int resVersion = ResourceUtility.resolveAddress(this,
 				"id/argon_splash_version");
 		if (resVersion != 0) {
 			TextView txtVersion = (TextView) findViewById(resVersion);
-			txtVersion.setText(version);
+			//txtVersion.setText(version);
 		} else {
 			Logger
 					.warn("argon_splash_version is not present in argon_splash_layout");
@@ -65,11 +63,12 @@ public class ArgonActivitySplash extends Activity {
 				"id/argon_splash_application");
 		if (resApplication != 0) {
 			TextView txtApplication = (TextView) findViewById(resApplication);
-			txtApplication.setText(info.name);
-		} else if (Logger.isEnabledFor(LoggerLevelType.WARN)) {
-			Logger
-					.warn("argon_splash_application is not present in argon_splash_layout");
+			//txtApplication.setText(info.name);
 		}
+//		} else if (Logger.isEnabledFor(LoggerLevelType.WARN)) {
+//			Logger
+//					.warn("argon_splash_application is not present in argon_splash_layout");
+//		}
 
 		// ArgonSettings settings = (ArgonSettings)
 		// ApplicationManager.getInstance().attributes.get(ApplicationManagerAttributeKeys.SETTINGS);

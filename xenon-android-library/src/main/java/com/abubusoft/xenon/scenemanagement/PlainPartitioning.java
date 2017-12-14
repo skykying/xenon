@@ -120,7 +120,7 @@ public class PlainPartitioning<E extends Entity> implements SpacePartitioning<E>
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.abubu.argon.spacepartitioning.SpacePartitioning#retrieveZOrderedList
+	 * com.abubusoft.xenon.spacepartitioning.SpacePartitioning#retrieveZOrderedList
 	 * ()
 	 */
 	@SuppressWarnings("unchecked")

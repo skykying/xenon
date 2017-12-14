@@ -184,8 +184,8 @@ public class DynamicTexture {
 			 * (non-Javadoc)
 			 * 
 			 * @see
-			 * org.abubu.argon.texture.TextureAsyncLoaderListener#onTextureReady
-			 * (org.abubu.argon.texture.Texture)
+			 * com.abubusoft.xenon.texture.TextureAsyncLoaderListener#onTextureReady
+			 * (com.abubusoft.xenon.texture.Texture)
 			 */
 			@Override
 			public void onTextureReady(Texture texture) {

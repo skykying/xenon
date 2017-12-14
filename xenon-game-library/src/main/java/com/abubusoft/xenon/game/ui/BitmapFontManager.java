@@ -8,10 +8,10 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-import org.abubu.argon.texture.Texture;
-import org.abubu.argon.texture.TextureFilterType;
-import org.abubu.argon.texture.TextureManager;
-import org.abubu.argon.texture.TextureOptions;
+import com.abubusoft.xenon.texture.Texture;
+import com.abubusoft.xenon.texture.TextureFilterType;
+import com.abubusoft.xenon.texture.TextureManager;
+import com.abubusoft.xenon.texture.TextureOptions;
 import org.abubu.elio.ElioRuntimeException;
 import org.abubu.elio.util.StreamUtility;
 

@@ -1,13 +1,13 @@
 package com.abubusoft.xenon.game.ui;
 
-import org.abubu.argon.animations.TextureAnimationHandler;
-import org.abubu.argon.mesh.MeshFactory;
-import org.abubu.argon.mesh.MeshOptions;
-import org.abubu.argon.mesh.MeshSprite;
-import org.abubu.argon.mesh.modifiers.VertexModifier;
-import org.abubu.argon.texture.Texture;
-import org.abubu.argon.vbo.BufferAllocationType;
-import org.abubu.argon.vbo.BufferAllocationOptions;
+import com.abubusoft.xenon.animations.TextureAnimationHandler;
+import com.abubusoft.xenon.mesh.MeshFactory;
+import com.abubusoft.xenon.mesh.MeshOptions;
+import com.abubusoft.xenon.mesh.MeshSprite;
+import com.abubusoft.xenon.mesh.modifiers.VertexModifier;
+import com.abubusoft.xenon.texture.Texture;
+import com.abubusoft.xenon.vbo.BufferAllocationType;
+import com.abubusoft.xenon.vbo.BufferAllocationOptions;
 
 /**
  * <p>
@@ -125,7 +125,7 @@ public class UIImageView extends UIViewComponent {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.ui.ArgonViewComponent#prepareToDraw(float, float)
+	 * @see com.abubusoft.xenon.ui.ArgonViewComponent#prepareToDraw(float, float)
 	 */
 	@Override
 	protected void prepareToDraw(float windowWitdh, float windowHeight) {

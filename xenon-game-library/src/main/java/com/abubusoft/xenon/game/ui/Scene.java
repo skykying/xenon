@@ -2,7 +2,7 @@ package com.abubusoft.xenon.game.ui;
 
 import java.util.ArrayList;
 
-import org.abubu.argon.mesh.tiledmaps.TiledMap;
+import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 
 /**
  * <p>Rappresenta una scena.</p>

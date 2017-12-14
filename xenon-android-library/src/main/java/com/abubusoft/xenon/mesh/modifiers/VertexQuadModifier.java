@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.mesh.modifiers;
 
-import static org.abubu.argon.mesh.MeshFactory.VERTEX_DIMENSION;
+import static com.abubusoft.xenon.mesh.MeshFactory.VERTEX_DIMENSION;
 
 import com.abubusoft.xenon.mesh.QuadMesh;
 import com.abubusoft.xenon.vbo.VertexBuffer;

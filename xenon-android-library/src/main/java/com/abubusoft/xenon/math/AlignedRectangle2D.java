@@ -1,14 +1,12 @@
 package com.abubusoft.xenon.math;
 
-import com.abubusoft.xenon.core.util.Copy;
-
 /**
  * Rappresenta un rettangolo allineato con gli assi.
  * 
  * @author Francesco Benincasa
  *
  */
-public class AlignedRectangle2D implements Copy {
+public class AlignedRectangle2D  {
 
 	/**
 	 * centro del rettangolo

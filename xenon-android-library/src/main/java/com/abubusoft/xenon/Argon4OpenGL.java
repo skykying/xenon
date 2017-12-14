@@ -278,7 +278,7 @@ public class Argon4OpenGL extends Argon4BaseImpl<ArgonApplication4OpenGL> implem
 		// in questo modo, se sono stati impostati a true, finchè non passiamo per la generazione
 		// della scena non verranno messi a false a causa di duplice invocazione di questo metodo.
 		screenIsChanged = screenIsChanged || (ArgonGL.screenInfo.width != width) || (ArgonGL.screenInfo.height != height);
-		somePreferenceIsChanged = somePreferenceIsChanged || ElioPreferenceActivityManager.getInstance().isPreferenceChanged();
+		//somePreferenceIsChanged = somePreferenceIsChanged || ElioPreferenceActivityManager.getInstance().isPreferenceChanged();
 
 		// aggiorniamo dimensioni schermo
 		ArgonGL.updateScreen(width, height);
@@ -388,7 +388,7 @@ public class Argon4OpenGL extends Argon4BaseImpl<ArgonApplication4OpenGL> implem
 	/**
 	 * Eseguiamo startup dell'applicazione, applichiamo i settings, costruiamo lo screen info e poi invochiamo il metodo parent.
 	 * 
-	 * @see org.abubu.argon.Argon4BaseImpl#onStartup(android.content.Context, org.abubu.argon.settings.ArgonSettings, android.content.SharedPreferences)
+	 * @see com.abubusoft.xenon.Argon4BaseImpl#onStartup(android.content.Context, com.abubusoft.xenon.settings.ArgonSettings, android.content.SharedPreferences)
 	 */
 	@Override
 	public void onStartup(Context contextValue, ArgonSettings settingsValue, SharedPreferences preferenceValue) {
@@ -405,7 +405,7 @@ public class Argon4OpenGL extends Argon4BaseImpl<ArgonApplication4OpenGL> implem
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.Argon#onConfigReset()
+	 * @see com.abubusoft.xenon.Argon#onConfigReset()
 	 */
 	@Override
 	public synchronized void onConfigReset() {

@@ -112,34 +112,34 @@ public class DynamicTree implements BroadPhaseStrategy {
 
     final AABB nodeAABB = node.aabb;
     // if (nodeAABB.contains(aabb)) {
-    if (nodeAABB.lowerBound.x <= aabb.lowerBound.x && nodeAABB.lowerBound.y <= aabb.lowerBound.y
-        && aabb.upperBound.x <= nodeAABB.upperBound.x && aabb.upperBound.y <= nodeAABB.upperBound.y) {
+    if (nodeAABB.lowerBoundX <= aabb.lowerBoundX && nodeAABB.lowerBoundY <= aabb.lowerBoundY
+        && aabb.upperBoundX <= nodeAABB.upperBoundX && aabb.upperBoundY <= nodeAABB.upperBoundY) {
       return false;
     }
 
     removeLeaf(node);
 
     // Extend AABB
-    final Vec2 lowerBound = nodeAABB.lowerBound;
-    final Vec2 upperBound = nodeAABB.upperBound;
-    lowerBound.x = aabb.lowerBound.x - Settings.aabbExtension;
-    lowerBound.y = aabb.lowerBound.y - Settings.aabbExtension;
-    upperBound.x = aabb.upperBound.x + Settings.aabbExtension;
-    upperBound.y = aabb.upperBound.y + Settings.aabbExtension;
+    //final Vec2 lowerBound = nodeAABB.lowerBound;
+    //final Vec2 upperBound = nodeAABB.upperBound;
+    nodeAABB.lowerBoundX = aabb.lowerBoundX - Settings.aabbExtension;
+    nodeAABB.lowerBoundY = aabb.lowerBoundY - Settings.aabbExtension;
+    nodeAABB.upperBoundX = aabb.upperBoundX + Settings.aabbExtension;
+    nodeAABB.upperBoundY = aabb.upperBoundY + Settings.aabbExtension;
 
     // Predict AABB displacement.
     final float dx = displacement.x * Settings.aabbMultiplier;
     final float dy = displacement.y * Settings.aabbMultiplier;
     if (dx < 0.0f) {
-      lowerBound.x += dx;
+      nodeAABB.lowerBoundX += dx;
     } else {
-      upperBound.x += dx;
+      nodeAABB.upperBoundX += dx;
     }
 
     if (dy < 0.0f) {
-      lowerBound.y += dy;
+      nodeAABB.lowerBoundY += dy;
     } else {
-      upperBound.y += dy;
+      nodeAABB.upperBoundY += dy;
     }
 
     insertLeaf(proxyId);
@@ -845,8 +845,8 @@ public class DynamicTree implements BroadPhaseStrategy {
     AABB aabb = new AABB();
     aabb.combine(child1.aabb, child2.aabb);
 
-    assert (aabb.lowerBound.equals(node.aabb.lowerBound));
-    assert (aabb.upperBound.equals(node.aabb.upperBound));
+   // assert (aabb.lowerBound.equals(node.aabb.lowerBound));
+    //assert (aabb.upperBound.equals(node.aabb.upperBound));
 
     validateMetrics(child1);
     validateMetrics(child2);
@@ -870,7 +870,7 @@ public class DynamicTree implements BroadPhaseStrategy {
     color.set(1, (height - spot) * 1f / height, (height - spot) * 1f / height);
     argDraw.drawPolygon(drawVecs, 4, color);
 
-    argDraw.getViewportTranform().getWorldToScreen(node.aabb.upperBound, textVec);
+    argDraw.getViewportTranform().getWorldToScreen(node.aabb.upperBoundX, node.aabb.upperBoundY, textVec);
     argDraw.drawString(textVec.x, textVec.y, node.id + "-" + (spot + 1) + "/" + height, color);
 
     if (node.child1 != null) {

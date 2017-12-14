@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.mesh.modifiers;
 
-import static org.abubu.argon.mesh.MeshFactory.TEXTURE_DIMENSION;
+import static com.abubusoft.xenon.mesh.MeshFactory.TEXTURE_DIMENSION;
 
 import com.abubusoft.xenon.animations.TextureTimeline;
 import com.abubusoft.xenon.mesh.Mesh;

@@ -5,11 +5,11 @@ package com.abubusoft.xenon.game.ui;
 
 import java.util.Locale;
 
-import org.abubu.argon.mesh.MeshFactory;
-import org.abubu.argon.mesh.MeshOptions;
-import org.abubu.argon.mesh.MeshGrid;
-import org.abubu.argon.vbo.BufferAllocationType;
-import org.abubu.argon.vbo.BufferAllocationOptions;
+import com.abubusoft.xenon.mesh.MeshFactory;
+import com.abubusoft.xenon.mesh.MeshOptions;
+import com.abubusoft.xenon.mesh.MeshGrid;
+import com.abubusoft.xenon.vbo.BufferAllocationType;
+import com.abubusoft.xenon.vbo.BufferAllocationOptions;
 
 /**
  * <p>

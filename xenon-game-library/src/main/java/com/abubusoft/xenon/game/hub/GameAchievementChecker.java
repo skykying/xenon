@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.game.hub;
 
-import org.abubu.argon.game.GameConfig;
+import com.abubusoft.xenon.game.GameConfig;
 
 /**
  * @author Francesco Benincasa

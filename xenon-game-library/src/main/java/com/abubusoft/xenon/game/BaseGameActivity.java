@@ -16,9 +16,9 @@
 
 package com.abubusoft.xenon.game;
 
-import org.abubu.argon.android.ArgonActivity4OpenGL;
-import org.abubu.argon.game.hub.GameHelper;
-import org.abubu.argon.game.hub.GameHub;
+import com.abubusoft.xenon.android.ArgonActivity4OpenGL;
+import com.abubusoft.xenon.game.hub.GameHelper;
+import com.abubusoft.xenon.game.hub.GameHub;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,7 +64,7 @@ public abstract class BaseGameActivity extends ArgonActivity4OpenGL implements G
 
 
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.android.ArgonActivity4OpenGL#onCreate(android.os.Bundle)
+	 * @see com.abubusoft.xenon.android.ArgonActivity4OpenGL#onCreate(android.os.Bundle)
 	 */
 	@Override
 	public void onCreate(Bundle b) {
@@ -83,7 +83,7 @@ public abstract class BaseGameActivity extends ArgonActivity4OpenGL implements G
 	}
 
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.android.ArgonActivity4OpenGL#onStop()
+	 * @see com.abubusoft.xenon.android.ArgonActivity4OpenGL#onStop()
 	 */
 	@Override
 	protected void onStop() {

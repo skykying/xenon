@@ -3,8 +3,6 @@
  */
 package com.abubusoft.xenon.misc;
 
-import com.abubusoft.xenon.core.util.Copy;
-
 /**
  * Rappresenta un touchTimer normalizzato. Viene aggiornato in millisecondi.
  * 
@@ -13,7 +11,7 @@ import com.abubusoft.xenon.core.util.Copy;
  * @author Francesco Benincasa
  * 
  */
-public class NormalizedTimer implements Copy {
+public class NormalizedTimer {
 
 	/**
 	 * Tipi di touchTimer.

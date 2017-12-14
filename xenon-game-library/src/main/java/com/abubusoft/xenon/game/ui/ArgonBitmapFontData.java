@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.game.ui;
 
-import org.abubu.argon.texture.Texture;
+import com.abubusoft.xenon.texture.Texture;
 
 import android.util.SparseArray;
 

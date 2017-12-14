@@ -153,7 +153,7 @@ public class TiledLayer extends Layer {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.mesh.tiledmaps.Layer#onWindowCreate()
+	 * @see com.abubusoft.xenon.mesh.tiledmaps.Layer#onWindowCreate()
 	 */
 	@Override
 	public void onBuildView(TiledMapView view) {

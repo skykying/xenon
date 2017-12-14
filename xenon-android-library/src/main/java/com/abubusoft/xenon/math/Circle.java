@@ -3,13 +3,11 @@
  */
 package com.abubusoft.xenon.math;
 
-import com.abubusoft.xenon.core.util.Copy;
-
 /**
  * @author Francesco Benincasa
  *
  */
-public class Circle implements Copy {
+public class Circle {
 	
 	public Circle()
 	{

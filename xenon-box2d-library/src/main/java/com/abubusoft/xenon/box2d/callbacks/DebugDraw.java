@@ -222,7 +222,7 @@ public abstract class DebugDraw {
    * @param argScreen
    */
   public void getWorldToScreenToOut(Vec2 argWorld, Vec2 argScreen) {
-    viewportTransform.getWorldToScreen(argWorld, argScreen);
+    viewportTransform.getWorldToScreen(argWorld.x, argWorld.y, argScreen);
   }
 
   /**
@@ -234,7 +234,7 @@ public abstract class DebugDraw {
    */
   public void getWorldToScreenToOut(float worldX, float worldY, Vec2 argScreen) {
     argScreen.set(worldX, worldY);
-    viewportTransform.getWorldToScreen(argScreen, argScreen);
+    viewportTransform.getWorldToScreen(argScreen.x, argScreen.y , argScreen);
   }
 
   /**
@@ -244,7 +244,7 @@ public abstract class DebugDraw {
    */
   public Vec2 getWorldToScreen(Vec2 argWorld) {
     Vec2 screen = new Vec2();
-    viewportTransform.getWorldToScreen(argWorld, screen);
+    viewportTransform.getWorldToScreen(argWorld.x, argWorld.y, screen);
     return screen;
   }
 

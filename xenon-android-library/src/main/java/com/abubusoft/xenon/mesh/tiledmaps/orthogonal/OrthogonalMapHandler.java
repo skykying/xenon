@@ -102,7 +102,7 @@ public class OrthogonalMapHandler extends AbstractMapHandler<OrthogonalMapContro
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.mesh.tiledmaps.internal.MapHandler#convertScroll(org.abubu.argon.math.Point2, float, float)
+	 * @see com.abubusoft.xenon.mesh.tiledmaps.internal.MapHandler#convertScroll(com.abubusoft.xenon.math.Point2, float, float)
 	 */
 	@Override
 	public void convertRawWindow2MapWindow(Point2 scrollInMap, float scrollXInScreen, float scrollYInScreen) {

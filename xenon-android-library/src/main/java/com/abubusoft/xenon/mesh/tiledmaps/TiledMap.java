@@ -16,6 +16,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers.MapController;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.MapAttributes;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.loader.SAXUtil;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.loader.TMXPredefinedProperties;
+import com.abubusoft.xenon.settings.LoggerLevelType;
 import com.abubusoft.xenon.shader.ArgonShaderOptions;
 import com.abubusoft.xenon.shader.ShaderManager;
 import com.abubusoft.xenon.shader.ShaderTiledMap;
@@ -23,7 +24,6 @@ import com.abubusoft.xenon.texture.AtlasTexture;
 import com.abubusoft.xenon.vbo.BufferAllocationOptions;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
 import com.abubusoft.kripton.android.Logger;
-import com.abubusoft.xenon.core.logger.LoggerLevelType;
 import org.xml.sax.Attributes;
 
 import android.annotation.SuppressLint;
@@ -72,6 +72,9 @@ public class TiledMap extends PropertiesCollector {
 	 */
 	public ShaderTiledMap shader;
 
+	/**
+	 *
+	 */
 	public final MapOrientationType orientation;
 
 	/**

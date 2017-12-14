@@ -40,7 +40,7 @@ public class WaveEffect extends AbstractEffect<WaveShader> {
 	public NormalizedTimer timer;
 
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.render.AbstractEffect#updateShader(org.abubu.argon.shader.Shader, long, float)
+	 * @see com.abubusoft.xenon.render.AbstractEffect#updateShader(com.abubusoft.xenon.shader.Shader, long, float)
 	 */
 	@Override
 	protected void updateShader(WaveShader shader, long enlapsedTime, float speedAdapter) {

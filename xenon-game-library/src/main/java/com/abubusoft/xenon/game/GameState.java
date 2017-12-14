@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.game;
 
-import org.abubu.argon.android.listener.ArgonGestureListener;
+import com.abubusoft.xenon.android.listener.ArgonGestureListener;
 import org.abubu.elio.logger.ElioLogger;
 
 import android.content.SharedPreferences;

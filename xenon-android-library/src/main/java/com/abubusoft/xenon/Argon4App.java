@@ -162,7 +162,7 @@ public class Argon4App extends Argon4BaseImpl<ArgonApplication4App>  {
 
 	
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.Argon#onConfigReset()
+	 * @see com.abubusoft.xenon.Argon#onConfigReset()
 	 */
 	public void onConfigReset()
 	{

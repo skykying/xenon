@@ -18,7 +18,7 @@ public abstract class ArgonApplication4OpenGLImpl extends ArgonApplicationImpl<A
 	}
 
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.ArgonApplication4OpenGL#chooseArgonGLConfig()
+	 * @see com.abubusoft.xenon.ArgonApplication4OpenGL#chooseArgonGLConfig()
 	 */
 	@Override
 	public ConfigOptions chooseArgonGLConfig() {
@@ -57,7 +57,7 @@ public abstract class ArgonApplication4OpenGLImpl extends ArgonApplicationImpl<A
 	public Camera camera;
 
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.ArgonApplication4OpenGL#setDefaultCamera(org.abubu.argon.Camera)
+	 * @see com.abubusoft.xenon.ArgonApplication4OpenGL#setDefaultCamera(com.abubusoft.xenon.Camera)
 	 */
 	@Override
 	public void setDefaultCamera(Camera camera) {

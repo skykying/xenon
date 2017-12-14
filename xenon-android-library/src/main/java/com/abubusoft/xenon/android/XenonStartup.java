@@ -28,7 +28,7 @@ public class XenonStartup extends Application implements XenonSettingsFactory {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.ArgonApplicationFactory#buildSettings()
+	 * @see com.abubusoft.xenon.ArgonApplicationFactory#buildSettings()
 	 */
 	@Override
 	public ArgonSettings buildSettings() {
@@ -51,17 +51,17 @@ public class XenonStartup extends Application implements XenonSettingsFactory {
 		applyLoggerSettings(settings);
 
 		// 3 - sistemiamo applicationManager
-		ApplicationManager am = ApplicationManager.instance();
-		applyStartupSettings(am, settings);
+//		ApplicationManager am = ApplicationManager.instance();
+		applyStartupSettings(settings);
 
 		// 4 - startup dell'application manager
-		ApplicationInfo info = am.startup(this);
+//		ApplicationInfo info = am.startup(this);
 
 		Logger.info("XenonStartup - onCreate, mode %s", settings.application.mode);
 		
 
 		// avvio applicazione
-		Logger.info("Application %s ver. %s stopped, execution counter %s ", info.name, info.version, info.executionNumber);
+		//Logger.info("Application %s ver. %s stopped, execution counter %s ", info.name, info.version, info.executionNumber);
 
 		// 5 - cancelliamo la parte relativa ai file xml che rendono persistente
 		// la configurazione
@@ -69,8 +69,8 @@ public class XenonStartup extends Application implements XenonSettingsFactory {
 			// avvio applicazione
 			Logger.info("Both system and application preferences are reset by configuration");
 			// pulisce la configurazione di sistema
-			am.resetSystemPreferences();
-			am.resetApplicationPreferences();
+			//am.resetSystemPreferences();
+			//am.resetApplicationPreferences();
 		}
 
 		// 6 - avvia la parte mode e l'application
@@ -97,15 +97,15 @@ public class XenonStartup extends Application implements XenonSettingsFactory {
 		argon.onStartup(this, settings, am.getApplicationPreferences());
 
 		// imposta il config storage
-		am.configStorage = argon.getConfigStorage();
+		//am.configStorage = argon.getConfigStorage();
 
 		//
 		// <p>lo dobbiamo mettere qua perchè l'application deve essere
 		// inizializzata.</p>
-		if (am.isConfigReset()) {
-			argon.onConfigReset();
-			am.setConfigReset(false);
-		}
+//		if (am.isConfigReset()) {
+//			argon.onConfigReset();
+//			am.setConfigReset(false);
+//		}
 
 	}
 
@@ -127,12 +127,13 @@ public class XenonStartup extends Application implements XenonSettingsFactory {
 	 * </p>
 	 * 
 	 */
-	protected void applyStartupSettings(ApplicationManager am, ArgonSettings settings) {
+	//protected void applyStartupSettings(ApplicationManager am, ArgonSettings settings) {
+	protected void applyStartupSettings(ArgonSettings settings) {
 		// impostiamo i settings tra gli attributi
 		ArgonBeanContext.setBean(ArgonBeanType.ARGON_SETTINGS, settings);
 		// am.attributes.put(ApplicationManagerAttributeKeys.SETTINGS, settings);
 		try {
-			am.upgradePolicy = (ApplicationUpgradePolicy) Class.forName(settings.application.upgradePolicyClazz.trim()).newInstance();
+		//	am.upgradePolicy = (ApplicationUpgradePolicy) Class.forName(settings.application.upgradePolicyClazz.trim()).newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -910,7 +910,7 @@ public class Matrix4x4 implements SharedData {
 	 * Passa dal buffer usato nella fase LOGIC al floatbuffer usato nella fase RENDER.
 	 * </p>
 	 * 
-	 * @see org.abubu.argon.engine.SharedData#update()
+	 * @see com.abubusoft.xenon.engine.SharedData#update()
 	 */
 	@Override
 	public void update() {

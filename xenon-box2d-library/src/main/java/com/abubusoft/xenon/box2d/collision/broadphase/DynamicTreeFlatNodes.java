@@ -125,26 +125,26 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
     removeLeaf(node);
 
     // Extend AABB
-    final Vec2 lowerBound = nodeAABB.lowerBound;
-    final Vec2 upperBound = nodeAABB.upperBound;
-    lowerBound.x = aabb.lowerBoundX - Settings.aabbExtension;
-    lowerBound.y = aabb.lowerBoundY - Settings.aabbExtension;
-    upperBound.x = aabb.upperBoundX + Settings.aabbExtension;
-    upperBound.y = aabb.upperBoundY + Settings.aabbExtension;
+    //final Vec2 lowerBound = nodeAABB.lowerBound;
+    //final Vec2 upperBound = nodeAABB.upperBound;
+    nodeAABB.lowerBoundX = aabb.lowerBoundX - Settings.aabbExtension;
+    nodeAABB.lowerBoundY = aabb.lowerBoundY - Settings.aabbExtension;
+    nodeAABB.upperBoundX = aabb.upperBoundX + Settings.aabbExtension;
+    nodeAABB.upperBoundY = aabb.upperBoundY + Settings.aabbExtension;
 
     // Predict AABB displacement.
     final float dx = displacement.x * Settings.aabbMultiplier;
     final float dy = displacement.y * Settings.aabbMultiplier;
     if (dx < 0.0f) {
-      lowerBound.x += dx;
+      nodeAABB.lowerBoundX += dx;
     } else {
-      upperBound.x += dx;
+      nodeAABB.upperBoundX += dx;
     }
 
     if (dy < 0.0f) {
-      lowerBound.y += dy;
+      nodeAABB.lowerBoundY += dy;
     } else {
-      upperBound.y += dy;
+      nodeAABB.upperBoundY += dy;
     }
 
     insertLeaf(proxyId);

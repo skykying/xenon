@@ -25,7 +25,7 @@ public class ExternalTexture extends Texture {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.texture.Texture#unbind()
+	 * @see com.abubusoft.xenon.texture.Texture#unbind()
 	 */
 	@Override
 	protected void unbind() {

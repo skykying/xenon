@@ -66,7 +66,7 @@ public class ObjectLayer extends Layer {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.mesh.tiledmaps.Layer#onBuildView(org.abubu.argon.mesh.tiledmaps.internal.MapView)
+	 * @see com.abubusoft.xenon.mesh.tiledmaps.Layer#onBuildView(com.abubusoft.xenon.mesh.tiledmaps.internal.MapView)
 	 */
 	@Override
 	public void onBuildView(TiledMapView view) {

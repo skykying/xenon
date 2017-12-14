@@ -11,8 +11,9 @@ import com.abubusoft.kripton.annotation.BindType;
  * @author Francesco Benincasa
  *
  */
+@Uncryptable
 @BindType
-public class OpenGLSettings implements Uncryptable {
+public class OpenGLSettings {
 
 	/**
 	 * versione di opengl da usare

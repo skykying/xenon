@@ -34,7 +34,7 @@ public class SimplePartitioning<E extends Entity> implements SpacePartitioning<E
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.spacepartitioning.SpacePartitioning#clear()
+	 * @see com.abubusoft.xenon.spacepartitioning.SpacePartitioning#clear()
 	 */
 	public void clear() {
 		list.clear();
@@ -137,7 +137,7 @@ public class SimplePartitioning<E extends Entity> implements SpacePartitioning<E
 	 * Ordina gli elementi per z e poi analizza il rettangolo che rappresenta la
 	 * parte di schermo con la bounding sphere dell'entity.
 	 * 
-	 * @see org.abubu.argon.scenemanagement.SpacePartitioning#retrieveZOrderedList
+	 * @see com.abubusoft.xenon.scenemanagement.SpacePartitioning#retrieveZOrderedList
 	 */
 	public ArrayList<E> retrieveZOrderedList(Camera camera, ScreenInfo screenInfo) {
 

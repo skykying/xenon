@@ -1,8 +1,8 @@
 package com.abubusoft.xenon.game;
 
-import org.abubu.argon.Argon4OpenGL;
-import org.abubu.argon.ArgonBeanContext;
-import org.abubu.argon.ArgonBeanType;
+import com.abubusoft.xenon.Argon4OpenGL;
+import com.abubusoft.xenon.ArgonBeanContext;
+import com.abubusoft.xenon.ArgonBeanType;
 import org.abubu.elio.config.ConfigBase;
 import org.abubu.elio.config.PreferenceConfig;
 

@@ -1,7 +1,6 @@
 package com.abubusoft.xenon.settings;
 
 import com.abubusoft.xenon.core.Uncryptable;
-import com.abubusoft.xenon.core.logger.LoggerLevelType;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;
@@ -14,8 +13,9 @@ import com.abubusoft.kripton.xml.XmlType;
  * @author Francesco Benincasa
  * 
  */
+@Uncryptable
 @BindType
-public class LoggerAppenderSettings implements Uncryptable {
+public class LoggerAppenderSettings {
 
 	@Bind
 	@BindXml(xmlType=XmlType.ATTRIBUTE)

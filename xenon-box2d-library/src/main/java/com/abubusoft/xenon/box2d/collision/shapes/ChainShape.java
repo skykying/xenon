@@ -140,8 +140,8 @@ public class ChainShape extends Shape {
   @Override
   public void computeAABB(AABB aabb, Transform xf, int childIndex) {
     assert (childIndex < m_count);
-    final Vec2 lower = aabb.lowerBound;
-    final Vec2 upper = aabb.upperBound;
+    //final Vec2 lower = aabb.lowerBound;
+    //final Vec2 upper = aabb.upperBound;
 
     int i1 = childIndex;
     int i2 = childIndex + 1;
@@ -158,10 +158,10 @@ public class ChainShape extends Shape {
     float v2x = (xfq.c * vi2.x - xfq.s * vi2.y) + xfp.x;
     float v2y = (xfq.s * vi2.x + xfq.c * vi2.y) + xfp.y;
 
-    lower.x = v1x < v2x ? v1x : v2x;
-    lower.y = v1y < v2y ? v1y : v2y;
-    upper.x = v1x > v2x ? v1x : v2x;
-    upper.y = v1y > v2y ? v1y : v2y;
+    aabb.lowerBoundX = v1x < v2x ? v1x : v2x;
+    aabb.lowerBoundY = v1y < v2y ? v1y : v2y;
+    aabb.upperBoundX = v1x > v2x ? v1x : v2x;
+    aabb.upperBoundY = v1y > v2y ? v1y : v2y;
   }
 
   @Override

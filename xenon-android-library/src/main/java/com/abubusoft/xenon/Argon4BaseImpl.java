@@ -56,17 +56,10 @@ public abstract class Argon4BaseImpl<E extends ArgonApplication> implements Argo
 	 */
 	public ArgonSettings settings;
 
-	/**
-	 * storage della configurazione applicativa. Definita obbligatoriamente da ArgonSettings.
-	 */
-	public ConfigStorage getConfigStorage() {
-		return application;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.Argon#onStartup(android.content.Context, org.abubu.argon.settings.ArgonSettings, android.content.SharedPreferences)
+	 * @see com.abubusoft.xenon.Argon#onStartup(android.content.Context, com.abubusoft.xenon.settings.ArgonSettings, android.content.SharedPreferences)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -80,22 +73,22 @@ public abstract class Argon4BaseImpl<E extends ArgonApplication> implements Argo
 		// 2 - instanziamo config
 		try {
 			// impostiamo la configurazione una config di default
-			if (settings.application.configClazz == null) {
-				Logger.warn("No configClass was specifed, we use the default class %s", ArgonConfig.class);
-				settings.application.configClazz = ArgonConfig.class.getName();
-			}
+//			if (settings.application.configClazz == null) {
+//				Logger.warn("No configClass was specifed, we use the default class %s", ArgonConfig.class);
+//				//settings.application.configClazz = ArgonConfig.class.getName();
+//			}
 
 			String configClazz=settings.application.configClazz;
 			
 			// se ci sono dipendenze con il pack manager lo istanziamo
-			if (ConfigBase.hashPackManagerDependencies(configClazz)) {
-				PackManager.instance().init(context);
-			}
-			// carichiamo la configurazione di default 
-			ConfigBase config = (ConfigBase) Class.forName(configClazz).newInstance();
-			config.readPreferences(contextValue);
+//			if (ConfigBase.hashPackManagerDependencies(configClazz)) {
+//				PackManager.instance().init(context);
+//			}
+//			// carichiamo la configurazione di default
+//			ConfigBase config = (ConfigBase) Class.forName(configClazz).newInstance();
+//			config.readPreferences(contextValue);
 
-			ArgonBeanContext.setBean(ArgonBeanType.CONFIG, config);
+//			ArgonBeanContext.setBean(ArgonBeanType.CONFIG, config);
 		} catch (Exception e) {
 			Logger.fatal(e.getMessage());
 			e.printStackTrace();

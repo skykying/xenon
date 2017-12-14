@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.game.ui;
 
-import org.abubu.argon.math.Point3;
+import com.abubusoft.xenon.math.Point3;
 import org.abubu.elio.logger.ElioLogger;
 
 import android.graphics.RectF;

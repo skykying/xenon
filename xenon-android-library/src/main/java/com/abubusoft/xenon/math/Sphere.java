@@ -1,8 +1,6 @@
 package com.abubusoft.xenon.math;
 
-import com.abubusoft.xenon.core.util.Copy;
-
-public class Sphere implements Copy {
+public class Sphere {
 	/**
 	 * Imposta le coordinate del centro della sfera.
 	 * 

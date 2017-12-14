@@ -21,7 +21,7 @@ package com.abubusoft.xenon.game;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import org.abubu.argon.android.listener.ArgonGestureListenerImpl;
+import com.abubusoft.xenon.android.listener.ArgonGestureListenerImpl;
 
 /**
  * Annotation for a state of a finite state machine.

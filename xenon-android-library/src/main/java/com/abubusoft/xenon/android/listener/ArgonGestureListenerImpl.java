@@ -79,7 +79,7 @@ public class ArgonGestureListenerImpl implements ArgonGestureListener {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.abubu.argon.android.listener.ArgonGestureListener#onUp(android.view.MotionEvent)
+	 * @see com.abubusoft.xenon.android.listener.ArgonGestureListener#onUp(android.view.MotionEvent)
 	 */
 	@Override
 	public void onUp(MotionEvent e) {

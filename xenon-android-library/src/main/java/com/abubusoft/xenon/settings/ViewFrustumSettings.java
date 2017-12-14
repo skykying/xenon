@@ -24,8 +24,9 @@ import com.abubusoft.kripton.annotation.BindType;
  * @author Francesco Benincasa
  * 
  */
+@Uncryptable
 @BindType
-public class ViewFrustumSettings implements Uncryptable {
+public class ViewFrustumSettings {
 	/**
 	 * Definisce quale lato della view la camera deve ricoprire: altezza o
 	 * larghezza.

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 @SuppressWarnings("rawtypes")
-public interface ArgonApplication<E extends Argon> extends ConfigStorage {
+public interface ArgonApplication<E extends Argon> {
 	/**
 	 * Context dell'applicazione
 	 * 

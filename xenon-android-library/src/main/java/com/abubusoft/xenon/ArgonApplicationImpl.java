@@ -21,7 +21,7 @@ public abstract class ArgonApplicationImpl<E extends Argon> implements ArgonAppl
     }
 
     /* (non-Javadoc)
-     * @see org.abubu.argon.ArgonApplication4App#getContext()
+     * @see com.abubusoft.xenon.ArgonApplication4App#getContext()
      */
     @Override
     public Context getContext() {
@@ -31,7 +31,7 @@ public abstract class ArgonApplicationImpl<E extends Argon> implements ArgonAppl
     /*
      * (non-Javadoc)
      *
-     * @see org.abubu.argon.ArgonApplication4App#onAfterStartupFirstTime()
+     * @see com.abubusoft.xenon.ArgonApplication4App#onAfterStartupFirstTime()
      */
     @Override
     public void onAfterStartupFirstTime() {
@@ -43,7 +43,7 @@ public abstract class ArgonApplicationImpl<E extends Argon> implements ArgonAppl
      * (non-Javadoc)
      *
      * @see
-     * org.abubu.argon.ArgonApplication4App#onAfterStartupFirstTimeForThisVersion()
+     * com.abubusoft.xenon.ArgonApplication4App#onAfterStartupFirstTimeForThisVersion()
      */
     @Override
     public void onAfterStartupFirstTimeForThisVersion() {

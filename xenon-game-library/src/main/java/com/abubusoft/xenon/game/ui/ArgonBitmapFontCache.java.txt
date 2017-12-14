@@ -1,4 +1,4 @@
-package org.abubu.argon.text;
+package com.abubusoft.xenon.text;
 
 
 /** Caches glyph geometry for a BitmapFont, providing a fast way to render static text. This saves needing to compute the location

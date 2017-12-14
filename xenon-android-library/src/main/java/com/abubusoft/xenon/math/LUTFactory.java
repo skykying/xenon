@@ -62,7 +62,7 @@ public class LUTFactory {
 		return createLUT(size, new OnLUTCreateValueListener() {
 			
 			/* (non-Javadoc)
-			 * @see org.abubu.argon.math.LUTFactory.OnLUTCreateValueListener#onCreate(org.abubu.argon.math.LUTFactory.ARGB, double, double)
+			 * @see com.abubusoft.xenon.math.LUTFactory.OnLUTCreateValueListener#onCreate(com.abubusoft.xenon.math.LUTFactory.ARGB, double, double)
 			 */
 			@Override
 			public void onCreate(ARGB argb, double x, double y) {

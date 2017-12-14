@@ -143,7 +143,7 @@ public class AttributeBuffer extends AbstractBuffer {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.renderer.SharedData#update()
+	 * @see com.abubusoft.xenon.renderer.SharedData#update()
 	 */
 	public void update() {
 		update(capacity);

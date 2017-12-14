@@ -43,7 +43,7 @@ public class ShaderTiledMap extends Shader {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.abubu.argon.shader.Shader#assignPtrs()
+	 * @see com.abubusoft.xenon.shader.Shader#assignPtrs()
 	 */
 	protected void assignPtrs() {
 		super.assignPtrs();

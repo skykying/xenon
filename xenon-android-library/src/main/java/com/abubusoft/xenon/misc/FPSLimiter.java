@@ -1,7 +1,6 @@
 package com.abubusoft.xenon.misc;
 
 import com.abubusoft.kripton.android.Logger;
-import com.abubusoft.xenon.core.logger.LoggerLevelType;
 
 import android.os.SystemClock;
 
@@ -95,9 +94,9 @@ public class FPSLimiter {
 					// tanto
 					if (FPSCounter.isTimeToShowInfo())
 					{
-						if (Logger.isEnabledFor(LoggerLevelType.VERBOSE)) {
+						//if (Logger.isEnabledFor(LoggerLevelType.VERBOSE)) {
 							Logger.verbose("Time enlapsed %s ms, Time to respect %s sleep for %s", currentFrameRenderTime, (long) ((1000.0 / maxFrameRate)), currentFrameWaitTime);
-						}
+						//}
 						startSleepTime = SystemClock.elapsedRealtime();
 					}
 					Thread.sleep(currentFrameWaitTime);
