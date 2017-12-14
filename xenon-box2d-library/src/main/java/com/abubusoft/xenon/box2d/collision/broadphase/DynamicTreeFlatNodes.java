@@ -127,10 +127,10 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
     // Extend AABB
     final Vec2 lowerBound = nodeAABB.lowerBound;
     final Vec2 upperBound = nodeAABB.upperBound;
-    lowerBound.x = aabb.lowerBound.x - Settings.aabbExtension;
-    lowerBound.y = aabb.lowerBound.y - Settings.aabbExtension;
-    upperBound.x = aabb.upperBound.x + Settings.aabbExtension;
-    upperBound.y = aabb.upperBound.y + Settings.aabbExtension;
+    lowerBound.x = aabb.lowerBoundX - Settings.aabbExtension;
+    lowerBound.y = aabb.lowerBoundY - Settings.aabbExtension;
+    upperBound.x = aabb.upperBoundX + Settings.aabbExtension;
+    upperBound.y = aabb.upperBoundY + Settings.aabbExtension;
 
     // Predict AABB displacement.
     final float dx = displacement.x * Settings.aabbMultiplier;
