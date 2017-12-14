@@ -97,7 +97,7 @@ public interface IViewportTransform {
    * takes the world coordinate (world) puts the corresponding screen coordinate in screen. It
    * should be safe to give the same object as both parameters.
    */
-  void getWorldToScreen(Vec2 world, Vec2 screen);
+  void getWorldToScreen(float worldX, float worldY, Vec2 screen);
 
 
   /**

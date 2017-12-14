@@ -256,7 +256,7 @@ public abstract class DebugDraw {
    */
   public Vec2 getWorldToScreen(float worldX, float worldY) {
     Vec2 argScreen = new Vec2(worldX, worldY);
-    viewportTransform.getWorldToScreen(argScreen, argScreen);
+    viewportTransform.getWorldToScreen(argScreen.x, argScreen.y, argScreen);
     return argScreen;
   }
 

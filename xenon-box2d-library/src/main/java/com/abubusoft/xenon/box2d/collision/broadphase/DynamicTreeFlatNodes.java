@@ -238,10 +238,10 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
     // Vec2.maxToOut(p1, temp, segAABB.upperBound);
     tempx = (p2x - p1x) * maxFraction + p1x;
     tempy = (p2y - p1y) * maxFraction + p1y;
-    segAABB.lowerBound.x = p1x < tempx ? p1x : tempx;
-    segAABB.lowerBound.y = p1y < tempy ? p1y : tempy;
-    segAABB.upperBound.x = p1x > tempx ? p1x : tempx;
-    segAABB.upperBound.y = p1y > tempy ? p1y : tempy;
+    segAABB.lowerBoundX = p1x < tempx ? p1x : tempx;
+    segAABB.lowerBoundY = p1y < tempy ? p1y : tempy;
+    segAABB.upperBoundX = p1x > tempx ? p1x : tempx;
+    segAABB.upperBoundY = p1y > tempy ? p1y : tempy;
     // end inline
 
     nodeStackIndex = 0;
@@ -261,10 +261,10 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
       // |dot(v, p1 - c)| > dot(|v|, h)
       // node.aabb.getCenterToOut(c);
       // node.aabb.getExtentsToOut(h);
-      cx = (nodeAABB.lowerBound.x + nodeAABB.upperBound.x) * .5f;
-      cy = (nodeAABB.lowerBound.y + nodeAABB.upperBound.y) * .5f;
-      hx = (nodeAABB.upperBound.x - nodeAABB.lowerBound.x) * .5f;
-      hy = (nodeAABB.upperBound.y - nodeAABB.lowerBound.y) * .5f;
+      cx = (nodeAABB.lowerBoundX + nodeAABB.upperBoundX) * .5f;
+      cy = (nodeAABB.lowerBoundY + nodeAABB.upperBoundY) * .5f;
+      hx = (nodeAABB.upperBoundX - nodeAABB.lowerBoundX) * .5f;
+      hy = (nodeAABB.upperBoundY - nodeAABB.lowerBoundY) * .5f;
       tempx = p1x - cx;
       tempy = p1y - cy;
       float separation = MathUtils.abs(vx * tempx + vy * tempy) - (absVx * hx + absVy * hy);
@@ -295,10 +295,10 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
           // Vec2.maxToOut(p1, temp, segAABB.upperBound);
           tempx = (p2x - p1x) * maxFraction + p1x;
           tempy = (p2y - p1y) * maxFraction + p1y;
-          segAABB.lowerBound.x = p1x < tempx ? p1x : tempx;
-          segAABB.lowerBound.y = p1y < tempy ? p1y : tempy;
-          segAABB.upperBound.x = p1x > tempx ? p1x : tempx;
-          segAABB.upperBound.y = p1y > tempy ? p1y : tempy;
+          segAABB.lowerBoundX = p1x < tempx ? p1x : tempx;
+          segAABB.lowerBoundY = p1y < tempy ? p1y : tempy;
+          segAABB.upperBoundX = p1x > tempx ? p1x : tempx;
+          segAABB.upperBoundY = p1y > tempy ? p1y : tempy;
         }
       } else {
         nodeStack[nodeStackIndex++] = child1;
@@ -832,8 +832,8 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
     AABB aabb = new AABB();
     aabb.combine(m_aabb[child1], m_aabb[child2]);
 
-    assert (aabb.lowerBound.equals(m_aabb[node].lowerBound));
-    assert (aabb.upperBound.equals(m_aabb[node].upperBound));
+    //assert (aabb.lowerBound.equals(m_aabb[node].lowerBound));
+    //assert (aabb.upperBound.equals(m_aabb[node].upperBound));
 
     validateMetrics(child1);
     validateMetrics(child2);
@@ -858,7 +858,7 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
     color.set(1, (height - spot) * 1f / height, (height - spot) * 1f / height);
     argDraw.drawPolygon(drawVecs, 4, color);
 
-    argDraw.getViewportTranform().getWorldToScreen(a.upperBound, textVec);
+    argDraw.getViewportTranform().getWorldToScreen(a.upperBoundX, a.upperBoundY, textVec);
     argDraw.drawString(textVec.x, textVec.y, node + "-" + (spot + 1) + "/" + height, color);
 
     int c1 = m_child1[node];

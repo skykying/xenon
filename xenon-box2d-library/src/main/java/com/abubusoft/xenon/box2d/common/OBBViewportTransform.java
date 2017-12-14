@@ -132,9 +132,9 @@ public class OBBViewportTransform implements IViewportTransform {
     }
   }
 
-  public void getWorldToScreen(Vec2 world, Vec2 screen) {
-    screen.x = world.x - box.center.x;
-    screen.y = world.y - box.center.y;
+  public void getWorldToScreen(float worldX, float worldY, Vec2 screen) {
+    screen.x = worldX - box.center.x;
+    screen.y = worldY - box.center.y;
     box.R.mulToOut(screen, screen);
     if (yFlip) {
       yFlipMat.mulToOut(screen, screen);
