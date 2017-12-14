@@ -21,7 +21,7 @@ import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.texture.TextureRepeatType;
 import com.abubusoft.xenon.vbo.BufferAllocationOptions;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import org.xml.sax.Attributes;
 
 import android.content.Context;
@@ -154,7 +154,7 @@ public class ImageLayer extends Layer {
 			temp = TextureManager.instance().createTextureFromResourceString(context, imageSource, textureOptions);
 			break;
 		default:
-			throw new ElioRuntimeException("Type of loader is not supported");
+			throw new XenonRuntimeException("Type of loader is not supported");
 		}
 
 		AtlasTextureOptions tto = AtlasTextureOptions.build();

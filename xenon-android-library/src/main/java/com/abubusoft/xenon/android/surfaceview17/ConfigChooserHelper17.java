@@ -8,7 +8,7 @@ import com.abubusoft.xenon.android.surfaceview.ConfigOptions.DisplayFormatType;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.MultiSampleType;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.StencilSizeType;
 import com.abubusoft.xenon.android.surfaceview16.ExtendedConfigOptions;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.annotation.TargetApi;
 import android.opengl.EGL14;
@@ -123,7 +123,7 @@ public abstract class ConfigChooserHelper17 {
 		// gestione multisamping
 		if (options.multiSample == MultiSampleType.ENABLED && configCounter[0] == 0) {
 			// abbiamo richiesto antialiasing ma non abbiamo trovato nulla, abilitiamo extension nvidia
-			ElioLogger.warn("Multisample enabled, but no config found, try with NVIDIA EXTENSION");
+			Logger.warn("Multisample enabled, but no config found, try with NVIDIA EXTENSION");
 			attribList = buildConfigFilter(options, ExtendedConfigOptions.MULTISAMPLE_NVIDIA);
 			EGL14.eglChooseConfig(display, attribList, 0, configList, 0, configList.length, configCounter, 0);
 			for (int i = 0; i < configCounter[0]; i++) {
@@ -132,7 +132,7 @@ public abstract class ConfigChooserHelper17 {
 
 			if (configCounter[0] == 0) {
 				// proviamo senza niente
-				ElioLogger.warn("No NVIDIA EXTENSION for antialiasing found, disable antialiasing");
+				Logger.warn("No NVIDIA EXTENSION for antialiasing found, disable antialiasing");
 				options.multiSample = MultiSampleType.DONT_CARE;
 				attribList = buildConfigFilter(options);
 				EGL14.eglChooseConfig(display, attribList, 0, configList, 0, configList.length, configCounter, 0);
@@ -310,7 +310,7 @@ public abstract class ConfigChooserHelper17 {
 			}
 		}
 
-		ElioLogger.info(buffer.toString());
+		Logger.info(buffer.toString());
 	}
 
 }

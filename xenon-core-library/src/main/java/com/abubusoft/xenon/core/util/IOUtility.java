@@ -14,414 +14,403 @@ import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
-import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 
 /**
  * Utility varie
- * 
+ *
  * @author Francesco Benincasa
- * 
  */
 public abstract class IOUtility {
 
-	/**
-	 * Legge un file di testo a partire dal suo percorso.
-	 * 
-	 * @param fullfilename
-	 * @return
-	 */
-	public static String readTextFile(String fullfilename) {
-		String everything = null;
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(fullfilename));
-			StringBuilder sb = new StringBuilder();
-			String line = br.readLine();
+    /**
+     * Legge un file di testo a partire dal suo percorso.
+     *
+     * @param fullfilename
+     * @return
+     */
+    public static String readTextFile(String fullfilename) {
+        String everything = null;
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(fullfilename));
+            StringBuilder sb = new StringBuilder();
+            String line = br.readLine();
 
-			while (line != null) {
-				sb.append(line);
-				sb.append('\n');
-				line = br.readLine();
-			}
-			everything = sb.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null)
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		}
+            while (line != null) {
+                sb.append(line);
+                sb.append('\n');
+                line = br.readLine();
+            }
+            everything = sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null)
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
 
-		return everything;
-	}
+        return everything;
+    }
 
-	/**
-	 * Legge un file di testo a partire dal suo percorso.
-	 * 
-	 * @param fullfilename
-	 * @return
-	 */
-	public static ArrayList<String> readTextFileAsStrings(String fullfilename) {
-		ArrayList<String> everything = null;
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(fullfilename));
-			String line = br.readLine();
+    /**
+     * Legge un file di testo a partire dal suo percorso.
+     *
+     * @param fullfilename
+     * @return
+     */
+    public static ArrayList<String> readTextFileAsStrings(String fullfilename) {
+        ArrayList<String> everything = null;
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(fullfilename));
+            String line = br.readLine();
 
-			everything = new ArrayList<String>();
+            everything = new ArrayList<String>();
 
-			while (line != null) {
-				everything.add(line);
-				line = br.readLine();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null)
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-		}
+            while (line != null) {
+                everything.add(line);
+                line = br.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null)
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
 
-		return everything;
-	}
+        return everything;
+    }
 
-	/**
-	 * Legge un file di testo da una risorsa raw.
-	 * 
-	 * @param context
-	 * @param resourceId
-	 * @return
-	 * @throws IOException
-	 */
-	public static String readTextFileFromAssets(Context context, String fileName) throws IOException {
-		StringBuilder buffer = new StringBuilder();
-		InputStream inputStream = context.getAssets().open(fileName);
-		BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+    /**
+     * Legge un file di testo da una risorsa raw.
+     *
+     * @param context
+     * @param resourceId
+     * @return
+     * @throws IOException
+     */
+    public static String readTextFileFromAssets(Context context, String fileName) throws IOException {
+        StringBuilder buffer = new StringBuilder();
+        InputStream inputStream = context.getAssets().open(fileName);
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
 
-		String read = in.readLine();
-		while (read != null) {
-			buffer.append(read + "\n");
-			read = in.readLine();
-		}
+        String read = in.readLine();
+        while (read != null) {
+            buffer.append(read + "\n");
+            read = in.readLine();
+        }
 
-		inputStream.close();
+        inputStream.close();
 
-		buffer.deleteCharAt(buffer.length() - 1);
-		return buffer.toString();
-	}
+        buffer.deleteCharAt(buffer.length() - 1);
+        return buffer.toString();
+    }
 
-	/**
-	 * Legge un file di testo da una risorsa raw.
-	 * 
-	 * @param context
-	 * @param resourceId
-	 * @return
-	 * @throws IOException
-	 */
-	public static String readRawTextFile(Context context, int rawResourceId) throws IOException {
-		StringBuilder buffer = new StringBuilder();
-		InputStream inputStream = context.getResources().openRawResource(rawResourceId);
-		BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+    /**
+     * Legge un file di testo da una risorsa raw.
+     *
+     * @param context
+     * @param resourceId
+     * @return
+     * @throws IOException
+     */
+    public static String readRawTextFile(Context context, int rawResourceId) throws IOException {
+        StringBuilder buffer = new StringBuilder();
+        InputStream inputStream = context.getResources().openRawResource(rawResourceId);
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
 
-		String read = in.readLine();
-		while (read != null) {
-			buffer.append(read + "\n");
-			read = in.readLine();
-		}
+        String read = in.readLine();
+        while (read != null) {
+            buffer.append(read + "\n");
+            read = in.readLine();
+        }
 
-		inputStream.close();
+        inputStream.close();
 
-		buffer.deleteCharAt(buffer.length() - 1);
-		return buffer.toString();
-	}
+        buffer.deleteCharAt(buffer.length() - 1);
+        return buffer.toString();
+    }
 
-	/**
-	 * Crea un file vuoto nella cartella cache dell'applicazione con l'estensione desiderata e con un
-	 * 
-	 * @param ctx
-	 * @param extension
-	 * @return
-	 */
-	public static File createEmptyFile(Context ctx, String prefix, String extension) {
-		File outputDir = ctx.getCacheDir();
-		File outputFile = null;
-		try {
-			prefix = prefix == null ? "" : prefix;
-			outputFile = File.createTempFile(prefix, "." + extension, outputDir);
+    /**
+     * Crea un file vuoto nella cartella cache dell'applicazione con l'estensione desiderata e con un
+     *
+     * @param ctx
+     * @param extension
+     * @return
+     */
+    public static File createEmptyFile(Context ctx, String prefix, String extension) {
+        File outputDir = ctx.getCacheDir();
+        File outputFile = null;
+        try {
+            prefix = prefix == null ? "" : prefix;
+            outputFile = File.createTempFile(prefix, "." + extension, outputDir);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return outputFile;
-	}
+        return outputFile;
+    }
 
-	/**
-	 * Salva una bitmap in formato png nella cartella cache dell'applicazione.
-	 * 
-	 * @param photo
-	 * 
-	 * @return
-	 */
-	public static String saveTempPngFile(Context context, String prefix, Bitmap photo) {
-		File outputDir = context.getCacheDir();
-		return saveTempPngFile(context, prefix, outputDir, photo);
-	}
+    /**
+     * Salva una bitmap in formato png nella cartella cache dell'applicazione.
+     *
+     * @param photo
+     * @return
+     */
+    public static String saveTempPngFile(Context context, String prefix, Bitmap photo) {
+        File outputDir = context.getCacheDir();
+        return saveTempPngFile(context, prefix, outputDir, photo);
+    }
 
-	/**
-	 * Cancella tutti i file temporanei che iniziano con un dato prefisso
-	 * 
-	 * @param context
-	 * @param prefix
-	 * @return numero di file cancellati
-	 */
-	public static int deleteTempFiles(Context context, final String prefix) {
-		int i = 0;
-		File cacheDir = context.getCacheDir();
-		File file;
+    /**
+     * Cancella tutti i file temporanei che iniziano con un dato prefisso
+     *
+     * @param context
+     * @param prefix
+     * @return numero di file cancellati
+     */
+    public static int deleteTempFiles(Context context, final String prefix) {
+        int i = 0;
+        File cacheDir = context.getCacheDir();
+        File file;
 
-		String[] filesToDelete = cacheDir.list(new FilenameFilter() {
+        String[] filesToDelete = cacheDir.list(new FilenameFilter() {
 
-			@Override
-			public boolean accept(File dir, String filename) {
-				if (filename.startsWith(prefix)) {
-					return true;
-				}
-				return false;
+            @Override
+            public boolean accept(File dir, String filename) {
+                if (filename.startsWith(prefix)) {
+                    return true;
+                }
+                return false;
 
-			}
-		});
+            }
+        });
 
-		for (String item : filesToDelete) {
-			file = new File(cacheDir + "/" + item);
-			if (ElioLogger.isEnabledFor(ElioLoggerLevelType.DEBUG)) {
-				ElioLogger.debug("Delete cached file %s", file.getAbsolutePath());
-			}
-			file.delete();
-			i++;
-		}
+        for (String item : filesToDelete) {
+            file = new File(cacheDir + "/" + item);
 
-		return i;
-	}
+            //	Logger.debug("Delete cached file %s", file.getAbsolutePath());
 
-	/**
-	 * Cancella tutt le preference fatte dall'utente
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static int deleteAllSavedUserPreferences(Context context) {
-		final ArrayList<String> listName = new ArrayList<String>();
+            file.delete();
+            i++;
+        }
 
-		File sharedPrefsDir = new File(context.getCacheDir().getAbsoluteFile() + "/../shared_prefs/");
+        return i;
+    }
 
-		sharedPrefsDir.list(new FilenameFilter() {
+    /**
+     * Cancella tutt le preference fatte dall'utente
+     *
+     * @param context
+     * @return
+     */
+    public static int deleteAllSavedUserPreferences(Context context) {
+        final ArrayList<String> listName = new ArrayList<String>();
 
-			@Override
-			public boolean accept(File dir, String filename) {
-				if (filename.startsWith("userprefs")) {
-					listName.add(filename.substring(0, filename.lastIndexOf(".")));
-				}
-				return false;
-			}
-		});
+        File sharedPrefsDir = new File(context.getCacheDir().getAbsoluteFile() + "/../shared_prefs/");
 
-		File file;
-		for (String item : listName) {
-			file = new File(sharedPrefsDir.getAbsolutePath() + "/" + item + ".xml");
-			if (ElioLogger.isEnabledFor(ElioLoggerLevelType.DEBUG)) {
-				ElioLogger.debug("Delete SavedUserPreference file %s", file.getAbsolutePath());
-			}
-			file.delete();
-		}
+        sharedPrefsDir.list(new FilenameFilter() {
 
-		return listName.size();
-	}
+            @Override
+            public boolean accept(File dir, String filename) {
+                if (filename.startsWith("userprefs")) {
+                    listName.add(filename.substring(0, filename.lastIndexOf(".")));
+                }
+                return false;
+            }
+        });
 
-	/**
-	 * cancella il salvataggio fatto dall'utente
-	 * 
-	 * @param context
-	 * @param preferenceName
-	 * @return
-	 */
-	public static boolean deleteSavedUserPreference(Context context, String preferenceName) {
+        File file;
+        for (String item : listName) {
+            file = new File(sharedPrefsDir.getAbsolutePath() + "/" + item + ".xml");
 
-		File cacheDir = context.getCacheDir();
-		File sharedPrefsDir = new File(cacheDir.getAbsoluteFile() + "/../shared_prefs");
+            //     Logger.debug("Delete SavedUserPreference file %s", file.getAbsolutePath());
+            file.delete();
+        }
 
-		File file = null;
-		try {
+        return listName.size();
+    }
 
-			file = new File(sharedPrefsDir.getAbsolutePath() + "/" + preferenceName + ".xml");
-			file.delete();
-			if (ElioLogger.isEnabledFor(ElioLoggerLevelType.DEBUG)) {
-				ElioLogger.debug("Deleted SavedUserPreference file %s", file.getAbsolutePath());
-			}
+    /**
+     * cancella il salvataggio fatto dall'utente
+     *
+     * @param context
+     * @param preferenceName
+     * @return
+     */
+    public static boolean deleteSavedUserPreference(Context context, String preferenceName) {
 
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			ElioLogger.warn("Can not delete user-preference-file %s", file.getAbsolutePath());
-		}
+        File cacheDir = context.getCacheDir();
+        File sharedPrefsDir = new File(cacheDir.getAbsoluteFile() + "/../shared_prefs");
 
-		return false;
+        File file = null;
+        try {
 
-	}
+            file = new File(sharedPrefsDir.getAbsolutePath() + "/" + preferenceName + ".xml");
+            file.delete();
+            //     Logger.debug("Deleted SavedUserPreference file %s", file.getAbsolutePath());
 
-	/**
-	 * Recupera l'elenco delle preferenze utente.
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static ArrayList<String> readSavedUserPreference(Context context) {
-		final ArrayList<String> listName = new ArrayList<String>();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Logger.warn("Can not delete user-preference-file %s", file.getAbsolutePath());
+        }
 
-		File cacheDir = context.getCacheDir();
-		File sharedPrefsDir = new File(cacheDir.getAbsoluteFile() + "/../shared_prefs/");
+        return false;
 
-		sharedPrefsDir.list(new FilenameFilter() {
+    }
 
-			@Override
-			public boolean accept(File dir, String filename) {
-				if (filename.startsWith("user")) {
-					listName.add(filename.substring(0, filename.lastIndexOf(".")));
-				}
-				return false;
-			}
-		});
+    /**
+     * Recupera l'elenco delle preferenze utente.
+     *
+     * @param context
+     * @return
+     */
+    public static ArrayList<String> readSavedUserPreference(Context context) {
+        final ArrayList<String> listName = new ArrayList<String>();
 
-		return listName;
-	}
+        File cacheDir = context.getCacheDir();
+        File sharedPrefsDir = new File(cacheDir.getAbsoluteFile() + "/../shared_prefs/");
 
-	/**
-	 * Salva un png in un dato percorso dato sottoforma di file.
-	 * 
-	 * @param photo
-	 * 
-	 * @return
-	 */
-	public static String saveTempPngFile(Context context, String prefix, File outputDir, Bitmap photo) {
-		File outputFile;
-		String outputFileName = null;
-		try {
-			outputFile = File.createTempFile(prefix, ".png", outputDir);
-			FileOutputStream out = new FileOutputStream(outputFile);
-			photo.compress(Bitmap.CompressFormat.PNG, 90, out);
+        sharedPrefsDir.list(new FilenameFilter() {
 
-			outputFileName = outputFile.getAbsolutePath();
+            @Override
+            public boolean accept(File dir, String filename) {
+                if (filename.startsWith("user")) {
+                    listName.add(filename.substring(0, filename.lastIndexOf(".")));
+                }
+                return false;
+            }
+        });
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        return listName;
+    }
 
-		return outputFileName;
-	}
-	
-	/**
-	 * Salva un file di testo nella cartella temporanea
-	 * 
-	 * @param photo
-	 * 
-	 * @return
-	 */
-	public static boolean writeTempRawTextFile(Context context, String filename, String text) {
-		File outputDir = context.getCacheDir();
-		return writeRawTextFile(context, filename, outputDir, text);
-	}
+    /**
+     * Salva un png in un dato percorso dato sottoforma di file.
+     *
+     * @param photo
+     * @return
+     */
+    public static String saveTempPngFile(Context context, String prefix, File outputDir, Bitmap photo) {
+        File outputFile;
+        String outputFileName = null;
+        try {
+            outputFile = File.createTempFile(prefix, ".png", outputDir);
+            FileOutputStream out = new FileOutputStream(outputFile);
+            photo.compress(Bitmap.CompressFormat.PNG, 90, out);
 
-	/**
-	 * Salva un file di testo in un dato percorso dato sottoforma di file.
-	 * 
-	 * @param photo
-	 * 
-	 * @return
-	 */
-	public static boolean writeRawTextFile(Context context, String filename, File outputDir, String text) {
-		File outputFile;
-		BufferedWriter writer = null;
-		try {
-			outputFile = new File(outputDir, filename);
-			FileWriter fw = new FileWriter(outputFile);
-			writer = new BufferedWriter(fw);
-			writer.write(text);
+            outputFileName = outputFile.getAbsolutePath();
 
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		} finally {
-			if (writer != null)
-				try {
-					writer.close();
-				} catch (IOException e) {
-				}
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return true;
-	}
+        return outputFileName;
+    }
 
-	/**
-	 * Salva un'immagine in formato
-	 * 
-	 * @param ctx
-	 * @param outputFileName
-	 * @param photo
-	 * @return
-	 */
-	public static boolean savePngFile(Context ctx, String outputFileName, Bitmap photo) {
-		File outputFile = null;
-		try {
-			outputFile = new File(outputFileName);
-			FileOutputStream out = new FileOutputStream(outputFile);
-			photo.compress(Bitmap.CompressFormat.PNG, 90, out);
-			out.close();
+    /**
+     * Salva un file di testo nella cartella temporanea
+     *
+     * @param photo
+     * @return
+     */
+    public static boolean writeTempRawTextFile(Context context, String filename, String text) {
+        File outputDir = context.getCacheDir();
+        return writeRawTextFile(context, filename, outputDir, text);
+    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
+    /**
+     * Salva un file di testo in un dato percorso dato sottoforma di file.
+     *
+     * @param photo
+     * @return
+     */
+    public static boolean writeRawTextFile(Context context, String filename, File outputDir, String text) {
+        File outputFile;
+        BufferedWriter writer = null;
+        try {
+            outputFile = new File(outputDir, filename);
+            FileWriter fw = new FileWriter(outputFile);
+            writer = new BufferedWriter(fw);
+            writer.write(text);
 
-			try {
-				if (outputFile != null) {
-					outputFile.delete();
-					ElioLogger.warn("File deleted %s", outputFileName);
-				}
-			} catch (Exception f) {
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (writer != null)
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                }
+        }
 
-			}
+        return true;
+    }
 
-			return false;
-		}
+    /**
+     * Salva un'immagine in formato
+     *
+     * @param ctx
+     * @param outputFileName
+     * @param photo
+     * @return
+     */
+    public static boolean savePngFile(Context ctx, String outputFileName, Bitmap photo) {
+        File outputFile = null;
+        try {
+            outputFile = new File(outputFileName);
+            FileOutputStream out = new FileOutputStream(outputFile);
+            photo.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.close();
 
-		return true;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
 
-	/**
-	 * Copia un file
-	 * 
-	 * @param src
-	 * @param dst
-	 * @throws IOException
-	 */
-	public static void copyFile(File src, File dst) throws IOException {
-		FileChannel inChannel = new FileInputStream(src).getChannel();
-		FileChannel outChannel = new FileOutputStream(dst).getChannel();
-		try {
-			inChannel.transferTo(0, inChannel.size(), outChannel);
-		} finally {
-			if (inChannel != null)
-				inChannel.close();
-			if (outChannel != null)
-				outChannel.close();
-		}
-	}
+            try {
+                if (outputFile != null) {
+                    outputFile.delete();
+                    // Logger.warn("File deleted %s", outputFileName);
+                }
+            } catch (Exception f) {
+
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Copia un file
+     *
+     * @param src
+     * @param dst
+     * @throws IOException
+     */
+    public static void copyFile(File src, File dst) throws IOException {
+        FileChannel inChannel = new FileInputStream(src).getChannel();
+        FileChannel outChannel = new FileOutputStream(dst).getChannel();
+        try {
+            inChannel.transferTo(0, inChannel.size(), outChannel);
+        } finally {
+            if (inChannel != null)
+                inChannel.close();
+            if (outChannel != null)
+                outChannel.close();
+        }
+    }
 }

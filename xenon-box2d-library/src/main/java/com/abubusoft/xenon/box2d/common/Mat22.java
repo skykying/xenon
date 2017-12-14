@@ -248,12 +248,6 @@ public class Mat22 implements Serializable {
     out.x = ex.x * v.x + ey.x * v.y;
     out.y = tempy;
   }
-  
-  public final void mulToOut(float vx, float vy, float outX, float outY) {
-	    final float tempy = ex.y * vx + ey.y * vy;
-	    outX = ex.x * vx + ey.x * vy;
-	    outY = tempy;
-	  }
 
   public final void mulToOutUnsafe(final Vec2 v, final Vec2 out) {
     assert (v != out);

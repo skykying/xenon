@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.texture;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 
@@ -31,7 +31,7 @@ import android.content.Context;
  * 	&#064;Override
  * 	public boolean onCheckForUpdate(long enlapsedTime) {
  * 		if (changeTextureTimer.getNormalizedEnlapsedTime() == 1f &amp;&amp; done) {
- * 			ElioLogger.fatal(&quot;readyToSwapTexture &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; YYESS&quot;);
+ * 			Logger.fatal(&quot;readyToSwapTexture &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; YYESS&quot;);
  * 			done = false;
  * 			return true;
  * 		} else {
@@ -41,7 +41,7 @@ import android.content.Context;
  * 
  * 	&#064;Override
  * 	public void onTextureReady(Texture texture) {
- * 		ElioLogger.fatal(&quot;onTextureReady -----------------------&quot;);
+ * 		Logger.fatal(&quot;onTextureReady -----------------------&quot;);
  * 		done = true;
  * 		changeTextureTimer.start();
  * 
@@ -189,7 +189,7 @@ public class DynamicTexture {
 			 */
 			@Override
 			public void onTextureReady(Texture texture) {
-				ElioLogger.info("Texture %s loaded %s (info %s) index %s", texture.name, reload.currentIndexToLoad, texture.info != null, texture.index);
+				Logger.info("Texture %s loaded %s (info %s) index %s", texture.name, reload.currentIndexToLoad, texture.info != null, texture.index);
 
 				// indice delle texture nelle quali rispettivamente corrente nel
 				// quale caricare

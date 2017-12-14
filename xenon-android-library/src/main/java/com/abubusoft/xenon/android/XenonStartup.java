@@ -6,15 +6,12 @@ import com.abubusoft.xenon.Argon4OpenGL;
 import com.abubusoft.xenon.ArgonBeanContext;
 import com.abubusoft.xenon.ArgonBeanType;
 import com.abubusoft.xenon.R;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.settings.ArgonSettings;
-import com.abubusoft.xenon.settings.ArgonSettingsFactory;
+import com.abubusoft.xenon.settings.XenonSettingsFactory;
 import com.abubusoft.xenon.settings.ArgonSettingsReader;
 import com.abubusoft.xenon.settings.LoggerAppenderSettings;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.application.ApplicationInfo;
-import com.abubusoft.xenon.core.application.ApplicationManager;
-import com.abubusoft.xenon.core.application.ApplicationUpgradePolicy;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.app.Application;
 
@@ -26,7 +23,7 @@ import android.app.Application;
  * @author Francesco Benincasa
  * 
  */
-public class ArgonStartup extends Application implements ArgonSettingsFactory {
+public class XenonStartup extends Application implements XenonSettingsFactory {
 
 	/*
 	 * (non-Javadoc)
@@ -51,7 +48,7 @@ public class ArgonStartup extends Application implements ArgonSettingsFactory {
 		ArgonSettings settings = buildSettings();
 
 		// 2 - definiamo il log
-		applyElioLoggerSettings(settings);
+		applyLoggerSettings(settings);
 
 		// 3 - sistemiamo applicationManager
 		ApplicationManager am = ApplicationManager.instance();
@@ -60,17 +57,17 @@ public class ArgonStartup extends Application implements ArgonSettingsFactory {
 		// 4 - startup dell'application manager
 		ApplicationInfo info = am.startup(this);
 
-		ElioLogger.info("ArgonStartup - onCreate, mode %s", settings.application.mode);
+		Logger.info("XenonStartup - onCreate, mode %s", settings.application.mode);
 		
 
 		// avvio applicazione
-		ElioLogger.info("Application %s ver. %s stopped, execution counter %s ", info.name, info.version, info.executionNumber);
+		Logger.info("Application %s ver. %s stopped, execution counter %s ", info.name, info.version, info.executionNumber);
 
 		// 5 - cancelliamo la parte relativa ai file xml che rendono persistente
 		// la configurazione
 		if (settings.application.resetConfig) {
 			// avvio applicazione
-			ElioLogger.info("Both system and application preferences are reset by configuration");
+			Logger.info("Both system and application preferences are reset by configuration");
 			// pulisce la configurazione di sistema
 			am.resetSystemPreferences();
 			am.resetApplicationPreferences();
@@ -90,7 +87,7 @@ public class ArgonStartup extends Application implements ArgonSettingsFactory {
 			}
 			break;
 		default:
-			throw (new ElioRuntimeException("No valid application type was defined with settings.application.mode parameter"));
+			throw (new XenonRuntimeException("No valid application type was defined with settings.application.mode parameter"));
 		}
 
 		// impostiamo il bean context
@@ -121,7 +118,7 @@ public class ArgonStartup extends Application implements ArgonSettingsFactory {
 	public void onLowMemory() {
 		super.onLowMemory();
 		
-		ElioLogger.info("ArgonStartup - onLowMemory");
+		Logger.info("XenonStartup - onLowMemory");
 	}
 
 	/**
@@ -146,12 +143,12 @@ public class ArgonStartup extends Application implements ArgonSettingsFactory {
 	 * Configurazione del logger
 	 * </p>
 	 */
-	protected void applyElioLoggerSettings(ArgonSettings settings) {
+	protected void applyLoggerSettings(ArgonSettings settings) {
 		// impostiamo il logger
-		ElioLogger.config.level = settings.logger.level;
+		Logger.config.level = settings.logger.level;
 
 		for (LoggerAppenderSettings item : settings.logger.appenders) {
-			ElioLogger.config.createAppender(item.tag, item.level);
+			Logger.config.createAppender(item.tag, item.level);
 		}
 
 	}

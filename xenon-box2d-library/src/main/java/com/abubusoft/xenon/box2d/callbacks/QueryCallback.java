@@ -26,11 +26,12 @@
  */
 package com.abubusoft.xenon.box2d.callbacks;
 
+import com.abubusoft.xenon.box2d.dynamics.Fixture;
+import com.abubusoft.xenon.box2d.dynamics.World;
 
-// update to rev 100
 /**
  * Callback class for AABB queries.
- * See World.query
+ * See {@link World#queryAABB(QueryCallback, com.abubusoft.xenon.box2d.collision.AABB)}.
  * @author Daniel Murphy
  */
 public interface QueryCallback {

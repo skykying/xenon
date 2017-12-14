@@ -8,8 +8,8 @@ import com.abubusoft.xenon.R;
 import com.abubusoft.xenon.settings.ArgonSettings;
 import com.abubusoft.xenon.core.application.ApplicationInfo;
 import com.abubusoft.xenon.core.application.ApplicationManager;
-import com.abubusoft.xenon.core.logger.ElioLogger;
-import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
+import com.abubusoft.kripton.android.Logger;
+import com.abubusoft.xenon.core.logger.LoggerLevelType;
 import com.abubusoft.xenon.core.util.ResourceUtility;
 
 import android.app.Activity;
@@ -57,7 +57,7 @@ public class ArgonActivitySplash extends Activity {
 			TextView txtVersion = (TextView) findViewById(resVersion);
 			txtVersion.setText(version);
 		} else {
-			ElioLogger
+			Logger
 					.warn("argon_splash_version is not present in argon_splash_layout");
 		}
 
@@ -66,8 +66,8 @@ public class ArgonActivitySplash extends Activity {
 		if (resApplication != 0) {
 			TextView txtApplication = (TextView) findViewById(resApplication);
 			txtApplication.setText(info.name);
-		} else if (ElioLogger.isEnabledFor(ElioLoggerLevelType.WARN)) {
-			ElioLogger
+		} else if (Logger.isEnabledFor(LoggerLevelType.WARN)) {
+			Logger
 					.warn("argon_splash_application is not present in argon_splash_layout");
 		}
 
@@ -119,12 +119,12 @@ public class ArgonActivitySplash extends Activity {
 			// esegue operazione di inizializzazione
 			if (settings.application.startupTaskClazz != null) {				
 				ArgonStartupTask task = (ArgonStartupTask) Class.forName(settings.application.startupTaskClazz.trim()).newInstance();
-				ElioLogger.info("Execute startup task %s", settings.application.startupTaskClazz);
+				Logger.info("Execute startup task %s", settings.application.startupTaskClazz);
 				task.doTask(this);
 			}
 
 		} catch (Exception e) {
-			ElioLogger.fatal("Error during startup: %s", e.getMessage());
+			Logger.fatal("Error during startup: %s", e.getMessage());
 		}
 	}
 
@@ -139,8 +139,8 @@ public class ArgonActivitySplash extends Activity {
 
 		// questa parte non ha necessariamente argon sistemato
 		/*
-		 * if (ElioLogger.isEnabledFor(LoggerLevelType.INFO)) {
-		 * ElioLogger.info("ArgonActivity4App - onResume %s",
+		 * if (Logger.isEnabledFor(LoggerLevelType.INFO)) {
+		 * Logger.info("ArgonActivity4App - onResume %s",
 		 * this.getClass().getName()); }
 		 * 
 		 * argon.application.onResume(this);
@@ -159,8 +159,8 @@ public class ArgonActivitySplash extends Activity {
 
 		// questa parte non ha necessariamente argon sistemato
 		/*
-		 * if (ElioLogger.isEnabledFor(LoggerLevelType.INFO)) {
-		 * ElioLogger.info("ArgonActivity4App - onPause %s",
+		 * if (Logger.isEnabledFor(LoggerLevelType.INFO)) {
+		 * Logger.info("ArgonActivity4App - onPause %s",
 		 * this.getClass().getName()); }
 		 * 
 		 * argon.application.onPause(this);

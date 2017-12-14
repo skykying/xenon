@@ -9,7 +9,7 @@ import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.texture.AtlasTexture;
 import com.abubusoft.xenon.texture.AtlasTextureOptions;
 import com.abubusoft.xenon.texture.TextureRegion;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
@@ -53,7 +53,7 @@ class TextureAnimationLoader {
 
 			return animationMap;
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
 			return null;
 		}
@@ -88,7 +88,7 @@ class TextureAnimationLoader {
 
 			return animationMap;
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
 			return null;
 		}

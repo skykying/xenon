@@ -117,18 +117,18 @@ public class Argon4App extends Argon4BaseImpl<ArgonApplication4App>  {
 			// avviamo l'applicazione
 			ApplicationInfo info = am.info;
 			if (info.isFirstTime()) {
-				ElioLogger.info("First time for application %s", info.name);
+				Logger.info("First time for application %s", info.name);
 				application.onAfterStartupFirstTime();
 			}
 
 			if (info.isFirstTimeForThiVersion()) {
-				ElioLogger.info("First time for application %s version %s", info.name, info.version);
+				Logger.info("First time for application %s version %s", info.name, info.version);
 				application.onAfterStartupFirstTimeForThisVersion();
 			}
 
 			// rileva la risoluzione dello schermo
 			ScreenInfo.build(context, screenInfo);
-			ElioLogger.info("Screen resolution %s startX %s - Density %s", screenInfo.width, screenInfo.height, screenInfo.densityClass);
+			Logger.info("Screen resolution %s startX %s - Density %s", screenInfo.width, screenInfo.height, screenInfo.densityClass);
 
 			application.onStartup();
 
@@ -140,7 +140,7 @@ public class Argon4App extends Argon4BaseImpl<ArgonApplication4App>  {
 			}
 
 		} else {
-			ElioLogger.info("Activity or service partial restart");
+			Logger.info("Activity or service partial restart");
 		}
 
 		// stiamo lanciando il programma come activity

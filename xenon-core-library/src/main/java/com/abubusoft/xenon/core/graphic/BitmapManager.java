@@ -4,8 +4,6 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
-
 import android.graphics.Bitmap;
 
 /**
@@ -95,7 +93,7 @@ public class BitmapManager {
 			stack = stackList.get(i);
 
 			if (bitmap != null && !bitmap.isRecycled()) {
-				ElioLogger.debug("Bitmap cancello bitmap %s ", stack.toString());
+				// Logger.debug("Bitmap cancello bitmap %s ", stack.toString());
 				bitmap.recycle();
 				counter++;
 			}
@@ -104,7 +102,7 @@ public class BitmapManager {
 		bitmapList.clear();
 
 		if (counter > 0) {
-			ElioLogger.debug("Bitmap cancellate %s ", counter);
+			// Logger.debug("Bitmap cancellate %s ", counter);
 		}
 	}
 }

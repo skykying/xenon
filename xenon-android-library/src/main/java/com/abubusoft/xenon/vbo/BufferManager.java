@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.abubusoft.xenon.opengl.ArgonGL;
 import com.abubusoft.xenon.vbo.AttributeBuffer.AttributeDimensionType;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.opengl.GLES20;
 
@@ -108,7 +108,7 @@ public class BufferManager {
 				current = vbos.get(i);
 				if (current.allocation != BufferAllocationType.CLIENT) {
 					vbosIds[c] = current.bindingId;
-					ElioLogger.debug("Mark as buffer to remove from GPU memory VBO-id " + current.bindingId);
+					Logger.debug("Mark as buffer to remove from GPU memory VBO-id " + current.bindingId);
 					c++;
 				}
 			}
@@ -126,10 +126,10 @@ public class BufferManager {
 			vbos.clear();
 			vboToUnbind = 0;
 
-			ElioLogger.debug("Clear  " + n + " VBO (" + vbosIds.length + " have gpu memory) ");
+			Logger.debug("Clear  " + n + " VBO (" + vbosIds.length + " have gpu memory) ");
 
 		} else {
-			ElioLogger.debug("Clear 0 VBO");
+			Logger.debug("Clear 0 VBO");
 		}
 
 		vbos.clear();
@@ -149,7 +149,7 @@ public class BufferManager {
 				current = vbos.get(i);
 				if (current.allocation != BufferAllocationType.CLIENT) {
 					vbosIds[c] = current.bindingId;
-					ElioLogger.debug("Mark as buffer to remove from GPU memory VBO-id " + current.bindingId);
+					Logger.debug("Mark as buffer to remove from GPU memory VBO-id " + current.bindingId);
 					c++;
 				}
 			}
@@ -158,7 +158,7 @@ public class BufferManager {
 			GLES20.glFlush();
 
 			// cancelliamo le vecchie texture
-			ElioLogger.debug("Unbinded " + n + " old vbos, without deleting them ");
+			Logger.debug("Unbinded " + n + " old vbos, without deleting them ");
 
 			for (int i = 0; i < n; i++) {
 				current = vbos.get(i);
@@ -166,7 +166,7 @@ public class BufferManager {
 
 				current.reload();
 
-				ElioLogger.debug("Rebind vbo %s", i);
+				Logger.debug("Rebind vbo %s", i);
 			}
 		}
 
@@ -176,13 +176,13 @@ public class BufferManager {
 	 * public void unbindVertexBuffers() { if (vbos.size() > 0) { int c = 0; int n = vbos.size(); int[] vbosIds = new int[vboToUnbind]; AbstractBuffer current;
 	 * 
 	 * // ricaviamo tutti i bindingId for (int i = 0; i < n; i++) { current = vbos.get(i); if (current.allocation != BufferAllocationType.CLIENT) { vbosIds[c] = current.bindingId;
-	 * ElioLogger.debug("Mark as buffer to remove from GPU memory VBO-id "+current.bindingId); c++; } }
+	 * Logger.debug("Mark as buffer to remove from GPU memory VBO-id "+current.bindingId); c++; } }
 	 * 
 	 * GLES20.glDeleteBuffers(vbosIds.length, vbosIds, 0); ArgonGL.checkGlError("glDeleteBuffers"); GLES20.glFlush();
 	 * 
 	 * for (int i=0;i<n;i++) { current = vbos.get(i); current.unbind(); } vbos.clear();
 	 * 
-	 * // cancelliamo le vecchie texture ElioLogger.debug("Unbinded " + n + " old vbos"); }
+	 * // cancelliamo le vecchie texture Logger.debug("Unbinded " + n + " old vbos"); }
 	 * 
 	 * }
 	 */

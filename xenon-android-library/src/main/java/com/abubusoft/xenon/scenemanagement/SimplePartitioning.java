@@ -199,7 +199,7 @@ public class SimplePartitioning<E extends Entity> implements SpacePartitioning<E
 
 		// TODO da ottimizzare
 		// time = Timer.now() - time;
-		// ElioLogger.debug("CALCOLO "+tempOrderedList.size()+" su "+zOrderedList.size()+" in "+time+" ms.");
+		// Logger.debug("CALCOLO "+tempOrderedList.size()+" su "+zOrderedList.size()+" in "+time+" ms.");
 
 		return tempOrderedList;
 	}

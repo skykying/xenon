@@ -3,6 +3,7 @@
  */
 package com.abubusoft.xenon.mesh;
 
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.math.ArgonMath;
 import com.abubusoft.xenon.mesh.modifiers.ColorModifier;
 import com.abubusoft.xenon.mesh.modifiers.TextureModifier;
@@ -17,8 +18,7 @@ import com.abubusoft.xenon.vbo.AttributeBuffer;
 import com.abubusoft.xenon.vbo.BufferManager;
 import com.abubusoft.xenon.vbo.TextureBuffer;
 import com.abubusoft.xenon.vbo.VertexBuffer;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -1397,11 +1397,11 @@ public class MeshFactory {
 	 */
 	public static MeshWireframe createWireframe(Mesh inputMesh) {
 		if (!inputMesh.indexesEnabled) {
-			throw (new ElioRuntimeException("mesh " + inputMesh.name + " must contain indexes to be in wireframe mode"));
+			throw (new XenonRuntimeException("mesh " + inputMesh.name + " must contain indexes to be in wireframe mode"));
 		}
 
 		if (inputMesh.indexes.values == null) {
-			throw (new ElioRuntimeException("mesh " + inputMesh.name + " does not contain indexes to be in wireframe mode"));
+			throw (new XenonRuntimeException("mesh " + inputMesh.name + " does not contain indexes to be in wireframe mode"));
 		}
 
 		MeshWireframe meshWireframe = new MeshWireframe(inputMesh);
@@ -1620,10 +1620,10 @@ public class MeshFactory {
 				break;
 			}
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
 			
-			throw(new ElioRuntimeException(e.getMessage()));
+			throw(new XenonRuntimeException(e.getMessage()));
 		}
 				
 		return mesh;
@@ -1651,10 +1651,10 @@ public class MeshFactory {
 				break;
 			}
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
 			
-			throw(new ElioRuntimeException(e.getMessage()));
+			throw(new XenonRuntimeException(e.getMessage()));
 		}
 				
 		return mesh;

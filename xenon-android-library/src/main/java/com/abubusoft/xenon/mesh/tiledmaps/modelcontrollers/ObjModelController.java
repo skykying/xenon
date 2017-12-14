@@ -21,7 +21,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.path.MovementMapFactory;
 import com.abubusoft.xenon.mesh.tiledmaps.path.Path;
 import com.abubusoft.xenon.mesh.tiledmaps.path.PathFinder;
 import com.abubusoft.xenon.opengl.ArgonGL;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * @author Francesco Benincasa
@@ -247,7 +247,7 @@ public class ObjModelController {
 		// distanceX=Math.round(distanceX/movement)*movement; } else if (Math.abs(distanceY) > Math.abs(distanceX)) { distanceX = 0;
 		// distanceY=Math.round(distanceY/movement)*movement; }
 
-		ElioLogger.info("Scroll %s , %s", distanceX, distanceY);
+		Logger.info("Scroll %s , %s", distanceX, distanceY);
 
 		// applichiamo le distanze obj.x += distanceX; obj.y += distanceY;
 
@@ -274,10 +274,10 @@ public class ObjModelController {
 
 		if (end < 0 || end >= map.tileRows * map.tileColumns) {
 			// destinazione non valida
-			ElioLogger.warn("Destination not valid %s", end);
+			Logger.warn("Destination not valid %s", end);
 		} else {
 
-			ElioLogger.info("NAVIGATE from %s to %s", start, end);
+			Logger.info("NAVIGATE from %s to %s", start, end);
 			Path path = pathFinder.findPath(null, start, end);
 
 			MoveType action = null;

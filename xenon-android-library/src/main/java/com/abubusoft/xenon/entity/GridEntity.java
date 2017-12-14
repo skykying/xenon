@@ -6,7 +6,7 @@ import com.abubusoft.xenon.entity.BaseEntity;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.texture.TextureReference;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * Space partiniong.
@@ -306,7 +306,7 @@ public class GridEntity<E extends GridCell> extends BaseEntity {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 		}
 	}
 
@@ -499,7 +499,7 @@ public class GridEntity<E extends GridCell> extends BaseEntity {
 
 		
 		if ((tileEffectiveWidth / tileWidth) < 0.51f && windowLandscape) {
-			ElioLogger.debug("METODO  Landscape");
+			Logger.debug("METODO  Landscape");
 			// in caso di tile ristretto in larghezza e landscape, andiamo inditro
 			for (int i = touchedRow.length - 2; i >= 0; i -= 2) {
 				r = touchedRow[i];
@@ -509,16 +509,16 @@ public class GridEntity<E extends GridCell> extends BaseEntity {
 					// elemento centrale
 					index = c * gridRows + r;
 					if (isTouched(items[index], currentWindowX + windowCenter.x, currentWindowY + windowCenter.y)) {
-						ElioLogger.debug("---OK");
+						Logger.debug("---OK");
 						return items[index];
 					} else {
-						ElioLogger.error("NONE");
+						Logger.error("NONE");
 					}
 				}
 			}
 
 		} else {
-			ElioLogger.debug("METODO  Portrait");
+			Logger.debug("METODO  Portrait");
 			for (int i = 0; i < touchedRow.length; i += 2) {
 				r = touchedRow[i];
 				c = touchedRow[i + 1];
@@ -527,10 +527,10 @@ public class GridEntity<E extends GridCell> extends BaseEntity {
 					// elemento centrale
 					index = c * gridRows + r;
 					if (isTouched(items[index], currentWindowX + windowCenter.x, currentWindowY + windowCenter.y)) {
-						ElioLogger.debug("---OK");
+						Logger.debug("---OK");
 						return items[index];
 					} else {
-						ElioLogger.error("NONE");
+						Logger.error("NONE");
 					}
 				}
 			}
@@ -546,9 +546,9 @@ public class GridEntity<E extends GridCell> extends BaseEntity {
 	}
 
 	private boolean isTouched(GridCell entity, float currentX, float currentY) {
-		ElioLogger.debug("Range X %s < %s < %s = %s", (entity.position.x - tileEffectiveWidth * FACTOR), currentX, (entity.position.x + tileEffectiveWidth * FACTOR),
+		Logger.debug("Range X %s < %s < %s = %s", (entity.position.x - tileEffectiveWidth * FACTOR), currentX, (entity.position.x + tileEffectiveWidth * FACTOR),
 				(currentX >= (entity.position.x - tileEffectiveWidth * FACTOR) && currentX <= (entity.position.x + tileEffectiveWidth * FACTOR)));
-		ElioLogger.debug("Range Y %s < %s < %s = %s", (entity.position.y - tileEffectiveHeight * FACTOR), currentY, (entity.position.y + tileEffectiveHeight * FACTOR),
+		Logger.debug("Range Y %s < %s < %s = %s", (entity.position.y - tileEffectiveHeight * FACTOR), currentY, (entity.position.y + tileEffectiveHeight * FACTOR),
 				(currentY >= (entity.position.y - tileEffectiveHeight * FACTOR) && currentY <= (entity.position.y + tileEffectiveHeight * FACTOR)));
 		if (currentX >= (entity.position.x - tileEffectiveWidth * FACTOR) && currentX <= (entity.position.x + tileEffectiveWidth * FACTOR)) {
 			if (currentY >= (entity.position.y - tileEffectiveHeight * FACTOR) && currentY <= (entity.position.y + tileEffectiveHeight * FACTOR)) {

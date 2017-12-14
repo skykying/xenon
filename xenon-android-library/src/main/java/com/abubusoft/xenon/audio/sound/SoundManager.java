@@ -3,7 +3,7 @@ package com.abubusoft.xenon.audio.sound;
 import com.abubusoft.xenon.audio.BaseAudioManager;
 import com.abubusoft.xenon.audio.exception.AudioException;
 import com.abubusoft.xenon.audio.exception.SoundException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -96,7 +96,7 @@ public class SoundManager extends BaseAudioManager<Sound> implements OnLoadCompl
 				try {
 					throw new SoundException("Unexpected soundID: '" + pSoundID + "'.");
 				} catch (SoundException e) {
-					ElioLogger.error(e.getMessage());
+					Logger.error(e.getMessage());
 					e.printStackTrace();
 				}
 			} else {

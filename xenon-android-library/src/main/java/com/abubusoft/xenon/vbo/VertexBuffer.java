@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.opengl.GLES20;
 
@@ -103,7 +103,7 @@ public class VertexBuffer extends AbstractBuffer {
 			} else {
 				if (allocation == BufferAllocationType.STATIC) {
 					String msg = "Try to allocation VertexBuffer STATIC";
-					ElioLogger.fatal(msg);
+					Logger.fatal(msg);
 					throw new RuntimeException(msg);
 				}
 

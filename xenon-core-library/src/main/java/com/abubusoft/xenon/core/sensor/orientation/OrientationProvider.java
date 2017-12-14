@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.core.sensor.ElioSensorManager;
 import com.abubusoft.xenon.core.sensor.OrientationInputConfig;
 import com.abubusoft.xenon.core.sensor.OrientationInputConfig.EventType;
@@ -78,7 +78,7 @@ public abstract class OrientationProvider implements InputSensorProvider {
 		
 		if (annotations==null || annotations.value().length==0)
 		{
-			throw(new ElioRuntimeException("No sensors is defined for detector "+getClass()));
+			throw(new XenonRuntimeException("No sensors is defined for detector "+getClass()));
 		}
 		int[] sensors=annotations.value();
 		for (int i=0; i<sensors.length;i++ )
@@ -197,7 +197,7 @@ public abstract class OrientationProvider implements InputSensorProvider {
 		currentPitch = Math.toDegrees(tempResult[1]);
 		currentRoll = Math.toDegrees(tempResult[2]);
 
-		// ElioLogger.info("onSensorChanged update VALUES %.3f %.3f %.3f",initialAzimuth, initialPitch, initialRoll);
+		// Logger.info("onSensorChanged update VALUES %.3f %.3f %.3f",initialAzimuth, initialPitch, initialRoll);
 		for (i = 0; i < n; i++) {
 			item = listeners.get(i);
 			currentConfig = item.first;
@@ -206,7 +206,7 @@ public abstract class OrientationProvider implements InputSensorProvider {
 			currentConfig.currentAzimuth = currentAzimuth;
 			currentConfig.currentPitch = currentPitch;
 			currentConfig.currentRoll = currentRoll;
-			// ElioLogger.info("onSensorChanged update %s",i);
+			// Logger.info("onSensorChanged update %s",i);
 
 			boolean somethingIsChanged;
 

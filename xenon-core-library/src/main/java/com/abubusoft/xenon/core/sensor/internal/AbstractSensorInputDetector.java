@@ -5,7 +5,7 @@ package com.abubusoft.xenon.core.sensor.internal;
 
 import java.util.HashSet;
 
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 
 import android.hardware.SensorEventListener;
 
@@ -25,7 +25,7 @@ public abstract class AbstractSensorInputDetector implements SensorEventListener
 		
 		if (annotations==null || annotations.value().length==0)
 		{
-			throw(new ElioRuntimeException("No sensors is defined for detector "+getClass()));
+			throw(new XenonRuntimeException("No sensors is defined for detector "+getClass()));
 		}
 		int[] sensors=annotations.value();
 		for (int i=0; i<sensors.length;i++ )

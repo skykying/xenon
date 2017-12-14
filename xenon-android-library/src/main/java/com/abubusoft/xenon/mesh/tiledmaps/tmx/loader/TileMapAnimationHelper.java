@@ -12,7 +12,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.TileAnimationFrame;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 import com.abubusoft.xenon.mesh.tiledmaps.Layer.LayerType;
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 
 /**
  * 
@@ -98,7 +98,7 @@ public abstract class TileMapAnimationHelper {
 
 		Layer tempLayer = layersMap.get(values[0].trim());
 		
-		if (tempLayer.type!=LayerType.TILED) throw new ElioRuntimeException("For an animation can not use an image layer");
+		if (tempLayer.type!=LayerType.TILED) throw new XenonRuntimeException("For an animation can not use an image layer");
 		TiledLayer layer = (TiledLayer) tempLayer;
 		layer.animationOwnerIndex=animationIndex;
 

@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -34,7 +34,7 @@ public class ScreenStatus extends BroadcastReceiver {
 			screenOn = true;
 		}
 		
-		ElioLogger.debug("SCREEN "+screenOn);
+		Logger.debug("SCREEN "+screenOn);
 
 	}
 

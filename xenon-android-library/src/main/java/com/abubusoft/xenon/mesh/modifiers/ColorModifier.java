@@ -1,8 +1,8 @@
 package com.abubusoft.xenon.mesh.modifiers;
 
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshSprite;
-import com.abubusoft.xenon.core.ElioRuntimeException;
 
 import android.graphics.Color;
 
@@ -47,7 +47,7 @@ public abstract class ColorModifier {
 		}
 		default:
 			// TODO implementare
-			throw (new ElioRuntimeException("setVerticalGradientColors not implemented for drawMode " + shape.drawMode));
+			throw (new XenonRuntimeException("setVerticalGradientColors not implemented for drawMode " + shape.drawMode));
 		}
 	}
 
@@ -74,7 +74,7 @@ public abstract class ColorModifier {
 		}
 		default:
 			// TODO implementare
-			throw (new ElioRuntimeException("setColors not implemented for drawMode " + shape.drawMode));
+			throw (new XenonRuntimeException("setColors not implemented for drawMode " + shape.drawMode));
 		}
 	}
 

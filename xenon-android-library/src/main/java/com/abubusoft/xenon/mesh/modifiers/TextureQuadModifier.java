@@ -201,7 +201,7 @@ public class TextureQuadModifier {
 	 * }
 	 * 
 	 * // Quando passo un array ad un direct buffer devo poi riposizionare // a 0 shape.textures[textureIndex].put(shape.texturesCoords[textureIndex]).position(0); } else { //
-	 * TODO: da sistemare throw new ElioRuntimeException("swapTextureCoords not supported for indexed shape"); } }
+	 * TODO: da sistemare throw new XenonRuntimeException("swapTextureCoords not supported for indexed shape"); } }
 	 * 
 	 * public static void changeAspectRatioTextureCoords(XmlDataModel shape, int textureIndex, float newAspectRatio, OperationVersus allocation, OperationAlign align, boolean update) { if
 	 * (!shape.indexesEnabled) { int n = shape.texturesCoords[textureIndex].length; switch (allocation) { case VERTICAL: for (int i = 0; i < n; i += 2 * TEXTURE_DIMENSION) {
@@ -213,7 +213,7 @@ public class TextureQuadModifier {
 	 * 
 	 * if (update) { // Quando passo un array ad un direct buffer devo poi riposizionare // a 0 shape.textures[textureIndex].put(shape.texturesCoords[textureIndex]).position(0); }
 	 * 
-	 * } else { // TODO: da sistemare throw new ElioRuntimeException("changeAspectRatioTextureCoords not supported for indexed shape"); } }
+	 * } else { // TODO: da sistemare throw new XenonRuntimeException("changeAspectRatioTextureCoords not supported for indexed shape"); } }
 	 */
 
 	/**

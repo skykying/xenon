@@ -8,6 +8,7 @@ import java.nio.FloatBuffer;
 
 import com.abubusoft.xenon.ArgonBeanContext;
 import com.abubusoft.xenon.ArgonBeanType;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.opengl.ArgonGL;
 import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureReference;
@@ -16,9 +17,8 @@ import com.abubusoft.xenon.vbo.ColorBuffer;
 import com.abubusoft.xenon.vbo.IndexBuffer;
 import com.abubusoft.xenon.vbo.TextureBuffer;
 import com.abubusoft.xenon.vbo.VertexBuffer;
-import com.abubusoft.xenon.core.ElioRuntimeException;
 import com.abubusoft.xenon.core.Uncryptable;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
@@ -200,7 +200,7 @@ public class Shader implements Uncryptable {
 			vertex = IOUtility.readRawTextFile(context, vertexProgramId);
 			fragment = IOUtility.readRawTextFile(context, fragmentProgramId);
 		} catch (Exception e) {
-			ElioLogger.error("ERROR-readingShader - could not read shader - %s", e.getLocalizedMessage());
+			Logger.error("ERROR-readingShader - could not read shader - %s", e.getLocalizedMessage());
 		}
 
 		// Setup everything
@@ -219,7 +219,7 @@ public class Shader implements Uncryptable {
 		if (builder != null) {
 			setupFromFiles(context, builder.vertexProgramId, builder.fragmentProgramId, options != null ? options : builder.options);
 		} else {
-			throw (new ElioRuntimeException("Shader builder not defined!"));
+			throw (new XenonRuntimeException("Shader builder not defined!"));
 		}
 	}
 
@@ -303,15 +303,15 @@ public class Shader implements Uncryptable {
 		// Vertex shader
 		vertexProgramId = loadShader(GLES20.GL_VERTEX_SHADER, vertexSource);
 		if (vertexProgramId == 0) {
-			ElioLogger.error("Shader %s - Could create vertexShaderPtr:\n%s ", this.getClass().getSimpleName(), vertexSource);
-			throw (new ElioRuntimeException("Shader - Could create vertexShaderPtr"));
+			Logger.error("Shader %s - Could create vertexShaderPtr:\n%s ", this.getClass().getSimpleName(), vertexSource);
+			throw (new XenonRuntimeException("Shader - Could create vertexShaderPtr"));
 		}
 
 		// pixel shader
 		fragmentProgramId = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentSource);
 		if (fragmentProgramId == 0) {
-			ElioLogger.error("Shader %s - Could create fragmentShaderPtr:\n%s ", this.getClass().getSimpleName(), fragmentSource);
-			throw (new ElioRuntimeException("Shader - Could create fragmentShaderPtr"));
+			Logger.error("Shader %s - Could create fragmentShaderPtr:\n%s ", this.getClass().getSimpleName(), fragmentSource);
+			throw (new XenonRuntimeException("Shader - Could create fragmentShaderPtr"));
 		}
 
 		// Create the program
@@ -323,11 +323,11 @@ public class Shader implements Uncryptable {
 			int[] linkStatus = new int[1];
 			GLES20.glGetProgramiv(programId, GLES20.GL_LINK_STATUS, linkStatus, 0);
 			if (linkStatus[0] != GLES20.GL_TRUE) {
-				ElioLogger.error("Shader %s - Could not link _program: %s", this.getClass().getSimpleName(), GLES20.glGetProgramInfoLog(programId));
+				Logger.error("Shader %s - Could not link _program: %s", this.getClass().getSimpleName(), GLES20.glGetProgramInfoLog(programId));
 				GLES20.glDeleteProgram(programId);
 				programId = 0;
 
-				throw (new ElioRuntimeException(String.format("Shader - Could not link _program: %s", GLES20.glGetProgramInfoLog(programId))));
+				throw (new XenonRuntimeException(String.format("Shader - Could not link _program: %s", GLES20.glGetProgramInfoLog(programId))));
 			}
 			
 			GLES20.glDetachShader(programId, vertexProgramId);
@@ -336,11 +336,11 @@ public class Shader implements Uncryptable {
 			GLES20.glDeleteShader(vertexProgramId);			
 			GLES20.glDeleteShader(fragmentProgramId);
 			
-			ElioLogger.info("Shader - Create program %s", programId);
+			Logger.info("Shader - Create program %s", programId);
 			
 		} else {
-			ElioLogger.error("Shader - Could not create program");
-			throw (new ElioRuntimeException("Shader - Could not create program"));
+			Logger.error("Shader - Could not create program");
+			throw (new XenonRuntimeException("Shader - Could not create program"));
 		}
 
 	}
@@ -361,10 +361,10 @@ public class Shader implements Uncryptable {
 			GLES20.glCompileShader(shader);
 			int[] compiled = new int[1];
 			GLES20.glGetShaderiv(shader, GLES20.GL_COMPILE_STATUS, compiled, 0);
-			ElioLogger.info("Results of compiling shader: %s message: %s", shader, GLES20.glGetShaderInfoLog(shader));
+			Logger.info("Results of compiling shader: %s message: %s", shader, GLES20.glGetShaderInfoLog(shader));
 			if (compiled[0] == 0) {
-				ElioLogger.error("Shader - Could not compile shader %s :", shaderType);
-				ElioLogger.error("Shader %s", GLES20.glGetShaderInfoLog(shader));
+				Logger.error("Shader - Could not compile shader %s :", shaderType);
+				Logger.error("Shader %s", GLES20.glGetShaderInfoLog(shader));
 				GLES20.glDeleteShader(shader);
 				shader = 0;
 			}
@@ -383,7 +383,7 @@ public class Shader implements Uncryptable {
 		GLES20.glUseProgram(programId);
 
 		// GLES20.glGetShaderInfoLog(programId);
-		// ElioLogger.debug(">>>>>>>>>>>>>>>> "+GLES20.glGetProgramInfoLog(programId));
+		// Logger.debug(">>>>>>>>>>>>>>>> "+GLES20.glGetProgramInfoLog(programId));
 
 		if (checkErrors)
 			ArgonGL.checkGlError("Shader (id="+programId+") use");
@@ -661,24 +661,24 @@ public class Shader implements Uncryptable {
 	 */
 	protected void preprocessor(ArgonShaderOptions options) {
 		/*
-		 * if (ElioLogger.isEnabledFor(LoggerLevelType.DEBUG)) { //ElioLogger.debug ("========== PREPROCESSOR SHADER %s - BEGIN ==========" ,getClass().getCanonicalName());
+		 * if (Logger.isEnabledFor(LoggerLevelType.DEBUG)) { //Logger.debug ("========== PREPROCESSOR SHADER %s - BEGIN ==========" ,getClass().getCanonicalName());
 		 * 
-		 * for (int i=0;i<options.pragmaCostants.size();i++) { ElioLogger.debug(" Costant %s = %s" ,options.pragmaCostants.get(i).first, options.pragmaCostants.get(i).second); }
+		 * for (int i=0;i<options.pragmaCostants.size();i++) { Logger.debug(" Costant %s = %s" ,options.pragmaCostants.get(i).first, options.pragmaCostants.get(i).second); }
 		 * 
-		 * for (Map.Entry<String, Boolean> item: options.pragmaDefinitions.entrySet()) { ElioLogger.debug(" Definition %s = %s",item.getKey(), item.getValue()); } }
+		 * for (Map.Entry<String, Boolean> item: options.pragmaDefinitions.entrySet()) { Logger.debug(" Definition %s = %s",item.getKey(), item.getValue()); } }
 		 */
 
 		vertexSource = ShaderPreprocessor.preprocessorSource(vertexSource, options);
 		fragmentSource = ShaderPreprocessor.preprocessorSource(fragmentSource, options);
 
-		// ElioLogger.debug("========== SHADER %s - BEGIN ==========",
+		// Logger.debug("========== SHADER %s - BEGIN ==========",
 		// getClass().getCanonicalName());
-		// if (ElioLogger.isEnabledFor(LoggerLevelType.DEBUG)) {
-		// ElioLogger.debug("========== vertex Source ==========");
-		// ElioLogger.debug(vertexSource);
+		// if (Logger.isEnabledFor(LoggerLevelType.DEBUG)) {
+		// Logger.debug("========== vertex Source ==========");
+		// Logger.debug(vertexSource);
 		//
-		// ElioLogger.debug("========== fragment Source ==========");
-		// ElioLogger.debug(fragmentSource);
+		// Logger.debug("========== fragment Source ==========");
+		// Logger.debug(fragmentSource);
 		// }
 
 	}
@@ -687,7 +687,7 @@ public class Shader implements Uncryptable {
 	 * provvede a cancellare lo shader
 	 */
 	public void unbind() {
-		ElioLogger.debug("Unbind shader programId " + programId);
+		Logger.debug("Unbind shader programId " + programId);
 		
 		GLES20.glDetachShader(programId, vertexProgramId);
 		GLES20.glDetachShader(programId, fragmentProgramId);

@@ -18,7 +18,6 @@ import com.abubusoft.xenon.settings.ArgonSettings;
 import com.abubusoft.xenon.shader.ShaderManager;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.vbo.BufferManager;
-import com.abubusoft.xenon.core.android.ElioPreferenceActivityManager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -203,7 +202,7 @@ public class Argon4OpenGL extends Argon4BaseImpl<ArgonApplication4OpenGL> implem
 	}
 
 	public synchronized void onSceneCreation() {
-		// ElioLogger.info("ARGON onSurfaceChanged");
+		// Logger.info("ARGON onSurfaceChanged");
 		// boolean screenIsChanged;
 		// boolean somePreferenceIsChanged;
 
@@ -343,7 +342,7 @@ public class Argon4OpenGL extends Argon4BaseImpl<ArgonApplication4OpenGL> implem
 		 * 
 		 * // creazione scena TextureManager.instance().clearTextures(context); ShaderManager.instance().clearShaders(); BufferManager.instance().clearVertexBuffers();
 		 * 
-		 * // creiamo la scena ElioLogger.info("####Create scene"); application.onSceneCreate(preferences, firstSceneCreation, false, false); application.onSceneReady(preferences, false, false, false); ElioLogger.info("> GL Finish");
+		 * // creiamo la scena Logger.info("####Create scene"); application.onSceneCreate(preferences, firstSceneCreation, false, false); application.onSceneReady(preferences, false, false, false); Logger.info("> GL Finish");
 		 * GLES20.glFinish();
 		 */
 		// viewStatus = ViewStatusType.SURFACE_ON_PAUSE;
@@ -421,9 +420,9 @@ public class Argon4OpenGL extends Argon4BaseImpl<ArgonApplication4OpenGL> implem
 		Logger.info("> Argon4OpenGL onOGLContextDestroy");
 
 		/*
-		 * ElioLogger.info("> BEGIN Unbind textures, shaders, vbos");
+		 * Logger.info("> BEGIN Unbind textures, shaders, vbos");
 		 * 
-		 * ElioLogger.info("> END Unbind textures, shaders, vbos");
+		 * Logger.info("> END Unbind textures, shaders, vbos");
 		 */
 		/*
 		 * TextureManager.instance().clearTextures(); ShaderManager.instance().clearShaders(); BufferManager.instance().clearBuffers();

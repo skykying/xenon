@@ -15,7 +15,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.Layer;
 import com.abubusoft.xenon.mesh.tiledmaps.Tile;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 import org.xml.sax.Attributes;
 
 import android.util.Base64;
@@ -104,12 +104,12 @@ public abstract class TMXLayerHelper {
 				addTile(layer, readRawGID(dataIn));
 			}
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 		} finally {
 			try {
 				if (dataIn!=null) dataIn.close();
 			} catch (IOException e) {
-				ElioLogger.error(e.toString());
+				Logger.error(e.toString());
 			}
 		}
 	}

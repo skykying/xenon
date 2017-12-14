@@ -3,7 +3,7 @@ package com.abubusoft.xenon.mesh.persistence.androidxml;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 
 import com.abubusoft.kripton.KriptonBinder;
 
@@ -23,7 +23,7 @@ public class AndroidXmlLoader {
 			return parse(context.getAssets().open(fileName));
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 
@@ -32,7 +32,7 @@ public class AndroidXmlLoader {
 			return parse(context.getResources().openRawResource(resourceId));
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 }

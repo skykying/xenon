@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import com.abubusoft.xenon.Argon4OpenGL;
 import com.abubusoft.xenon.misc.Clock;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * State manager. Quando si parla di frame nell'ambito dello stateManager, si indica il tempo
@@ -50,7 +50,7 @@ public class StateManager {
 	private int n;
 
 	public void frameStart() {
-		//ElioLogger.info("StateManager -- frameStart");
+		//Logger.info("StateManager -- frameStart");
 		
 		// iniziamo il disegno della scena
 		argon.onDrawFrameBegin();
@@ -85,7 +85,7 @@ public class StateManager {
 	public void frameStop() {
 		UpdateManager.instance().isReady();
 		duration = Clock.now() - duration;
-		//ElioLogger.info("StateManager -- frameStop (%s ms)", duration);
+		//Logger.info("StateManager -- frameStop (%s ms)", duration);
 
 		// termine del disegno della scena
 		argon.onDrawFrameEnd();

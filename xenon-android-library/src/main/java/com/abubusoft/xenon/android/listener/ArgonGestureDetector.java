@@ -7,7 +7,6 @@ package com.abubusoft.xenon.android.listener;
 import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.Argon4OpenGL;
 
-
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;

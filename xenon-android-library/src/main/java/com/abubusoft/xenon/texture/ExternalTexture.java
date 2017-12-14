@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.texture;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.graphics.SurfaceTexture;
 
@@ -31,14 +31,14 @@ public class ExternalTexture extends Texture {
 	protected void unbind() {
 		super.unbind();
 
-		ElioLogger.debug("unbind ExternalTexture %s (%s)", name, bindingId);
+		Logger.debug("unbind ExternalTexture %s (%s)", name, bindingId);
 
 		if (options.mediaPlayer != null && options.mediaPlayer.isPlaying()) {
 			// curretPosition=options.mediaPlayer.getCurrentPosition();
 			options.mediaPlayer.pause();
 			// options.mediaPlayer.st
 			// options.mediaPlayer.release();
-			ElioLogger.debug("-- media player associated paused and released");
+			Logger.debug("-- media player associated paused and released");
 		}
 
 		//mMediaPlayer.stop();
@@ -48,7 +48,7 @@ public class ExternalTexture extends Texture {
 			surface.release();
 			surface=null;
 		}
-		ElioLogger.debug("-- surface detached and released");
+		Logger.debug("-- surface detached and released");
 	}
 
 	/**

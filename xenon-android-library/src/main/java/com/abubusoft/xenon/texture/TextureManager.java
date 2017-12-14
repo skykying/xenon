@@ -9,7 +9,7 @@ import java.util.List;
 import com.abubusoft.xenon.ArgonBeanContext;
 import com.abubusoft.xenon.ArgonBeanType;
 import com.abubusoft.xenon.opengl.ArgonGL;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
@@ -52,7 +52,7 @@ public class TextureManager {
 			GLES20.glFlush();
 
 			// cancelliamo le vecchie texture
-			ElioLogger.debug("Unbinded " + n + " old textures, without deleting them ");
+			Logger.debug("Unbinded " + n + " old textures, without deleting them ");
 
 			Texture current;
 			TextureInfo info;
@@ -62,7 +62,7 @@ public class TextureManager {
 				current.reload();
 
 				if (!current.ready) {
-					ElioLogger.warn("Texture %s index: %s not ready (async load)", current.name, current.index);
+					Logger.warn("Texture %s index: %s not ready (async load)", current.name, current.index);
 					continue;
 				}
 
@@ -116,7 +116,7 @@ public class TextureManager {
 					 */
 					}
 
-					ElioLogger.debug("Rebind texture %s (%s)", i, info.load);
+					Logger.debug("Rebind texture %s (%s)", i, info.load);
 					break;
 				case TEXTURE_EXTERNAL:
 					ExternalTexture currentExternalTexture = (ExternalTexture) current;
@@ -163,7 +163,7 @@ public class TextureManager {
 		textures.add(newTexture);
 		newTexture.index = textures.size() - 1;
 
-		ElioLogger.debug("Texture index %s, bindingId %s is created, Loaded %s", newTexture.index, newTexture.bindingId, newTexture.ready);
+		Logger.debug("Texture index %s, bindingId %s is created, Loaded %s", newTexture.index, newTexture.bindingId, newTexture.ready);
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class TextureManager {
 		Context context=ArgonBeanContext.getBean(ArgonBeanType.CONTEXT);
 		// puliamo cmq tutte le immagini cachate
 		int c = IOUtility.deleteTempFiles(context, "texture_");
-		ElioLogger.debug("Deleted " + c + " old textures cached on files");
+		Logger.debug("Deleted " + c + " old textures cached on files");
 
 		if (textures.size() > 0) {
 			int n = textures.size();
@@ -200,11 +200,11 @@ public class TextureManager {
 			  
 			  			
 			textures.clear();
-			ElioLogger.debug("Unbinded " + n + " old textures ");
+			Logger.debug("Unbinded " + n + " old textures ");
 			return n;
 		} else {
 			// non dobbiamo cancellare alcuna texture
-			ElioLogger.debug("No texture to unbind");
+			Logger.debug("No texture to unbind");
 			return 0;
 		}
 	}
@@ -299,7 +299,7 @@ public class TextureManager {
 
 		GLES20.glGenTextures(textureIds.length, textureIds, 0);
 
-		ElioLogger.debug("Generated " + resourceIdList.size() + " texture ids");
+		Logger.debug("Generated " + resourceIdList.size() + " texture ids");
 		for (int i = 0; i < resourceIdList.size(); i++) {
 			createTextureFromResourceId(context, resourceIdList.get(i), options);
 		}

@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.audio.exception;
 
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 
 
 /**
@@ -9,7 +9,7 @@ import com.abubusoft.xenon.core.ElioRuntimeException;
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 20:44:53 - 09.11.2011
  */
-public class AudioException extends ElioRuntimeException {
+public class AudioException extends XenonRuntimeException {
 	// ===========================================================
 	// Constants
 	// ===========================================================

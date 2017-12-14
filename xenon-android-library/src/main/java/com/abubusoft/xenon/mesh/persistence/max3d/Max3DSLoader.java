@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.math.Vector3;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 
@@ -70,11 +70,11 @@ public class Max3DSLoader extends MeshParserBase {
 
 	protected ArrayList<Max3dsModelData> parseInternal(InputStream stream) throws IOException {
 		models = new ArrayList<Max3dsModelData>();
-		ElioLogger.info("Start parsing 3DS");
+		Logger.info("Start parsing 3DS");
 
 		readHeader(stream);
 		if (mChunkID != ChunkType.IDENTIFIER_3DS.value) {
-			ElioLogger.error("Not a valid 3DS file");
+			Logger.error("Not a valid 3DS file");
 			return null;
 		}
 
@@ -91,7 +91,7 @@ public class Max3DSLoader extends MeshParserBase {
 
 		stream.close();
 
-		ElioLogger.info("End parsing 3DS");
+		Logger.info("End parsing 3DS");
 
 		return models;
 	}
@@ -100,7 +100,7 @@ public class Max3DSLoader extends MeshParserBase {
 		readHeader(stream);
 
 		ChunkType chunk = ChunkType.parseValue(mChunkID);
-		// ElioLogger.debug("CHUNK %s - %s", mChunkID, chunk);
+		// Logger.debug("CHUNK %s - %s", mChunkID, chunk);
 
 		if (chunk == null) {
 			skipRead(stream);
@@ -130,7 +130,7 @@ public class Max3DSLoader extends MeshParserBase {
 				break;
 			case TEX_FILENAME:
 				String fileName = readString(stream);
-				ElioLogger.debug("TEX_FILENAME %s", fileName);
+				Logger.debug("TEX_FILENAME %s", fileName);
 
 				// StringBuffer texture = new StringBuffer(packageID);
 				// texture.append(":drawable/");
@@ -413,9 +413,9 @@ public class Max3DSLoader extends MeshParserBase {
 		try {
 			return parse(context.getAssets().open(fileName)).get(0);
 		} catch (IOException e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 
@@ -430,9 +430,9 @@ public class Max3DSLoader extends MeshParserBase {
 		try {
 			return parse(context.getResources().openRawResource(resourceId)).get(0);
 		} catch (IOException e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 

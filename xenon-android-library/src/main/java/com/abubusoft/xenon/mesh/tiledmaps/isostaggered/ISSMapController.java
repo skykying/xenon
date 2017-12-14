@@ -5,7 +5,7 @@ import com.abubusoft.xenon.math.ArgonMath;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 import com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers.AbstractMapController;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 public class ISSMapController extends AbstractMapController {
 
@@ -24,42 +24,42 @@ public class ISSMapController extends AbstractMapController {
 	public Point2 touch(float screenX, float screenY) {
 		{
 						
-			ElioLogger.info("Isometric map position (%s , %s), window size = (%s, %s) tile size = %s", map.positionInMap.x, map.positionInMap.y, ((ISSMapHandler)(map.handler)).isoWindowWidth,((ISSMapHandler)(map.handler)).isoWindowHeight, ((ISSMapHandler)(map.handler)).isoTileSize);
+			Logger.info("Isometric map position (%s , %s), window size = (%s, %s) tile size = %s", map.positionInMap.x, map.positionInMap.y, ((ISSMapHandler)(map.handler)).isoWindowWidth,((ISSMapHandler)(map.handler)).isoWindowHeight, ((ISSMapHandler)(map.handler)).isoTileSize);
 		}
 		
 		{
 			workScroll.set(ISSHelper.convertRawScreen2CenteredWindow(this, screenX, screenY));			
-			ElioLogger.info("Convert raw screen (%s , %s) to window (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
+			Logger.info("Convert raw screen (%s , %s) to window (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
 		}
 		
 		
 		{
 			workScroll.set(ISSHelper.convertRawScreen2IsoMap(this, screenX, screenY));			
-			ElioLogger.info("Convert raw screen (%s , %s) to map (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
+			Logger.info("Convert raw screen (%s , %s) to map (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
 		}
 		/*
 		{
 			workScroll.set(ISSHelper.convertRawScreen2IsoTileIndex(this, screenX, screenY));			
-			ElioLogger.info("Convert raw screen (%s , %s) to tile cell (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
+			Logger.info("Convert raw screen (%s , %s) to tile cell (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
 		}
 		
 		{
 			workScroll.set(ISSHelper.convertRawScreen2IsoTileOffset(this, screenX, screenY));			
-			ElioLogger.info("Convert raw screen (%s , %s) to tile offset (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
+			Logger.info("Convert raw screen (%s , %s) to tile offset (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
 		}
 
 		// x verifica
 		{
 			workScroll.set(ISSHelper.convertRawScreen2IsoWindow(this, screenX, screenY));
-			ElioLogger.info("Convert raw screen (%s , %s) to iso (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
+			Logger.info("Convert raw screen (%s , %s) to iso (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
 			workScroll.set(ISSHelper.convertIsoWindow2RawScreen(this, workScroll.x, workScroll.y));
-			ElioLogger.info("Check raw screen (%s , %s) to calculated (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
+			Logger.info("Check raw screen (%s , %s) to calculated (%s , %s)", screenX, screenY, workScroll.x, workScroll.y);
 		}
 		*/
 		
 
 		
-		ElioLogger.info("----ss--------------------");
+		Logger.info("----ss--------------------");
 		/*
 		 * scroll.x=scroll.x-(this.map.view().windowCenter.x-map.tileWidth); scroll.y=(this.map.view().windowCenter.y- map.tileHeight)-scroll.y;
 		 * 
@@ -67,7 +67,7 @@ public class ISSMapController extends AbstractMapController {
 		 * 
 		 * scroll.x= scroll.x+(map.positionInMap.x+(map.view().windowTileColumns*map.tileWidth*0.5f)); scroll.y=-scroll.y+(map.positionInMap.y+map.view().windowTileRows*map.tileHeight*0.5f);
 		 * 
-		 * ElioLogger.info("Convert screen (%s , %s) to (%s , %s)", screenX, screenY, scroll.x, scroll.y); ElioLogger.info("Convert screen (%s , %s) to tile (row: %s , col: %s)", screenX, screenY, (int)scroll.y/map.tileWidth,
+		 * Logger.info("Convert screen (%s , %s) to (%s , %s)", screenX, screenY, scroll.x, scroll.y); Logger.info("Convert screen (%s , %s) to tile (row: %s , col: %s)", screenX, screenY, (int)scroll.y/map.tileWidth,
 		 * (int)scroll.x/map.tileHeight);
 		 * 
 		 * //TODO per il momento non funziona molto bene //map.handler.convertScreen2Map(scroll, screenX* screenToTiledMapFactor, screenY* screenToTiledMapFactor);

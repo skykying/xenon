@@ -22,8 +22,8 @@ import com.abubusoft.xenon.shader.ShaderTiledMap;
 import com.abubusoft.xenon.texture.AtlasTexture;
 import com.abubusoft.xenon.vbo.BufferAllocationOptions;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
-import com.abubusoft.xenon.core.logger.ElioLogger;
-import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
+import com.abubusoft.kripton.android.Logger;
+import com.abubusoft.xenon.core.logger.LoggerLevelType;
 import org.xml.sax.Attributes;
 
 import android.annotation.SuppressLint;
@@ -545,7 +545,7 @@ public class TiledMap extends PropertiesCollector {
 				}
 			}
 		} catch (Exception e) {
-			ElioLogger.error(e.toString());
+			Logger.error(e.toString());
 		}
 		return null;
 	}
@@ -573,7 +573,7 @@ public class TiledMap extends PropertiesCollector {
 				}
 			}
 		} catch (Exception e) {
-			ElioLogger.error(e.toString());
+			Logger.error(e.toString());
 		}
 		return null;
 	}
@@ -725,15 +725,15 @@ public class TiledMap extends PropertiesCollector {
 
 		// TODO quello che segue relativo alla view è da mettere nel map handler (cambia in base al tipo di mappa)
 		handler.onBuildView(view, cameraValue, options);
-		if (ElioLogger.isEnabledFor(ElioLoggerLevelType.INFO)) {
-			ElioLogger.info("ARGON - -----------------------");
-			ElioLogger.info("ARGON - distanceFromViewer %s ", view.distanceFromViewer);
-			ElioLogger.info("ARGON - windowWidth %s windowHeight %s", view.windowWidth, view.windowHeight);
-			ElioLogger.info("ARGON - mapWidth %s mapHeight %s", mapWidth, mapHeight);
-			ElioLogger.info("ARGON - windowCenterX %s windowCenterY %s", view.windowCenter.x, view.windowCenter.y);
-			ElioLogger.info("ARGON - windowTileRows %s windowTileColumns %s", view.windowTileRows, view.windowTileColumns);
-			ElioLogger.info("ARGON - tileWidth %s tileHeight %s", tileWidth, tileHeight);
-			ElioLogger.info("ARGON - -----------------------");
+		if (Logger.isEnabledFor(LoggerLevelType.INFO)) {
+			Logger.info("ARGON - -----------------------");
+			Logger.info("ARGON - distanceFromViewer %s ", view.distanceFromViewer);
+			Logger.info("ARGON - windowWidth %s windowHeight %s", view.windowWidth, view.windowHeight);
+			Logger.info("ARGON - mapWidth %s mapHeight %s", mapWidth, mapHeight);
+			Logger.info("ARGON - windowCenterX %s windowCenterY %s", view.windowCenter.x, view.windowCenter.y);
+			Logger.info("ARGON - windowTileRows %s windowTileColumns %s", view.windowTileRows, view.windowTileColumns);
+			Logger.info("ARGON - tileWidth %s tileHeight %s", tileWidth, tileHeight);
+			Logger.info("ARGON - -----------------------");
 		}
 
 		// impostazioni di scroll

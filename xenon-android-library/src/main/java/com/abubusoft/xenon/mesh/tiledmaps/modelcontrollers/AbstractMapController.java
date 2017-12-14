@@ -163,7 +163,7 @@ public abstract class AbstractMapController implements MapController {
 			}
 		}
 		
-		//ElioLogger.info("--> position (%s, %s) , -- scroll (%s, %s) ", map.positionInMap.x, map.positionInMap.y, workScroll.x, workScroll.y);
+		//Logger.info("--> position (%s, %s) , -- scroll (%s, %s) ", map.positionInMap.x, map.positionInMap.y, workScroll.x, workScroll.y);
 
 		for (int i = 0; i < map.layers.size(); i++) {
 			map.layers.get(i).scroll(workScroll.x, workScroll.y);

@@ -15,7 +15,7 @@ import com.abubusoft.xenon.ArgonBeanContext;
 import com.abubusoft.xenon.ArgonBeanType;
 import com.abubusoft.xenon.DeviceInfo;
 import com.abubusoft.xenon.android.ArgonGLDebugFlags;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.opengl.GLES10;
 import android.opengl.GLES20;
@@ -32,7 +32,7 @@ public class ArgonGLHelper {
 	public static void onStartup() {
 		// rileva la risoluzione dello schermo
 		DeviceInfo info = DeviceInfo.instance();
-		ElioLogger.info("RAM %s, CPU core %s", info.getAvailableRAM(), info.getCpuCores());
+		Logger.info("RAM %s, CPU core %s", info.getAvailableRAM(), info.getCpuCores());
 
 		ArgonEGL argonEGL = new ArgonEGL();
 
@@ -47,7 +47,7 @@ public class ArgonGLHelper {
 		ArgonGLConfigChooser.setOptions(app.chooseArgonGLConfig());
 		ArgonGLConfigChooser.build().findBestMatch(argonEGL);
 
-		ElioLogger.info("OpenGL version %s", ArgonGL.getVersion());
+		Logger.info("OpenGL version %s", ArgonGL.getVersion());
 		checkGlExtensions();
 
 		surface.release();
@@ -56,7 +56,7 @@ public class ArgonGLHelper {
 	}
 
 	public static EGLContext createContext(EGL10 egl, EGLDisplay display, EGLConfig eglConfig) {
-		ElioLogger.info("creating OpenGL ES 2.0 context");
+		Logger.info("creating OpenGL ES 2.0 context");
 		int[] attrib_list = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL10.EGL_NONE };
 		EGLContext context = egl.eglCreateContext(display, eglConfig, EGL10.EGL_NO_CONTEXT, attrib_list);
 		return context;
@@ -125,7 +125,7 @@ public class ArgonGLHelper {
 		// Impostiamo l'array del range delle linee
 		ArgonGL.lineWidthRange = new int[2];
 		GLES20.glGetIntegerv(GLES20.GL_ALIASED_LINE_WIDTH_RANGE, ArgonGL.lineWidthRange, 0);
-		ElioLogger.info("Lines width range supported [%s - %s]", ArgonGL.lineWidthRange[0], ArgonGL.lineWidthRange[1]);
+		Logger.info("Lines width range supported [%s - %s]", ArgonGL.lineWidthRange[0], ArgonGL.lineWidthRange[1]);
 		// GLES20.glGetIntegerv(GLES20.GL_ , range,0);
 
 		// recuperiamo tutte le stringhe che contengono le varie estensioni
@@ -138,7 +138,7 @@ public class ArgonGLHelper {
 			for (int i = 0; i < extensions.size(); i++) {
 				argonGLExtension = ArgonGLExtension.parseAndFlag(extensions.get(i));
 				if (ArgonGLDebugFlags.DISPLAY_ALL_OPENGL_EXTENSION) {
-					ElioLogger.debug(String.format("Check opengl extension %s %s\n", extensions.get(i), argonGLExtension != null ? "(SUPPORTED)" : ""));
+					Logger.debug(String.format("Check opengl extension %s %s\n", extensions.get(i), argonGLExtension != null ? "(SUPPORTED)" : ""));
 				}
 			}
 					
@@ -148,7 +148,7 @@ public class ArgonGLHelper {
 			for (ArgonGLExtension item : ArgonGLExtension.values()) {
 
 				if (item.isPresent())
-					ElioLogger.info(String.format("Supported opengl extensions %s\n", item));
+					Logger.info(String.format("Supported opengl extensions %s\n", item));
 			}
 		}
 	}

@@ -2,7 +2,7 @@ package com.abubusoft.xenon.core.sensor.compass;
 
 import java.util.HashSet;
 
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.core.sensor.OrientationInputConfig;
 import com.abubusoft.xenon.core.sensor.OrientationInputConfig.EventType;
 import com.abubusoft.xenon.core.sensor.OrientationInputListener;
@@ -47,7 +47,7 @@ public class CompassProvider implements InputSensorProvider {
 		AttachedSensors annotations = this.getClass().getAnnotation(AttachedSensors.class);
 
 		if (annotations == null || annotations.value().length == 0) {
-			throw (new ElioRuntimeException("No sensors is defined for detector " + getClass()));
+			throw (new XenonRuntimeException("No sensors is defined for detector " + getClass()));
 		}
 		int[] sensors = annotations.value();
 		for (int i = 0; i < sensors.length; i++) {
@@ -117,7 +117,7 @@ public class CompassProvider implements InputSensorProvider {
 		if (success ) {
 			found1=false;
 			found2=false;
-			//ElioLogger.info("Eseguo per %s",event.sensor.getType());
+			//Logger.info("Eseguo per %s",event.sensor.getType());
 			SensorManager.getOrientation(R, orientation);
 			// Log.d(TAG, "azimuth (rad): " + azimuth);
 			averageHeading.add(orientation[0]);
@@ -170,7 +170,7 @@ public class CompassProvider implements InputSensorProvider {
 			config.currentAzimuth = currentAzimuth;
 			config.currentPitch = currentPitch;
 			config.currentRoll = currentRoll;
-			// ElioLogger.info("onSensorChanged update %s",i);
+			// Logger.info("onSensorChanged update %s",i);
 
 			boolean somethingIsChanged;
 

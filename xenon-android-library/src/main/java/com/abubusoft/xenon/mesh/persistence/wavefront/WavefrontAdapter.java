@@ -17,8 +17,6 @@ import com.abubusoft.xenon.mesh.persistence.wavefront.WavefrontModelData.VertexF
 import com.abubusoft.xenon.vbo.TextureBuffer;
 import com.abubusoft.xenon.vbo.BufferManager;
 import com.abubusoft.xenon.vbo.BufferAllocationOptions;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

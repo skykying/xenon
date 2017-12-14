@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.settings;
 
 import com.abubusoft.xenon.core.Uncryptable;
-import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
+import com.abubusoft.xenon.core.logger.LoggerLevelType;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;
@@ -23,6 +23,6 @@ public class LoggerAppenderSettings implements Uncryptable {
 
 	@Bind
 	@BindXml(xmlType=XmlType.ATTRIBUTE)
-	public ElioLoggerLevelType level;
+	public LoggerLevelType level;
 
 }

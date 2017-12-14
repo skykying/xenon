@@ -8,7 +8,7 @@ import com.abubusoft.xenon.mesh.MeshSprite;
 import com.abubusoft.xenon.mesh.MeshTile;
 import com.abubusoft.xenon.texture.TextureRegion;
 import com.abubusoft.xenon.vbo.TextureBuffer;
-import com.abubusoft.xenon.core.ElioRuntimeException;
+import com.abubusoft.xenon.core.XenonRuntimeException;
 
 /**
  * <p>
@@ -248,7 +248,7 @@ public class TextureModifier {
 			//shape.textures[textureIndex].put(shape.texturesCoords[textureIndex]).position(0);
 		/*} else {
 			// TODO: da sistemare
-			throw new ElioRuntimeException("swapTextureCoords not supported for indexed shape");
+			throw new XenonRuntimeException("swapTextureCoords not supported for indexed shape");
 		}*/
 	}
 
@@ -276,7 +276,7 @@ public class TextureModifier {
 			shape.textures[textureIndex].update();// .put(shape.textures[textureIndex]).position(0);
 		} else {
 			// TODO: da sistemare
-			throw new ElioRuntimeException("changeAspectRatioTextureCoords not supported for indexed shape");
+			throw new XenonRuntimeException("changeAspectRatioTextureCoords not supported for indexed shape");
 		}
 	}
 

@@ -171,9 +171,9 @@ public abstract class AbstractBuffer implements SharedData, Serializable {
 			Method cleanMethod = cleaner.getClass().getMethod("clean");
 			cleanMethod.setAccessible(true);
 			cleanMethod.invoke(cleaner);
-			ElioLogger.info("destroyDirectByteBuffer success!");
+			Logger.info("destroyDirectByteBuffer success!");
 		} catch (Exception e) {
-			ElioLogger.info("destroyDirectByteBuffer error "+e.getMessage());
+			Logger.info("destroyDirectByteBuffer error "+e.getMessage());
 			e.printStackTrace();
 		}
 

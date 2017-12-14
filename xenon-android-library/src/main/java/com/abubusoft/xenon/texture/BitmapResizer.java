@@ -5,7 +5,7 @@ package com.abubusoft.xenon.texture;
 
 import com.abubusoft.xenon.math.ArgonMath;
 import com.abubusoft.xenon.math.SizeI2;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -75,7 +75,7 @@ public abstract class BitmapResizer {
 		Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
 		Bitmap desctBmp = wrapBitmap(Bitmap.createBitmap(bmpSrc.getWidth() - offset * 2, bmpSrc.getHeight(), conf));
 
-		// ElioLogger.error("ADATTO IMMAGINE : inc %s -- w,h = (%s, %s",incPercentage,desctBmp.getWidth(),desctBmp.getHeight());
+		// Logger.error("ADATTO IMMAGINE : inc %s -- w,h = (%s, %s",incPercentage,desctBmp.getWidth(),desctBmp.getHeight());
 
 		Rect src = new Rect(0 + offset, 0, bmpSrc.getWidth() - offset, bmpSrc.getHeight());
 		Rect dest = new Rect(0, 0, desctBmp.getWidth(), desctBmp.getHeight());
@@ -105,7 +105,7 @@ public abstract class BitmapResizer {
 		Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
 		Bitmap desctBmp = wrapBitmap(Bitmap.createBitmap(bmpSrc.getWidth(), bmpSrc.getHeight() - offset * 2, conf));
 
-		// ElioLogger.error("ADATTO IMMAGINE : inc %s -- w,h = (%s, %s",incPercentage,desctBmp.getWidth(),desctBmp.getHeight());
+		// Logger.error("ADATTO IMMAGINE : inc %s -- w,h = (%s, %s",incPercentage,desctBmp.getWidth(),desctBmp.getHeight());
 
 		Rect src = new Rect(0, 0 + offset, bmpSrc.getWidth(), bmpSrc.getHeight() - offset);
 		Rect dest = new Rect(0, 0, desctBmp.getWidth(), desctBmp.getHeight());
@@ -151,12 +151,12 @@ public abstract class BitmapResizer {
 		float Iw = resizedBitmap.getWidth();
 		float Ih = resizedBitmap.getHeight();
 
-		ElioLogger.error("Resized bitmap " + resizedBitmap.getWidth() + " startX " + resizedBitmap.getHeight());
+		Logger.error("Resized bitmap " + resizedBitmap.getWidth() + " startX " + resizedBitmap.getHeight());
 
 		Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
 		Bitmap desctBmp = wrapBitmap(Bitmap.createBitmap(textureSize.width, textureSize.height, conf));
 
-		ElioLogger.error("desctBmp bitmap " + desctBmp.getWidth() + " startX " + desctBmp.getHeight());
+		Logger.error("desctBmp bitmap " + desctBmp.getWidth() + " startX " + desctBmp.getHeight());
 
 		int offsetX = 0;
 		int offsetY = 0;
@@ -170,12 +170,12 @@ public abstract class BitmapResizer {
 
 		Rect src, dest;
 
-		// ElioLogger.error("Offset " + offsetX + "," + offsetY);
+		// Logger.error("Offset " + offsetX + "," + offsetY);
 		offsetX = offsetX > 0 ? offsetX : 0;
 		offsetY = offsetY > 0 ? offsetY : 0;
-		// ElioLogger.error("Offset Fixed " + offsetX + "," + offsetY);
+		// Logger.error("Offset Fixed " + offsetX + "," + offsetY);
 		src = new Rect(0 + offsetX, 0 + offsetY, resizedBitmap.getWidth() - offsetX, resizedBitmap.getHeight() - offsetY);
-		// ElioLogger.error("rect " + resizedBitmap.getWidth() + " startX " +
+		// Logger.error("rect " + resizedBitmap.getWidth() + " startX " +
 		// resizedBitmap.getHeight()); 
 
 		//TODO da verificare: deve essere spostato in basso

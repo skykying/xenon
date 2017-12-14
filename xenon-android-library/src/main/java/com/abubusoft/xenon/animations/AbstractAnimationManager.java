@@ -8,10 +8,10 @@ public abstract class AbstractAnimationManager<T extends Timeline, A extends Ani
 
 	protected AbstractAnimationManager()
 	{
-		timelineMap = new HashMap<String, T>();
-		timelineList = new ArrayList<T>();
-		animationMap = new HashMap<String, A>();
-		animationList = new ArrayList<A>();
+		timelineMap = new HashMap<>();
+		timelineList = new ArrayList<>();
+		animationMap = new HashMap<>();
+		animationList = new ArrayList<>();
 	}
 	
 	public abstract void clear();

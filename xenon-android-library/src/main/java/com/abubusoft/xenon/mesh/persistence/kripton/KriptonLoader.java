@@ -7,8 +7,8 @@ import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshOptions;
 import com.abubusoft.xenon.vbo.AbstractBuffer;
 import com.abubusoft.xenon.vbo.BufferHelper;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.XenonRuntimeException;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 
@@ -69,9 +69,9 @@ public class KriptonLoader {
 
 			return mesh;
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 
@@ -88,9 +88,9 @@ public class KriptonLoader {
 		try {
 			return load(context.getAssets().open(fileName), bindType, options);
 		} catch (IOException e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 
@@ -98,9 +98,9 @@ public class KriptonLoader {
 		try {
 			return load(context.getResources().openRawResource(resourceId), bindType, options);
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 				
 	}

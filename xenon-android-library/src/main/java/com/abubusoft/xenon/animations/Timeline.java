@@ -27,7 +27,7 @@ package com.abubusoft.xenon.animations;
 
 import com.abubusoft.xenon.animations.AnimationHandler.StatusType;
 import com.abubusoft.xenon.core.collections.SmartQueue;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * A {@code Timeline} can be used to define a free from animation of any {@link javafx.beans.value.WritableValue}, e.g. all {@link javafx.beans.property.Property JavaFX Properties}
@@ -73,7 +73,7 @@ public class Timeline<A extends Animation<K>, K extends KeyFrame, H extends Anim
 		// immettiamo animation e la avviamo
 		if (channel.size() == 0) {
 			// assert: non abbiamo alcun elemento
-			ElioLogger.error("No animation to play on timeline %s!", id);
+			Logger.error("No animation to play on timeline %s!", id);
 		} else {
 			handler.set(channel.pop());
 			handler.play();
@@ -115,7 +115,7 @@ public class Timeline<A extends Animation<K>, K extends KeyFrame, H extends Anim
 		if (handler != null && handler.animation != null) {
 			handler.oneMoreTime();
 		} else {
-			ElioLogger.warn("No oneMoreTime, because no animation is associated to timeline.");
+			Logger.warn("No oneMoreTime, because no animation is associated to timeline.");
 		}
 
 	}

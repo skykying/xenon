@@ -1,7 +1,5 @@
 package com.abubusoft.xenon.texture;
 
-import com.abubusoft.xenon.core.util.Copy;
-
 /**
  * Rappresenta un puntatore ad una texture. E' sempre bene utilizzare le referenze alle texture piuttosto che
  * le texture direttamente.
@@ -9,7 +7,7 @@ import com.abubusoft.xenon.core.util.Copy;
  * @author Francesco Benincasa
  *
  */
-public class TextureReference implements Copy {
+public class TextureReference {
 	
 	/**
 	 * indice della texture referenziata.

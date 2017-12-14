@@ -9,7 +9,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.ObjDefinition;
 import com.abubusoft.xenon.mesh.tiledmaps.ObjectLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledLayer;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.graphics.Rect;
 
@@ -73,9 +73,9 @@ public abstract class TMXObjectClassHelper {
 				bodiesOL = tiledMap.findtObjectGroup(bodiesOLKey);
 
 				if (shapeTL == null || bodiesOL == null) {
-					ElioLogger.error("Error with %s class category, with shape layer %s and parts object layer %s", classesOLKey, shapesTLKey, bodiesOLKey);
+					Logger.error("Error with %s class category, with shape layer %s and parts object layer %s", classesOLKey, shapesTLKey, bodiesOLKey);
 				} else {
-					ElioLogger.info("Find %s class category layer, with shape layer %s and parts object layer %s", classesOLKey, shapesTLKey, bodiesOLKey);
+					Logger.info("Find %s class category layer, with shape layer %s and parts object layer %s", classesOLKey, shapesTLKey, bodiesOLKey);
 
 					// iteriamo su tutti gli oggetti presenti nel layer di
 					// definizione
@@ -102,7 +102,7 @@ public abstract class TMXObjectClassHelper {
 						origin.setCoords(classDefinition.x, classDefinition.y);
 						// origin.addCoords(+objectClass.width*0.5f,+objectClass.height*0.5f);
 
-						ElioLogger.info("Create %s class", objectClass.name);
+						Logger.info("Create %s class", objectClass.name);
 
 						// definisce la classe bodiesOL.
 						// si parte sempre dal tile più in alto a sx.
@@ -138,7 +138,7 @@ public abstract class TMXObjectClassHelper {
 									currentBody.x -= origin.x;
 									currentBody.y -= origin.y;
 									objectClass.parts.add(currentBody);
-									ElioLogger.debug("Add body %s", currentBody.name);
+									Logger.debug("Add body %s", currentBody.name);
 								}
 							}
 						}
@@ -152,9 +152,9 @@ public abstract class TMXObjectClassHelper {
 					boolean c = tiledMap.removeLayer(shapesTLKey);
 
 					if (a && b && c) {
-						ElioLogger.info("Successfully removed class category");
+						Logger.info("Successfully removed class category");
 					} else {
-						ElioLogger.error("Error in deletion of class");
+						Logger.error("Error in deletion of class");
 					}
 				}
 			}

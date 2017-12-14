@@ -6,11 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import com.abubusoft.xenon.core.XenonRuntimeException;
 import com.abubusoft.xenon.mesh.persistence.wavefront.WavefrontModelData.Face;
 import com.abubusoft.xenon.mesh.persistence.wavefront.WavefrontModelData.UVCoord;
 import com.abubusoft.xenon.mesh.persistence.wavefront.WavefrontModelData.VertexF;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 
@@ -43,9 +43,9 @@ public class WavefrontLoader {
 		try {
 			return load(context.getAssets().open(fileName));
 		} catch (IOException e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 
@@ -77,7 +77,7 @@ public class WavefrontLoader {
 			int current;
 			int index;
 
-			ElioLogger.info("Loading obj data");
+			Logger.info("Loading obj data");
 			while (line != null) {
 				current = 0;
 				tokens = line.trim().split(SPACE);
@@ -145,7 +145,7 @@ public class WavefrontLoader {
 			}
 			// printFaces(faces);
 			int facesSize = faces.size();
-			ElioLogger.info(facesSize + " polys");
+			Logger.info(facesSize + " polys");
 
 			model.vertices = vertices;
 			model.tex = uvs;
@@ -154,9 +154,9 @@ public class WavefrontLoader {
 			reader.close();
 
 		} catch (IOException e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 
 		return model;
@@ -166,9 +166,9 @@ public class WavefrontLoader {
 		try {
 			return load(context.getResources().openRawResource(resourceId));
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 	}
 

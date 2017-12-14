@@ -11,8 +11,6 @@ import com.abubusoft.xenon.mesh.MeshHelper;
 import com.abubusoft.xenon.mesh.MeshOptions;
 import com.abubusoft.xenon.vbo.BufferManager;
 import com.abubusoft.xenon.vbo.TextureBuffer;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
 
 public class Max3DSAdapter {
 

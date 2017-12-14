@@ -3,7 +3,6 @@ package com.abubusoft.xenon.core.graphic.animation;
 import java.util.HashMap;
 
 import com.abubusoft.xenon.core.graphic.BitmapUtility;
-import com.abubusoft.xenon.core.logger.ElioLogger;
 import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
@@ -31,7 +30,6 @@ public class BitmapAtlasLoaderGDX {
 
 			return animationMap;
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
 			e.printStackTrace();
 			return null;
 		}

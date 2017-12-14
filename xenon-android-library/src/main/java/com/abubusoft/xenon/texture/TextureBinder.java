@@ -12,8 +12,7 @@ import com.abubusoft.xenon.opengl.AsyncOperationManager.AsyncTextureInfoLoader;
 import com.abubusoft.xenon.texture.TextureInfo.TextureLoadType;
 import com.abubusoft.xenon.core.graphic.BitmapUtility;
 import com.abubusoft.xenon.core.graphic.SampledBitmapFactory;
-import com.abubusoft.xenon.core.logger.ElioLogger;
-import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
+import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
@@ -68,9 +67,7 @@ public abstract class TextureBinder {
 		// salva la texture iniziale su file
 		if (options.debugTextureOnFile) {
 			String fileName = IOUtility.saveTempPngFile(context, "debugTexture" + textureBindingId + "Initial", source);
-			if (ElioLogger.isEnabledFor(ElioLoggerLevelType.DEBUG)) {
-				ElioLogger.debug("Saved texture %s", fileName);
-			}
+			Logger.debug("Saved texture %s", fileName);
 		}
 
 		Bitmap transformedSource;
@@ -421,8 +418,8 @@ public abstract class TextureBinder {
 		// salva la texture generata su file
 		if (options.debugTextureOnFile) {
 			String fileName = IOUtility.saveTempPngFile(context, "debugTexture" + textureId + "Final", source);
-			if (ElioLogger.isEnabledFor(ElioLoggerLevelType.DEBUG)) {
-				ElioLogger.debug("Saved texture %s", fileName);
+			if (Logger.isEnabledFor(LoggerLevelType.DEBUG)) {
+				Logger.debug("Saved texture %s", fileName);
 			}
 		}
 
@@ -438,17 +435,17 @@ public abstract class TextureBinder {
 				buffer = ByteBuffer.allocateDirect(source.getWidth() * source.getHeight() * 4 * 4).order(ByteOrder.nativeOrder());
 				GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, source.getWidth(), source.getHeight(), 0, GLES20.GL_RGBA, TextureInternalFormatType.FLOAT.value, buffer);
 				ArgonGL.checkGlError("glTexImage2D TEXTURE_FLOAT");
-				ElioLogger.debug("Create texture TEXTURE_FLOAT %s %s", source.getWidth(), source.getHeight());
+				Logger.debug("Create texture TEXTURE_FLOAT %s %s", source.getWidth(), source.getHeight());
 			} else if (ArgonGLExtension.TEXTURE_HALF_FLOAT.isPresent())
 			{
 				// lavoriamo con gli half float
 				buffer = ByteBuffer.allocateDirect(source.getWidth() * source.getHeight() * 4 * 2).order(ByteOrder.nativeOrder());
 				GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, source.getWidth(), source.getHeight(), 0, GLES20.GL_RGBA, ArgonGL.GL_HALF_FLOAT_OES, buffer);
 				ArgonGL.checkGlError("glTexImage2D TEXTURE_HALF_FLOAT");
-				ElioLogger.debug("Create texture TEXTURE_HALF_FLOAT %s %s", source.getWidth(), source.getHeight());
+				Logger.debug("Create texture TEXTURE_HALF_FLOAT %s %s", source.getWidth(), source.getHeight());
 			} else {
 				String msg="Unable to create texture of float or half_float! (No suitable opengl extensions founded!)";
-				ElioLogger.fatal(msg);
+				Logger.fatal(msg);
 				throw(new RuntimeException(msg));
 			}
 			

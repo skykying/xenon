@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.XenonRuntimeException;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
@@ -78,9 +78,9 @@ public class SoundFactory {
 		try {
 			soundID = pSoundManager.getSoundPool().load(pContext.getAssets().openFd(SoundFactory.sAssetBasePath + pAssetPath), 1);
 		} catch (IOException e) {
-			ElioLogger.error(e.getMessage());			
+			Logger.error(e.getMessage());
 			e.printStackTrace();
-			throw new ElioRuntimeException(e);
+			throw new XenonRuntimeException(e);
 		}
 		final Sound sound = new Sound(pSoundManager, soundID);
 		pSoundManager.add(sound);

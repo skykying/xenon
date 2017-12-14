@@ -3,7 +3,6 @@ package com.abubusoft.xenon.core.sensor;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
 import com.abubusoft.xenon.core.sensor.compass.CompassProvider;
 import com.abubusoft.xenon.core.sensor.internal.InputSensorProvider;
 import com.abubusoft.xenon.core.sensor.internal.ShakeInputDetector;
@@ -293,7 +292,7 @@ public class ElioSensorManager implements SensorEventListener {
 	 */
 	public void onPause() {
 		if (status == StatusType.STARTED) {
-			ElioLogger.info("onPause sensor listeners");
+			// Logger.info("onPause sensor listeners");
 			unregistryListener();
 		}
 	}
@@ -318,7 +317,7 @@ public class ElioSensorManager implements SensorEventListener {
 			return;
 
 		if (providers.size() == 0) {
-			ElioLogger.info("No sensor to activate!");
+			// Logger.info("No sensor to activate!");
 		} else {
 			// puliamo sensori
 			sensorsToProviders.clear();
@@ -345,7 +344,7 @@ public class ElioSensorManager implements SensorEventListener {
 
 	public void onResume() {
 		if (status == StatusType.STARTED) {
-			ElioLogger.info("onResume sensor listeners");
+			// Logger.info("onResume sensor listeners");
 			registryListener();
 		}
 	}

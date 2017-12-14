@@ -23,6 +23,7 @@
  ******************************************************************************/
 package com.abubusoft.xenon.box2d.callbacks;
 
+import com.abubusoft.xenon.box2d.collision.broadphase.DynamicTree;
 
 // update to rev 100
 /**

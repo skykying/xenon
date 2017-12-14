@@ -3,11 +3,9 @@
  */
 package com.abubusoft.xenon.math;
 
-import static org.abubu.argon.math.ArgonMath.power2;
-import static org.abubu.argon.math.ArgonMath.sqrt;
-import static org.abubu.argon.math.ArgonMath.abs;
-
-import com.abubusoft.xenon.core.util.Copy;
+import static com.abubusoft.xenon.math.ArgonMath.power2;
+import static com.abubusoft.xenon.math.ArgonMath.sqrt;
+import static com.abubusoft.xenon.math.ArgonMath.abs;
 
 import com.abubusoft.kripton.annotation.BindType;
 
@@ -16,7 +14,7 @@ import com.abubusoft.kripton.annotation.BindType;
  *
  */
 @BindType
-public class Point2 implements Copy {
+public class Point2 {
 
 	public Point2() {
 

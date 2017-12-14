@@ -63,7 +63,7 @@ public class UpdateManager {
 						listener.onFramePrepare(Phase.LOGIC, enlapsedTime, speedAdapter);
 
 						// sleep(2000);
-						// ElioLogger.debug("UpdateThread on-message %s ", Thread.currentThread().getName());
+						// Logger.debug("UpdateThread on-message %s ", Thread.currentThread().getName());
 						// updated.set(true);
 						// } catch (InterruptedException e) {
 						// e.printStackTrace();
@@ -80,7 +80,7 @@ public class UpdateManager {
 	public boolean isReady() {
 		lock.lock();
 		try {
-			// ElioLogger.debug("UpdateThread isReady ");
+			// Logger.debug("UpdateThread isReady ");
 			return true;
 		} finally {
 			lock.unlock();

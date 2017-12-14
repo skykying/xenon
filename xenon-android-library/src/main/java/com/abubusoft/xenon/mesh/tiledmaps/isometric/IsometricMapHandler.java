@@ -29,7 +29,7 @@ import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.core.Uncryptable;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * <p>

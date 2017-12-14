@@ -24,7 +24,7 @@ import com.abubusoft.xenon.android.surfaceview16.ArgonGLView;
 import com.abubusoft.xenon.opengl.ArgonGLRenderer;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.settings.ArgonSettings;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -80,18 +80,18 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 			
 			if (settings.openGL.asyncMode) {
 				if (!AsyncOperationManager.instance().destroy()) {
-					ElioLogger.error("display: texture loader context: " + context);
-					ElioLogger.info("tid=" + Thread.currentThread().getId());
-					ElioLogger.error("eglDestroyContex %s", EGL14.eglGetError());
+					Logger.error("display: texture loader context: " + context);
+					Logger.info("tid=" + Thread.currentThread().getId());
+					Logger.error("eglDestroyContex %s", EGL14.eglGetError());
 				}
 			}
 
 			
 			if (EGL14.eglDestroyContext(display, context) == false) {
-				ElioLogger.error("display:" + display + " context: " + context);
+				Logger.error("display:" + display + " context: " + context);
 
 				if (ArgonGLSurfaceView17.LOG_THREADS) {
-					ElioLogger.info("tid=" + Long.toString(Thread.currentThread().getId()));
+					Logger.info("tid=" + Long.toString(Thread.currentThread().getId()));
 				}
 
 				EglHelper.throwEglException("eglDestroyContex", EGL14.eglGetError());
@@ -119,14 +119,14 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 				// notified via SurfaceHolder.Callback.surfaceDestroyed.
 				// In theory the application should be notified first,
 				// but in practice sometimes it is not. See b/4588890
-				ElioLogger.error("eglCreateWindowSurface call failed", ex);
+				Logger.error("eglCreateWindowSurface call failed", ex);
 			} finally {
 				if (result == null) {
 					try {
 						// Hack to avoid pegged CPU bug
 						Thread.sleep(10);
 					} catch (InterruptedException t) {
-						ElioLogger.error("CPU was pegged");
+						Logger.error("CPU was pegged");
 					}
 				}
 			}
@@ -137,7 +137,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		@Override
 		public void destroySurface(final EGLDisplay display, final EGLSurface surface) {
 			if (EGL14.eglDestroySurface(display, surface) == false) {
-				ElioLogger.error("eglDestroySurface Failed");
+				Logger.error("eglDestroySurface Failed");
 			}
 		}
 	}
@@ -190,7 +190,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 					EglHelper.cachedErrors.put(errorMessage, Integer.valueOf(errorCount));
 				}
 			} catch (Exception ex) {
-				ElioLogger.error("Failed to cache error.", ex);
+				Logger.error("Failed to cache error.", ex);
 			}
 		}
 
@@ -200,7 +200,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 		public static void logEglErrorAsWarning(final String function, final int error) {
 			final String errorMessage = EglHelper.formatEglError(function, error);
-			ElioLogger.error(errorMessage);
+			Logger.error(errorMessage);
 
 			EglHelper.cacheError(errorMessage);
 		}
@@ -213,7 +213,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 			String message = EglHelper.formatEglError(function, error);
 
 			if (ArgonGLSurfaceView17.LOG_THREADS) {
-				ElioLogger.error("EGL Exception. tid=" + Long.toString(Thread.currentThread().getId()) + " Error: " + message);
+				Logger.error("EGL Exception. tid=" + Long.toString(Thread.currentThread().getId()) + " Error: " + message);
 			}
 
 			throw new RuntimeException(message);
@@ -240,7 +240,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		 */
 		public boolean createSurface() {
 			if (ArgonGLSurfaceView17.LOG_EGL) {
-				ElioLogger.warn("tid=" + Long.toString(Thread.currentThread().getId()));
+				Logger.warn("tid=" + Long.toString(Thread.currentThread().getId()));
 			}
 
 			if (this.mEglDisplay == null) {
@@ -269,7 +269,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 				int error = EGL14.eglGetError();
 
 				if (error == EGL14.EGL_BAD_NATIVE_WINDOW) {
-					ElioLogger.error("createWindowSurface returned EGL_BAD_NATIVE_WINDOW.");
+					Logger.error("createWindowSurface returned EGL_BAD_NATIVE_WINDOW.");
 				}
 
 				return false;
@@ -284,7 +284,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 		public void destroySurface() {
 			if (ArgonGLSurfaceView17.LOG_EGL) {
-				ElioLogger.warn("Destroying surface. tid=" + Long.toString(Thread.currentThread().getId()));
+				Logger.warn("Destroying surface. tid=" + Long.toString(Thread.currentThread().getId()));
 			}
 
 			this.destroySurfaceImp();
@@ -307,7 +307,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		 */
 		public void disconnectDisplay() {
 			if (mEglDisplay != null) {
-				ElioLogger.info("disconnectDisplay %s", mEglDisplay);
+				Logger.info("disconnectDisplay %s", mEglDisplay);
 				// xcesco: non rimuoviamo il display	
 				// rilasciamo tutte le informazioni OPENGL associate al thrread.
 				EGL14.eglReleaseThread();
@@ -317,7 +317,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		}
 		public void finish() {
 			if (ArgonGLSurfaceView17.LOG_EGL) {
-				ElioLogger.warn("Finishing. tid=" + Long.toString(Thread.currentThread().getId()));
+				Logger.warn("Finishing. tid=" + Long.toString(Thread.currentThread().getId()));
 			}
 
 			if (this.mEglContext != null) {
@@ -360,7 +360,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		 */
 		public void start() {
 			if (ArgonGLSurfaceView17.LOG_EGL) {
-				ElioLogger.warn("start() tid=".concat(Long.toString(Thread.currentThread().getId())));
+				Logger.warn("start() tid=".concat(Long.toString(Thread.currentThread().getId())));
 			}
 
 			/*
@@ -404,7 +404,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 			}
 
 			if (ArgonGLSurfaceView17.LOG_EGL) {
-				ElioLogger.warn("createContext " + this.mEglContext + " tid=" + Long.toString(Thread.currentThread().getId()));
+				Logger.warn("createContext " + this.mEglContext + " tid=" + Long.toString(Thread.currentThread().getId()));
 			}
 
 			this.mEglSurface = null;
@@ -575,14 +575,14 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 								ArgonGLSurfaceView17.sGLThreadManager.notifyAll();
 
 								if (ArgonGLSurfaceView17.LOG_PAUSE_RESUME) {
-									ElioLogger.info("mPaused is now " + Boolean.toString(this.mPaused) + ". tid=" + Long.toString(this.getId()));
+									Logger.info("mPaused is now " + Boolean.toString(this.mPaused) + ". tid=" + Long.toString(this.getId()));
 								}
 							}
 
 							// Do we need to give up the EGL context?
 							if (this.mShouldReleaseEglContext == true) {
 								if (ArgonGLSurfaceView17.LOG_SURFACE) {
-									ElioLogger.info("Releasing EGL context because asked to tid=" + Long.toString(this.getId()));
+									Logger.info("Releasing EGL context because asked to tid=" + Long.toString(this.getId()));
 								}
 
 								this.stopEglSurfaceLocked();
@@ -601,7 +601,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 							// When pausing, release the EGL surface:
 							if (pausing == true && this.mHaveEglSurface == true) {
 								if (ArgonGLSurfaceView17.LOG_SURFACE) {
-									ElioLogger.info("Releasing EGL surface because paused tid=" + Long.toString(this.getId()));
+									Logger.info("Releasing EGL surface because paused tid=" + Long.toString(this.getId()));
 								}
 
 								this.stopEglSurfaceLocked();
@@ -616,7 +616,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 									this.stopEglContextLocked();
 
 									if (ArgonGLSurfaceView17.LOG_SURFACE) {
-										ElioLogger.info("Releasing EGL context because paused tid=" + Long.toString(this.getId()));
+										Logger.info("Releasing EGL context because paused tid=" + Long.toString(this.getId()));
 									}
 								}
 							}
@@ -624,7 +624,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 							// Have we lost the SurfaceView surface?
 							if ((this.mHasSurface == false) && (this.mWaitingForSurface == false)) {
 								if (ArgonGLSurfaceView17.LOG_SURFACE) {
-									ElioLogger.info( "Noticed surfaceView surface lost tid=" + Long.toString(this.getId()));
+									Logger.info( "Noticed surfaceView surface lost tid=" + Long.toString(this.getId()));
 								}
 
 								if (this.mHaveEglSurface == true) {
@@ -639,7 +639,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 							// Have we acquired the surface view surface?
 							if (this.mHasSurface == true && this.mWaitingForSurface == true) {
 								if (ArgonGLSurfaceView17.LOG_SURFACE) {
-									ElioLogger.info("Noticed surfaceView surface acquired tid=" + Long.toString(this.getId()));
+									Logger.info("Noticed surfaceView surface acquired tid=" + Long.toString(this.getId()));
 								}
 
 								this.mWaitingForSurface = false;
@@ -648,7 +648,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 							if (doRenderNotification == true) {
 								if (ArgonGLSurfaceView17.LOG_SURFACE) {
-									ElioLogger.info("Sending render notification tid=" + Long.toString(this.getId()));
+									Logger.info("Sending render notification tid=" + Long.toString(this.getId()));
 								}
 
 								wantRenderNotification = false;
@@ -694,7 +694,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 										wantRenderNotification = true;
 
 										if (ArgonGLSurfaceView17.LOG_SURFACE) {
-											ElioLogger.info("Noticing that we want render notification tid=" + Long.toString(this.getId()));
+											Logger.info("Noticing that we want render notification tid=" + Long.toString(this.getId()));
 										}
 
 										// Destroy and recreate the EGL surface.
@@ -711,7 +711,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 							// By design, this is the only place in a GLThread thread where we wait().
 							if (ArgonGLSurfaceView17.LOG_THREADS_WAIT) {
-								ElioLogger.info(
+								Logger.info(
 										"waiting tid=" + Long.toString(this.getId()) + " mHaveEglContext: " + Boolean.toString(this.mHaveEglContext) + " mHaveEglSurface: " + Boolean.toString(this.mHaveEglSurface)
 												+ " mFinishedCreatingEglSurface: " + Boolean.toString(this.mFinishedCreatingEglSurface) + " mPaused: " + Boolean.toString(this.mPaused) + " mHasSurface: " + Boolean.toString(this.mHasSurface)
 												+ " mSurfaceIsBad: " + Boolean.toString(this.mSurfaceIsBad) + " mWaitingForSurface: " + Boolean.toString(this.mWaitingForSurface) + " mWidth: " + Integer.toString(this.mWidth) + " mHeight: "
@@ -730,7 +730,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 					if (createEglSurface == true) {
 						if (ArgonGLSurfaceView17.LOG_SURFACE) {
-							ElioLogger.warn("egl createSurface");
+							Logger.warn("egl createSurface");
 						}
 
 						if (this.mEglHelper.createSurface() == true) {
@@ -757,7 +757,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 					if (createEglContext == true) {
 						if (ArgonGLSurfaceView17.LOG_RENDERER) {
-							ElioLogger.warn("onSurfaceCreated");
+							Logger.warn("onSurfaceCreated");
 						}
 
 						ArgonGLSurfaceView17 view = this.mGLViewWeakRef.get();
@@ -771,7 +771,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 					if (sizeChanged == true) {
 						if (ArgonGLSurfaceView17.LOG_RENDERER) {
-							ElioLogger.warn("onSurfaceChanged(" + Integer.toString(w) + ", " + Integer.toString(h) + ")");
+							Logger.warn("onSurfaceChanged(" + Integer.toString(w) + ", " + Integer.toString(h) + ")");
 						}
 
 						ArgonGLSurfaceView17 view = this.mGLViewWeakRef.get();
@@ -784,7 +784,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 					}
 
 					if (ArgonGLSurfaceView17.LOG_RENDERER_DRAW_FRAME) {
-						ElioLogger.warn("onDrawFrame tid=" + Long.toString(this.getId()));
+						Logger.warn("onDrawFrame tid=" + Long.toString(this.getId()));
 					}
 					{
 						ArgonGLSurfaceView17 view = this.mGLViewWeakRef.get();
@@ -804,7 +804,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 					case EGL14.EGL_CONTEXT_LOST:
 
 						if (ArgonGLSurfaceView17.LOG_SURFACE) {
-							ElioLogger.info("egl context lost tid=" + Long.toString(this.getId()));
+							Logger.info("egl context lost tid=" + Long.toString(this.getId()));
 						}
 
 						lostEglContext = true;
@@ -846,7 +846,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		public void onPause() {
 			synchronized (ArgonGLSurfaceView17.sGLThreadManager) {
 				if (ArgonGLSurfaceView17.LOG_PAUSE_RESUME) {
-					ElioLogger.info("onPause tid=" + Long.toString(this.getId()));
+					Logger.info("onPause tid=" + Long.toString(this.getId()));
 				}
 
 				this.mRequestPaused = true;
@@ -854,7 +854,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 				while ((this.mExited == false) && (this.mPaused == false)) {
 					if (ArgonGLSurfaceView17.LOG_PAUSE_RESUME) {
-						ElioLogger.info("onPause waiting for mPaused.");
+						Logger.info("onPause waiting for mPaused.");
 					}
 
 					try {
@@ -868,7 +868,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		public void onResume() {
 			synchronized (ArgonGLSurfaceView17.sGLThreadManager) {
 				if (ArgonGLSurfaceView17.LOG_PAUSE_RESUME) {
-					ElioLogger.info("onResume tid=" + Long.toString(this.getId()));
+					Logger.info("onResume tid=" + Long.toString(this.getId()));
 				}
 
 				this.mRequestPaused = false;
@@ -878,7 +878,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 				while ((this.mExited == false) && this.mPaused == true && (this.mRenderComplete == false)) {
 					if (ArgonGLSurfaceView17.LOG_PAUSE_RESUME) {
-						ElioLogger.info("onResume waiting for !mPaused.");
+						Logger.info("onResume waiting for !mPaused.");
 					}
 
 					try {
@@ -902,7 +902,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 				// Wait for thread to react to resize and render a frame
 				while (this.mExited == false && this.mPaused == false && this.mRenderComplete == false && this.ableToDraw() == true) {
 					if (ArgonGLSurfaceView17.LOG_SURFACE) {
-						ElioLogger.info("onWindowResize waiting for render complete from tid=" + Long.toString(this.getId()));
+						Logger.info("onWindowResize waiting for render complete from tid=" + Long.toString(this.getId()));
 					}
 
 					try {
@@ -926,7 +926,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 			synchronized (ArgonGLSurfaceView17.sGLThreadManager) {
 				this.mEventQueue.add(runnable);
-				ElioLogger.debug("Queued events: ".concat(Integer.toString(this.mEventQueue.size())));
+				Logger.debug("Queued events: ".concat(Integer.toString(this.mEventQueue.size())));
 
 				ArgonGLSurfaceView17.sGLThreadManager.notifyAll();
 			}
@@ -966,7 +966,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 			this.setName("GLThread " + Long.toString(this.getId()));
 
 			if (ArgonGLSurfaceView17.LOG_THREADS) {
-				ElioLogger.info("starting tid=" + Long.toString(this.getId()));
+				Logger.info("starting tid=" + Long.toString(this.getId()));
 			}
 
 			try {
@@ -1017,7 +1017,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		public void surfaceCreated() {
 			synchronized (ArgonGLSurfaceView17.sGLThreadManager) {
 				if (ArgonGLSurfaceView17.LOG_THREADS) {
-					ElioLogger.info("surfaceCreated tid=" + Long.toString(this.getId()));
+					Logger.info("surfaceCreated tid=" + Long.toString(this.getId()));
 				}
 
 				this.mHasSurface = true;
@@ -1037,7 +1037,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		public void surfaceDestroyed() {
 			synchronized (ArgonGLSurfaceView17.sGLThreadManager) {
 				if (ArgonGLSurfaceView17.LOG_THREADS) {
-					ElioLogger.info("surfaceDestroyed tid=" + Long.toString(this.getId()));
+					Logger.info("surfaceDestroyed tid=" + Long.toString(this.getId()));
 				}
 
 				this.mHasSurface = false;
@@ -1062,7 +1062,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		private boolean mLimitedGLESContexts;
 
 		public GLThreadManager() {
-			ElioLogger.info("GLThreadManager instance created");
+			Logger.info("GLThreadManager instance created");
 		}
 
 		/*
@@ -1085,7 +1085,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 		public synchronized void threadExiting(final GLThread thread) {
 			if (ArgonGLSurfaceView17.LOG_THREADS) {
-				ElioLogger.info("Exiting tid=" + Long.toString(thread.getId()));
+				Logger.info("Exiting tid=" + Long.toString(thread.getId()));
 			}
 
 			thread.mExited = true;
@@ -1164,7 +1164,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 				}
 			}
 		} catch (Exception ex) {
-			ElioLogger.error("Failed to cache error.", ex);
+			Logger.error("Failed to cache error.", ex);
 			log = "Failed to cache error.";
 		}
 
@@ -1347,7 +1347,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		super.onAttachedToWindow();
 
 		if (ArgonGLSurfaceView17.LOG_ATTACH_DETACH) {
-			ElioLogger.debug("onAttachedToWindow reattach: ".concat(Boolean.toString(this.mDetached)));
+			Logger.debug("onAttachedToWindow reattach: ".concat(Boolean.toString(this.mDetached)));
 		}
 
 		if (this.mDetached && (this.mRenderer != null)) {
@@ -1375,7 +1375,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 	@Override
 	protected void onDetachedFromWindow() {
 		if (ArgonGLSurfaceView17.LOG_ATTACH_DETACH) {
-			ElioLogger.debug( "Detaching from window.");
+			Logger.debug( "Detaching from window.");
 		}
 
 		if (this.mGLThread != null) {
@@ -1524,7 +1524,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 	 */
 	public void setRecordable(final boolean recordable) {
 		this.mRecordable = recordable;
-		ElioLogger.info("Updated recordable flag. State: ".concat(Boolean.toString(recordable)));
+		Logger.info("Updated recordable flag. State: ".concat(Boolean.toString(recordable)));
 	}
 	/**
 	 * Set the renderer associated with this view. Also starts the thread that will call the renderer, which in turn causes the rendering to start.

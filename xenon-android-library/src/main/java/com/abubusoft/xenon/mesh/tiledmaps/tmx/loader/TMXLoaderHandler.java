@@ -19,7 +19,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.tmx.LayerAttributes;
 import com.abubusoft.xenon.texture.TextureFilterType;
 import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.texture.TextureRepeatType;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -96,7 +96,7 @@ public class TMXLoaderHandler extends DefaultHandler {
 
 			xr.parse(new InputSource(new BufferedInputStream(inputStream)));
 		} catch (Exception e) {
-			ElioLogger.fatal("%s", e.getMessage());
+			Logger.fatal("%s", e.getMessage());
 			throw new TMXException(e);
 		}
 

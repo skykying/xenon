@@ -7,7 +7,7 @@ import com.abubusoft.xenon.android.ArgonService4OpenGL;
 import com.abubusoft.xenon.engine.Phase;
 import com.abubusoft.xenon.engine.TouchManager;
 import com.abubusoft.xenon.misc.FPSCounter;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.opengl.GLES20;
 import android.view.MotionEvent;
@@ -25,13 +25,13 @@ public class ArgonGLDefaultRenderer implements ArgonGLRenderer {
 
 	@Override
 	public void onSurfaceCreated() {
-		ElioLogger.info("> onSurfaceCreated");
+		Logger.info("> onSurfaceCreated");
 		argon.onSurfaceCreated();		
 	}
 
 	@Override
 	public void onSurfaceChanged(int width, int height) {
-		ElioLogger.info("> onSurfaceChanged");
+		Logger.info("> onSurfaceChanged");
 		argon.onSurfaceChanged(width, height);
 		
 		argon.onSceneCreation();
@@ -73,11 +73,11 @@ public class ArgonGLDefaultRenderer implements ArgonGLRenderer {
 				argon.onFrameDraw(Phase.RENDER, FPSCounter.enlapsedTime, speedAdapter);
 				GLES20.glFlush();
 			/*} else {
-				ElioLogger.info(" **** onFrameDraw - SURFACE NOT READY ");
+				Logger.info(" **** onFrameDraw - SURFACE NOT READY ");
 			}*/
 
 		} catch (Exception e) {
-			ElioLogger.error(e.getMessage());
+			Logger.error(e.getMessage());
 			e.printStackTrace();
 
 			// se siamo in safeMode trappiamo le eccezioni

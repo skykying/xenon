@@ -20,7 +20,7 @@ import com.abubusoft.xenon.texture.RenderedTexture;
 import com.abubusoft.xenon.texture.RenderedTextureOptions;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -121,7 +121,7 @@ public class RenderPipeline {
 			effects.add(effect);
 		} catch (Exception e) {
 			e.printStackTrace();
-			ElioLogger.error(e.getMessage());
+			Logger.error(e.getMessage());
 		}
 
 		return effect;

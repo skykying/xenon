@@ -3,7 +3,7 @@ package com.abubusoft.xenon.texture;
 import com.abubusoft.xenon.misc.NormalizedTimer;
 import com.abubusoft.xenon.misc.NormalizedTimer.TypeNormalizedTimer;
 import com.abubusoft.xenon.texture.DynamicTexture.DynamicTextureController;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * <p>
@@ -35,7 +35,7 @@ public class DynamicTextureForcedController implements DynamicTextureController 
 	public boolean onCheckForUpdate(long enlapsedTime) {
 		// aggiorniamo il touchTimer
 		if (forced && readyToLoad) {
-			ElioLogger.info("Ready for load another texture");
+			Logger.info("Ready for load another texture");
 			readyToLoad = false;
 			forced=false;
 			return true;
@@ -47,7 +47,7 @@ public class DynamicTextureForcedController implements DynamicTextureController 
 	@Override
 	public void onTextureReady(Texture texture) {
 		// eseguito quando viene la texture viene caricata.
-		ElioLogger.info("Texture loaded");
+		Logger.info("Texture loaded");
 		readyToLoad = true;
 	}
 
@@ -55,12 +55,12 @@ public class DynamicTextureForcedController implements DynamicTextureController 
 	public boolean forceUpdate() {
 		if (readyToLoad)
 		{
-			ElioLogger.info("Just ask to load another texture");
+			Logger.info("Just ask to load another texture");
 			forced=true;
 			
 			return true;
 		} else {
-			ElioLogger.info("It's still loading another texture");
+			Logger.info("It's still loading another texture");
 			
 			return false;
 		}

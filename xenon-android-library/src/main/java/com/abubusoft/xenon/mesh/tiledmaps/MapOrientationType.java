@@ -4,7 +4,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.internal.MapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.isometric.IsometricMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.isostaggered.ISSMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.orthogonal.OrthogonalMapHandler;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * 
@@ -39,7 +39,7 @@ public enum MapOrientationType {
 		try {
 			return (MapHandler) mapHandlerClazz.getDeclaredConstructor(TiledMap.class).newInstance(map);
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
 		}
 

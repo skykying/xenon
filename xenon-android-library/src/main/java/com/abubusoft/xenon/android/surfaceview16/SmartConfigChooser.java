@@ -11,7 +11,7 @@ import com.abubusoft.xenon.android.surfaceview.ConfigOptions.DisplayFormatType;
 import com.abubusoft.xenon.opengl.ArgonEGL;
 import com.abubusoft.xenon.opengl.ArgonGLConfigChooser;
 import com.abubusoft.xenon.opengl.ArgonGLDefaultRenderer;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * Consente di selezionare una configurazione in modo smart: se la memoria del device è inferiore al giga, allora forziamo il format del display a RGB_565. Questo per evitare sui dispositivi tipo Nexus 7 che ci siano dei problemi di
@@ -43,14 +43,14 @@ public class SmartConfigChooser implements ArgonConfigChooser16 {
 		if (options.displayFormat == DisplayFormatType.DONT_CARE) {
 			// options.displayFormat(DisplayFormat.RGBA_8888);
 			if (info.getAvailableRAM() > 1024) {
-				ElioLogger.info("Display Profile HIGH %s", DisplayFormatType.RGBA_8888);
+				Logger.info("Display Profile HIGH %s", DisplayFormatType.RGBA_8888);
 				options.displayFormat(DisplayFormatType.RGBA_8888);
 			} else {
-				ElioLogger.info("Display Profile LOW %s", DisplayFormatType.RGB_565);
+				Logger.info("Display Profile LOW %s", DisplayFormatType.RGB_565);
 				options.displayFormat(DisplayFormatType.RGB_565);
 			}
 		} else {
-			ElioLogger.info("Display Profile FORCED TO %s", options.displayFormat);
+			Logger.info("Display Profile FORCED TO %s", options.displayFormat);
 
 		}
 
@@ -83,7 +83,7 @@ public class SmartConfigChooser implements ArgonConfigChooser16 {
 				}
 			}
 
-			ElioLogger.info("Smart config choose following config:");
+			Logger.info("Smart config choose following config:");
 			EGLConfig config = ConfigChooserHelper16.chooseConfig(egl, display, configs, options);
 			ConfigChooserHelper16.printConfig(egl, display, config);
 
@@ -101,7 +101,7 @@ public class SmartConfigChooser implements ArgonConfigChooser16 {
 
 			suggestedConfig = config[0];
 
-			ElioLogger.info("####=========RELOAD CONFIG_ID " + suggestedConfigId + " " + suggestedConfig);
+			Logger.info("####=========RELOAD CONFIG_ID " + suggestedConfigId + " " + suggestedConfig);
 
 		}
 

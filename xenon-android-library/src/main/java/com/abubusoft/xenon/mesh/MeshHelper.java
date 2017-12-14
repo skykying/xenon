@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.mesh;
 
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.XenonRuntimeException;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * Classe di utilità.
@@ -77,10 +77,10 @@ public abstract class MeshHelper {
 			mesh = options.meshClazz.newInstance();
 
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
 
-			throw (new ElioRuntimeException(e.getMessage()));
+			throw (new XenonRuntimeException(e.getMessage()));
 		}
 
 		return mesh;

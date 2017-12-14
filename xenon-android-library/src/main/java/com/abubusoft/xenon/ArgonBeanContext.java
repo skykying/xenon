@@ -2,7 +2,7 @@ package com.abubusoft.xenon;
 
 import java.lang.reflect.Field;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 
@@ -29,11 +29,11 @@ public abstract class ArgonBeanContext {
 		E object = null;
 		try {
 			// creiamo istanza oggetto
-			ElioLogger.debug("BeanInject - createInstance of allocation %s", clazz.getSimpleName());
+			Logger.debug("BeanInject - createInstance of allocation %s", clazz.getSimpleName());
 			object = clazz.newInstance();
 		} catch (Exception e) {
 			e.printStackTrace();
-			ElioLogger.error(e.getMessage());
+			Logger.error(e.getMessage());
 			throw (new RuntimeException(e));
 		}
 
@@ -61,10 +61,10 @@ public abstract class ArgonBeanContext {
 			if (inject != null) {
 				try {
 					fields[i].set(bean, inject.value().value);
-					ElioLogger.debug("BeanInject - Injected field %s with bean %s", fields[i].getName(), inject.value().toString());
+					Logger.debug("BeanInject - Injected field %s with bean %s", fields[i].getName(), inject.value().toString());
 				} catch (IllegalAccessException | IllegalArgumentException e) {
 					e.printStackTrace();
-					ElioLogger.error(e.getMessage());
+					Logger.error(e.getMessage());
 				}
 
 			}
@@ -84,9 +84,9 @@ public abstract class ArgonBeanContext {
 	 */
 	public static void setBean(ArgonBeanType type, Object value) {
 		if (value != null)
-			ElioLogger.debug("BeanInject - setBean %s of allocation %s", type.toString(), value.getClass().getName());
+			Logger.debug("BeanInject - setBean %s of allocation %s", type.toString(), value.getClass().getName());
 		else {
-			ElioLogger.debug("BeanInject - setBean %s as null", type.toString());
+			Logger.debug("BeanInject - setBean %s as null", type.toString());
 		}
 		type.value = value;
 	}

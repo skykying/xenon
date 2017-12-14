@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.misc;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
-import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
+import com.abubusoft.kripton.android.Logger;
+import com.abubusoft.xenon.core.logger.LoggerLevelType;
 
 import android.os.SystemClock;
 
@@ -95,8 +95,8 @@ public class FPSLimiter {
 					// tanto
 					if (FPSCounter.isTimeToShowInfo())
 					{
-						if (ElioLogger.isEnabledFor(ElioLoggerLevelType.VERBOSE)) {
-							ElioLogger.verbose("Time enlapsed %s ms, Time to respect %s sleep for %s", currentFrameRenderTime, (long) ((1000.0 / maxFrameRate)), currentFrameWaitTime);
+						if (Logger.isEnabledFor(LoggerLevelType.VERBOSE)) {
+							Logger.verbose("Time enlapsed %s ms, Time to respect %s sleep for %s", currentFrameRenderTime, (long) ((1000.0 / maxFrameRate)), currentFrameWaitTime);
 						}
 						startSleepTime = SystemClock.elapsedRealtime();
 					}
@@ -108,12 +108,12 @@ public class FPSLimiter {
 					if (FPSCounter.isTimeToShowInfo()) {
 						endSleepTime = SystemClock.elapsedRealtime();
 
-						if (ElioLogger.isEnabledFor(ElioLoggerLevelType.VERBOSE)) {
-							ElioLogger.verbose("Wait time - Desidered: %s ms , Real: %s ms", currentFrameWaitTime, (endSleepTime - startSleepTime));
+						if (Logger.isEnabledFor(LoggerLevelType.VERBOSE)) {
+							Logger.verbose("Wait time - Desidered: %s ms , Real: %s ms", currentFrameWaitTime, (endSleepTime - startSleepTime));
 						}
 					}
 				} catch (Exception e) {
-					ElioLogger.error("Errore: " + e.getMessage());
+					Logger.error("Errore: " + e.getMessage());
 				}
 			}
 		}

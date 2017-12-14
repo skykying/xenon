@@ -17,7 +17,8 @@ import android.content.Context;
  * @author Francesco Benincasa
  * 
  */
-public class ArgonView4OpenGL extends ArgonGLSurfaceView16 implements Uncryptable {
+@Uncryptable
+public class ArgonView4OpenGL extends ArgonGLSurfaceView16 {
 	
 	protected Argon4OpenGL argon;
 

@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.opengl.GLES20;
 
@@ -94,7 +94,7 @@ public class IndexBuffer extends AbstractBuffer {
 			} else {
 				if (allocation == BufferAllocationType.STATIC) {
 					String msg = "Try to modify IndexBuffer STATIC";
-					ElioLogger.fatal(msg);
+					Logger.fatal(msg);
 					throw new RuntimeException(msg);
 				}
 

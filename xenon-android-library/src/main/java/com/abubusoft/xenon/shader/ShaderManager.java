@@ -8,7 +8,7 @@ import java.util.HashMap;
 import com.abubusoft.xenon.ArgonBeanContext;
 import com.abubusoft.xenon.ArgonBeanType;
 import com.abubusoft.xenon.opengl.ArgonGL;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 import android.util.SparseArray;
@@ -87,11 +87,11 @@ public class ShaderManager {
 		try {
 			Context context = ArgonBeanContext.getBean(ArgonBeanType.CONTEXT);
 
-			ElioLogger.info("Create shader %s", shaderClazz.toString());
+			Logger.info("Create shader %s", shaderClazz.toString());
 			shader = shaderClazz.newInstance();
 			shader.setupFromFiles(context, vertexProgramId, fragmentProgramId, options);
 			addShader(shader);
-			ElioLogger.info("Builded shader kind: %s, programId: %s", shaderClazz.toString(), shader.programId);
+			Logger.info("Builded shader kind: %s, programId: %s", shaderClazz.toString(), shader.programId);
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
@@ -117,14 +117,14 @@ public class ShaderManager {
 		try {
 			Context context = ArgonBeanContext.getBean(ArgonBeanType.CONTEXT);
 
-			ElioLogger.info("Create shader %s", shaderClazz.toString());
+			Logger.info("Create shader %s", shaderClazz.toString());
 
 			shader = shaderClazz.newInstance();
 			shader.setupFromBuilder(context, options);
 			addShader(shader);
-			ElioLogger.info("Builded shader kind: %s, programId: %s", shaderClazz.toString(), shader.programId);
+			Logger.info("Builded shader kind: %s, programId: %s", shaderClazz.toString(), shader.programId);
 		} catch (Exception e) {
-			ElioLogger.fatal(e.getMessage());
+			Logger.fatal(e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -199,7 +199,7 @@ public class ShaderManager {
 	public void clearShaders() {
 		Shader shader;
 		ArgonGL.clearGlError();
-		ElioLogger.debug("Clear " + shaders.size() + " old shaders, without deleting them ");
+		Logger.debug("Clear " + shaders.size() + " old shaders, without deleting them ");
 
 		for (int i = 0; i < shaders.size(); i++) {
 			shader = shaders.valueAt(i);

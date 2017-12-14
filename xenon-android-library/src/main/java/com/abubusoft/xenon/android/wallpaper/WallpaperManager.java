@@ -16,7 +16,7 @@ package com.abubusoft.xenon.android.wallpaper;
  *          float o = screen.width * (1f - ArgonGL.screenInfo.aspectRatio) * 0.5f;
  *          float xl = o * 2f;
  * 
- *          ElioLogger.info(&quot;---&gt; Offset %s &quot;, WallpaperManager.instance().getScreenOffset());
+ *          Logger.info(&quot;---&gt; Offset %s &quot;, WallpaperManager.instance().getScreenOffset());
  *          camera.positionOnXYPlaneTo(-o + xl * WallpaperManager.instance().getScreenOffset(), 0f);
  * 
  *          // calcola matrici

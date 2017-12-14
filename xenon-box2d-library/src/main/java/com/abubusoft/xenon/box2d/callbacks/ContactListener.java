@@ -23,6 +23,8 @@
  ******************************************************************************/
 package com.abubusoft.xenon.box2d.callbacks;
 
+import com.abubusoft.xenon.box2d.collision.Manifold;
+import com.abubusoft.xenon.box2d.dynamics.contacts.Contact;
 
 // updated to rev 100
 /**

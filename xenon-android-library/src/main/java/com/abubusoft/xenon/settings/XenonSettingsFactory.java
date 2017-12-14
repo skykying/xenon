@@ -15,7 +15,8 @@ import com.abubusoft.xenon.core.Uncryptable;
  * @author Francesco Benincasa
  *
  */
-public interface ArgonSettingsFactory extends Uncryptable {
+@Uncryptable
+public interface XenonSettingsFactory {
 	
 	/**
 	 * <p>Recupera le informazioni relative ai settings. Da questi verrà eventualmente

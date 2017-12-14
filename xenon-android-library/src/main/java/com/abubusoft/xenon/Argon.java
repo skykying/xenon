@@ -22,13 +22,7 @@ public interface Argon {
 	 */
 	void onStartup(Context contextValue, ArgonSettings settingsValue, SharedPreferences preferenceValue);
 	
-	/**
-	 * <p>Recupera lo storage della configurazione</p>
-	 * @return
-	 */
-	@SuppressWarnings("rawtypes")
-	ConfigStorage getConfigStorage();
-	
+
 	/**
 	 * <p>Consente all'applicazione di avvertire il reset della configurazione</p>
 	 */

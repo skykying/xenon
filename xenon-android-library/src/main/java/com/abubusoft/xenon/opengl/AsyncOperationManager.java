@@ -10,7 +10,7 @@ import com.abubusoft.xenon.misc.Clock;
 import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureAsyncLoaderListener;
 import com.abubusoft.xenon.texture.TextureInfo;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
@@ -66,15 +66,15 @@ public class AsyncOperationManager {
 				public void handleMessage(Message msg) {
 					MessageContent content = (MessageContent) msg.obj;
 					long start2 = Clock.now();
-					ElioLogger.debug("context switch for async texture load stopped ");
+					Logger.debug("context switch for async texture load stopped ");
 
 					// EGLSurface defaultSurface =
 					// egl.eglGetCurrentSurface(EGL10.EGL_DRAW);
 
 					long start1 = Clock.now();
-					ElioLogger.debug("async texture load stopped ");
+					Logger.debug("async texture load stopped ");
 					content.texture.updateInfo(content.execute.load(content.texture));
-					ElioLogger.debug("async texture load ended in %s ms", (Clock.now() - start1));
+					Logger.debug("async texture load ended in %s ms", (Clock.now() - start1));
 
 					// egl.eglMakeCurrent(display, defaultSurface,
 					// defaultSurface, screenContext);
@@ -82,7 +82,7 @@ public class AsyncOperationManager {
 					// distruggiamo subiot
 					// egl.eglDestroySurface(display, surfaceForTextureLoad);
 
-					ElioLogger.debug("context switch for async texture load ended in %s ms", (Clock.now() - start2));
+					Logger.debug("context switch for async texture load ended in %s ms", (Clock.now() - start2));
 
 					if (content.listener != null)
 						content.listener.onTextureReady(content.texture);
@@ -139,14 +139,14 @@ public class AsyncOperationManager {
 		textureContext = egl.eglCreateContext(display, eglConfig, renderContext, attrib_list);
 
 		if (textureContext != EGL10.EGL_NO_CONTEXT) {
-			ElioLogger.info("Context for async operation asyncMode.");
+			Logger.info("Context for async operation asyncMode.");
 			asyncMode = true;
 			// creiamo il thread per le operazioni async su opengl
 			textureLoaderThread = new TextureLoaderThread();
 			textureLoaderThread.start();
 		} else {
 			asyncMode = false;
-			ElioLogger.fatal("Try to enable context for async operation, but failed.");
+			Logger.fatal("Try to enable context for async operation, but failed.");
 		}
 	}
 	
@@ -174,14 +174,14 @@ public class AsyncOperationManager {
 	//	textureContext = EGL14.eglCreateContext(display, eglConfig, renderContext, attrib_list);
 
 		if (textureContext != EGL10.EGL_NO_CONTEXT) {
-			ElioLogger.info("Context for async operation asyncMode.");
+			Logger.info("Context for async operation asyncMode.");
 			asyncMode = true;
 			// creiamo il thread per le operazioni async su opengl
 			textureLoaderThread = new TextureLoaderThread();
 			textureLoaderThread.start();
 		} else {
 			asyncMode = false;
-			ElioLogger.fatal("Try to enable context for async operation, but failed.");
+			Logger.fatal("Try to enable context for async operation, but failed.");
 		}
 	}
 
@@ -247,8 +247,8 @@ public class AsyncOperationManager {
 
 			return null;
 		} else {
-			ElioLogger.error("async operations on textures are disabled! This device support multiple opengl context?");
-			ElioLogger.warn("run texture update in single thread!");
+			Logger.error("async operations on textures are disabled! This device support multiple opengl context?");
+			Logger.warn("run texture update in single thread!");
 			execute.load(texture);
 			if (listener != null)
 				listener.onTextureReady(texture);

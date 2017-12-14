@@ -29,7 +29,7 @@ import java.nio.ByteOrder;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLSurface;
 
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * Common base class for EGL surfaces.
@@ -136,7 +136,7 @@ public class EglSurfaceBase {
     public boolean swapBuffers() {
         boolean result = argonEGL.swapBuffers(mEGLSurface);
         if (!result) {
-            ElioLogger.debug("WARNING: swapBuffers() failed");
+            Logger.debug("WARNING: swapBuffers() failed");
         }
         return result;
     }
@@ -184,6 +184,6 @@ public class EglSurfaceBase {
         } finally {
             if (bos != null) bos.close();
         }
-        ElioLogger.warn("Saved " + width + "x" + height + " frame as '" + filename + "'");
+        Logger.warn("Saved " + width + "x" + height + " frame as '" + filename + "'");
     }
 }

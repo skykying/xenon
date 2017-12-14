@@ -10,7 +10,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.abubusoft.xenon.opengl.ArgonGL;
 import com.abubusoft.xenon.core.graphic.BitmapManager;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.core.util.IOUtility;
 
 import android.content.Context;
@@ -32,7 +32,7 @@ public class RenderedTexture extends Texture {
 		
 		if (frameBuffers!=null)
 		{
-			ElioLogger.debug("unbind framebuffer with bindingId %s for texture with bindingId %s", frameBuffers[0], this.bindingId );
+			Logger.debug("unbind framebuffer with bindingId %s for texture with bindingId %s", frameBuffers[0], this.bindingId );
 			GLES20.glDeleteFramebuffers(1, frameBuffers, 0);
 			ArgonGL.checkGlError("glDeleteFramebuffers");
 			frameBuffers=null;
@@ -40,7 +40,7 @@ public class RenderedTexture extends Texture {
 		
 		if (depthRenderBuffers!=null)
 		{
-			ElioLogger.debug("unbind renderBuffer with bindingId %s for texture with bindingId %s", depthRenderBuffers[0], this.bindingId );
+			Logger.debug("unbind renderBuffer with bindingId %s for texture with bindingId %s", depthRenderBuffers[0], this.bindingId );
 			GLES20.glDeleteRenderbuffers(1, depthRenderBuffers, 0);
 			ArgonGL.checkGlError("glDeleteRenderbuffers");
 			depthRenderBuffers=null;
@@ -71,12 +71,12 @@ public class RenderedTexture extends Texture {
 		// generate
 		GLES20.glGenFramebuffers(1, frameBuffers, 0);
 				
-		ElioLogger.debug("Generate Framebuffers bindingId %s for texture %s", frameBuffers[0], this.bindingId );
+		Logger.debug("Generate Framebuffers bindingId %s for texture %s", frameBuffers[0], this.bindingId );
 
 		if (options.depthBuffer) {
 			depthRenderBuffers = new int[1];
 			GLES20.glGenRenderbuffers(1, depthRenderBuffers, 0);
-			ElioLogger.debug("Generate Renderbuffers bindingId %s for texture %s", depthRenderBuffers[0], this.bindingId );
+			Logger.debug("Generate Renderbuffers bindingId %s for texture %s", depthRenderBuffers[0], this.bindingId );
 
 			// create render buffer and bind 16-bit depth buffer
 			GLES20.glBindRenderbuffer(GLES20.GL_RENDERBUFFER, depthRenderBuffers[0]);
@@ -109,7 +109,7 @@ public class RenderedTexture extends Texture {
 
 	public boolean activate() {
 		//ArgonGL.clearGlError();
-		//ElioLogger.info("Framebuffer activated bindingId %s ", frameBuffers[0]);
+		//Logger.info("Framebuffer activated bindingId %s ", frameBuffers[0]);
 		GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, frameBuffers[0]);
 		//GLES20.glViewport(0, 0, (int)(info.dimension.width * 0.5f), (int)(info.dimension.height * 0.5f));
 		GLES20.glViewport(viewportX, viewportY, viewportWidth, viewportHeight);
@@ -129,7 +129,7 @@ public class RenderedTexture extends Texture {
 		// check status
 		int status = GLES20.glCheckFramebufferStatus(GLES20.GL_FRAMEBUFFER);
 		if (status != GLES20.GL_FRAMEBUFFER_COMPLETE) {
-			ElioLogger.error("Framebuffer bindingId %s is not complete! Status %s ", frameBuffers[0],status);
+			Logger.error("Framebuffer bindingId %s is not complete! Status %s ", frameBuffers[0],status);
 			return false;
 		}
 
@@ -170,7 +170,7 @@ public class RenderedTexture extends Texture {
 		// check status
 		int status = GLES20.glCheckFramebufferStatus(GLES20.GL_FRAMEBUFFER);
 		if (status != GLES20.GL_FRAMEBUFFER_COMPLETE) {
-			ElioLogger.warn("Framebuffer is not complete!");
+			Logger.warn("Framebuffer is not complete!");
 			return false;
 		}
 

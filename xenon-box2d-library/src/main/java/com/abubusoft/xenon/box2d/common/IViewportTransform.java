@@ -82,27 +82,29 @@ public interface IViewportTransform {
   /**
    * Transforms the given directional vector by the viewport transform (not positional)
    */
-  void getWorldVectorToScreen(float worldX, float worldY, float screenX, float screenY);
+  void getWorldVectorToScreen(Vec2 world, Vec2 screen);
 
 
   /**
    * Transforms the given directional screen vector back to the world direction.
    */
-  void getScreenVectorToWorld(float screenX, float screenY, float worldX, float worldY);
+  void getScreenVectorToWorld(Vec2 screen, Vec2 world);
+  
+  Mat22 getMat22Representation();
 
 
   /**
    * takes the world coordinate (world) puts the corresponding screen coordinate in screen. It
    * should be safe to give the same object as both parameters.
    */
-  void getWorldToScreen(float worldX, float worldY, Vec2 screen);
+  void getWorldToScreen(Vec2 world, Vec2 screen);
 
 
   /**
    * takes the screen coordinates (screen) and puts the corresponding world coordinates in world. It
    * should be safe to give the same object as both parameters.
    */
-  void getScreenToWorld(float screenX, float screenY, Vec2 world);
+  void getScreenToWorld(Vec2 screen, Vec2 world);
 
   /**
    * Multiplies the viewport transform by the given Mat22

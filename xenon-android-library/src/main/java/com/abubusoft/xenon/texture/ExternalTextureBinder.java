@@ -9,7 +9,7 @@ import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.opengl.AsyncOperationManager.AsyncTextureInfoLoader;
 import com.abubusoft.xenon.texture.TextureInfo.TextureLoadType;
 import com.abubusoft.xenon.texture.TextureInfo.TextureType;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
@@ -37,7 +37,7 @@ public abstract class ExternalTextureBinder {
 
 			if (!ArgonGLExtension.IMAGE_EXTERNAL.isPresent()) {
 				String msg = "Unable to create external texture ! (No suitable opengl extensions founded!)";
-				ElioLogger.fatal(msg);
+				Logger.fatal(msg);
 				throw (new RuntimeException(msg));
 			}
 
@@ -88,7 +88,7 @@ public abstract class ExternalTextureBinder {
 		if (texture.options.textureSize.width > 0 && texture.options.textureSize.height > 0) {
 			texture.surface.setDefaultBufferSize(texture.options.textureSize.width, texture.options.textureSize.height);
 		} else {
-			ElioLogger.warn("No size specified for external texture %s (%s)", texture.name, texture.bindingId);
+			Logger.warn("No size specified for external texture %s (%s)", texture.name, texture.bindingId);
 		}
 				
 		texture.surface.setOnFrameAvailableListener(texture.options.onFrameAvailableListener);	

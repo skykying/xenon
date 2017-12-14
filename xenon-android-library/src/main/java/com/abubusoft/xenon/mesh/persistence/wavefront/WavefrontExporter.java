@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Date;
 
 import com.abubusoft.xenon.mesh.Mesh;
-import com.abubusoft.xenon.core.ElioRuntimeException;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.xenon.core.XenonRuntimeException;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * Exporter nel formato Wavefront.
@@ -91,8 +91,8 @@ public class WavefrontExporter {
 			// Close writer
 			writer.close();
 		} catch (Exception e) {
-			ElioLogger.error(e.getMessage());
-			throw (new ElioRuntimeException(e));
+			Logger.error(e.getMessage());
+			throw (new XenonRuntimeException(e));
 		} finally {
 			if (writer != null)
 				try {

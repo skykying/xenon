@@ -23,7 +23,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLView;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
@@ -160,7 +160,7 @@ public final class ArgonEGL {
         int[] values = new int[1];
         argonEGL.eglQueryContext(argonGLDisplay, argonGLContext, EGL_CONTEXT_CLIENT_VERSION,
                 values);
-        ElioLogger.info("EGLContext created, client version " + values[0]);
+        Logger.info("EGLContext created, client version " + values[0]);
     }
 
     /**
@@ -197,7 +197,7 @@ public final class ArgonEGL {
         int[] numConfigs = new int[1];
         if (!argonEGL.eglChooseConfig(argonGLDisplay, attribList, configs, configs.length,
                 numConfigs)) {
-            ElioLogger.warn("unable to find RGB8888 / " + version + " EGLConfig");
+            Logger.warn("unable to find RGB8888 / " + version + " EGLConfig");
             return null;
         }
         return configs[0];
@@ -233,7 +233,7 @@ public final class ArgonEGL {
                 // the EGL state, so if a surface or context is still current on another
                 // thread we can't fully release it here.  Exceptions thrown from here
                 // are quietly discarded.  Complain in the log file.
-                ElioLogger.warn("WARNING: EglCore was not explicitly released -- state may be leaked");
+                Logger.warn("WARNING: EglCore was not explicitly released -- state may be leaked");
                 release();
             }
         } finally {
@@ -296,7 +296,7 @@ public final class ArgonEGL {
     public void makeCurrent(EGLSurface eglSurface) {
         if (argonGLDisplay == EGL10.EGL_NO_DISPLAY) {
             // called makeCurrent() before create?
-            ElioLogger.debug("NOTE: makeCurrent w/o display");
+            Logger.debug("NOTE: makeCurrent w/o display");
         }
         if (!argonEGL.eglMakeCurrent(argonGLDisplay, eglSurface, eglSurface, argonGLContext)) {
             throw new RuntimeException("eglMakeCurrent failed");
@@ -309,7 +309,7 @@ public final class ArgonEGL {
     public void makeCurrent(EGLSurface drawSurface, EGLSurface readSurface) {
         if (argonGLDisplay == EGL10.EGL_NO_DISPLAY) {
             // called makeCurrent() before create?
-        	ElioLogger.debug("NOTE: makeCurrent w/o display");
+        	Logger.debug("NOTE: makeCurrent w/o display");
         }
         if (!argonEGL.eglMakeCurrent(argonGLDisplay, drawSurface, readSurface, argonGLContext)) {
             throw new RuntimeException("eglMakeCurrent(draw,read) failed");
@@ -377,7 +377,7 @@ public final class ArgonEGL {
         display = argonEGL.eglGetCurrentDisplay();
         context = argonEGL.eglGetCurrentContext();
         surface = argonEGL.eglGetCurrentSurface(EGL10.EGL_DRAW);
-        ElioLogger.info("Current EGL (" + msg + "): display=" + display + ", context=" + context +
+        Logger.info("Current EGL (" + msg + "): display=" + display + ", context=" + context +
                 ", surface=" + surface);
     }
 

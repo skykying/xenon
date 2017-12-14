@@ -7,7 +7,7 @@ import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.tiledmaps.ObjBase;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 /**
  * <p>
@@ -99,7 +99,7 @@ public abstract class OrthogonalHelper {
 	 */
 	public static Point2 translateScreenCoordsToTiledMap(TiledMap tiledMap, float screenX, float screenY) {
 		workResult.setCoords(screenX+Math.round(tiledMap.positionInMap.x) , screenY+Math.round(tiledMap.positionInMap.y));
-		ElioLogger.info("Convert screen (%s, %s) to map (%s, %s)", screenX, screenY,workResult.x, workResult.y );
+		Logger.info("Convert screen (%s, %s) to map (%s, %s)", screenX, screenY,workResult.x, workResult.y );
 		return workResult;
 	}
 	
@@ -139,7 +139,7 @@ public abstract class OrthogonalHelper {
 		// dobbiamo evitare arrotondamenti tra x e y, quindi convertiamo tutto in int separatamente
 		int res=(int)(y/tiledMap.tileHeight*tiledMap.tileColumns)+(int)(x/tiledMap.tileWidth);
 		
-		ElioLogger.info("Convert screen (%s, %s) to mapId (%s)", screenX, screenY,res );
+		Logger.info("Convert screen (%s, %s) to mapId (%s)", screenX, screenY,res );
 		
 		return res;
 	}
@@ -181,7 +181,7 @@ public abstract class OrthogonalHelper {
 		int y=(int) mapY;
 		int res=y/tiledMap.tileHeight*tiledMap.tileColumns+x/tiledMap.tileWidth;
 		
-		ElioLogger.info("Convert map (%s, %s) to mapId (%s)", x, y,res );
+		Logger.info("Convert map (%s, %s) to mapId (%s)", x, y,res );
 		return res;
 	}
 

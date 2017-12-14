@@ -3,13 +3,11 @@
  */
 package com.abubusoft.xenon.math;
 
-import static org.abubu.argon.math.ArgonMath.power2;
-import static org.abubu.argon.math.ArgonMath.sqrt;
-import static org.abubu.argon.math.ArgonMath.abs;
+import static com.abubusoft.xenon.math.ArgonMath.power2;
+import static com.abubusoft.xenon.math.ArgonMath.sqrt;
+import static com.abubusoft.xenon.math.ArgonMath.abs;
 
 import java.io.Serializable;
-
-import com.abubusoft.xenon.core.util.Copy;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;
@@ -23,7 +21,7 @@ import com.abubusoft.kripton.xml.XmlType;
  *
  */
 @BindType
-public class Point3 implements Copy, Serializable {
+public class Point3 implements Serializable {
 
 	private static final long serialVersionUID = 4754358686291704165L;
 

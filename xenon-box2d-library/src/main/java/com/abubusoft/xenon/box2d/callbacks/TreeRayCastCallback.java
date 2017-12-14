@@ -23,6 +23,8 @@
  ******************************************************************************/
 package com.abubusoft.xenon.box2d.callbacks;
 
+import com.abubusoft.xenon.box2d.collision.RayCastInput;
+import com.abubusoft.xenon.box2d.collision.broadphase.DynamicTree;
 
 // updated to rev 100
 
@@ -38,5 +40,5 @@ public interface TreeRayCastCallback {
 	 * @param nodeId
 	 * @return the fraction to the node
 	 */
-	public float raycastCallback(RayCastInput input, int nodeId);
+	public float raycastCallback( RayCastInput input, int nodeId);
 }

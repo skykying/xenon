@@ -1,8 +1,7 @@
 package com.abubusoft.xenon.misc;
 
 import com.abubusoft.xenon.opengl.OnFPSUpdateListener;
-import com.abubusoft.xenon.core.logger.ElioLogger;
-import com.abubusoft.xenon.core.logger.ElioLoggerLevelType;
+import com.abubusoft.kripton.android.Logger;
 
 import android.os.SystemClock;
 
@@ -71,8 +70,7 @@ public class FPSCounter {
 			// invertiamo averageTime per ottenere lo stesso valore in FPS
 			averageFps = (float) (1000.0 / averageFpsTime);
 
-			if (ElioLogger.isEnabledFor(ElioLoggerLevelType.DEBUG))
-				ElioLogger.debug("Avg time for render a frame = %s ms. FPS = %s", averageFpsTime, averageFps);
+			Logger.debug("Avg time for render a frame = %s ms. FPS = %s", averageFpsTime, averageFps);
 			
 			if (listener != null)
 				listener.onFPSUpdate(averageFps);

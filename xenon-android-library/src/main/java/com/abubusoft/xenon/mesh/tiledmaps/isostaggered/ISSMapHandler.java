@@ -326,7 +326,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController>  impleme
 		offsetHolder.setOffset(ISSHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
 		//offsetHolder.offsetX=0;
 		//offsetHolder.offsetY=0;
-		// ElioLogger.info("Original index %s , %s ***   offset x %s y %s ",offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.offsetX, offsetHolder.offsetY);
+		// Logger.info("Original index %s , %s ***   offset x %s y %s ",offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.offsetX, offsetHolder.offsetY);
 
 	}
 

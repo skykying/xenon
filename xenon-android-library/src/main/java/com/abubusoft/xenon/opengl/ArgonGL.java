@@ -8,7 +8,7 @@ import javax.microedition.khronos.egl.EGL10;
 import com.abubusoft.xenon.ScreenInfo;
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLSurfaceView16;
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLView;
-import com.abubusoft.xenon.core.logger.ElioLogger;
+import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -226,7 +226,7 @@ public abstract class ArgonGL {
 	public static void checkGlError(String op, String subOp) {
 		int error;
 		while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-			ElioLogger.error("GL20 %s %s: glError %s (code %s)", op, subOp, translateError(error), error);
+			Logger.error("GL20 %s %s: glError %s (code %s)", op, subOp, translateError(error), error);
 			throw new RuntimeException(op + ": glError " + error);
 		}
 	}
