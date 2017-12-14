@@ -186,10 +186,10 @@ public class CircleShape extends Shape {
     final float px = tq.c * m_p.x - tq.s * m_p.y + tp.x;
     final float py = tq.s * m_p.x + tq.c * m_p.y + tp.y;
 
-    aabb.lowerBound.x = px - m_radius;
-    aabb.lowerBound.y = py - m_radius;
-    aabb.upperBound.x = px + m_radius;
-    aabb.upperBound.y = py + m_radius;
+    aabb.lowerBoundX = px - m_radius;
+    aabb.lowerBoundY = py - m_radius;
+    aabb.upperBoundX = px + m_radius;
+    aabb.upperBoundY = py + m_radius;
   }
 
   @Override

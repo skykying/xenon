@@ -89,10 +89,10 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
     final int node = allocateNode();
     // Fatten the aabb
     final AABB nodeAABB = m_aabb[node];
-    nodeAABB.lowerBound.x = aabb.lowerBound.x - Settings.aabbExtension;
-    nodeAABB.lowerBound.y = aabb.lowerBound.y - Settings.aabbExtension;
-    nodeAABB.upperBound.x = aabb.upperBound.x + Settings.aabbExtension;
-    nodeAABB.upperBound.y = aabb.upperBound.y + Settings.aabbExtension;
+    nodeAABB.lowerBoundX = aabb.lowerBoundX - Settings.aabbExtension;
+    nodeAABB.lowerBoundY = aabb.lowerBoundY - Settings.aabbExtension;
+    nodeAABB.upperBoundX = aabb.upperBoundX + Settings.aabbExtension;
+    nodeAABB.upperBoundY = aabb.upperBoundY + Settings.aabbExtension;
     m_userData[node] = userData;
 
     insertLeaf(node);
@@ -117,8 +117,8 @@ public class DynamicTreeFlatNodes implements BroadPhaseStrategy {
 
     final AABB nodeAABB = m_aabb[node];
     // if (nodeAABB.contains(aabb)) {
-    if (nodeAABB.lowerBound.x <= aabb.lowerBound.x && nodeAABB.lowerBound.y <= aabb.lowerBound.y
-        && aabb.upperBound.x <= nodeAABB.upperBound.x && aabb.upperBound.y <= nodeAABB.upperBound.y) {
+    if (nodeAABB.lowerBoundX <= aabb.lowerBoundX && nodeAABB.lowerBoundY <= aabb.lowerBoundY
+        && aabb.upperBoundX <= nodeAABB.upperBoundX && aabb.upperBoundY <= nodeAABB.upperBoundY) {
       return false;
     }
 

@@ -82,10 +82,10 @@ public class DynamicTree implements BroadPhaseStrategy {
     int proxyId = node.id;
     // Fatten the aabb
     final AABB nodeAABB = node.aabb;
-    nodeAABB.lowerBound.x = aabb.lowerBound.x - Settings.aabbExtension;
-    nodeAABB.lowerBound.y = aabb.lowerBound.y - Settings.aabbExtension;
-    nodeAABB.upperBound.x = aabb.upperBound.x + Settings.aabbExtension;
-    nodeAABB.upperBound.y = aabb.upperBound.y + Settings.aabbExtension;
+    nodeAABB.lowerBoundX = aabb.lowerBoundX - Settings.aabbExtension;
+    nodeAABB.lowerBoundY = aabb.lowerBoundY - Settings.aabbExtension;
+    nodeAABB.upperBoundX = aabb.upperBoundX + Settings.aabbExtension;
+    nodeAABB.upperBoundY = aabb.upperBoundY + Settings.aabbExtension;
     node.userData = userData;
 
     insertLeaf(proxyId);
@@ -231,10 +231,10 @@ public class DynamicTree implements BroadPhaseStrategy {
     // Vec2.maxToOut(p1, temp, segAABB.upperBound);
     tempx = (p2x - p1x) * maxFraction + p1x;
     tempy = (p2y - p1y) * maxFraction + p1y;
-    segAABB.lowerBound.x = p1x < tempx ? p1x : tempx;
-    segAABB.lowerBound.y = p1y < tempy ? p1y : tempy;
-    segAABB.upperBound.x = p1x > tempx ? p1x : tempx;
-    segAABB.upperBound.y = p1y > tempy ? p1y : tempy;
+    segAABB.lowerBoundX = p1x < tempx ? p1x : tempx;
+    segAABB.lowerBoundY = p1y < tempy ? p1y : tempy;
+    segAABB.upperBoundX = p1x > tempx ? p1x : tempx;
+    segAABB.upperBoundY = p1y > tempy ? p1y : tempy;
     // end inline
 
     nodeStackIndex = 0;
@@ -254,10 +254,10 @@ public class DynamicTree implements BroadPhaseStrategy {
       // |dot(v, p1 - c)| > dot(|v|, h)
       // node.aabb.getCenterToOut(c);
       // node.aabb.getExtentsToOut(h);
-      cx = (nodeAABB.lowerBound.x + nodeAABB.upperBound.x) * .5f;
-      cy = (nodeAABB.lowerBound.y + nodeAABB.upperBound.y) * .5f;
-      hx = (nodeAABB.upperBound.x - nodeAABB.lowerBound.x) * .5f;
-      hy = (nodeAABB.upperBound.y - nodeAABB.lowerBound.y) * .5f;
+      cx = (nodeAABB.lowerBoundX + nodeAABB.upperBoundX) * .5f;
+      cy = (nodeAABB.lowerBoundY + nodeAABB.upperBoundY) * .5f;
+      hx = (nodeAABB.upperBoundX - nodeAABB.lowerBoundX) * .5f;
+      hy = (nodeAABB.upperBoundY - nodeAABB.lowerBoundY) * .5f;
       tempx = p1x - cx;
       tempy = p1y - cy;
       float separation = MathUtils.abs(vx * tempx + vy * tempy) - (absVx * hx + absVy * hy);
@@ -287,10 +287,10 @@ public class DynamicTree implements BroadPhaseStrategy {
           // Vec2.maxToOut(p1, temp, segAABB.upperBound);
           tempx = (p2x - p1x) * maxFraction + p1x;
           tempy = (p2y - p1y) * maxFraction + p1y;
-          segAABB.lowerBound.x = p1x < tempx ? p1x : tempx;
-          segAABB.lowerBound.y = p1y < tempy ? p1y : tempy;
-          segAABB.upperBound.x = p1x > tempx ? p1x : tempx;
-          segAABB.upperBound.y = p1y > tempy ? p1y : tempy;
+          segAABB.lowerBoundX = p1x < tempx ? p1x : tempx;
+          segAABB.lowerBoundY = p1y < tempy ? p1y : tempy;
+          segAABB.upperBoundX = p1x > tempx ? p1x : tempx;
+          segAABB.upperBoundY = p1y > tempy ? p1y : tempy;
         }
       } else {
         if (nodeStack.length - nodeStackIndex - 2 <= 0) {

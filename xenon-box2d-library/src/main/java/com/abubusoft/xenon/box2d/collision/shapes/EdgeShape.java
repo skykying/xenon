@@ -212,8 +212,10 @@ public class EdgeShape extends Shape {
 
   @Override
   public void computeAABB(AABB aabb, Transform xf, int childIndex) {
-    final Vec2 lowerBound = aabb.lowerBound;
-    final Vec2 upperBound = aabb.upperBound;
+    float lowerBoundX = aabb.lowerBoundX;
+    float lowerBoundY = aabb.lowerBoundY;
+    float upperBoundX = aabb.upperBoundX;
+    float upperBoundY = aabb.upperBoundY;
     final Rot xfq = xf.q;
 
     final float v1x = (xfq.c * m_vertex1.x - xfq.s * m_vertex1.y) + xf.p.x;
@@ -221,15 +223,15 @@ public class EdgeShape extends Shape {
     final float v2x = (xfq.c * m_vertex2.x - xfq.s * m_vertex2.y) + xf.p.x;
     final float v2y = (xfq.s * m_vertex2.x + xfq.c * m_vertex2.y) + xf.p.y;
 
-    lowerBound.x = v1x < v2x ? v1x : v2x;
-    lowerBound.y = v1y < v2y ? v1y : v2y;
-    upperBound.x = v1x > v2x ? v1x : v2x;
-    upperBound.y = v1y > v2y ? v1y : v2y;
+    lowerBoundX = v1x < v2x ? v1x : v2x;
+    lowerBoundY = v1y < v2y ? v1y : v2y;
+    upperBoundX = v1x > v2x ? v1x : v2x;
+    upperBoundY = v1y > v2y ? v1y : v2y;
 
-    lowerBound.x -= m_radius;
-    lowerBound.y -= m_radius;
-    upperBound.x += m_radius;
-    upperBound.y += m_radius;
+    lowerBoundX -= m_radius;
+    lowerBoundY -= m_radius;
+    upperBoundX += m_radius;
+    upperBoundY += m_radius;
   }
 
   @Override

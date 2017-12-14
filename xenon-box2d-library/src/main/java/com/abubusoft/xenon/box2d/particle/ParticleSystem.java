@@ -299,11 +299,11 @@ public class ParticleSystem {
           aabb.combine(childAABB);
         }
       }
-      final float upperBoundY = aabb.upperBound.y;
-      final float upperBoundX = aabb.upperBound.x;
-      for (float y = MathUtils.floor(aabb.lowerBound.y / stride) * stride; y < upperBoundY; y +=
+      final float upperBoundY = aabb.upperBoundY;
+      final float upperBoundX = aabb.upperBoundX;
+      for (float y = MathUtils.floor(aabb.lowerBoundY / stride) * stride; y < upperBoundY; y +=
           stride) {
-        for (float x = MathUtils.floor(aabb.lowerBound.x / stride) * stride; x < upperBoundX; x +=
+        for (float x = MathUtils.floor(aabb.lowerBoundX / stride) * stride; x < upperBoundX; x +=
             stride) {
           Vec2 p = tempVec;
           p.x = x;
@@ -632,19 +632,19 @@ public class ParticleSystem {
 
   public void updateBodyContacts() {
     final AABB aabb = temp;
-    aabb.lowerBound.x = Float.MAX_VALUE;
-    aabb.lowerBound.y = Float.MAX_VALUE;
-    aabb.upperBound.x = -Float.MAX_VALUE;
-    aabb.upperBound.y = -Float.MAX_VALUE;
+    aabb.lowerBoundX = Float.MAX_VALUE;
+    aabb.lowerBoundY = Float.MAX_VALUE;
+    aabb.upperBoundX = -Float.MAX_VALUE;
+    aabb.upperBoundY = -Float.MAX_VALUE;
     for (int i = 0; i < m_count; i++) {
       Vec2 p = m_positionBuffer.data[i];
-      Vec2.minToOut(aabb.lowerBound, p, aabb.lowerBound);
-      Vec2.maxToOut(aabb.upperBound, p, aabb.upperBound);
+      Vec2.minToOut(aabb.lowerBoundX, aabb.lowerBoundY, p.x, p.y, aabb);
+      Vec2.maxToOut(aabb.upperBoundX, aabb.upperBoundY, p.x, p.y, aabb);
     }
-    aabb.lowerBound.x -= m_particleDiameter;
-    aabb.lowerBound.y -= m_particleDiameter;
-    aabb.upperBound.x += m_particleDiameter;
-    aabb.upperBound.y += m_particleDiameter;
+    aabb.lowerBoundX -= m_particleDiameter;
+    aabb.lowerBoundY -= m_particleDiameter;
+    aabb.upperBoundX += m_particleDiameter;
+    aabb.upperBoundY += m_particleDiameter;
     m_bodyContactCount = 0;
 
     ubccallback.system = this;
@@ -655,12 +655,18 @@ public class ParticleSystem {
 
   public void solveCollision(TimeStep step) {
     final AABB aabb = temp;
-    final Vec2 lowerBound = aabb.lowerBound;
-    final Vec2 upperBound = aabb.upperBound;
-    lowerBound.x = Float.MAX_VALUE;
-    lowerBound.y = Float.MAX_VALUE;
-    upperBound.x = -Float.MAX_VALUE;
-    upperBound.y = -Float.MAX_VALUE;
+
+    float lowerBoundX = aabb.lowerBoundX;
+    float lowerBoundY = aabb.lowerBoundY;
+    float upperBoundX = aabb.upperBoundX;
+    float upperBoundY = aabb.upperBoundY;
+
+    //final Vec2 lowerBound = aabb.lowerBound;
+    //final Vec2 upperBound = aabb.upperBound;
+    aabb.lowerBoundX = Float.MAX_VALUE;
+    aabb.lowerBoundY = Float.MAX_VALUE;
+    aabb.upperBoundX = -Float.MAX_VALUE;
+    aabb.upperBoundY = -Float.MAX_VALUE;
     for (int i = 0; i < m_count; i++) {
       final Vec2 v = m_velocityBuffer.data[i];
       final Vec2 p1 = m_positionBuffer.data[i];
@@ -670,12 +676,12 @@ public class ParticleSystem {
       final float p2y = p1y + step.dt * v.y;
       final float bx = p1x < p2x ? p1x : p2x;
       final float by = p1y < p2y ? p1y : p2y;
-      lowerBound.x = lowerBound.x < bx ? lowerBound.x : bx;
-      lowerBound.y = lowerBound.y < by ? lowerBound.y : by;
+      lowerBoundX = lowerBoundX < bx ? lowerBoundX : bx;
+      lowerBoundY = lowerBoundY < by ? lowerBoundY : by;
       final float b1x = p1x > p2x ? p1x : p2x;
       final float b1y = p1y > p2y ? p1y : p2y;
-      upperBound.x = upperBound.x > b1x ? upperBound.x : b1x;
-      upperBound.y = upperBound.y > b1y ? upperBound.y : b1y;
+      upperBoundX = upperBoundX > b1x ? upperBoundX : b1x;
+      upperBoundY = upperBoundY > b1y ? upperBoundY : b1y;
     }
     sccallback.step = step;
     sccallback.system = this;
@@ -1644,10 +1650,10 @@ public class ParticleSystem {
       return;
     }
 
-    final float lowerBoundX = aabb.lowerBound.x;
-    final float lowerBoundY = aabb.lowerBound.y;
-    final float upperBoundX = aabb.upperBound.x;
-    final float upperBoundY = aabb.upperBound.y;
+    final float lowerBoundX = aabb.lowerBoundX;
+    final float lowerBoundY = aabb.lowerBoundY;
+    final float upperBoundX = aabb.upperBoundX;
+    final float upperBoundY = aabb.upperBoundY;
     int firstProxy =
         lowerBound(m_proxyBuffer, m_proxyCount,
             computeTag(m_inverseDiameter * lowerBoundX, m_inverseDiameter * lowerBoundY));
@@ -2011,10 +2017,10 @@ public class ParticleSystem {
       int childCount = shape.getChildCount();
       for (int childIndex = 0; childIndex < childCount; childIndex++) {
         AABB aabb = fixture.getAABB(childIndex);
-        final float aabblowerBoundx = aabb.lowerBound.x - system.m_particleDiameter;
-        final float aabblowerBoundy = aabb.lowerBound.y - system.m_particleDiameter;
-        final float aabbupperBoundx = aabb.upperBound.x + system.m_particleDiameter;
-        final float aabbupperBoundy = aabb.upperBound.y + system.m_particleDiameter;
+        final float aabblowerBoundx = aabb.lowerBoundX - system.m_particleDiameter;
+        final float aabblowerBoundy = aabb.lowerBoundY - system.m_particleDiameter;
+        final float aabbupperBoundx = aabb.upperBoundX + system.m_particleDiameter;
+        final float aabbupperBoundy = aabb.upperBoundY + system.m_particleDiameter;
         int firstProxy =
             lowerBound(
                 system.m_proxyBuffer,
@@ -2089,10 +2095,10 @@ public class ParticleSystem {
       int childCount = shape.getChildCount();
       for (int childIndex = 0; childIndex < childCount; childIndex++) {
         AABB aabb = fixture.getAABB(childIndex);
-        final float aabblowerBoundx = aabb.lowerBound.x - system.m_particleDiameter;
-        final float aabblowerBoundy = aabb.lowerBound.y - system.m_particleDiameter;
-        final float aabbupperBoundx = aabb.upperBound.x + system.m_particleDiameter;
-        final float aabbupperBoundy = aabb.upperBound.y + system.m_particleDiameter;
+        final float aabblowerBoundx = aabb.lowerBoundX - system.m_particleDiameter;
+        final float aabblowerBoundy = aabb.lowerBoundY - system.m_particleDiameter;
+        final float aabbupperBoundx = aabb.upperBoundX + system.m_particleDiameter;
+        final float aabbupperBoundy = aabb.upperBoundY + system.m_particleDiameter;
         int firstProxy =
             lowerBound(
                 system.m_proxyBuffer,

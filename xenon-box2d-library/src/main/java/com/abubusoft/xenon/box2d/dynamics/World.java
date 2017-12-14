@@ -745,10 +745,10 @@ public class World {
             AABB aabb = m_contactManager.m_broadPhase.getFatAABB(proxy.proxyId);
             if (aabb != null) {
               Vec2[] vs = avs.get(4);
-              vs[0].set(aabb.lowerBound.x, aabb.lowerBound.y);
-              vs[1].set(aabb.upperBound.x, aabb.lowerBound.y);
-              vs[2].set(aabb.upperBound.x, aabb.upperBound.y);
-              vs[3].set(aabb.lowerBound.x, aabb.upperBound.y);
+              vs[0].set(aabb.lowerBoundX, aabb.lowerBoundY);
+              vs[1].set(aabb.upperBoundX, aabb.lowerBoundY);
+              vs[2].set(aabb.upperBoundX, aabb.upperBoundY);
+              vs[3].set(aabb.lowerBoundX, aabb.upperBoundY);
               m_debugDraw.drawPolygon(vs, 4, color);
             }
           }

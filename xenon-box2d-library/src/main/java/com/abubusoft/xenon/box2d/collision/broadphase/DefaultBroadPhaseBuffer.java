@@ -118,11 +118,11 @@ public class DefaultBroadPhaseBuffer implements TreeCallback, BroadPhase {
     // return m_tree.overlap(proxyIdA, proxyIdB);
     final AABB a = m_tree.getFatAABB(proxyIdA);
     final AABB b = m_tree.getFatAABB(proxyIdB);
-    if (b.lowerBound.x - a.upperBound.x > 0.0f || b.lowerBound.y - a.upperBound.y > 0.0f) {
+    if (b.lowerBoundX - a.upperBoundX > 0.0f || b.lowerBoundY - a.upperBoundY > 0.0f) {
       return false;
     }
 
-    if (a.lowerBound.x - b.upperBound.x > 0.0f || a.lowerBound.y - b.upperBound.y > 0.0f) {
+    if (a.lowerBoundX - b.upperBoundX > 0.0f || a.lowerBoundY - b.upperBoundY > 0.0f) {
       return false;
     }
 

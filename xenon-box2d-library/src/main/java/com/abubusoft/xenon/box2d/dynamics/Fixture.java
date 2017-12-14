@@ -429,14 +429,14 @@ public class Fixture {
       m_shape.computeAABB(aabb1, transform1, proxy.childIndex);
       m_shape.computeAABB(aab, transform2, proxy.childIndex);
 
-      proxy.aabb.lowerBound.x =
-          aabb1.lowerBound.x < aab.lowerBound.x ? aabb1.lowerBound.x : aab.lowerBound.x;
-      proxy.aabb.lowerBound.y =
-          aabb1.lowerBound.y < aab.lowerBound.y ? aabb1.lowerBound.y : aab.lowerBound.y;
-      proxy.aabb.upperBound.x =
-          aabb1.upperBound.x > aab.upperBound.x ? aabb1.upperBound.x : aab.upperBound.x;
-      proxy.aabb.upperBound.y =
-          aabb1.upperBound.y > aab.upperBound.y ? aabb1.upperBound.y : aab.upperBound.y;
+      proxy.aabb.lowerBoundX =
+          aabb1.lowerBoundX < aab.lowerBoundX ? aabb1.lowerBoundX : aab.lowerBoundX;
+      proxy.aabb.lowerBoundY =
+          aabb1.lowerBoundY < aab.lowerBoundY ? aabb1.lowerBoundY : aab.lowerBoundY;
+      proxy.aabb.upperBoundX =
+          aabb1.upperBoundX > aab.upperBoundX ? aabb1.upperBoundX : aab.upperBoundX;
+      proxy.aabb.upperBoundY =
+          aabb1.upperBoundY > aab.upperBoundY ? aabb1.upperBoundY : aab.upperBoundY;
       displacement.x = transform2.p.x - transform1.p.x;
       displacement.y = transform2.p.y - transform1.p.y;
 
