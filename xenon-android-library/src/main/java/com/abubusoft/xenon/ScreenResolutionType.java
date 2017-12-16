@@ -1,6 +1,6 @@
 package com.abubusoft.xenon;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 
 /**
  * Inquadra la risoluzione dello schermo in base alla tabella trovata <a href="http://www.androidworld.it/il-dizionario-di-android/android-dalla-a-alla-z-cosa-sono-fhd-4k-hd-qhd-e-qhd/">qua</>
@@ -104,8 +104,8 @@ public enum ScreenResolutionType {
 	public static ScreenResolutionType findMatch(int width, int height)
 	{
 		// mettiamolo in landscape
-		int widthCurrent=ArgonMath.max(width, height);
-		int heightCurrent=ArgonMath.min(width, height);			
+		int widthCurrent= XenonMath.max(width, height);
+		int heightCurrent= XenonMath.min(width, height);
 		
 		for (ScreenResolutionType item: values())
 		{

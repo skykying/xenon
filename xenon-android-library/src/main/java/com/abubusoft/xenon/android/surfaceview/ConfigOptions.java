@@ -115,7 +115,7 @@ public class ConfigOptions {
 	 * </ul>
 	 * 
 	 * @return
-	 * 		istanza delle opzioni da usare per creare le surfaceView di ArgonGL
+	 * 		istanza delle opzioni da usare per creare le surfaceView di XenonGL
 	 */
 	public static ConfigOptions build() {
 		return new ConfigOptions();

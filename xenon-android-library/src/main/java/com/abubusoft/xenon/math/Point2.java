@@ -3,9 +3,9 @@
  */
 package com.abubusoft.xenon.math;
 
-import static com.abubusoft.xenon.math.ArgonMath.power2;
-import static com.abubusoft.xenon.math.ArgonMath.sqrt;
-import static com.abubusoft.xenon.math.ArgonMath.abs;
+import static com.abubusoft.xenon.math.XenonMath.power2;
+import static com.abubusoft.xenon.math.XenonMath.sqrt;
+import static com.abubusoft.xenon.math.XenonMath.abs;
 
 import com.abubusoft.kripton.annotation.BindType;
 

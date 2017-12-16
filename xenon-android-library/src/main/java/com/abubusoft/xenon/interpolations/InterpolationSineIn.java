@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.interpolations;
 
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 
 /**
  * (c) 2010 Nicolas Gramlich
@@ -55,7 +55,7 @@ public class InterpolationSineIn implements Interpolation {
 	// ===========================================================
 
 	public static float getValue(final float pPercentage) {
-		return (float) (-Math.cos(pPercentage * ArgonMath.PI_HALF) + 1);
+		return (float) (-Math.cos(pPercentage * XenonMath.PI_HALF) + 1);
 	}
 
 	// ===========================================================

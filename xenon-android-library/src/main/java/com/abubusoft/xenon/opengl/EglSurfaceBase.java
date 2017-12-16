@@ -39,14 +39,14 @@ import com.abubusoft.kripton.android.Logger;
 public class EglSurfaceBase {
 
     // EglCore object we're associated with.  It may be associated with multiple surfaces.
-    protected ArgonEGL argonEGL;
+    protected XenonEGL xenonEGL;
 
     private EGLSurface mEGLSurface = EGL10.EGL_NO_SURFACE;
     private int mWidth = -1;
     private int mHeight = -1;
 
-    protected EglSurfaceBase(ArgonEGL eglCore) {
-        argonEGL = eglCore;
+    protected EglSurfaceBase(XenonEGL eglCore) {
+        xenonEGL = eglCore;
     }
 
     /**
@@ -58,7 +58,7 @@ public class EglSurfaceBase {
         if (mEGLSurface != EGL10.EGL_NO_SURFACE) {
             throw new IllegalStateException("surface already created");
         }
-        mEGLSurface = argonEGL.createWindowSurface(surface);
+        mEGLSurface = xenonEGL.createWindowSurface(surface);
 
         // Don't cache width/height here, because the size of the underlying surface can change
         // out from under us (see e.g. HardwareScalerActivity).
@@ -73,7 +73,7 @@ public class EglSurfaceBase {
         if (mEGLSurface != EGL10.EGL_NO_SURFACE) {
             throw new IllegalStateException("surface already created");
         }
-        mEGLSurface = argonEGL.createOffscreenSurface(width, height);
+        mEGLSurface = xenonEGL.createOffscreenSurface(width, height);
         mWidth = width;
         mHeight = height;
     }
@@ -87,7 +87,7 @@ public class EglSurfaceBase {
      */
     public int getWidth() {
         if (mWidth < 0) {
-            return argonEGL.querySurface(mEGLSurface, EGL10.EGL_WIDTH);
+            return xenonEGL.querySurface(mEGLSurface, EGL10.EGL_WIDTH);
         } else {
             return mWidth;
         }
@@ -98,7 +98,7 @@ public class EglSurfaceBase {
      */
     public int getHeight() {
         if (mHeight < 0) {
-            return argonEGL.querySurface(mEGLSurface, EGL10.EGL_HEIGHT);
+            return xenonEGL.querySurface(mEGLSurface, EGL10.EGL_HEIGHT);
         } else {
             return mHeight;
         }
@@ -108,7 +108,7 @@ public class EglSurfaceBase {
      * Release the EGL surface.
      */
     public void releaseEglSurface() {
-        argonEGL.releaseSurface(mEGLSurface);
+        xenonEGL.releaseSurface(mEGLSurface);
         mEGLSurface = EGL10.EGL_NO_SURFACE;
         mWidth = mHeight = -1;
     }
@@ -117,7 +117,7 @@ public class EglSurfaceBase {
      * Makes our EGL context and surface current.
      */
     public void makeCurrent() {
-        argonEGL.makeCurrent(mEGLSurface);
+        xenonEGL.makeCurrent(mEGLSurface);
     }
 
     /**
@@ -125,7 +125,7 @@ public class EglSurfaceBase {
      * for reading.
      */
     public void makeCurrentReadFrom(EglSurfaceBase readSurface) {
-        argonEGL.makeCurrent(mEGLSurface, readSurface.mEGLSurface);
+        xenonEGL.makeCurrent(mEGLSurface, readSurface.mEGLSurface);
     }
 
     /**
@@ -134,7 +134,7 @@ public class EglSurfaceBase {
      * @return false on failure
      */
     public boolean swapBuffers() {
-        boolean result = argonEGL.swapBuffers(mEGLSurface);
+        boolean result = xenonEGL.swapBuffers(mEGLSurface);
         if (!result) {
             Logger.debug("WARNING: swapBuffers() failed");
         }
@@ -147,7 +147,7 @@ public class EglSurfaceBase {
      * Expects that this object's EGL surface is current.
      */
     public void saveFrame(File file) throws IOException {
-        if (!argonEGL.isCurrent(mEGLSurface)) {
+        if (!xenonEGL.isCurrent(mEGLSurface)) {
             throw new RuntimeException("Expected EGL context/surface is not current");
         }
 
@@ -171,7 +171,7 @@ public class EglSurfaceBase {
         buf.order(ByteOrder.LITTLE_ENDIAN);
         GLES20.glReadPixels(0, 0, width, height,
                 GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, buf);
-        ArgonGL.checkGlError("glReadPixels");
+        XenonGL.checkGlError("glReadPixels");
         buf.rewind();
 
         BufferedOutputStream bos = null;

@@ -3,7 +3,7 @@ package com.abubusoft.xenon.mesh.tiledmaps;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractLayerHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.LayerDrawer;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
@@ -193,16 +193,16 @@ public abstract class Layer extends PropertiesCollector {
 	public void scroll(float mapOffsetX, float mapOffsetY) {
 		layerOffsetX += mapOffsetX * speedPercentageX;
 		if (tiledMap.scrollHorizontalLocked) {
-			//screenOffsetX=ArgonMath.clamp(screenOffsetX, 0f, tiledMap.mapWidth - tiledMap.view.windowWidth);			
-			layerOffsetX=ArgonMath.clamp(layerOffsetX, 0f, tiledMap.view.mapMaxPositionValueX);
+			//screenOffsetX=XenonMath.clamp(screenOffsetX, 0f, tiledMap.mapWidth - tiledMap.view.windowWidth);
+			layerOffsetX= XenonMath.clamp(layerOffsetX, 0f, tiledMap.view.mapMaxPositionValueX);
 		}
 		// modulo
 		layerOffsetX = layerOffsetX % tiledMap.mapWidth;
 
 		layerOffsetY += mapOffsetY * speedPercentageY;
 		if (tiledMap.scrollVerticalLocked) {
-			//screenOffsetY=ArgonMath.clamp(screenOffsetY, 0f, tiledMap.mapHeight - tiledMap.view.windowHeight);			
-			layerOffsetY=ArgonMath.clamp(layerOffsetY, 0f, tiledMap.view.mapMaxPositionValueY);
+			//screenOffsetY=XenonMath.clamp(screenOffsetY, 0f, tiledMap.mapHeight - tiledMap.view.windowHeight);
+			layerOffsetY= XenonMath.clamp(layerOffsetY, 0f, tiledMap.view.mapMaxPositionValueY);
 		}
 		// modulo
 		layerOffsetY = layerOffsetY % tiledMap.mapHeight;
@@ -223,14 +223,14 @@ public abstract class Layer extends PropertiesCollector {
 
 		// se ci sono i lock, vediamo di rispettarli.
 		if (tiledMap.scrollHorizontalLocked) {
-			//screenOffsetX=ArgonMath.clamp(screenOffsetX, 0f, tiledMap.mapWidth - tiledMap.view.windowWidth);
-			layerOffsetX=ArgonMath.clamp(layerOffsetX, 0f, tiledMap.view.mapMaxPositionValueX);
+			//screenOffsetX=XenonMath.clamp(screenOffsetX, 0f, tiledMap.mapWidth - tiledMap.view.windowWidth);
+			layerOffsetX= XenonMath.clamp(layerOffsetX, 0f, tiledMap.view.mapMaxPositionValueX);
 		}
 		
 		layerOffsetY = (mapDistanceY * speedPercentageY);
 		if (tiledMap.scrollVerticalLocked) {
-			//screenOffsetY=ArgonMath.clamp(screenOffsetY, 0f, tiledMap.mapHeight - tiledMap.view.windowHeight);			
-			layerOffsetY=ArgonMath.clamp(layerOffsetY, 0f, tiledMap.view.mapMaxPositionValueY);
+			//screenOffsetY=XenonMath.clamp(screenOffsetY, 0f, tiledMap.mapHeight - tiledMap.view.windowHeight);
+			layerOffsetY= XenonMath.clamp(layerOffsetY, 0f, tiledMap.view.mapMaxPositionValueY);
 		}
 				
 	}

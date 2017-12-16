@@ -2,10 +2,10 @@ package com.abubusoft.xenon.shader;
 
 import java.nio.FloatBuffer;
 
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.ArgonBeanType;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.context.XenonBeanType;
 import com.abubusoft.xenon.R;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 
 import android.content.Context;
 import android.opengl.GLES20;
@@ -26,7 +26,7 @@ public class ShaderTiledMap extends Shader {
 	 * @param options
 	 */
 	public ShaderTiledMap(boolean oneTextureForLayer, ArgonShaderOptions options) {
-		Context context = ArgonBeanContext.getBean(ArgonBeanType.CONTEXT);
+		Context context = XenonBeanContext.getBean(XenonBeanType.CONTEXT);
 		// imposta gli shader program ed il numero di texture
 		setupFromFiles(context, R.raw.shader_tiledmap_vertex, R.raw.shader_tiledmap_fragment, options.define("MORE_TEXTURES", !(options.numberOfTextures == 1 || oneTextureForLayer)));
 	}
@@ -63,7 +63,7 @@ public class ShaderTiledMap extends Shader {
 	public void setTextureSelectorArray(FloatBuffer textureSelector) {
 		GLES20.glVertexAttribPointer(textureSelectorPtr, 1, GLES20.GL_FLOAT, false, 0, textureSelector);
 		GLES20.glEnableVertexAttribArray(textureSelectorPtr);
-		ArgonGL.checkGlError("Shader (id="+programId+") setTextureSelectorArray");
+		XenonGL.checkGlError("Shader (id="+programId+") setTextureSelectorArray");
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class ShaderTiledMap extends Shader {
 	 */
 	public void setOpacity(float value) {
 		GLES20.glUniform1f(opacityPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setOpacity");
+		XenonGL.checkGlError("Shader (id="+programId+") setOpacity");
 	}
 
 }

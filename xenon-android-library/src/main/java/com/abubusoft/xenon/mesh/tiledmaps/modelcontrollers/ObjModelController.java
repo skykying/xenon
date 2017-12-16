@@ -6,7 +6,7 @@ import com.abubusoft.xenon.animations.TiledMapAnimation;
 import com.abubusoft.xenon.animations.TiledMapTimeline;
 import com.abubusoft.xenon.animations.TranslationFrame;
 import com.abubusoft.xenon.animations.events.EventFrameListener;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.mesh.MeshFactory;
 import com.abubusoft.xenon.mesh.MeshOptions;
 import com.abubusoft.xenon.mesh.MeshSprite;
@@ -20,7 +20,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.path.MovementMap;
 import com.abubusoft.xenon.mesh.tiledmaps.path.MovementMapFactory;
 import com.abubusoft.xenon.mesh.tiledmaps.path.Path;
 import com.abubusoft.xenon.mesh.tiledmaps.path.PathFinder;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.kripton.android.Logger;
 
 /**
@@ -114,9 +114,10 @@ public class ObjModelController {
 		sprite = MeshFactory.createSprite(obj.width, obj.height, options);
 		animations = new ArrayList<>(capacity);
 
-		//MovementMap mm = MovementMapFactory.buildMovementMap(map);
-		movementMap =MovementMapFactory.buildMovementMapByTileProperties(map,"path", "path");
-		pathFinder = new DijkstraPathFinder(movementMap, false);
+		if (false) {
+			movementMap = MovementMapFactory.buildMovementMapByTileProperties(map, "path", "path");
+			pathFinder = new DijkstraPathFinder(movementMap, false);
+		}
 		timeline = new TiledMapTimeline();
 		timeline.setOnMoveEventListener(new EventFrameListener<TranslationFrame>() {
 
@@ -145,7 +146,7 @@ public class ObjModelController {
 			animations.add(null);
 		}
 
-		float screenSize = ArgonMath.max(ArgonGL.screenInfo.width, ArgonGL.screenInfo.height);
+		float screenSize = XenonMath.max(XenonGL.screenInfo.width, XenonGL.screenInfo.height);
 		float windowOfTileSize = map.view().windowDimension;
 
 		screenToTiledMapFactor = windowOfTileSize / screenSize;
@@ -185,11 +186,11 @@ public class ObjModelController {
 		tempY = 0f;
 
 		if (map.scrollHorizontalLocked) {
-			obj.x = ArgonMath.clamp(obj.x, 0f, map.mapWidth);
+			obj.x = XenonMath.clamp(obj.x, 0f, map.mapWidth);
 		}
 
 		if (map.scrollVerticalLocked) {
-			obj.y = ArgonMath.clamp(obj.y, 0f, map.mapHeight);
+			obj.y = XenonMath.clamp(obj.y, 0f, map.mapHeight);
 		}
 	}
 
@@ -251,10 +252,10 @@ public class ObjModelController {
 
 		// applichiamo le distanze obj.x += distanceX; obj.y += distanceY;
 
-		// rimaniamo nel boundary della tiled map if (map.scrollHorizontalLocked) { obj.x = ArgonMath.clamp(obj.x, 0f, map.mapWidth); }
+		// rimaniamo nel boundary della tiled map if (map.scrollHorizontalLocked) { obj.x = XenonMath.clamp(obj.x, 0f, map.mapWidth); }
 
 		if (map.scrollVerticalLocked) {
-			obj.y = ArgonMath.clamp(obj.y, 0f, map.mapHeight);
+			obj.y = XenonMath.clamp(obj.y, 0f, map.mapHeight);
 		}
 
 		moveInternal(distanceX, distanceY);

@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.entity;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.mesh.MeshSprite;
 
 /**
@@ -18,7 +18,7 @@ public class SpriteEntity extends Entity<MeshSprite> {
 
 	@Override
 	public float getBoundingRadius() {
-		return ArgonMath.max(mesh.boundingBox.width, mesh.boundingBox.height)/2.0f;
+		return XenonMath.max(mesh.boundingBox.width, mesh.boundingBox.height)/2.0f;
 	}
 	
 	/* (non-Javadoc)

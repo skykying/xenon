@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * <p>
- * Modello intermedio. Serve a passare dal modello del formato grafico di input outpu a quello utilizzato da Argon.
+ * Modello intermedio. Serve a passare dal modello del formato grafico di input outpu a quello utilizzato da Xenon.
  * </p>
  * 
  * @author Francesco Benincasa

@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.android.surfaceview16;
 
-import com.abubusoft.xenon.opengl.ArgonGLRenderer;
+import com.abubusoft.xenon.opengl.XenonGLRenderer;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -20,7 +20,7 @@ public abstract class ArgonGLView extends SurfaceView {
 	
 	public abstract void onResume();
 
-	public abstract void setRenderer(ArgonGLRenderer renderer);
+	public abstract void setRenderer(XenonGLRenderer renderer);
 
 	public abstract void setDebugFlags(int flags);
 
@@ -28,9 +28,9 @@ public abstract class ArgonGLView extends SurfaceView {
 
 	public abstract void setPreserveEGLContextOnPause(boolean value);
 
-	protected ArgonGLRenderer mRenderer;
+	protected XenonGLRenderer mRenderer;
 		
-	public ArgonGLRenderer getRenderer() {
+	public XenonGLRenderer getRenderer() {
 		return mRenderer;
 	}
 		

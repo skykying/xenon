@@ -3,12 +3,12 @@ package com.abubusoft.xenon.scenemanagement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.camera.Camera;
 import com.abubusoft.xenon.ScreenInfo;
 import com.abubusoft.xenon.android.wallpaper.WallpaperManager;
 import com.abubusoft.xenon.entity.Entity;
 import com.abubusoft.xenon.math.AlignedRectangle2D;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Circle;
 import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.math.Sphere;
@@ -170,11 +170,11 @@ public class SimplePartitioning<E extends Entity> implements SpacePartitioning<E
 				if (lastZ < item.position.z) {
 					lastZ = item.position.z;
 
-					ArgonMath.convertViewToWorldST(camera, worldPoint1, pointInPlane, 0, 0, lastZ);
-					ArgonMath.convertViewToWorldST(camera, worldPoint2, pointInPlane, screenInfo.width, screenInfo.height, lastZ);
+					XenonMath.convertViewToWorldST(camera, worldPoint1, pointInPlane, 0, 0, lastZ);
+					XenonMath.convertViewToWorldST(camera, worldPoint2, pointInPlane, screenInfo.width, screenInfo.height, lastZ);
 
-					cameraRect.width = ArgonMath.abs(worldPoint2.x - worldPoint1.x);
-					cameraRect.height = ArgonMath.abs(worldPoint2.y - worldPoint1.y);
+					cameraRect.width = XenonMath.abs(worldPoint2.x - worldPoint1.x);
+					cameraRect.height = XenonMath.abs(worldPoint2.y - worldPoint1.y);
 
 					cameraRect.center.x = (worldPoint1.x + worldPoint2.x) / 2;
 					cameraRect.center.y = (worldPoint1.y + worldPoint2.y) / 2;

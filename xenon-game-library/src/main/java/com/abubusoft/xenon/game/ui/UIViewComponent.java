@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.game.ui;
 
+import com.abubusoft.xenon.android.XenonLogger;
 import com.abubusoft.xenon.math.Point3;
-import org.abubu.elio.logger.ElioLogger;
 
 import android.graphics.RectF;
 
@@ -87,12 +87,11 @@ public abstract class UIViewComponent {
 	 * <p>
 	 * Scatena evento onClick. Se restituisce true vuol dire l'evento di click è stato consumato.
 	 * </p>
-	 * 
-	 * @param component
+	 *
 	 * @return
 	 */
 	public boolean fireClickEvent() {
-		ElioLogger.debug("Click event on component %s %s of type %s", uid, name, type);
+		XenonLogger.debug("Click event on component %s %s of type %s", uid, name, type);
 		if (listener != null) {
 			return listener.onClick(this);
 		}

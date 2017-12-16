@@ -24,7 +24,7 @@ import android.content.Context;
  * </p>
  * 
  * <pre>
- * dynamicTexture = tm.createDynamicTexture(getContext(), tm.createTextureFromResourceId(getContext(), config.planet.getResourceId(&quot;planet_color&quot;), to));
+ * dynamicTexture = tm.createDynamicTexture(context(), tm.createTextureFromResourceId(context(), config.planet.getResourceId(&quot;planet_color&quot;), to));
  * 
  * dynamicTexture.init(DynamicTextureValues.build().loadResourceStrings(sequenza), to, new DynamicTextureController() {
  * 
@@ -54,7 +54,7 @@ import android.content.Context;
  * </p>
  * 
  * <pre>
- * dynamicTexture.update(getContext(), enlapsedTime);
+ * dynamicTexture.update(context(), enlapsedTime);
  * ...
  * planetShader.setTextureOfPlanet(dynamicTexture.getCurrentTexture());
  * </pre>

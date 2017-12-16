@@ -66,7 +66,7 @@ public class LUTFactory {
 			 */
 			@Override
 			public void onCreate(ARGB argb, double x, double y) {
-				argb.r=Math.sin(ArgonMath.PI_HALF * x);
+				argb.r=Math.sin(XenonMath.PI_HALF * x);
 			}
 		});
 	}

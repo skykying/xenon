@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="24" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="resource01" tilewidth="16" tileheight="16">
+  <image source="orthogonal.png" width="1024" height="1024"/>
+  <tile id="146">
+   <properties>
+    <property name="path" value="1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="path" width="24" height="24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC92WPQqAMAxGu4qCk15KURz0PL2D6HlNMUIHP0nadHF4tPbnkTT+1c65hqgAu4J4X83egRgFfjQfr4uvkRfF1vI8aiUxoHVhbOY+arX+hdHW4KsmX35JbNKzQP6psL90/Jb+t7GU80m9DzT+lDxDLh3R33jqe0t/YCW2G78W8B/EyRzG5/NWvxy/5TsiJQftPkt/Tp45z4ckv7/7n+98bn2QV/r/oPU/3gs7VUS5AAkAAA==
+  </data>
+ </layer>
+</map>

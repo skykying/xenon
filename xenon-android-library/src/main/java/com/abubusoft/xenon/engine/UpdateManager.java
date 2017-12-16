@@ -2,7 +2,7 @@ package com.abubusoft.xenon.engine;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.abubusoft.xenon.ArgonApplication4OpenGL;
+import com.abubusoft.xenon.XenonApplication4OpenGL;
 import com.abubusoft.xenon.UpdateTaskListener;
 
 import android.annotation.SuppressLint;
@@ -87,7 +87,7 @@ public class UpdateManager {
 		}
 	}
 
-	public void init(ArgonApplication4OpenGL listener) {
+	public void init(XenonApplication4OpenGL listener) {
 		lock.lock();
 		try {
 			if (thread == null) {

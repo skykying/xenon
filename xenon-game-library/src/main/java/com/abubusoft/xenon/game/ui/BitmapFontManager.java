@@ -8,12 +8,12 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
+import com.abubusoft.xenon.core.XenonRuntimeException;
+import com.abubusoft.xenon.core.util.StreamUtility;
 import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureFilterType;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.texture.TextureOptions;
-import org.abubu.elio.ElioRuntimeException;
-import org.abubu.elio.util.StreamUtility;
 
 import android.content.Context;
 import android.util.SparseArray;
@@ -177,20 +177,20 @@ public class BitmapFontManager {
 
 			String line = reader.readLine();
 			if (line == null)
-				throw new ElioRuntimeException("Invalid font file: " + fontFileName);
+				throw new XenonRuntimeException("Invalid font file: " + fontFileName);
 			String[] common = line.split(" ", 7); // we want the 6th element to
 													// be in tact; i.e. "page=N"
 
 			// we only really NEED lineHeight and base
 			if (common.length < 3)
-				throw new ElioRuntimeException("Invalid font file: " + fontFileName);
+				throw new XenonRuntimeException("Invalid font file: " + fontFileName);
 
 			if (!common[1].startsWith("lineHeight="))
-				throw new ElioRuntimeException("Invalid font file: " + fontFileName);
+				throw new XenonRuntimeException("Invalid font file: " + fontFileName);
 			data.lineHeight = Integer.parseInt(common[1].substring(11));
 
 			if (!common[2].startsWith("base="))
-				throw new ElioRuntimeException("Invalid font file: " + fontFileName);
+				throw new XenonRuntimeException("Invalid font file: " + fontFileName);
 			float baseLine = Integer.parseInt(common[2].substring(5));
 
 			// parse the pages count
@@ -211,10 +211,10 @@ public class BitmapFontManager {
 				// read each "page" info line
 				line = reader.readLine();
 				if (line == null)
-					throw new ElioRuntimeException("Expected more 'page' definitions in font file " + fontFileName);
+					throw new XenonRuntimeException("Expected more 'page' definitions in font file " + fontFileName);
 				String[] pageLine = line.split(" ", 4);
 				if (!pageLine[2].startsWith("file="))
-					throw new ElioRuntimeException("Invalid font file: " + fontFileName);
+					throw new XenonRuntimeException("Invalid font file: " + fontFileName);
 
 				// we will expect ID to mean "index" -- if for some reason this
 				// is not the case, it will fuck everything up
@@ -223,9 +223,9 @@ public class BitmapFontManager {
 					try {
 						int pageID = Integer.parseInt(pageLine[1].substring(3));
 						if (pageID != p)
-							throw new ElioRuntimeException("Invalid font file: " + fontFileName + " -- page ids must be indices starting at 0");
+							throw new XenonRuntimeException("Invalid font file: " + fontFileName + " -- page ids must be indices starting at 0");
 					} catch (NumberFormatException e) {
-						throw new ElioRuntimeException("NumberFormatException on 'page id' element of " + fontFileName);
+						throw new XenonRuntimeException("NumberFormatException on 'page id' element of " + fontFileName);
 					}
 				}
 
@@ -376,7 +376,7 @@ public class BitmapFontManager {
 				data.down = -data.down;
 			}
 		} catch (Exception ex) {
-			throw new ElioRuntimeException("Error loading font file: " + fontFileName, ex);
+			throw new XenonRuntimeException("Error loading font file: " + fontFileName, ex);
 		} finally {
 			StreamUtility.closeQuietly(reader);
 		}

@@ -3,15 +3,15 @@
  */
 package com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers;
 
-import com.abubusoft.xenon.Camera;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.camera.Camera;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.tiledmaps.ScrollDirectionType;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMapPositionType;
 import com.abubusoft.xenon.mesh.tiledmaps.orthogonal.OrthogonalHelper;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 
 /**
  * @author xcesco
@@ -31,7 +31,7 @@ public abstract class AbstractMapController implements MapController {
 
 		matrixModelViewProjection.multiply(camera.info.projection4CameraMatrix, matrix);
 
-		float screenSize = ArgonMath.max(ArgonGL.screenInfo.width, ArgonGL.screenInfo.height);
+		float screenSize = XenonMath.max(XenonGL.screenInfo.width, XenonGL.screenInfo.height);
 		float windowOfTileSize = map.view().windowDimension;
 
 		screenToTiledMapFactor = windowOfTileSize / screenSize;
@@ -98,29 +98,29 @@ public abstract class AbstractMapController implements MapController {
 	public void scroll(float rawWindowX, float rawWindowY) {
 
 		// eliminiamo spostamenti troppo piccoli
-		if (ArgonMath.isEquals(rawWindowX, 0f)) {
+		if (XenonMath.isEquals(rawWindowX, 0f)) {
 			rawWindowX = 0f;
 		}
 
-		if (ArgonMath.isEquals(rawWindowY, 0f)) {
+		if (XenonMath.isEquals(rawWindowY, 0f)) {
 			rawWindowY = 0f;
 		}
 
 		map.handler.convertRawWindow2MapWindow(workScroll, rawWindowX, rawWindowY);
 
 		// eliminiamo spostamenti troppo piccoli
-		if (ArgonMath.isEquals(workScroll.x, 0f)) {
+		if (XenonMath.isEquals(workScroll.x, 0f)) {
 			workScroll.x = 0f;
 		}
 
-		if (ArgonMath.isEquals(workScroll.y, 0f)) {
+		if (XenonMath.isEquals(workScroll.y, 0f)) {
 			workScroll.y = 0f;
 		}
 
 		map.positionInMap.addCoords(workScroll.x, workScroll.y);
 
 		if (map.scrollHorizontalLocked) {
-			map.positionInMap.x=ArgonMath.clamp(map.positionInMap.x, 0f, map.view().mapMaxPositionValueX);
+			map.positionInMap.x= XenonMath.clamp(map.positionInMap.x, 0f, map.view().mapMaxPositionValueX);
 		} else {
 			// la posizione nella mappa deve essere sempre circoscritta alle
 			// dimensioni della mappa stessa, senza mai andare oltre
@@ -144,7 +144,7 @@ public abstract class AbstractMapController implements MapController {
 
 		if (map.scrollVerticalLocked) {
 			// se locked, la position non può andare oltre
-			map.positionInMap.y=ArgonMath.clamp(map.positionInMap.y, 0f, map.view().mapMaxPositionValueY);
+			map.positionInMap.y= XenonMath.clamp(map.positionInMap.y, 0f, map.view().mapMaxPositionValueY);
 			
 		} else {
 			if (map.positionInMap.y < 0f)

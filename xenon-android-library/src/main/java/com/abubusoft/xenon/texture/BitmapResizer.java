@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.texture;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.SizeI2;
 import com.abubusoft.kripton.android.Logger;
 
@@ -38,12 +38,12 @@ public abstract class BitmapResizer {
 		Bitmap temp;
 		Bitmap resizedBitmap;
 
-		if (ArgonMath.isLess(Ri,(float) aspectXY)) {
+		if (XenonMath.isLess(Ri,(float) aspectXY)) {
 			// dobbiamo far aumentare il rapporto tra w / h --> DEVO aumentare w
 			// (non posso aumentare h):
 			// DI QUANTO? IN PERCENTUALE RI/RA
 			temp = cropBitmapInHeight(source, (float) (Ri / aspectXY));
-		} else if (ArgonMath.isGreater(Ri, (float) aspectXY)) {
+		} else if (XenonMath.isGreater(Ri, (float) aspectXY)) {
 			temp = cropBitmapInWidth(source, (float) (aspectXY / Ri));
 		} else {
 			temp = source;
@@ -161,7 +161,7 @@ public abstract class BitmapResizer {
 		int offsetX = 0;
 		int offsetY = 0;
 
-		if (ArgonMath.isGreater((Iw / Ih),(float) aspectRatio)) {
+		if (XenonMath.isGreater((Iw / Ih),(float) aspectRatio)) {
 			// abbiamo più w che h
 			offsetX = (int) ((Iw - textureSize.width) / 2.0);
 		} else {

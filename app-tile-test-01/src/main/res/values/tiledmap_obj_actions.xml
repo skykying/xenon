@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- key delle azioni disponibili  -->
+    <string-array name="tiledmap_obj_action_keys">
+        <item>MOVE_UP</item>
+        <item>MOVE_RIGHT</item>
+        <item>MOVE_DOWN</item>
+        <item>MOVE_LEFT</item>
+        
+        <item>STAY_UP</item>
+        <item>STAY_RIGHT</item>
+        <item>STAY_DOWN</item>
+        <item>STAY_LEFT</item>
+    </string-array>
+    
+    <!-- valori (animazioni) associate alle varie azioni  -->
+    <string-array name="tiledmap_obj_action_values">
+        <item>player1_move_up</item>
+        <item>player1_move_right</item>
+        <item>player1_move_down</item>
+        <item>player1_move_left</item>
+        
+        <item>player1_stay_up</item>
+        <item>player1_stay_right</item>
+        <item>player1_stay_down</item>
+        <item>player1_stay_left</item>
+    </string-array>
+
+</resources>

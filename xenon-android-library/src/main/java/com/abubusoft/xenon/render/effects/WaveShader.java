@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.render.effects;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.Shader;
 import com.abubusoft.xenon.shader.ShaderBuilder;
 import com.abubusoft.xenon.R;
@@ -33,19 +33,19 @@ public class WaveShader extends Shader {
 
 	public void setWaveAmount(float value) {
 		GLES20.glUniform1f(waveAmountPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setWaveAmount");
+		XenonGL.checkGlError("Shader (id="+programId+") setWaveAmount");
 	}
 
 
 	public void setWaveDistortion(float value) {
 		GLES20.glUniform1f(waveDistortionPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setWaveDistortion");
+		XenonGL.checkGlError("Shader (id="+programId+") setWaveDistortion");
 	}
 	
 
 	public void setWaveSpeed(float value) {
 		GLES20.glUniform1f(waveSpeedPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+")  setWaveSpeed");
+		XenonGL.checkGlError("Shader (id="+programId+")  setWaveSpeed");
 	}
 }
 

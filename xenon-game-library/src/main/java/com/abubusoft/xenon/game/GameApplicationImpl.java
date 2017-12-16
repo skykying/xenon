@@ -2,7 +2,7 @@ package com.abubusoft.xenon.game;
 
 import java.util.ArrayList;
 
-import com.abubusoft.xenon.ArgonApplication4OpenGLImpl;
+import com.abubusoft.xenon.XenonApplication4OpenGLImpl;
 import com.abubusoft.xenon.engine.Phase;
 import com.abubusoft.xenon.game.hub.GameAchievementsManager;
 
@@ -12,7 +12,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
-public abstract class GameApplicationImpl extends ArgonApplication4OpenGLImpl {
+public abstract class GameApplicationImpl extends XenonApplication4OpenGLImpl {
 
 	/**
 	 * <p>
@@ -35,10 +35,10 @@ public abstract class GameApplicationImpl extends ArgonApplication4OpenGLImpl {
 	public void onResume(Activity currentActivity) {
 		activity = (GameActivity) currentActivity;
 
-		int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getContext());
+		int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context());
 
 		/*
-		 * if (resultCode != ConnectionResult.SUCCESS) { Toast.makeText(getContext(), "isGooglePlayServicesAvailable SUCCESS", Toast.LENGTH_LONG).show(); } else {
+		 * if (resultCode != ConnectionResult.SUCCESS) { Toast.makeText(context(), "isGooglePlayServicesAvailable SUCCESS", Toast.LENGTH_LONG).show(); } else {
 		 * GooglePlayServicesUtil.getErrorDialog(resultCode, currentActivity, 1); }
 		 */
 		if (resultCode != ConnectionResult.SUCCESS) {
@@ -50,27 +50,27 @@ public abstract class GameApplicationImpl extends ArgonApplication4OpenGLImpl {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.abubusoft.xenon.ArgonApplication4OpenGL#onCreateScene(android.content .SharedPreferences, boolean, boolean, boolean)
+	 * @see com.abubusoft.xenon.XenonApplication4OpenGL#onCreateScene(android.content .SharedPreferences, boolean, boolean, boolean)
 	 */
 	@Override
-	public void onSceneCreate(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+	public void onSceneCreate(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
 		// prima di tutto creiamo la scena
-		stateMachine.onSceneCreate(sharedPreference, firstSceneCreation, preferencesIsChanged, screenIsChanged);
+		stateMachine.onSceneCreate(firstSceneCreation, preferencesIsChanged, screenIsChanged);
 
 		// poi avviamo lo start dello stato corrente
 		stateMachine.start();
 	}
 
 	@Override
-	public void onSceneRestore(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
-		stateMachine.onSceneRestore(sharedPreference, firstSceneCreation, preferencesIsChanged, screenIsChanged);
+	public void onSceneRestore(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+		stateMachine.onSceneRestore(firstSceneCreation, preferencesIsChanged, screenIsChanged);
 	}
 	
 	
 
 	@Override
-	public void onSceneReady(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
-		stateMachine.onSceneReady(sharedPreference, firstSceneCreation, preferencesIsChanged, screenIsChanged);
+	public void onSceneReady(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+		stateMachine.onSceneReady(firstSceneCreation, preferencesIsChanged, screenIsChanged);
 		
 	}
 
@@ -83,7 +83,7 @@ public abstract class GameApplicationImpl extends ArgonApplication4OpenGLImpl {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.abubusoft.xenon.ArgonApplication#onStartup()
+	 * @see com.abubusoft.xenon.XenonApplication#init()
 	 */
 	@Override
 	public void onStartup() {
@@ -98,7 +98,7 @@ public abstract class GameApplicationImpl extends ArgonApplication4OpenGLImpl {
 
 	/**
 	 * <p>
-	 * Eseguito all'avvio del gioco. Metodo fatto per evitare di dover fare l'override e poi inserire il super.onStartup del metodo startup.
+	 * Eseguito all'avvio del gioco. Metodo fatto per evitare di dover fare l'override e poi inserire il super.init del metodo startup.
 	 * </p>
 	 */
 	protected abstract void onGameStartup();

@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.render.effects;
 
 import com.abubusoft.xenon.math.Point3;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.Shader;
 import com.abubusoft.xenon.shader.ShaderBuilder;
 import com.abubusoft.xenon.R;
@@ -54,27 +54,27 @@ public class RippleShader extends Shader {
 
 	public void setWaveAmount(float value) {
 		GLES20.glUniform1f(waveAmountPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setWaveAmount");
+		XenonGL.checkGlError("Shader (id="+programId+") setWaveAmount");
 	}
 
 	public void setWaveDistortion(float value) {
 		GLES20.glUniform1f(waveDistortionPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setWaveDistortion");
+		XenonGL.checkGlError("Shader (id="+programId+") setWaveDistortion");
 	}
 
 	public void setWaveSpeed(float value) {
 		GLES20.glUniform1f(waveSpeedPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setWaveSpeed");
+		XenonGL.checkGlError("Shader (id="+programId+") setWaveSpeed");
 	}
 
 	public void setTouchEnabled(int i, boolean value) {
 		GLES20.glUniform1f(touchOnPtr[i], value ? 1.0f : 0.0f);
-		ArgonGL.checkGlError("Shader (id="+programId+") setTouchEnabled[" + i+"]");
+		XenonGL.checkGlError("Shader (id="+programId+") setTouchEnabled[" + i+"]");
 	}
 
 	public void setTouchTime(int i, float value) {
 		GLES20.glUniform1f(touchTimePtr[i], value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setTouchTimer[" + i + "]");
+		XenonGL.checkGlError("Shader (id="+programId+") setTouchTimer[" + i + "]");
 	}
 
 	public void setTouch(int i, Point3 value) {
@@ -82,7 +82,7 @@ public class RippleShader extends Shader {
 			GLES20.glUniform3f(touchPtr[i], 0f, 0f, 0f);
 		else
 			GLES20.glUniform3f(touchPtr[i], value.x, value.y, value.z);
-		ArgonGL.checkGlError("Shader (id="+programId+") setTouch[" + i + "]");
+		XenonGL.checkGlError("Shader (id="+programId+") setTouch[" + i + "]");
 	}
 
 }

@@ -5,9 +5,9 @@ package com.abubusoft.xenon.shader;
 
 import java.util.HashMap;
 
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.ArgonBeanType;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.context.XenonBeanType;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
@@ -85,7 +85,7 @@ public class ShaderManager {
 	public <E extends Shader> E createShader(int vertexProgramId, int fragmentProgramId, Class<E> shaderClazz, ArgonShaderOptions options) {
 		E shader = null;
 		try {
-			Context context = ArgonBeanContext.getBean(ArgonBeanType.CONTEXT);
+			Context context = XenonBeanContext.getBean(XenonBeanType.CONTEXT);
 
 			Logger.info("Create shader %s", shaderClazz.toString());
 			shader = shaderClazz.newInstance();
@@ -115,7 +115,7 @@ public class ShaderManager {
 	public <E extends Shader> E createShader(Class<E> shaderClazz, ArgonShaderOptions options) {
 		E shader = null;
 		try {
-			Context context = ArgonBeanContext.getBean(ArgonBeanType.CONTEXT);
+			Context context = XenonBeanContext.getBean(XenonBeanType.CONTEXT);
 
 			Logger.info("Create shader %s", shaderClazz.toString());
 
@@ -198,7 +198,7 @@ public class ShaderManager {
 	 */
 	public void clearShaders() {
 		Shader shader;
-		ArgonGL.clearGlError();
+		XenonGL.clearGlError();
 		Logger.debug("Clear " + shaders.size() + " old shaders, without deleting them ");
 
 		for (int i = 0; i < shaders.size(); i++) {

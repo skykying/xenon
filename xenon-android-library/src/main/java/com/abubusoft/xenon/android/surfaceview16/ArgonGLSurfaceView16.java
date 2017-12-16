@@ -30,12 +30,12 @@ import javax.microedition.khronos.egl.EGLSurface;
 import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
 
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.ArgonBeanType;
-import com.abubusoft.xenon.opengl.ArgonGLConfigChooser;
-import com.abubusoft.xenon.opengl.ArgonGLRenderer;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.context.XenonBeanType;
+import com.abubusoft.xenon.opengl.XenonGLConfigChooser;
+import com.abubusoft.xenon.opengl.XenonGLRenderer;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
-import com.abubusoft.xenon.settings.ArgonSettings;
+import com.abubusoft.xenon.settings.XenonSettings;
 import com.abubusoft.kripton.android.Logger;
 
 import android.content.Context;
@@ -208,7 +208,7 @@ public class ArgonGLSurfaceView16 extends ArgonGLView implements SurfaceHolder.C
 			EGLContext context=egl.eglCreateContext(display, config, EGL10.EGL_NO_CONTEXT, attrib_list);
 			contextCounter.addAndGet(1);					
 						
-			ArgonSettings settings=ArgonBeanContext.getBean(ArgonBeanType.ARGON_SETTINGS);
+			XenonSettings settings= XenonBeanContext.getBean(XenonBeanType.XENON_SETTINGS);
 			
 			if (settings.openGL.asyncMode) {
 				AsyncOperationManager.instance().init(egl, context, display, config);
@@ -223,7 +223,7 @@ public class ArgonGLSurfaceView16 extends ArgonGLView implements SurfaceHolder.C
 		}
 
 		public void destroyContext(EGL10 egl, EGLDisplay display, EGLContext context) {
-			ArgonSettings settings=ArgonBeanContext.getBean(ArgonBeanType.ARGON_SETTINGS);
+			XenonSettings settings= XenonBeanContext.getBean(XenonBeanType.XENON_SETTINGS);
 			
 			// distrugge il context secondario, usato per le operazioni
 			// async
@@ -1646,10 +1646,10 @@ public class ArgonGLSurfaceView16 extends ArgonGLView implements SurfaceHolder.C
 	 * @param renderer
 	 *            the renderer to use to perform OpenGL drawing.
 	 */
-	public void setRenderer(ArgonGLRenderer renderer) {
+	public void setRenderer(XenonGLRenderer renderer) {
 		checkRenderThreadState();
 		if (mEGLConfigChooser == null) {
-			mEGLConfigChooser=ArgonGLConfigChooser.build();
+			mEGLConfigChooser= XenonGLConfigChooser.build();
 //			mEGLConfigChooser = new SimpleEGLConfigChooser(false);
 		}
 		if (mEGLContextFactory == null) {

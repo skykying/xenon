@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.shader.drawers;
 
-import com.abubusoft.xenon.ArgonApplication4OpenGL;
+import com.abubusoft.xenon.XenonApplication4OpenGL;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 
@@ -17,7 +17,7 @@ public abstract class TiledMapShaderDrawer {
 	 * 
 	 * <p>
 	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel
-	 * {@link ArgonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
 	 * </p>
 	 * 
 	 * <pre>
@@ -39,7 +39,7 @@ public abstract class TiledMapShaderDrawer {
 	 * 
 	 * <p>
 	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel
-	 * {@link ArgonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
 	 * </p>
 	 * 
 	 * <pre>

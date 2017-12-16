@@ -5,5 +5,11 @@ package com.abubusoft.xenon.settings;
  */
 
 public enum LoggerLevelType {
-    NONE, VERBOSE, DEBUG, INFO, WARN, ERROR, FATAL;
+    VERBOSE,
+    DEBUG,
+    INFO,
+    WARN,
+    ERROR,
+    FATAL,
+    NONE;
 }

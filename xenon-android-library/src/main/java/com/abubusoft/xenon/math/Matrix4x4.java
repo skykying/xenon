@@ -515,7 +515,7 @@ public class Matrix4x4 implements SharedData {
 	public void buildPerspectiveProjectionMatrix(float fieldOfView, float aspect, float nearZ, float farZ) {
 		float frustumW, frustumH;
 
-		frustumH = (float) Math.tan(fieldOfView * ArgonMath.DEGREES_TO_RADIANS_FACTOR) * nearZ;
+		frustumH = (float) Math.tan(fieldOfView * XenonMath.DEGREES_TO_RADIANS_FACTOR) * nearZ;
 
 		if (aspect <= 1.0f) {
 			frustumW = frustumH * aspect;

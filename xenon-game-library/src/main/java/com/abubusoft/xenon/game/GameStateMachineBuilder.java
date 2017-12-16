@@ -8,9 +8,9 @@ import android.annotation.SuppressLint;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.android.listener.ArgonGestureListener;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.android.XenonLogger;
+import com.abubusoft.xenon.android.listener.XenonGestureListener;
+import com.abubusoft.xenon.context.XenonBeanContext;
 
 /**
  * <p>
@@ -27,9 +27,6 @@ public abstract class GameStateMachineBuilder {
 	 * Crea una state machine.
 	 * </p>
 	 * 
-	 * @param <E>
-	 * 
-	 * @param states
 	 * @return
 	 */
 	public static GameStateMachine build(GameApplicationImpl application, ArrayList<Class<? extends GameState>> stateClazzez) {
@@ -52,12 +49,12 @@ public abstract class GameStateMachineBuilder {
 	protected static <E> void extractInfoState(GameApplicationImpl application, GameStateMachine asm, Class<? extends GameState> stateClazz) {
 		GameState state;
 		
-		state=ArgonBeanContext.createInstance(stateClazz);
+		state= XenonBeanContext.createInstance(stateClazz);
 		GameStateInfo stateInfo = stateClazz.getAnnotation(GameStateInfo.class);
 
 		if (stateInfo == null) {
 			String msg = "GameStateInfo defined without @GameStateInfo annotation";
-			ElioLogger.fatal(msg);
+			XenonLogger.fatal(msg);
 			throw (new RuntimeException(msg));
 		} else {
 			String key = stateInfo.key().toLowerCase(Locale.ENGLISH);
@@ -68,7 +65,7 @@ public abstract class GameStateMachineBuilder {
 				
 				state.key = key;
 				state.stateMachine=asm;
-				state.gesturesListener = (ArgonGestureListener) ArgonBeanContext.createInstance(gestureClazz);
+				state.gesturesListener = (XenonGestureListener) XenonBeanContext.createInstance(gestureClazz);
 				
 				if (stateInfo.initialState())
 				{

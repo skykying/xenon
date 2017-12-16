@@ -1,0 +1,52 @@
+kino_move_down
+{
+  looping: True
+  frame: kino_move_down_0, 0, 0, 100
+  frame: kino_move_down_1, 0, 0, 100
+  frame: kino_move_down_2, 0, 0, 100
+  frame: kino_move_down_3, 0, 0, 100
+}
+kino_move_left
+{
+  looping: True
+  frame: kino_move_left_1, 0, 0, 100
+  frame: kino_move_left_2, 0, 0, 100
+  frame: kino_move_left_3, 0, 0, 100
+  frame: kino_move_left_4, 0, 0, 100
+}
+kino_move_right
+{
+  looping: True
+  frame: kino_move_right_1, 0, 0, 100
+  frame: kino_move_right_2, 0, 0, 100
+  frame: kino_move_right_3, 0, 0, 100
+  frame: kino_move_right_4, 0, 0, 100
+}
+kino_move_up
+{
+  looping: True
+  frame: kino_move_up_1, 0, 0, 100
+  frame: kino_move_up_2, 0, 0, 100
+  frame: kino_move_up_3, 0, 0, 100
+  frame: kino_move_up_4, 0, 0, 100
+}
+kino_stay_down
+{
+  looping: True
+  frame: kino_stay_0, 0, 0, 100
+}
+kino_stay_right
+{
+  looping: True
+  frame: kino_move_right_0, 0, 0, 100
+}
+kino_stay_left
+{
+  looping: True
+  frame: kino_move_left_0, 0, 0, 100
+}
+kino_stay_up
+{
+  looping: True
+  frame: kino_move_up_0, 0, 0, 100
+}

@@ -195,16 +195,16 @@ public class Vector3 extends Point3 {
 	};
 
 	public static Vector3 min(Vector3 a, Vector3 b, Vector3 result) {
-		result.x = ArgonMath.min(a.x, b.x);
-		result.y = ArgonMath.min(a.y, b.y);
-		result.z = ArgonMath.min(a.z, b.z);
+		result.x = XenonMath.min(a.x, b.x);
+		result.y = XenonMath.min(a.y, b.y);
+		result.z = XenonMath.min(a.z, b.z);
 		return result;
 	}
 
 	public static Vector3 max(Vector3 a, Vector3 b, Vector3 result) {
-		result.x = ArgonMath.max(a.x, b.x);
-		result.y = ArgonMath.max(a.y, b.y);
-		result.z = ArgonMath.max(a.z, b.z);
+		result.x = XenonMath.max(a.x, b.x);
+		result.y = XenonMath.max(a.y, b.y);
+		result.z = XenonMath.max(a.z, b.z);
 		return result;
 	}
 

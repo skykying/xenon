@@ -4,7 +4,7 @@ import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLDisplay;
 
-import com.abubusoft.xenon.opengl.ArgonEGL;
+import com.abubusoft.xenon.opengl.XenonEGL;
 
 import android.opengl.GLSurfaceView.EGLConfigChooser;
 
@@ -26,7 +26,7 @@ public interface ArgonConfigChooser16 {
 	 */
 	EGLConfig chooseConfig(EGL10 egl, EGLDisplay display);
 
-	void findBestMatch(ArgonEGL argonEGL);
+	void findBestMatch(XenonEGL xenonEGL);
 	
 	int getPixelFormat();
 }

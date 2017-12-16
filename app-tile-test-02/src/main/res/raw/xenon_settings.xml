@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<settings version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.abubusoft.com/settings">
+
+	<!-- Sezione applicazione -->
+	<application>
+		<applicationClazz>com.abubusoft.xenon.tiletest02.TiledTest02Application</applicationClazz>
+		<!-- 		<applicationActivityClazz>org.abubu.tiletest01.NameActivity</applicationActivityClazz> -->
+		<applicationActivityClazz>com.abubusoft.xenon.game.GameActivity</applicationActivityClazz>
+		<!-- 		<applicationConfigClazz>org.abubu.tiletest01.TileTest01Config</applicationConfigClazz> -->
+		<applicationConfigClazz>com.abubusoft.xenon.tiletest02.WhisperConfig</applicationConfigClazz>
+
+		<applicationGestureListenerClazz>com.abubusoft.xenon.tiletest02.TiledTest02GestureListener</applicationGestureListenerClazz>
+		<applicationMode>OPENGL</applicationMode>
+	</application>
+
+	<!-- Sezione viewFrustum -->
+	<viewFrustum>
+		<viewFrustumProjection>PERSPECTIVE</viewFrustumProjection>
+		<viewFrustumFieldOfView>30</viewFrustumFieldOfView>
+		<viewFrustumAlign>HEIGHT_ALIGN</viewFrustumAlign>
+		<viewFrustumZFar>12000</viewFrustumZFar>
+		<viewFrustumZNear>1</viewFrustumZNear>
+	</viewFrustum>
+
+	<!-- Sezione relativa ai log -->
+	<logger level="DEBUG"/>
+</settings>

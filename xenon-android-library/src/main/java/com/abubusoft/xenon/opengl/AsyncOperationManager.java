@@ -129,7 +129,7 @@ public class AsyncOperationManager {
 	 */
 	public void init(EGL10 egl, EGLContext renderContext, EGLDisplay display, EGLConfig eglConfig) {
 		// la versione usata è la 2!
-		int[] attrib_list = { ArgonEGL.EGL_CONTEXT_CLIENT_VERSION, 2, EGL10.EGL_NONE };
+		int[] attrib_list = { XenonEGL.EGL_CONTEXT_CLIENT_VERSION, 2, EGL10.EGL_NONE };
 
 		this.egl = egl;
 		this.display = display;

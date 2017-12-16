@@ -2,12 +2,12 @@ package com.abubusoft.xenon.game;
 
 import java.util.ArrayList;
 
-import org.abubu.elio.Uncryptable;
-
 import com.abubusoft.kripton.annotation.BindType;
+import com.abubusoft.xenon.core.Uncryptable;
 
+@Uncryptable
 @BindType
-public class JsonBody implements Uncryptable {
+public class JsonBody {
 
 	public JsonBody()
 	{

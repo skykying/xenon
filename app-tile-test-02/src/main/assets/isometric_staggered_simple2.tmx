@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="staggered" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="32" staggeraxis="y" staggerindex="odd" nextobjectid="1">
+ <tileset firstgid="1" name="isometric_simple" tilewidth="64" tileheight="32" tilecount="4" columns="2">
+  <image source="isometric_simple.png" width="128" height="64"/>
+ </tileset>
+ <tileset firstgid="5" name="buildings_01" tilewidth="64" tileheight="32" tilecount="100" columns="10">
+  <image source="buildings_01.png" width="640" height="320"/>
+ </tileset>
+ <tileset firstgid="105" source="senza_titolo.tsx"/>
+ <layer name="Livello tile 2" width="20" height="21">
+  <data encoding="base64" compression="zlib">
+   eJzFk1EKwCAMQzvj/Q+yU+5r4EfU2KXsIyASwmu0PSK6UZdROMiE6LsTDAof84GcFU4Qn3qn8LUFq9rjmMXysv21SeYp1zjnrqcdH4ya8a06/Ku/ivd1/L/q/WCzZfdDmUXh+5JTpZfPqQf79AN4
+  </data>
+ </layer>
+ <layer name="buildigs" width="20" height="21" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOeICYF4ccPmBBhh5ygBgQi+OR5yTRPFYgZiPfORhAAYgVGXCHozCJbuIHYgGquAwV4ApHWSL0IrtJEoilqOUoJKDAAAlHcgC13KQMxCo45NiBmAPKJjXNUQvoArEeDjlBIBaCstHTHBcQc9PKUUjAnAF3uSANxDJQNnqaEwFiUVo5igpADojlB9oRwwwAACxUBGg=
+  </data>
+ </layer>
+</map>

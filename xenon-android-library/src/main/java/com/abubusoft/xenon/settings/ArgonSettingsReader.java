@@ -15,7 +15,7 @@ import android.content.Context;
 public abstract class ArgonSettingsReader {
 
 	/**
-	 * Legge un file xml dalla cartella raw e lo trasforma in una classe ArgonSettings.
+	 * Legge un file xml dalla cartella raw e lo trasforma in una classe XenonSettings.
 	 * 
 	 * @param
 	 * 		context
@@ -24,9 +24,9 @@ public abstract class ArgonSettingsReader {
 	 * @return
 	 * 		argonSettings
 	 */
-	public static ArgonSettings readFromRawXml(Context context, int argonSettingsId) {
+	public static XenonSettings readFromRawXml(Context context, int argonSettingsId) {
 		try {
-			ArgonSettings settings=KriptonBinder.xmlBind().parse(IOUtility.readRawTextFile(context, argonSettingsId), ArgonSettings.class);
+			XenonSettings settings=KriptonBinder.xmlBind().parse(IOUtility.readRawTextFile(context, argonSettingsId), XenonSettings.class);
 			
 			return settings;
 		} catch (Exception e) {

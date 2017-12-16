@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.render.effects;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.Shader;
 import com.abubusoft.xenon.shader.ShaderBuilder;
 import com.abubusoft.xenon.R;
@@ -33,7 +33,7 @@ public class LedShader extends Shader {
 	 */
 	public void setLedSize(float value) {
 		GLES20.glUniform1f(ledsizePtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setLedSize");
+		XenonGL.checkGlError("Shader (id="+programId+") setLedSize");
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class LedShader extends Shader {
 	 */
 	public void setBrightness(float value) {
 		GLES20.glUniform1f(brightnessPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setBrightness");
+		XenonGL.checkGlError("Shader (id="+programId+") setBrightness");
 	}
 
 }

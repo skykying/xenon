@@ -1,9 +1,9 @@
 package com.abubusoft.xenon.game;
 
-import com.abubusoft.xenon.ArgonBean;
-import com.abubusoft.xenon.ArgonBeanInject;
-import com.abubusoft.xenon.ArgonBeanType;
-import com.abubusoft.xenon.android.listener.ArgonGestureListenerImpl;
+import com.abubusoft.xenon.XenonBean;
+import com.abubusoft.xenon.android.listener.XenonGestureListenerImpl;
+import com.abubusoft.xenon.context.XenonBeanInject;
+import com.abubusoft.xenon.context.XenonBeanType;
 
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -15,10 +15,10 @@ import android.view.ScaleGestureDetector;
  * 
  * @author Francesco Benincasa
  */
-@ArgonBean
-public class GameGestureListener extends ArgonGestureListenerImpl {
+@XenonBean
+public class GameGestureListener extends XenonGestureListenerImpl {
 	
-	@ArgonBeanInject(ArgonBeanType.APPLICATION)
+	@XenonBeanInject(XenonBeanType.APPLICATION)
 	public GameApplicationImpl application;
 
 	@Override

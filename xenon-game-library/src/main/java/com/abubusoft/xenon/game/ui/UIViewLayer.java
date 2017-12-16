@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.game.ui;
 
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.camera.Camera;
 
 public interface UIViewLayer {
 

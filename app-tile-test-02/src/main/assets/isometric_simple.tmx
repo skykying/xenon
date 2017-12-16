@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" renderorder="right-down" width="20" height="20" tilewidth="64" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="isometric_simple" tilewidth="64" tileheight="32" tilecount="4" columns="2">
+  <image source="isometric_simple.png" width="128" height="64"/>
+ </tileset>
+ <layer name="Livello tile 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzFlMEOwCAIQ3H4/9+8CyZmKaRsjTv0BD6wIm5mHhpAM4RiSw6U5TK8J7PKY3kDsOZLVb0wfbBnVgz5m3nO8livOrzKr4zXyc1qdnlXiLkDU1vN6+Yo3+PUvCjnWfnfvu4Dxqs/dqByR++MG/yHAy0=
+  </data>
+ </layer>
+</map>

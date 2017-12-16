@@ -1,0 +1,50 @@
+player1_move_right
+{
+  looping: True
+  frame: player1__0000s_0002_move_right_0, 0, 0, 100
+  frame: player1__0000s_0001_move_right_1, 0, 0, 100
+  frame: player1__0000s_0000_move_right_2, 0, 0, 100
+}
+player1_move_left
+{
+  looping: True
+  frame: player1__0001s_0002_move_left_0, 0, 0, 100
+  frame: player1__0001s_0001_move_left_1, 0, 0, 100
+  frame: player1__0001s_0000_move_left_2, 0, 0, 100
+}
+player1_move_up
+{
+  looping: True
+  frame: player1__0002s_0000_move_up_4, 0, 0, 100
+  frame: player1__0002s_0002_move_up_2, 0, 0, 100
+  frame: player1__0002s_0003_move_up_1, 0, 0, 100
+  frame: player1__0002s_0001_move_up_3, 0, 0, 100
+}
+player1_move_down
+{
+  looping: True
+  frame: player1__0003s_0002_move_down_1, 0, 0, 100
+  frame: player1__0003s_0000_move_down_3, 0, 0, 100
+  frame: player1__0003s_0001_move_down_2, 0, 0, 100
+  frame: player1__0003s_0003_move_down_0, 0, 0, 100
+}
+player1_stay_down
+{
+  looping: True
+  frame: player1__0000_stay_down, 0, 0, 100
+}
+player1_stay_left
+{
+  looping: True
+  frame: player1__0001s_0002_move_left_0, 0, 0, 100
+}
+player1_stay_right
+{
+  looping: True
+  frame: player1__0000s_0002_move_right_0, 0, 0, 100
+}
+player1_stay_up
+{
+  looping: True
+  frame: player1__0002s_0004_move_up_0, 0, 0, 100
+}

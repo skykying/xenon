@@ -1,11 +1,11 @@
 package com.abubusoft.xenon.game;
 
-import org.abubu.elio.Uncryptable;
-
 import com.abubusoft.kripton.annotation.BindType;
+import com.abubusoft.xenon.core.Uncryptable;
 
+@Uncryptable
 @BindType
-public class JsonPoint2D  implements Uncryptable {
+public class JsonPoint2D {
 
 	public float x;
 	

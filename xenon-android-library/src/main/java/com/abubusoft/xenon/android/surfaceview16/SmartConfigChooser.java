@@ -5,12 +5,10 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLDisplay;
 
 import com.abubusoft.xenon.DeviceInfo;
-import com.abubusoft.xenon.android.ArgonGLDebugFlags;
+import com.abubusoft.xenon.android.XenonGLDebugFlags;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions;
 import com.abubusoft.xenon.android.surfaceview.ConfigOptions.DisplayFormatType;
-import com.abubusoft.xenon.opengl.ArgonEGL;
-import com.abubusoft.xenon.opengl.ArgonGLConfigChooser;
-import com.abubusoft.xenon.opengl.ArgonGLDefaultRenderer;
+import com.abubusoft.xenon.opengl.XenonEGL;
 import com.abubusoft.kripton.android.Logger;
 
 /**
@@ -30,8 +28,8 @@ public class SmartConfigChooser implements ArgonConfigChooser16 {
 	 * inizializza il contesto
 	 */
 	@Override
-	public void findBestMatch(ArgonEGL argonEGL) {
-		chooseConfig(argonEGL.getArgonEGL(), argonEGL.getArgonGLDisplay());
+	public void findBestMatch(XenonEGL xenonEGL) {
+		chooseConfig(xenonEGL.getArgonEGL(), xenonEGL.getArgonGLDisplay());
 	}
 
 	protected ConfigOptions options;
@@ -78,7 +76,7 @@ public class SmartConfigChooser implements ArgonConfigChooser16 {
 
 			for (int i = 0; i < configs.length; i++) {
 				currentConfig = configs[i];
-				if (ArgonGLDebugFlags.DISPLAY_ALL_ARGONGL_CONFIGS) {
+				if (XenonGLDebugFlags.DISPLAY_ALL_ARGONGL_CONFIGS) {
 					ConfigChooserHelper16.printConfig(egl, display, currentConfig);
 				}
 			}

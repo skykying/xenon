@@ -8,7 +8,7 @@ import java.nio.ByteOrder;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.core.graphic.BitmapManager;
 import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.core.util.IOUtility;
@@ -34,7 +34,7 @@ public class RenderedTexture extends Texture {
 		{
 			Logger.debug("unbind framebuffer with bindingId %s for texture with bindingId %s", frameBuffers[0], this.bindingId );
 			GLES20.glDeleteFramebuffers(1, frameBuffers, 0);
-			ArgonGL.checkGlError("glDeleteFramebuffers");
+			XenonGL.checkGlError("glDeleteFramebuffers");
 			frameBuffers=null;
 		}
 		
@@ -42,7 +42,7 @@ public class RenderedTexture extends Texture {
 		{
 			Logger.debug("unbind renderBuffer with bindingId %s for texture with bindingId %s", depthRenderBuffers[0], this.bindingId );
 			GLES20.glDeleteRenderbuffers(1, depthRenderBuffers, 0);
-			ArgonGL.checkGlError("glDeleteRenderbuffers");
+			XenonGL.checkGlError("glDeleteRenderbuffers");
 			depthRenderBuffers=null;
 		}
 	}
@@ -108,7 +108,7 @@ public class RenderedTexture extends Texture {
 	}
 
 	public boolean activate() {
-		//ArgonGL.clearGlError();
+		//XenonGL.clearGlError();
 		//Logger.info("Framebuffer activated bindingId %s ", frameBuffers[0]);
 		GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, frameBuffers[0]);
 		//GLES20.glViewport(0, 0, (int)(info.dimension.width * 0.5f), (int)(info.dimension.height * 0.5f));
@@ -142,7 +142,7 @@ public class RenderedTexture extends Texture {
 	public void deactivate() {
 		// return to screen
 		GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, 0);
-		GLES20.glViewport(0, 0, ArgonGL.screenInfo.width, ArgonGL.screenInfo.height);
+		GLES20.glViewport(0, 0, XenonGL.screenInfo.width, XenonGL.screenInfo.height);
 	}
 
 	/**

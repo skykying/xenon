@@ -3,8 +3,8 @@
  */
 package com.abubusoft.xenon.texture;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
-import com.abubusoft.xenon.opengl.ArgonGLExtension;
+import com.abubusoft.xenon.opengl.XenonGL;
+import com.abubusoft.xenon.opengl.XenonGLExtension;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
 import com.abubusoft.xenon.opengl.AsyncOperationManager.AsyncTextureInfoLoader;
 import com.abubusoft.xenon.texture.TextureInfo.TextureLoadType;
@@ -35,19 +35,19 @@ public abstract class ExternalTextureBinder {
 	public static TextureInfo bindTexture(final ExternalTexture texture, final int textureBindingId, final TextureOptions options, final TextureReplaceOptions loaderOptions) {
 		if (!loaderOptions.asyncLoad) {
 
-			if (!ArgonGLExtension.IMAGE_EXTERNAL.isPresent()) {
+			if (!XenonGLExtension.IMAGE_EXTERNAL.isPresent()) {
 				String msg = "Unable to create external texture ! (No suitable opengl extensions founded!)";
 				Logger.fatal(msg);
 				throw (new RuntimeException(msg));
 			}
 
 			// al textureIndex associamo una texture di tipo cube map
-			GLES20.glBindTexture(ArgonGL.TEXTURE_EXTERNAL_OES, textureBindingId);
-			ArgonGL.checkGlError("glBindTexture TEXTURE_EXTERNAL_OES");
+			GLES20.glBindTexture(XenonGL.TEXTURE_EXTERNAL_OES, textureBindingId);
+			XenonGL.checkGlError("glBindTexture TEXTURE_EXTERNAL_OES");
 
 			// min filter is LINEAR or NEAREST
-			GLES20.glTexParameterf(ArgonGL.TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
-			GLES20.glTexParameterf(ArgonGL.TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
+			GLES20.glTexParameterf(XenonGL.TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+			GLES20.glTexParameterf(XenonGL.TEXTURE_EXTERNAL_OES, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
 
 			// CLAMP_TO_EDGE
 			GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_CLAMP_TO_EDGE);

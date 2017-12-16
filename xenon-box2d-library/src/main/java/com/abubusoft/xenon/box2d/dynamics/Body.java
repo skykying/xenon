@@ -314,14 +314,14 @@ public class Body {
    * @param position the world position of the body's local origin.
    * @param angle the world rotation in radians.
    */
-  public final void setTransform(Vec2 position, float angle) {
+  public final void setTransform(float positionX, float positionY, float angle) {
     assert (m_world.isLocked() == false);
     if (m_world.isLocked() == true) {
       return;
     }
 
     m_xf.q.set(angle);
-    m_xf.p.set(position);
+    m_xf.p.set(positionX, positionY);
 
     // m_sweep.c0 = m_sweep.c = Mul(m_xf, m_sweep.localCenter);
     Transform.mulToOutUnsafe(m_xf, m_sweep.localCenter, m_sweep.c);

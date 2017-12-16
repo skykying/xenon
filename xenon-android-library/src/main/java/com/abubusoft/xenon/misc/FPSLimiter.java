@@ -1,6 +1,7 @@
 package com.abubusoft.xenon.misc;
 
 import com.abubusoft.kripton.android.Logger;
+import com.abubusoft.xenon.android.XenonLogger;
 
 import android.os.SystemClock;
 
@@ -107,9 +108,8 @@ public class FPSLimiter {
 					if (FPSCounter.isTimeToShowInfo()) {
 						endSleepTime = SystemClock.elapsedRealtime();
 
-						if (Logger.isEnabledFor(LoggerLevelType.VERBOSE)) {
-							Logger.verbose("Wait time - Desidered: %s ms , Real: %s ms", currentFrameWaitTime, (endSleepTime - startSleepTime));
-						}
+						XenonLogger.verbose("Wait time - Desidered: %s ms , Real: %s ms", currentFrameWaitTime, (endSleepTime - startSleepTime));
+
 					}
 				} catch (Exception e) {
 					Logger.error("Errore: " + e.getMessage());

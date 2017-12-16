@@ -3,11 +3,11 @@
  */
 package com.abubusoft.xenon.shader.drawers;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshDrawModeType;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.ShaderLine;
 import com.abubusoft.xenon.shader.ShaderManager;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
@@ -40,7 +40,7 @@ public class LineDrawer {
 	private int b;
 
 	public void setLineWidth(int width) {
-		lineWidth = ArgonMath.clampI(width, ArgonGL.lineWidthRange[0], ArgonGL.lineWidthRange[1]);
+		lineWidth = XenonMath.clampI(width, XenonGL.lineWidthRange[0], XenonGL.lineWidthRange[1]);
 	}
 
 	public void end() {

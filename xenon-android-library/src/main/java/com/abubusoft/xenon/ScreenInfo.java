@@ -1,7 +1,7 @@
 package com.abubusoft.xenon;
 
 import com.abubusoft.xenon.android.ScreenDensityClassType;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.core.util.ResourceUtility;
 
 import android.content.Context;
@@ -133,9 +133,7 @@ public class ScreenInfo {
 			} catch (Exception ignored) {
 			}
 
-		String valore = ResourceUtility.resolveString(context, R.string.argon_checkdensity);
-
-		screenInfo.densityClass = ScreenDensityClassType.valueOf(valore);
+		screenInfo.densityClass = ScreenDensityClassType.UNKNOWN;
 		screenInfo.densityDpi = metrics.densityDpi;
 
 		screenInfo.scaleFactor = metrics.density;
@@ -166,7 +164,7 @@ public class ScreenInfo {
 		width = screenWidth;
 		height = screenHeight;
 		aspectRatio = (float) screenWidth / screenHeight;
-		landscapeMode = ArgonGL.screenInfo.aspectRatio > 1f;
+		landscapeMode = XenonGL.screenInfo.aspectRatio > 1f;
 		
 		// il codice nella build era questo.
 /*
@@ -189,12 +187,12 @@ public class ScreenInfo {
 			// width > height
 			
 			// 
-			correctionX = ArgonGL.screenInfo.aspectRatio;
+			correctionX = XenonGL.screenInfo.aspectRatio;
 			correctionY = 1.0f;
 		} else {
 			// width < height
 			correctionX = 1.0f;
-			correctionY = 1.0f / ArgonGL.screenInfo.aspectRatio;
+			correctionY = 1.0f / XenonGL.screenInfo.aspectRatio;
 		}
 
 	}

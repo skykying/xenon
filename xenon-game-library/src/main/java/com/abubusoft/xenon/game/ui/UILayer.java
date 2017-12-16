@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.game.ui;
 
-import com.abubusoft.xenon.Camera;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.camera.Camera;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.texture.Texture;
@@ -59,7 +59,7 @@ public class UILayer extends UIViewContainer implements UIViewLayer {
 	public boolean checkForClick(float screenX, float screenY) {
 		Point3 outputPoint = new Point3();
 		float[] inputPointsInPlane = new float[16];
-		ArgonMath.convertViewToWorldST(outputPoint, inputPointsInPlane, screenX, screenY, distanceFromViewer);
+		XenonMath.convertViewToWorldST(outputPoint, inputPointsInPlane, screenX, screenY, distanceFromViewer);
 
 		//ElioLogger.info(">>>> %s %s", outputPoint.x, outputPoint.y);
 

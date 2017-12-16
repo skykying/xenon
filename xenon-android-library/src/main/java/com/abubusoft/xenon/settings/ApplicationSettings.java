@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.settings;
 
-import com.abubusoft.xenon.android.listener.ArgonGestureDefaultListenerImpl;
+import com.abubusoft.xenon.android.listener.XenonGestureDefaultListenerImpl;
 
 import com.abubusoft.kripton.annotation.Bind;
 import com.abubusoft.kripton.annotation.BindType;
@@ -14,7 +14,7 @@ public class ApplicationSettings {
 	public ApplicationSettings()
 	{
 		resetConfig=false;
-		gestureListenerClazz=ArgonGestureDefaultListenerImpl.class.getName(); // "com.abubusoft.xenon.android.listener.ArgonGestureDefaultListenerImpl";
+		gestureListenerClazz=XenonGestureDefaultListenerImpl.class.getName(); // "com.abubusoft.xenon.android.listener.XenonGestureDefaultListenerImpl";
 		//upgradePolicyClazz=ApplicationUpgradePolicyImpl.class.getName(); //"com.abubusoft.xenon.core.application.ApplicationUpgradePolicyImpl";
 	}
 	

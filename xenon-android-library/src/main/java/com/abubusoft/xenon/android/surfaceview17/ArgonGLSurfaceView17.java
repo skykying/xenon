@@ -18,12 +18,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.ArgonBeanType;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.context.XenonBeanType;
 import com.abubusoft.xenon.android.surfaceview16.ArgonGLView;
-import com.abubusoft.xenon.opengl.ArgonGLRenderer;
+import com.abubusoft.xenon.opengl.XenonGLRenderer;
 import com.abubusoft.xenon.opengl.AsyncOperationManager;
-import com.abubusoft.xenon.settings.ArgonSettings;
+import com.abubusoft.xenon.settings.XenonSettings;
 import com.abubusoft.kripton.android.Logger;
 
 import android.annotation.TargetApi;
@@ -60,7 +60,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 			EGLContext context = EGL14.eglCreateContext(display, config, EGL14.EGL_NO_CONTEXT, ArgonGLSurfaceView17.this.mEGLContextClientVersion != 0 ? attrib_list : null, 0);
 			
-			ArgonSettings settings=ArgonBeanContext.getBean(ArgonBeanType.ARGON_SETTINGS);
+			XenonSettings settings= XenonBeanContext.getBean(XenonBeanType.XENON_SETTINGS);
 			
 			if (settings.openGL.asyncMode) {
 				AsyncOperationManager.instance().init(context, display, config);
@@ -75,7 +75,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		public void destroyContext(final EGLDisplay display, final EGLContext context) {
 			// distrugge il context secondario, usato per le operazioni
 			// async
-			ArgonSettings settings=ArgonBeanContext.getBean(ArgonBeanType.ARGON_SETTINGS);
+			XenonSettings settings= XenonBeanContext.getBean(XenonBeanType.XENON_SETTINGS);
 			
 			
 			if (settings.openGL.asyncMode) {
@@ -519,7 +519,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 			this.mWidth = 0;
 			this.mHeight = 0;
 			this.mRequestRender = true;
-			this.mRenderMode = ArgonGLRenderer.RENDERMODE_CONTINUOUSLY;
+			this.mRenderMode = XenonGLRenderer.RENDERMODE_CONTINUOUSLY;
 			this.mGLViewWeakRef = instanceWeakRef;
 		}
 		public boolean ableToDraw() {
@@ -932,7 +932,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 			}
 		}
 		private boolean readyToDraw() {
-			return (!this.mPaused) && this.mHasSurface && (!this.mSurfaceIsBad) && (this.mWidth > 0) && (this.mHeight > 0) && (this.mRequestRender || (this.mRenderMode == ArgonGLRenderer.RENDERMODE_CONTINUOUSLY));
+			return (!this.mPaused) && this.mHasSurface && (!this.mSurfaceIsBad) && (this.mWidth > 0) && (this.mHeight > 0) && (this.mRequestRender || (this.mRenderMode == XenonGLRenderer.RENDERMODE_CONTINUOUSLY));
 		}
 		public void requestExitAndWait() {
 			// don't call this from GLThread thread or it is a guaranteed deadlock!
@@ -978,7 +978,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 			}
 		}
 		public void setRenderMode(final int renderMode) {
-			if (!((ArgonGLRenderer.RENDERMODE_WHEN_DIRTY <= renderMode) && (renderMode <= ArgonGLRenderer.RENDERMODE_CONTINUOUSLY))) {
+			if (!((XenonGLRenderer.RENDERMODE_WHEN_DIRTY <= renderMode) && (renderMode <= XenonGLRenderer.RENDERMODE_CONTINUOUSLY))) {
 				throw new IllegalArgumentException("renderMode");
 			}
 			synchronized (ArgonGLSurfaceView17.sGLThreadManager) {
@@ -1351,7 +1351,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 		}
 
 		if (this.mDetached && (this.mRenderer != null)) {
-			int renderMode = ArgonGLRenderer.RENDERMODE_CONTINUOUSLY;
+			int renderMode = XenonGLRenderer.RENDERMODE_CONTINUOUSLY;
 
 			if (this.mGLThread != null) {
 				renderMode = this.mGLThread.getRenderMode();
@@ -1359,7 +1359,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 
 			this.mGLThread = new GLThread(this.mThisWeakRef);
 
-			if (renderMode != ArgonGLRenderer.RENDERMODE_CONTINUOUSLY) {
+			if (renderMode != XenonGLRenderer.RENDERMODE_CONTINUOUSLY) {
 				this.mGLThread.setRenderMode(renderMode);
 			}
 
@@ -1542,7 +1542,7 @@ public class ArgonGLSurfaceView17 extends ArgonGLView implements SurfaceHolder.C
 	 * @param renderer
 	 *            the renderer to use to perform OpenGL drawing
 	 */
-	public void setRenderer(ArgonGLRenderer renderer) {
+	public void setRenderer(XenonGLRenderer renderer) {
 		this.checkRenderThreadState();
 
 		if (this.mEGLContextFactory == null) {

@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.render;
 
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.camera.Camera;
 
 public interface SceneDrawer {
 

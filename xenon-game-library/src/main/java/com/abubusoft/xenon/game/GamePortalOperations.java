@@ -2,10 +2,10 @@ package com.abubusoft.xenon.game;
 
 import java.util.Stack;
 
+import com.abubusoft.xenon.android.XenonLogger;
 import com.abubusoft.xenon.box2d.dynamics.Body;
-import org.abubu.elio.collections.ObjectPool;
-import org.abubu.elio.collections.PooledObject;
-import org.abubu.elio.logger.ElioLogger;
+import com.abubusoft.xenon.core.collections.ObjectPool;
+import com.abubusoft.xenon.core.collections.PooledObject;
 
 public class GamePortalOperations {
 
@@ -73,9 +73,9 @@ public class GamePortalOperations {
 
 			switch (op.type) {
 			case MOVE:
-				ElioLogger.debug("++++++++ [%s, %s]", op.body.getPosition().x, op.body.getPosition().y);
+				XenonLogger.debug("++++++++ [%s, %s]", op.body.getPosition().x, op.body.getPosition().y);
 				op.body.setTransform(op.x, op.y, op.body.getAngle());
-				ElioLogger.debug("-------- [%s, %s]", op.body.getPosition().x, op.body.getPosition().y);
+				XenonLogger.debug("-------- [%s, %s]", op.body.getPosition().x, op.body.getPosition().y);
 				break;
 			case REMOVE:
 				op.body.setActive(false);

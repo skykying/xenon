@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.interpolations;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 
 
 /**
@@ -66,7 +66,7 @@ public class InterpolationElasticIn implements Interpolation {
 		final float s = p / 4;
 
 		final float t = pPercentage - 1;
-		return (float) (-Math.pow(2, 10 * t) * Math.sin((t * pDuration - s) * -ArgonMath.PI_TWICE / p));
+		return (float) (-Math.pow(2, 10 * t) * Math.sin((t * pDuration - s) * -XenonMath.PI_TWICE / p));
 	}
 
 	// ===========================================================

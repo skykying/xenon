@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.render.effects;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.misc.NormalizedTimer;
 import com.abubusoft.xenon.misc.NormalizedTimer.TypeNormalizedTimer;
 import com.abubusoft.xenon.render.AbstractEffect;
@@ -49,7 +49,7 @@ public class WaveEffect extends AbstractEffect<WaveShader> {
 		shader.setWaveSpeed(this.waveSpeed);
 		
 		timer.update(enlapsedTime);
-		shader.setTime(2f * ArgonMath.PI * (timer.getNormalizedEnlapsedTime()));
+		shader.setTime(2f * XenonMath.PI * (timer.getNormalizedEnlapsedTime()));
 		
 	}
 }

@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.abubusoft.xenon.tiletest01">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Used to avoid sending an ad request if there is no connectivity. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="com.abubusoft.xenon.android.XenonStartup"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Main activity -->
+        <activity
+            android:name="com.abubusoft.xenon.android.XenonActivitySplash"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- game activity -->
+        <activity android:name="com.abubusoft.xenon.android.XenonActivity4OpenGL" />
+        <activity android:name="com.abubusoft.xenon.game.GameActivity" />
+
+    </application>
+</manifest>

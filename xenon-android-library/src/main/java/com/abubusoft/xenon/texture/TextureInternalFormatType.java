@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.texture;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
-import com.abubusoft.xenon.opengl.ArgonGLExtension;
+import com.abubusoft.xenon.opengl.XenonGL;
+import com.abubusoft.xenon.opengl.XenonGLExtension;
 
 import android.opengl.GLES20;
 
@@ -24,9 +24,9 @@ public enum TextureInternalFormatType {
 	FLOAT(GLES20.GL_FLOAT),
 	
 	/**
-	 * texture di tipo half_float (richiede  {@link ArgonGLExtension#TEXTURE_HALF_FLOAT})
+	 * texture di tipo half_float (richiede  {@link XenonGLExtension#TEXTURE_HALF_FLOAT})
 	 */
-	HALF_FLOAT(ArgonGL.GL_HALF_FLOAT_OES),
+	HALF_FLOAT(XenonGL.GL_HALF_FLOAT_OES),
 	
 	/**
 	 * texture di byte

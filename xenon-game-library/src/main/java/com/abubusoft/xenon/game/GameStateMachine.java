@@ -2,9 +2,9 @@ package com.abubusoft.xenon.game;
 
 import java.util.HashMap;
 
-import org.abubu.elio.logger.ElioLogger;
-
 import android.content.SharedPreferences;
+
+import com.abubusoft.xenon.android.XenonLogger;
 
 /**
  * <p>
@@ -46,7 +46,7 @@ public class GameStateMachine {
 
 		if (nextState == null) {
 			String msg = String.format("GameStateInfo %s does not exist!", key);
-			ElioLogger.error(msg);
+			XenonLogger.error(msg);
 			throw (new RuntimeException(msg));
 		}
 
@@ -95,7 +95,7 @@ public class GameStateMachine {
 
 		if (currentState == null) {
 			String msg = String.format("GameStateInfo %s does not exist!", key);
-			ElioLogger.error(msg);
+			XenonLogger.error(msg);
 			throw (new RuntimeException(msg));
 		}
 	}
@@ -104,8 +104,6 @@ public class GameStateMachine {
 	 * <p>
 	 * </p>
 	 * 
-	 * @param sceneDrawerHandlerValue
-	 * @param gesturesHandlerValue
 	 */
 	GameStateMachine() {
 		states = new HashMap<>();
@@ -116,13 +114,12 @@ public class GameStateMachine {
 	 * Eseguie onCreateScene per lo stato corrente
 	 * </p>
 	 * 
-	 * @param sharedPreference
 	 * @param firstSceneCreation
 	 * @param preferencesIsChanged
 	 * @param screenIsChanged
 	 */
-	public void onSceneCreate(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
-		currentState.onSceneCreate(sharedPreference, firstSceneCreation, preferencesIsChanged, screenIsChanged);
+	public void onSceneCreate(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+		currentState.onSceneCreate(firstSceneCreation, preferencesIsChanged, screenIsChanged);
 	}
 
 	/**
@@ -130,16 +127,15 @@ public class GameStateMachine {
 	 * Esegue onSameScene per lo stato corrente
 	 * </p>
 	 * 
-	 * @param sharedPreference
 	 * @param firstSceneCreation
 	 * @param preferencesIsChanged
 	 * @param screenIsChanged
 	 */
-	public void onSceneRestore(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
-		currentState.onSceneRestore(sharedPreference, firstSceneCreation, preferencesIsChanged, screenIsChanged);
+	public void onSceneRestore(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+		currentState.onSceneRestore(firstSceneCreation, preferencesIsChanged, screenIsChanged);
 	}
 
-	public void onSceneReady(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
-		currentState.onSceneReady(sharedPreference, firstSceneCreation, preferencesIsChanged, screenIsChanged);
+	public void onSceneReady(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+		currentState.onSceneReady(firstSceneCreation, preferencesIsChanged, screenIsChanged);
 	}
 }

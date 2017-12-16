@@ -5,7 +5,7 @@ package com.abubusoft.xenon.scenemanagement;
 
 import java.util.ArrayList;
 
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.camera.Camera;
 import com.abubusoft.xenon.ScreenInfo;
 import com.abubusoft.xenon.entity.Entity;
 import com.abubusoft.xenon.math.Point3;
@@ -20,7 +20,8 @@ import com.abubusoft.xenon.core.Uncryptable;
  * @param <E>
  */
 @SuppressWarnings("rawtypes")
-public interface SpacePartitioning<E extends Entity> extends Uncryptable {
+@Uncryptable
+public interface SpacePartitioning<E extends Entity> {
 	
 	
 	/**
@@ -40,7 +41,6 @@ public interface SpacePartitioning<E extends Entity> extends Uncryptable {
 	 * invoca il metodo savePosition per memorizzare la posizione inziale.
 	 * 
 	 * @param position
-	 * @param mesh
 	 * @throws Exception
 	 * @throws InstantiationException
 	 */

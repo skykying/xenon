@@ -1,15 +1,11 @@
 package com.abubusoft.xenon.game;
 
-import com.abubusoft.xenon.android.listener.ArgonGestureListener;
-import org.abubu.elio.logger.ElioLogger;
-
-import android.content.SharedPreferences;
+import com.abubusoft.xenon.android.XenonLogger;
+import com.abubusoft.xenon.android.listener.XenonGestureListener;
 
 /**
  * @author Francesco Benincasa
  * 
- * @param <E>
- * @param <G>
  */
 public abstract class GameState {
 
@@ -23,7 +19,7 @@ public abstract class GameState {
 	 * listener per le gesture.
 	 * </p>
 	 */
-	public ArgonGestureListener gesturesListener;
+	public XenonGestureListener gesturesListener;
 	
 	/**
 	 * riferimento alla macchina degli stati. Viene referenziata quando lo stato viene creato.
@@ -37,15 +33,13 @@ public abstract class GameState {
 
 	/**
 	 * Crea la scena in base alle preference e ad argonContext
-	 * 
-	 * @param argon
-	 * @param sharedPreference
+	 *
 	 * @param firstSceneCreation
 	 * @param preferencesIsChanged
 	 *            se true indica che qualche preferenza è cambiata
 	 * @param screenIsChanged
 	 **/
-	public void onSceneCreate(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+	public void onSceneCreate(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
 
 	}
 
@@ -55,14 +49,12 @@ public abstract class GameState {
 	 * gli shader sono stati già ricaricati. Carica le risorse associate alla
 	 * scena.
 	 * </p>
-	 * 
-	 * @param argon
-	 * @param sharedPreference
+	 *
 	 * @param firstSceneCreation
 	 * @param preferencesIsChanged
 	 * @param screenIsChanged
 	 */
-	public void onSceneRestore(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+	public void onSceneRestore(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
 
 	}
 
@@ -94,7 +86,7 @@ public abstract class GameState {
 	 * 		prossimo stato
 	 */
 	public void onEnd(GameState nextState) {
-		ElioLogger.debug("gameState %s onEnd", key);
+		XenonLogger.debug("gameState %s onEnd", key);
 	}
 
 	/**
@@ -102,10 +94,10 @@ public abstract class GameState {
 	 * @param previousState
 	 */
 	public void onStart(GameState previousState) {
-		ElioLogger.debug("gameState %s onStart", key);
+		XenonLogger.debug("gameState %s onStart", key);
 	}
 
-	public void onSceneReady(SharedPreferences sharedPreference, boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
+	public void onSceneReady(boolean firstSceneCreation, boolean preferencesIsChanged, boolean screenIsChanged) {
 		
 	}
 

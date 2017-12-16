@@ -9,7 +9,7 @@ public class OffscreenSurface extends EglSurfaceBase {
     /**
      * Creates an off-screen surface with the specified width and height.
      */
-    public OffscreenSurface(ArgonEGL eglCore, int width, int height) {
+    public OffscreenSurface(XenonEGL eglCore, int width, int height) {
         super(eglCore);
         createOffscreenSurface(width, height);
     }

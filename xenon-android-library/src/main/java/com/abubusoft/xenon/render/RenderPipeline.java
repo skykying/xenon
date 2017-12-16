@@ -2,15 +2,15 @@ package com.abubusoft.xenon.render;
 
 import java.util.ArrayList;
 
-import com.abubusoft.xenon.Camera;
-import com.abubusoft.xenon.CameraManager;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.camera.Camera;
+import com.abubusoft.xenon.camera.CameraManager;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshFactory;
 import com.abubusoft.xenon.mesh.MeshOptions;
 import com.abubusoft.xenon.mesh.TextureCoordRect;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.ArgonShaderOptions;
 import com.abubusoft.xenon.shader.Shader;
 import com.abubusoft.xenon.shader.ShaderManager;
@@ -83,20 +83,20 @@ public class RenderPipeline {
 		this.sceneDrawer = sceneDrawer;
 		sceneCamera = CameraManager.instance().createCamera(options.viewportDimensions.width, options.viewportDimensions.height);
 		// distanza da usare per il draw dentro la texture
-		sceneZDistance = ArgonMath.zDistanceForSquare(sceneCamera, options.viewportDimensions.width);
+		sceneZDistance = XenonMath.zDistanceForSquare(sceneCamera, options.viewportDimensions.width);
 
 		//
 		sceneShader = ShaderManager.instance().createShader(ShaderTexture.class, ArgonShaderOptions.build());
 
 		// creiamo lo shape per la scena
 		if (options.optimized) {
-			if (ArgonGL.screenInfo.isPortraitMode()) {
-				TextureCoordRect rect = TextureCoordRect.buildFromCenter(ArgonGL.screenInfo.aspectRatio, 1f);
-				sceneMesh = MeshFactory.createPlaneMesh(options.viewportDimensions.width * ArgonGL.screenInfo.aspectRatio, options.viewportDimensions.height, 1, 1,
+			if (XenonGL.screenInfo.isPortraitMode()) {
+				TextureCoordRect rect = TextureCoordRect.buildFromCenter(XenonGL.screenInfo.aspectRatio, 1f);
+				sceneMesh = MeshFactory.createPlaneMesh(options.viewportDimensions.width * XenonGL.screenInfo.aspectRatio, options.viewportDimensions.height, 1, 1,
 						MeshOptions.build().texturesCount(1).bufferAllocation(BufferAllocationType.STATIC).textureInverseY(true).textureCoordRect(rect));
 			} else {
-				TextureCoordRect rect = TextureCoordRect.buildFromCenter(1f, 1f / ArgonGL.screenInfo.aspectRatio);
-				sceneMesh = MeshFactory.createPlaneMesh(options.viewportDimensions.width, options.viewportDimensions.height / ArgonGL.screenInfo.aspectRatio, 1, 1,
+				TextureCoordRect rect = TextureCoordRect.buildFromCenter(1f, 1f / XenonGL.screenInfo.aspectRatio);
+				sceneMesh = MeshFactory.createPlaneMesh(options.viewportDimensions.width, options.viewportDimensions.height / XenonGL.screenInfo.aspectRatio, 1, 1,
 						MeshOptions.build().texturesCount(1).bufferAllocation(BufferAllocationType.STATIC).textureInverseY(true).textureCoordRect(rect));
 			}
 
@@ -183,7 +183,7 @@ public class RenderPipeline {
 			executeOnTexture(camera, enlapsedTime, speedAdapter);
 
 			// torniamo a disegnare sullo schermo
-			GLES20.glViewport(0, 0, ArgonGL.screenInfo.width, ArgonGL.screenInfo.height);
+			GLES20.glViewport(0, 0, XenonGL.screenInfo.width, XenonGL.screenInfo.height);
 
 			matrixModelview.buildIdentityMatrix();
 			matrixModelview.translate(0, 0, -sceneZDistance);

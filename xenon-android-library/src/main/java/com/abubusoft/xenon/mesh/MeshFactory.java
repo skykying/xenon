@@ -4,7 +4,7 @@
 package com.abubusoft.xenon.mesh;
 
 import com.abubusoft.xenon.core.XenonRuntimeException;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.mesh.modifiers.ColorModifier;
 import com.abubusoft.xenon.mesh.modifiers.TextureModifier;
 import com.abubusoft.xenon.mesh.persistence.androidxml.AndroidXmlAdapter;
@@ -222,7 +222,7 @@ public class MeshFactory {
 		shape.boundingBox.set(width, height, 0f);
 		// calcoliamo boundingSphere radius, ovvero il raggio della sfera che
 		// contiene lo shape
-		shape.boundingSphereRadius = (float) Math.sqrt(ArgonMath.squareDistanceFromOrigin(width * 0.5f, height * 0.5f, 0f));
+		shape.boundingSphereRadius = (float) Math.sqrt(XenonMath.squareDistanceFromOrigin(width * 0.5f, height * 0.5f, 0f));
 
 		// ogni quadrato contiene 4 vertici
 		int numVertices = (rows + 1) * (cols + 1);
@@ -251,7 +251,7 @@ public class MeshFactory {
 
 		// calcoliamo boundingSphere radius, ovvero il raggio della sfera che
 		// contiene lo shape
-		shape.boundingSphereRadius = (float) Math.sqrt(ArgonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
+		shape.boundingSphereRadius = (float) Math.sqrt(XenonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
 
 		if (options.updateAfterCreation) {
 			shape.vertices.update();
@@ -605,7 +605,7 @@ public class MeshFactory {
 		shape.boundingBox.set(dimension, dimension, 0f);
 		// calcoliamo boundingSphere radius, ovvero il raggio della sfera che
 		// contiene lo shape
-		shape.boundingSphereRadius = (float) Math.sqrt(ArgonMath.squareDistanceFromOrigin(dimension * 0.5f, dimension * 0.5f, dimension * 0.5f));
+		shape.boundingSphereRadius = (float) Math.sqrt(XenonMath.squareDistanceFromOrigin(dimension * 0.5f, dimension * 0.5f, dimension * 0.5f));
 
 		// ogni quadrato contiene 4 vertici
 		int numVertices = cubeData.length * 4;
@@ -904,7 +904,7 @@ public class MeshFactory {
 	 * currentX += deltaX; }
 	 * 
 	 * // shape.vertices.put(shape.verticesCoords).position(0); // calcoliamo boundingSphere radius, ovvero il raggio della sfera che // contiene lo shape shape.boundingSphereRadius = (float)
-	 * Math.sqrt(ArgonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
+	 * Math.sqrt(XenonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
 	 * 
 	 * if (options.updateAfterCreation) { shape.vertices.update(); }
 	 * 
@@ -1068,7 +1068,7 @@ public class MeshFactory {
 		// shape.vertices.put(shape.verticesCoords).position(0);
 		// calcoliamo boundingSphere radius, ovvero il raggio della sfera che
 		// contiene lo shape
-		shape.boundingSphereRadius = (float) Math.sqrt(ArgonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
+		shape.boundingSphereRadius = (float) Math.sqrt(XenonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
 
 		if (options.updateAfterCreation) {
 			shape.vertices.update();
@@ -1287,7 +1287,7 @@ public class MeshFactory {
 		// shape.vertices.put(shape.verticesCoords).position(0);
 		// calcoliamo boundingSphere radius, ovvero il raggio della sfera che
 		// contiene lo shape
-		shape.boundingSphereRadius = (float) Math.sqrt(ArgonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
+		shape.boundingSphereRadius = (float) Math.sqrt(XenonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
 
 		if (options.updateAfterCreation) {
 			shape.vertices.update();
@@ -1482,7 +1482,7 @@ public class MeshFactory {
 	 * // vertex higher startX, startY, z shape.vertices.coords[i + 9] = currentX + deltaX; shape.vertices.coords[i + 10] = highY; shape.vertices.coords[i + 11] = 0.0f;
 	 * 
 	 * currentX += deltaX; } if (options.vertexBufferOptions.updateAfterCreation) { shape.vertices.update(); } // shape.vertices.put(shape.verticesCoords).position(0); // calcoliamo boundingSphere radius, ovvero il raggio della sfera che //
-	 * contiene lo shape shape.boundingSphereRadius = (float) Math.sqrt(ArgonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
+	 * contiene lo shape shape.boundingSphereRadius = (float) Math.sqrt(XenonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
 	 * 
 	 * // texture if (options.textureEnabled) { shape.texturesEnabled = true; // impostiamo il numero di texture shape.texturesCount = options.texturesCount;
 	 * 
@@ -1543,7 +1543,7 @@ public class MeshFactory {
 	 * 
 	 * // shape.verticesCoords = new float[numVertices * VERTEX_DIMENSION]; // shape.vertices = ByteBuffer.allocateDirect(numVertices * VERTEX_DIMENSION * FLOAT_SIZE).order(ByteOrder.nativeOrder()).asFloatBuffer(); //
 	 * shape.vertices.put(vertici).position(0); // calcoliamo boundingSphere radius, ovvero il raggio della sfera che // contiene lo shape shape.boundingSphereRadius = (float)
-	 * Math.sqrt(ArgonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2])); shape.boundingBox.width = width; shape.boundingBox.height = height; shape.boundingBox.depth = 0f;
+	 * Math.sqrt(XenonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2])); shape.boundingBox.width = width; shape.boundingBox.height = height; shape.boundingBox.depth = 0f;
 	 * 
 	 * // normali if (options.normalsEnabled) { float[] normals = { 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f };
 	 * 

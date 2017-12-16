@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.mesh.tiledmaps.internal;
 
-import com.abubusoft.xenon.ArgonApplication4OpenGL;
+import com.abubusoft.xenon.XenonApplication4OpenGL;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.mesh.tiledmaps.Layer;
 import com.abubusoft.xenon.mesh.tiledmaps.ObjDefinition;
@@ -40,7 +40,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 	 * </p>
 	 * 
 	 * <p>
-	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link ArgonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
 	 * </p>
 	 * 
 	 * <pre>
@@ -120,7 +120,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 	 * </p>
 	 * 
 	 * <p>
-	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link ArgonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
 	 * </p>
 	 * 
 	 * <pre>

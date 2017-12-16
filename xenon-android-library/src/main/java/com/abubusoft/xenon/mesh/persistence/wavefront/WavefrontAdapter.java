@@ -3,7 +3,7 @@ package com.abubusoft.xenon.mesh.persistence.wavefront;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshDrawModeType;
 import com.abubusoft.xenon.mesh.MeshFactory;
@@ -43,8 +43,8 @@ public abstract class WavefrontAdapter {
 			normalEnabler = options.normalsEnabled ? 1 : 0;
 			textureEnabler = options.textureEnabled ? 1 : 0;
 
-			off1 = ArgonMath.findNextPowerOf10(numVertex);
-			off2 = ArgonMath.findNextPowerOf10(numTexture);
+			off1 = XenonMath.findNextPowerOf10(numVertex);
+			off2 = XenonMath.findNextPowerOf10(numTexture);
 		}
 
 		/**

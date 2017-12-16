@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.interpolations;
 
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 
 /**
  * (c) 2010 Nicolas Gramlich
@@ -65,7 +65,7 @@ public class InterpolationElasticOut implements Interpolation {
 		final float p = pDuration * 0.3f;
 		final float s = p / 4;
 
-		return (float) (1 + Math.pow(2, -10 * pPercentageDone) * Math.sin((pPercentageDone * pDuration - s) * ArgonMath.PI_TWICE / p));
+		return (float) (1 + Math.pow(2, -10 * pPercentageDone) * Math.sin((pPercentageDone * pDuration - s) * XenonMath.PI_TWICE / p));
 	}
 
 	// ===========================================================

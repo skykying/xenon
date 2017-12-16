@@ -1,7 +1,7 @@
 package com.abubusoft.xenon.mesh.tiledmaps.isostaggered;
 
-import com.abubusoft.xenon.Camera;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.camera.Camera;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 import com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers.AbstractMapController;
@@ -81,7 +81,7 @@ public class ISSMapController extends AbstractMapController {
 
 		if (map.scrollHorizontalLocked) {
 			// se locked, la position non può andare oltre
-			map.positionInMap.x = ArgonMath.clamp(map.positionInMap.x, 0, map.view().mapMaxPositionValueX);
+			map.positionInMap.x = XenonMath.clamp(map.positionInMap.x, 0, map.view().mapMaxPositionValueX);
 		} else {
 			// la posizione nella mappa deve essere sempre circoscritta alle
 			// dimensioni della mappa stessa, senza mai andare oltre
@@ -104,7 +104,7 @@ public class ISSMapController extends AbstractMapController {
 
 		if (map.scrollVerticalLocked) {
 			// se locked, la position non può andare oltre
-			map.positionInMap.y = ArgonMath.clamp(map.positionInMap.y, 0, map.view().mapMaxPositionValueY);
+			map.positionInMap.y = XenonMath.clamp(map.positionInMap.y, 0, map.view().mapMaxPositionValueY);
 		} else {
 			if (map.positionInMap.y < 0f)
 				map.positionInMap.y += map.mapHeight;

@@ -3,9 +3,9 @@
  */
 package com.abubusoft.xenon.mesh.tiledmaps.orthogonal;
 
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.camera.Camera;
 import com.abubusoft.xenon.ScreenInfo;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.modifiers.VertexQuadModifier;
 import com.abubusoft.xenon.mesh.tiledmaps.ImageLayer;
@@ -16,7 +16,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.TiledMapOptions;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.LayerOffsetHolder;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
 import com.abubusoft.xenon.vbo.BufferManager;
 import com.abubusoft.xenon.vbo.VertexBuffer;
@@ -28,7 +28,8 @@ import com.abubusoft.xenon.core.Uncryptable;
  * @author xcesco
  *
  */
-public class OrthogonalMapHandler extends AbstractMapHandler<OrthogonalMapController> implements Uncryptable {
+@Uncryptable
+public class OrthogonalMapHandler extends AbstractMapHandler<OrthogonalMapController> {
 
 	public OrthogonalMapHandler(TiledMap map) {
 		super(map);
@@ -39,7 +40,7 @@ public class OrthogonalMapHandler extends AbstractMapHandler<OrthogonalMapContro
 
 	@Override
 	public void onBuildView(TiledMapView view, Camera camera, TiledMapOptions options) {
-		ScreenInfo screenInfo = ArgonGL.screenInfo;
+		ScreenInfo screenInfo = XenonGL.screenInfo;
 		// impostiamo metodo di riempimento dello schermo
 		view.windowDimension = 0;
 		switch (options.fillScreenType) {
@@ -57,7 +58,7 @@ public class OrthogonalMapHandler extends AbstractMapHandler<OrthogonalMapContro
 			break;
 		}
 		view.windowDimension *= options.visiblePercentage;
-		view.distanceFromViewer = ArgonMath.zDistanceForSquare(camera, view.windowDimension);
+		view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
 
 		view.windowWidth = (int) (view.windowDimension / screenInfo.correctionY);
 		view.windowHeight = (int) (view.windowDimension / screenInfo.correctionX);

@@ -1,11 +1,11 @@
 package com.abubusoft.xenon.mesh.tiledmaps.isometric;
 
-import com.abubusoft.xenon.ArgonApplication4OpenGL;
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.XenonApplication4OpenGL;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.camera.Camera;
 import com.abubusoft.xenon.R;
 import com.abubusoft.xenon.ScreenInfo;
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.math.Point2;
 import com.abubusoft.xenon.mesh.Mesh;
@@ -21,7 +21,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.TiledMapOptions;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.LayerOffsetHolder;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.ShaderManager;
 import com.abubusoft.xenon.shader.ShaderTexture;
 import com.abubusoft.xenon.shader.drawers.ShaderDrawer;
@@ -29,7 +29,6 @@ import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureManager;
 import com.abubusoft.xenon.texture.TextureOptions;
 import com.abubusoft.xenon.core.Uncryptable;
-import com.abubusoft.kripton.android.Logger;
 
 /**
  * <p>
@@ -73,7 +72,8 @@ import com.abubusoft.kripton.android.Logger;
  * @author xcesco
  *
  */
-public class IsometricMapHandler extends AbstractMapHandler<IsometricMapController>  implements Uncryptable {
+@Uncryptable
+public class IsometricMapHandler extends AbstractMapHandler<IsometricMapController> {
 
 	/**
 	 * <p>
@@ -113,8 +113,8 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 
 		// creiamo, se serve il mask mesh
 		// if (maskMesh == null) {
-		maskMesh = MeshFactory.loadFromResources(ArgonBeanContext.getContext(), R.raw.tiledmap_mask_diamond_mesh, MeshFileFormatType.KRIPTON_JSON, MeshOptions.build());
-		maskTexture = TextureManager.instance().createTextureFromResourceId(ArgonBeanContext.getContext(), R.raw.tiledmap_mask_diamond_image, TextureOptions.build());
+		maskMesh = MeshFactory.loadFromResources(XenonBeanContext.getContext(), R.raw.tiledmap_mask_diamond_mesh, MeshFileFormatType.KRIPTON_JSON, MeshOptions.build());
+		maskTexture = TextureManager.instance().createTextureFromResourceId(XenonBeanContext.getContext(), R.raw.tiledmap_mask_diamond_image, TextureOptions.build());
 		// }
 		maskMatrix = new Matrix4x4();
 		maskMatrixTotal = new Matrix4x4();
@@ -127,7 +127,7 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 	 * </p>
 	 * 
 	 * <p>
-	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link ArgonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
 	 * </p>
 	 * 
 	 * <pre>
@@ -162,7 +162,7 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 	 */
 	@Override
 	public void onBuildView(TiledMapView view, Camera camera, TiledMapOptions options) {
-		ScreenInfo screenInfo = ArgonGL.screenInfo;
+		ScreenInfo screenInfo = XenonGL.screenInfo;
 		// impostiamo metodo di riempimento dello schermo
 		view.windowDimension = 0;
 
@@ -218,7 +218,7 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 			break;
 		}
 		view.windowDimension *= options.visiblePercentage;
-		view.distanceFromViewer = ArgonMath.zDistanceForSquare(camera, size);
+		view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, size);
 
 		// scenario 1
 		view.windowWidth = (int) (view.windowDimension / screenInfo.correctionY);
@@ -235,7 +235,7 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 		// view.windowTileRows = (int) (view.windowHeight / map.tileHeight) + (view.windowRemainderY == 0 ? 0 : 1) + 2;
 
 		// righe e colonne sono uguali!
-		// int maxSize = ArgonMath.max(view.windowTileColumns, view.windowTileRows);
+		// int maxSize = XenonMath.max(view.windowTileColumns, view.windowTileRows);
 		// view.windowTileColumns = maxSize;
 		// view.windowTileRows = maxSize;
 
@@ -264,8 +264,8 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 		// recupera gli offset X e mY maggiori (che vanno comunque a ricoprire gli alitr più piccoli)
 		// e li usa per spostare la matrice della maschera. Tutti i tileset devono avere lo stesso offsetX e Y
 		/*
-		 * float maxLayerOffsetX = 0f; float maxLayerOffsetY = 0f; for (int i = 0; i < map.tileSets.size(); i++) { maxLayerOffsetX = ArgonMath.max(map.tileSets.get(i).drawOffsetX, maxLayerOffsetX); maxLayerOffsetY =
-		 * ArgonMath.max(map.tileSets.get(i).drawOffsetY, maxLayerOffsetY); }
+		 * float maxLayerOffsetX = 0f; float maxLayerOffsetY = 0f; for (int i = 0; i < map.tileSets.size(); i++) { maxLayerOffsetX = XenonMath.max(map.tileSets.get(i).drawOffsetX, maxLayerOffsetX); maxLayerOffsetY =
+		 * XenonMath.max(map.tileSets.get(i).drawOffsetY, maxLayerOffsetY); }
 		 */
 
 		// maskMatrix.buildScaleMatrix(map.tileWidth * 10, map.tileHeight * 10, 0);

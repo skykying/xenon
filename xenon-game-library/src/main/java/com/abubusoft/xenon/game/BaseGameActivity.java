@@ -16,7 +16,7 @@
 
 package com.abubusoft.xenon.game;
 
-import com.abubusoft.xenon.android.ArgonActivity4OpenGL;
+import com.abubusoft.xenon.android.XenonActivity4OpenGL;
 import com.abubusoft.xenon.game.hub.GameHelper;
 import com.abubusoft.xenon.game.hub.GameHub;
 
@@ -33,7 +33,7 @@ import android.os.Bundle;
  * @link{#setRequestedClients , but you must do so before @link{#onCreate} gets called, otherwise the call will have no effect. ff
  * @author Bruno Oliveira (Google)
  */
-public abstract class BaseGameActivity extends ArgonActivity4OpenGL implements GameHelper.GameHelperListener {
+public abstract class BaseGameActivity extends XenonActivity4OpenGL implements GameHelper.GameHelperListener {
 	
 	// request codes we use when invoking an external activity
     //public static final int RC_RESOLVE = 5000, RC_UNUSED = 5001;
@@ -51,20 +51,8 @@ public abstract class BaseGameActivity extends ArgonActivity4OpenGL implements G
 		super();
 	}
 
-	/**
-	 * Sets the requested clients. The preferred way to set the requested clients is via the constructor, but this method is available if for some reason your code cannot do this
-	 * in the constructor. This must be called before onCreate or getGameHelper() in order to have any effect. If called after onCreate()/getGameHelper(), this method is a no-op.
-	 * 
-	 * @param requestedClients
-	 *            A combination of the flags CLIENT_GAMES, CLIENT_PLUS and CLIENT_APPSTATE, or CLIENT_ALL to request all available clients.
-	 */
-	/*protected void setRequestedClients(int requestedClients) {
-		mRequestedClients = requestedClients;
-	}*/
-
-
 	/* (non-Javadoc)
-	 * @see com.abubusoft.xenon.android.ArgonActivity4OpenGL#onCreate(android.os.Bundle)
+	 * @see com.abubusoft.xenon.android.XenonActivity4OpenGL#onCreate(android.os.Bundle)
 	 */
 	@Override
 	public void onCreate(Bundle b) {
@@ -83,7 +71,7 @@ public abstract class BaseGameActivity extends ArgonActivity4OpenGL implements G
 	}
 
 	/* (non-Javadoc)
-	 * @see com.abubusoft.xenon.android.ArgonActivity4OpenGL#onStop()
+	 * @see com.abubusoft.xenon.android.XenonActivity4OpenGL#onStop()
 	 */
 	@Override
 	protected void onStop() {

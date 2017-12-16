@@ -5,9 +5,8 @@ package com.abubusoft.xenon.engine;
 
 import java.util.ArrayList;
 
-import com.abubusoft.xenon.Argon4OpenGL;
+import com.abubusoft.xenon.Xenon4OpenGL;
 import com.abubusoft.xenon.misc.Clock;
-import com.abubusoft.kripton.android.Logger;
 
 /**
  * State manager. Quando si parla di frame nell'ambito dello stateManager, si indica il tempo
@@ -19,15 +18,15 @@ import com.abubusoft.kripton.android.Logger;
 public class StateManager {
 
 	/**
-	 * riferimento ad argon
+	 * riferimento ad xenon
 	 */
-	private Argon4OpenGL argon;
+	private Xenon4OpenGL argon;
 
 	/**
 	 * @param argon
-	 *            the argon to set
+	 *            the xenon to set
 	 */
-	public void setArgon(Argon4OpenGL argon) {
+	public void setArgon(Xenon4OpenGL argon) {
 		this.argon = argon;
 	}
 

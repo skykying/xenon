@@ -8,6 +8,8 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
 import android.content.Context;
 
+import com.abubusoft.xenon.context.XenonBeanContext;
+
 public class DeviceInfo {
 
 	private static DeviceInfo instance;
@@ -58,7 +60,7 @@ public class DeviceInfo {
 	}
 
 	static long retrieveRAM() {
-		Context context = ArgonBeanContext.getContext();
+		Context context = XenonBeanContext.getContext();
 		ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
 		activityManager.getMemoryInfo(memoryInfo);

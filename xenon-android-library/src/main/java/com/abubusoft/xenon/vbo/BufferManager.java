@@ -2,7 +2,7 @@ package com.abubusoft.xenon.vbo;
 
 import java.util.ArrayList;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.vbo.AttributeBuffer.AttributeDimensionType;
 import com.abubusoft.kripton.android.Logger;
 
@@ -113,11 +113,11 @@ public class BufferManager {
 				}
 			}
 
-			ArgonGL.clearGlError();
+			XenonGL.clearGlError();
 			GLES20.glDeleteBuffers(vbosIds.length, vbosIds, 0);
 			// GLES20.glFlush();
 
-			ArgonGL.checkGlError("glDeleteBuffers");
+			XenonGL.checkGlError("glDeleteBuffers");
 
 			for (int i = 0; i < n; i++) {
 				current = vbos.get(i);
@@ -178,7 +178,7 @@ public class BufferManager {
 	 * // ricaviamo tutti i bindingId for (int i = 0; i < n; i++) { current = vbos.get(i); if (current.allocation != BufferAllocationType.CLIENT) { vbosIds[c] = current.bindingId;
 	 * Logger.debug("Mark as buffer to remove from GPU memory VBO-id "+current.bindingId); c++; } }
 	 * 
-	 * GLES20.glDeleteBuffers(vbosIds.length, vbosIds, 0); ArgonGL.checkGlError("glDeleteBuffers"); GLES20.glFlush();
+	 * GLES20.glDeleteBuffers(vbosIds.length, vbosIds, 0); XenonGL.checkGlError("glDeleteBuffers"); GLES20.glFlush();
 	 * 
 	 * for (int i=0;i<n;i++) { current = vbos.get(i); current.unbind(); } vbos.clear();
 	 * 

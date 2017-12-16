@@ -38,8 +38,9 @@ import com.abubusoft.kripton.annotation.BindType;
  * @author Francesco Benincasa
  * 
  */
+@Uncryptable
 @BindType
-public class Mesh implements Serializable, Uncryptable {
+public class Mesh implements Serializable {
 	
 	/**
 	 * tipo di shape {@link MeshType}

@@ -21,7 +21,7 @@ import com.abubusoft.xenon.R;
  * 		
  * 		mTexture = new SurfaceTexture(tInfo.getTextureId());
  * 		
- * 		mMediaPlayer = MediaPlayer.create(getContext(), R.raw.nemo);
+ * 		mMediaPlayer = MediaPlayer.create(context(), R.raw.nemo);
  * 		mMediaPlayer.setSurface(new Surface(mTexture));
  * 		mMediaPlayer.start();
  * 		

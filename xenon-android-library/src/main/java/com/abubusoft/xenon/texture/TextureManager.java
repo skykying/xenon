@@ -6,9 +6,9 @@ package com.abubusoft.xenon.texture;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.ArgonBeanType;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.context.XenonBeanType;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.kripton.android.Logger;
 import com.abubusoft.xenon.core.util.IOUtility;
 
@@ -174,7 +174,7 @@ public class TextureManager {
 	 * @param resource
 	 */
 	public int clearTextures() {
-		Context context=ArgonBeanContext.getBean(ArgonBeanType.CONTEXT);
+		Context context= XenonBeanContext.getBean(XenonBeanType.CONTEXT);
 		// puliamo cmq tutte le immagini cachate
 		int c = IOUtility.deleteTempFiles(context, "texture_");
 		Logger.debug("Deleted " + c + " old textures cached on files");
@@ -184,7 +184,7 @@ public class TextureManager {
 			
 			int[] textureIds = new int[n];
 			
-			ArgonGL.clearGlError();
+			XenonGL.clearGlError();
 
 			// ricaviamo tutti i bindingId
 			for (int i = 0; i < n; i++) {

@@ -3,9 +3,9 @@
  */
 package com.abubusoft.xenon.math;
 
-import static com.abubusoft.xenon.math.ArgonMath.power2;
-import static com.abubusoft.xenon.math.ArgonMath.sqrt;
-import static com.abubusoft.xenon.math.ArgonMath.abs;
+import static com.abubusoft.xenon.math.XenonMath.power2;
+import static com.abubusoft.xenon.math.XenonMath.sqrt;
+import static com.abubusoft.xenon.math.XenonMath.abs;
 
 import java.io.Serializable;
 
@@ -92,7 +92,7 @@ public class Point3 implements Serializable {
 	
 	public void normalize()
 	{
-		float denomin=1/ArgonMath.abs(ArgonMath.sqrt(x*x+y*y+z*z));
+		float denomin=1/ XenonMath.abs(XenonMath.sqrt(x*x+y*y+z*z));
 		
 		x*=denomin;
 		y*=denomin;

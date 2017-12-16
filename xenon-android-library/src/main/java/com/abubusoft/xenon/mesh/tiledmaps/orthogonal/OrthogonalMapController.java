@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.mesh.tiledmaps.orthogonal;
 
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.camera.Camera;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
 import com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers.AbstractMapController;
 import com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers.MapController;

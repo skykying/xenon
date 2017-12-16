@@ -1,0 +1,151 @@
+sprite_kino.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+kino_move_down_0
+  rotate: false
+  xy: 0, 0
+  size: 32, 32
+  orig: 8, 1
+  offset: 8, 1
+  index: -1
+kino_move_down_1
+  rotate: false
+  xy: 32, 0
+  size: 32, 32
+  orig: 40, 0
+  offset: 8, 0
+  index: -1
+kino_move_down_2
+  rotate: false
+  xy: 64, 0
+  size: 32, 32
+  orig: 73, 0
+  offset: 9, 0
+  index: -1
+kino_move_down_3
+  rotate: false
+  xy: 96, 0
+  size: 32, 32
+  orig: 104, 1
+  offset: 8, 1
+  index: -1
+kino_move_right_0
+  rotate: false
+  xy: 128, 0
+  size: 32, 32
+  orig: 135, 1
+  offset: 7, 1
+  index: -1
+kino_move_right_1
+  rotate: false
+  xy: 160, 0
+  size: 32, 32
+  orig: 167, 1
+  offset: 7, 1
+  index: -1
+kino_move_right_2
+  rotate: false
+  xy: 192, 0
+  size: 32, 32
+  orig: 200, 1
+  offset: 8, 1
+  index: -1
+kino_move_right_3
+  rotate: false
+  xy: 224, 0
+  size: 32, 32
+  orig: 229, 0
+  offset: 5, 0
+  index: -1
+kino_move_right_4
+  rotate: false
+  xy: 0, 32
+  size: 32, 32
+  orig: 8, 32
+  offset: 8, 0
+  index: -1
+kino_move_up_0
+  rotate: false
+  xy: 32, 32
+  size: 32, 32
+  orig: 39, 32
+  offset: 7, 0
+  index: -1
+kino_move_up_1
+  rotate: false
+  xy: 64, 32
+  size: 32, 32
+  orig: 72, 32
+  offset: 8, 0
+  index: -1
+kino_move_up_2
+  rotate: false
+  xy: 96, 32
+  size: 32, 32
+  orig: 104, 32
+  offset: 8, 0
+  index: -1
+kino_move_up_3
+  rotate: false
+  xy: 128, 32
+  size: 32, 32
+  orig: 136, 32
+  offset: 8, 0
+  index: -1
+kino_move_up_4
+  rotate: false
+  xy: 160, 32
+  size: 32, 32
+  orig: 168, 32
+  offset: 8, 0
+  index: -1
+kino_slepp_0
+  rotate: false
+  xy: 192, 32
+  size: 32, 32
+  orig: 201, 34
+  offset: 9, 2
+  index: -1
+kino_stay_0
+  rotate: false
+  xy: 224, 32
+  size: 32, 32
+  orig: 233, 32
+  offset: 9, 0
+  index: -1
+kino_move_left_0
+  rotate: false
+  xy: 0, 64
+  size: 32, 32
+  orig: 8, 65
+  offset: 8, 1
+  index: -1
+kino_move_left_1
+  rotate: false
+  xy: 32, 64
+  size: 32, 32
+  orig: 40, 64
+  offset: 8, 0
+  index: -1
+kino_move_left_2
+  rotate: false
+  xy: 64, 64
+  size: 32, 32
+  orig: 72, 65
+  offset: 8, 1
+  index: -1
+kino_move_left_3
+  rotate: false
+  xy: 96, 64
+  size: 32, 32
+  orig: 104, 65
+  offset: 8, 1
+  index: -1
+kino_move_left_4
+  rotate: false
+  xy: 128, 64
+  size: 32, 32
+  orig: 136, 64
+  offset: 8, 0
+  index: -1

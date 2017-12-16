@@ -23,8 +23,8 @@ public interface XenonSettingsFactory {
 	 * recuperata anche la classe dell'applicazione.</p>
 	 * 
 	 * @return
-	 * 		ArgonSettings
+	 * 		XenonSettings
 	 */
-	ArgonSettings buildSettings();
+	XenonSettings buildSettings();
 
 }

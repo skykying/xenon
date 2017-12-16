@@ -1,5 +1,6 @@
 package com.abubusoft.xenon.game;
 
+import com.abubusoft.xenon.android.XenonLogger;
 import com.abubusoft.xenon.box2d.callbacks.ContactImpulse;
 import com.abubusoft.xenon.box2d.callbacks.ContactListener;
 import com.abubusoft.xenon.box2d.collision.Manifold;
@@ -8,7 +9,6 @@ import com.abubusoft.xenon.box2d.dynamics.Fixture;
 import com.abubusoft.xenon.box2d.dynamics.contacts.Contact;
 import com.abubusoft.xenon.mesh.tiledmaps.ObjBase;
 import com.abubusoft.xenon.mesh.tiledmaps.TiledMap;
-import org.abubu.elio.logger.ElioLogger;
 
 public class GameContactListener implements ContactListener {
 	public TiledMap tiledMap;
@@ -22,10 +22,10 @@ public class GameContactListener implements ContactListener {
 		
 		if (userData1!=null && userData2!=null)
 		{
-			ElioLogger.debug("Contact %s %s ", userData1.name, userData2.name);
+			XenonLogger.debug("Contact %s %s ", userData1.name, userData2.name);
 		} else
 		{
-			ElioLogger.error("Contact ERROR %s %s ");
+			XenonLogger.error("Contact ERROR %s %s ");
 		}
 		
 		
@@ -45,9 +45,9 @@ public class GameContactListener implements ContactListener {
 				ObjBase portalData = (ObjBase) sensor.getUserData();
 
 				if (portalData.name.startsWith("portal")) {
-					ElioLogger.debug("-----------------------------");
-					ElioLogger.debug("BEGIN PORTAL " + portalData.name);
-					ElioLogger.debug("-----------------------------");
+					XenonLogger.debug("-----------------------------");
+					XenonLogger.debug("BEGIN PORTAL " + portalData.name);
+					XenonLogger.debug("-----------------------------");
 				} else {
 					beginContactWithSensor(object, sensor);
 				}
@@ -64,9 +64,9 @@ public class GameContactListener implements ContactListener {
 				staticObject = contact.getFixtureA();
 			}
 
-			ElioLogger.debug("-----------------------------");
-			ElioLogger.debug("BEGIN CONTACT  ");
-			ElioLogger.debug("-----------------------------");
+			XenonLogger.debug("-----------------------------");
+			XenonLogger.debug("BEGIN CONTACT  ");
+			XenonLogger.debug("-----------------------------");
 			
 			beginContactWithStatic(object, staticObject);
 		}
@@ -107,19 +107,19 @@ public class GameContactListener implements ContactListener {
 					if (portalData.name.endsWith("Right") || portalData.name.endsWith("Left")) {
 
 						if (body.getBody().getPosition().x > Utils.pixelToBox2D(tiledMap.mapWidth / 2f)) {
-							ElioLogger.debug("-----------------------------");
-							ElioLogger.debug("MOVE TO THE LEFT");
-							ElioLogger.debug("-----------------------------");
+							XenonLogger.debug("-----------------------------");
+							XenonLogger.debug("MOVE TO THE LEFT");
+							XenonLogger.debug("-----------------------------");
 							operations.add(body.getBody(), body.getBody().getPosition().x - (Utils.pixelToBox2D(tiledMap.mapWidth)), body.getBody().getPosition().y);
 						} else if (body.getBody().getPosition().x < -Utils.pixelToBox2D(tiledMap.mapWidth / 2f)) {
-							ElioLogger.debug("-----------------------------");
-							ElioLogger.debug("MOVE TO THE RIGHT");
-							ElioLogger.debug("-----------------------------");
+							XenonLogger.debug("-----------------------------");
+							XenonLogger.debug("MOVE TO THE RIGHT");
+							XenonLogger.debug("-----------------------------");
 							operations.add(body.getBody(), body.getBody().getPosition().x + (Utils.pixelToBox2D(tiledMap.mapWidth)), body.getBody().getPosition().y);
 						} else {
-							ElioLogger.debug("-----------------------------");
-							ElioLogger.debug("IGNORE");
-							ElioLogger.debug("-----------------------------");
+							XenonLogger.debug("-----------------------------");
+							XenonLogger.debug("IGNORE");
+							XenonLogger.debug("-----------------------------");
 						}
 
 					}
@@ -139,9 +139,9 @@ public class GameContactListener implements ContactListener {
 				staticObject = contact.getFixtureA();
 			}
 
-			ElioLogger.debug("-----------------------------");
-			ElioLogger.debug("END CONTACT  ");
-			ElioLogger.debug("-----------------------------");
+			XenonLogger.debug("-----------------------------");
+			XenonLogger.debug("END CONTACT  ");
+			XenonLogger.debug("-----------------------------");
 			
 			endContactWithStatic(object, staticObject);
 		}

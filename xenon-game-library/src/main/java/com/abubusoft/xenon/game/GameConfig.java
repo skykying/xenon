@@ -1,10 +1,8 @@
 package com.abubusoft.xenon.game;
 
-import com.abubusoft.xenon.Argon4OpenGL;
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.ArgonBeanType;
-import org.abubu.elio.config.ConfigBase;
-import org.abubu.elio.config.PreferenceConfig;
+import com.abubusoft.xenon.Xenon4OpenGL;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.context.XenonBeanType;
 
 /**
  * <p>
@@ -14,24 +12,24 @@ import org.abubu.elio.config.PreferenceConfig;
  * @author Francesco Benincasa
  * 
  */
-public class GameConfig extends ConfigBase {
+public class GameConfig {
 
 	/**
 	 * punteggio
 	 */
-	@PreferenceConfig(crypted=true)
+	//@PreferenceConfig(crypted=true)
 	public int score = 0;
 	
 	/**
 	 * <p>Obiettivi raggiunti</p>
 	 */
-	@PreferenceConfig
+	//@PreferenceConfig
 	public String achievements[];
 	
 	/**
 	 * partite giocate
 	 */
-	@PreferenceConfig(crypted=true)
+	//@PreferenceConfig(crypted=true)
 	public int playedGames = 0;
 		
 
@@ -40,8 +38,8 @@ public class GameConfig extends ConfigBase {
 	 * Indica se fare il login automatico con google+
 	 * </p>
 	 */
-	@PreferenceConfig
-	public boolean googleAutoSignin = false;
+	//@PreferenceConfig
+	public boolean googleAutoSignin = true;
 	
 	/*
 	 * boolean mPrimeAchievement = false; boolean mHumbleAchievement = false; boolean mLeetAchievement = false; boolean mArrogantAchievement = false; int mBoredSteps = 0; int
@@ -57,15 +55,15 @@ public class GameConfig extends ConfigBase {
 	 * <p>Salva su disco</p>
 	 */
 	public void save() {
-		Argon4OpenGL argon = ArgonBeanContext.getBean(ArgonBeanType.ARGON);
-		writePreferences(argon.preferences);
+		Xenon4OpenGL argon = XenonBeanContext.getBean(XenonBeanType.XENON);
+		//writePreferences(xenon.preferences);
 	}
 
 	/**
 	 * <p>Carica da disco</p>
 	 */
 	public void load() {
-		Argon4OpenGL argon = ArgonBeanContext.getBean(ArgonBeanType.ARGON);
-		readPreferences(argon.preferences);
+		Xenon4OpenGL argon = XenonBeanContext.getBean(XenonBeanType.XENON);
+		//readPreferences(xenon.preferences);
 	}
 }

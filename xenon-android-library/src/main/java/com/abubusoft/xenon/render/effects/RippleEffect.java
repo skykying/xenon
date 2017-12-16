@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.render.effects;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.misc.NormalizedTimer;
 import com.abubusoft.xenon.misc.NormalizedTimer.TypeNormalizedTimer;
@@ -110,7 +110,7 @@ public class RippleEffect extends AbstractEffect<RippleShader> {
 
 			shader.setTouch(i, touch[i]);
 			shader.setTouchEnabled(i, touchTimer[i].isStarted());
-			shader.setTouchTime(i, 2f * ArgonMath.PI * (touchTimer[i].getNormalizedEnlapsedTime()));
+			shader.setTouchTime(i, 2f * XenonMath.PI * (touchTimer[i].getNormalizedEnlapsedTime()));
 		}
 
 	}

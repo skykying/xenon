@@ -1,6 +1,6 @@
 package com.abubusoft.xenon.render.effects;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.Shader;
 import com.abubusoft.xenon.shader.ShaderBuilder;
 import com.abubusoft.xenon.R;
@@ -31,7 +31,7 @@ public class PixelateShader extends Shader {
 	 */
 	public void setPixelAmount(float value) {
 		GLES20.glUniform1f(pixelAmountPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setPixelAmount");
+		XenonGL.checkGlError("Shader (id="+programId+") setPixelAmount");
 	}
 
 }

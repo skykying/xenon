@@ -1,2 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.abubusoft.xenon.game" />
+    package="com.abubusoft.xenon.game" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

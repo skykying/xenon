@@ -3,7 +3,7 @@
  */
 package com.abubusoft.xenon.texture;
 
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 
 import android.content.Context;
 import android.opengl.GLES20;
@@ -71,7 +71,7 @@ public class TextureInfo {
 		/**
 		 * texture esterne
 		 */
-		TEXTURE_EXTERNAL(ArgonGL.TEXTURE_EXTERNAL_OES);
+		TEXTURE_EXTERNAL(XenonGL.TEXTURE_EXTERNAL_OES);
 
 		/**
 		 * <p>

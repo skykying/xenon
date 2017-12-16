@@ -2,7 +2,7 @@ package com.abubusoft.xenon.mesh.modifiers;
 
 import static com.abubusoft.xenon.mesh.MeshFactory.VERTEX_DIMENSION;
 
-import com.abubusoft.xenon.math.ArgonMath;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.math.Point3;
 import com.abubusoft.xenon.mesh.Mesh;
 import com.abubusoft.xenon.mesh.MeshHelper;
@@ -164,7 +164,7 @@ public abstract class VertexModifier {
 		}
 		// calcoliamo boundingSphere radius, ovvero il raggio della sfera che
 		// contiene lo shape
-		shape.boundingSphereRadius = (float) Math.sqrt(ArgonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
+		shape.boundingSphereRadius = (float) Math.sqrt(XenonMath.squareDistanceFromOrigin(shape.vertices.coords[0], shape.vertices.coords[1], shape.vertices.coords[2]));
 	}
 
 	/**

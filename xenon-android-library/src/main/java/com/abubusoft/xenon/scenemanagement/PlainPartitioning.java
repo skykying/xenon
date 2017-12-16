@@ -3,7 +3,7 @@ package com.abubusoft.xenon.scenemanagement;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.abubusoft.xenon.Camera;
+import com.abubusoft.xenon.camera.Camera;
 import com.abubusoft.xenon.ScreenInfo;
 import com.abubusoft.xenon.entity.Entity;
 import com.abubusoft.xenon.math.Point3;

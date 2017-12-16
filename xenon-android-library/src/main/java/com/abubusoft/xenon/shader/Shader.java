@@ -6,10 +6,10 @@ package com.abubusoft.xenon.shader;
 
 import java.nio.FloatBuffer;
 
-import com.abubusoft.xenon.ArgonBeanContext;
-import com.abubusoft.xenon.ArgonBeanType;
+import com.abubusoft.xenon.context.XenonBeanContext;
+import com.abubusoft.xenon.context.XenonBeanType;
 import com.abubusoft.xenon.core.XenonRuntimeException;
-import com.abubusoft.xenon.opengl.ArgonGL;
+import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.texture.Texture;
 import com.abubusoft.xenon.texture.TextureReference;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
@@ -46,7 +46,8 @@ import android.opengl.GLES20;
  * @author Francesco Benincasa
  * 
  */
-public class Shader implements Uncryptable {
+@Uncryptable
+public class Shader {
 
 	/**
 	 * indica se verificare la presenza di errori dopo aver eseguito un comando.
@@ -256,8 +257,8 @@ public class Shader implements Uncryptable {
 		// se richiesto, mettiamo nella cartella cache gli shader
 		if (options.debugOnFile) {
 			String name = this.getClass().getSimpleName();
-			IOUtility.writeTempRawTextFile((Context) ArgonBeanContext.getBean(ArgonBeanType.CONTEXT), name + "_vertex.glsl", vertexSource);
-			IOUtility.writeTempRawTextFile((Context) ArgonBeanContext.getBean(ArgonBeanType.CONTEXT), name + "_fragment.glsl", fragmentSource);
+			IOUtility.writeTempRawTextFile((Context) XenonBeanContext.getBean(XenonBeanType.CONTEXT), name + "_vertex.glsl", vertexSource);
+			IOUtility.writeTempRawTextFile((Context) XenonBeanContext.getBean(XenonBeanType.CONTEXT), name + "_fragment.glsl", fragmentSource);
 		}
 
 		// texture variables
@@ -386,7 +387,7 @@ public class Shader implements Uncryptable {
 		// Logger.debug(">>>>>>>>>>>>>>>> "+GLES20.glGetProgramInfoLog(programId));
 
 		if (checkErrors)
-			ArgonGL.checkGlError("Shader (id="+programId+") use");
+			XenonGL.checkGlError("Shader (id="+programId+") use");
 
 		return true;
 	}
@@ -422,7 +423,7 @@ public class Shader implements Uncryptable {
 			GLES20.glEnableVertexAttribArray(positionPtr);
 
 			if (checkErrors)
-				ArgonGL.checkGlError("Shader (id="+programId+") setVertexCoordinatesArray");
+				XenonGL.checkGlError("Shader (id="+programId+") setVertexCoordinatesArray");
 		} else {
 
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vbo.bindingId);
@@ -431,7 +432,7 @@ public class Shader implements Uncryptable {
 			GLES20.glEnableVertexAttribArray(positionPtr);
 
 			if (checkErrors)
-				ArgonGL.checkGlError("Shader (id="+programId+") setVertexCoordinatesArray");
+				XenonGL.checkGlError("Shader (id="+programId+") setVertexCoordinatesArray");
 
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, VertexBuffer.BINDING_ID_INVALID);
 		}
@@ -448,7 +449,7 @@ public class Shader implements Uncryptable {
 			GLES20.glEnableVertexAttribArray(colorPtr);
 
 			if (checkErrors)
-				ArgonGL.checkGlError("Shader (id="+programId+") setColorsArray");
+				XenonGL.checkGlError("Shader (id="+programId+") setColorsArray");
 		} else {
 
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, value.bindingId);
@@ -457,7 +458,7 @@ public class Shader implements Uncryptable {
 			GLES20.glEnableVertexAttribArray(colorPtr);
 
 			if (checkErrors)
-				ArgonGL.checkGlError("Shader (id="+programId+") setColorsArray");
+				XenonGL.checkGlError("Shader (id="+programId+") setColorsArray");
 
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, VertexBuffer.BINDING_ID_INVALID);
 		}
@@ -485,7 +486,7 @@ public class Shader implements Uncryptable {
 		GLES20.glBindTexture(textureReference.get().info.type.value, textureReference.get().bindingId);
 
 		if (checkErrors)
-			ArgonGL.checkGlError("Shader (id="+programId+") setTextureBinding ", ""+i);
+			XenonGL.checkGlError("Shader (id="+programId+") setTextureBinding ", ""+i);
 	}
 
 	/**
@@ -500,7 +501,7 @@ public class Shader implements Uncryptable {
 		GLES20.glBindTexture(texture.info.type.value, texture.bindingId);
 
 		if (checkErrors)
-			ArgonGL.checkGlError("Shader (id="+programId+") setTextureBinding ", ""+i);
+			XenonGL.checkGlError("Shader (id="+programId+") setTextureBinding ", ""+i);
 	}
 
 	/**
@@ -512,7 +513,7 @@ public class Shader implements Uncryptable {
 		GLES20.glUniformMatrix4fv(modelViewProjectionMatrixPtr, 1, false, matrixFloatBuffer);
 
 		if (checkErrors)
-			ArgonGL.checkGlError("Shader (id="+programId+") setModelViewProjectionMatrix");
+			XenonGL.checkGlError("Shader (id="+programId+") setModelViewProjectionMatrix");
 
 	}
 
@@ -554,7 +555,7 @@ public class Shader implements Uncryptable {
 			GLES20.glEnableVertexAttribArray(textureCoordinatePtr[i]);
 
 			if (checkErrors)
-				ArgonGL.checkGlError("Shader (id="+programId+") setTextureCoordinatesArray[" + i + "]");
+				XenonGL.checkGlError("Shader (id="+programId+") setTextureCoordinatesArray[" + i + "]");
 		} else {
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, textureCoords.bindingId);
 
@@ -562,7 +563,7 @@ public class Shader implements Uncryptable {
 			GLES20.glEnableVertexAttribArray(textureCoordinatePtr[i]);
 
 			if (checkErrors)
-				ArgonGL.checkGlError("Shader (id="+programId+") setTextureCoordinatesArray[" + i + "]");
+				XenonGL.checkGlError("Shader (id="+programId+") setTextureCoordinatesArray[" + i + "]");
 
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, VertexBuffer.BINDING_ID_INVALID);
 		}
@@ -575,7 +576,7 @@ public class Shader implements Uncryptable {
 	 */
 	public void setPercentage(float value) {
 		GLES20.glUniform1f(percentagePtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setPercentage");
+		XenonGL.checkGlError("Shader (id="+programId+") setPercentage");
 	}
 
 	/**
@@ -585,7 +586,7 @@ public class Shader implements Uncryptable {
 	 */
 	public void setInitialValue(float value) {
 		GLES20.glUniform1f(initialValuePtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setInitialValue");
+		XenonGL.checkGlError("Shader (id="+programId+") setInitialValue");
 	}
 
 	/**
@@ -595,7 +596,7 @@ public class Shader implements Uncryptable {
 	 */
 	public void setVelocity(float value) {
 		GLES20.glUniform1f(velocityPtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setVelocity");
+		XenonGL.checkGlError("Shader (id="+programId+") setVelocity");
 	}
 
 	/**
@@ -605,7 +606,7 @@ public class Shader implements Uncryptable {
 	 */
 	public void setTime(float value) {
 		GLES20.glUniform1f(timePtr, value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setTime");
+		XenonGL.checkGlError("Shader (id="+programId+") setTime");
 	}
 
 	/**
@@ -615,7 +616,7 @@ public class Shader implements Uncryptable {
 	 */
 	public void setUniformAttribute(int attributeIndex, float value) {
 		GLES20.glUniform1f(uniformAttributePtr[attributeIndex], value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setUniformAttribute " + attributeIndex);
+		XenonGL.checkGlError("Shader (id="+programId+") setUniformAttribute " + attributeIndex);
 	}
 
 	/**
@@ -625,7 +626,7 @@ public class Shader implements Uncryptable {
 	 */
 	public void setUniformAttribute(int attributeIndex, float xvalue, float yvalue, float zvalue) {
 		GLES20.glUniform3f(uniformAttributePtr[attributeIndex], xvalue, yvalue, zvalue);
-		ArgonGL.checkGlError("Shader (id="+programId+") setUniformAttribute " + attributeIndex);
+		XenonGL.checkGlError("Shader (id="+programId+") setUniformAttribute " + attributeIndex);
 	}
 
 	/**
@@ -641,7 +642,7 @@ public class Shader implements Uncryptable {
 	 */
 	protected void setUniform4f(int ptr, float v1, float v2, float v3, float v4) {
 		GLES20.glUniform4f(ptr, v1, v2, v3, v4);
-		ArgonGL.checkGlError("Shader (id="+programId+") setUniform4f");
+		XenonGL.checkGlError("Shader (id="+programId+") setUniform4f");
 	}
 
 	/**
@@ -651,7 +652,7 @@ public class Shader implements Uncryptable {
 	 */
 	public void setUniformAttribute(int attributeIndex, int value) {
 		GLES20.glUniform1i(uniformAttributePtr[attributeIndex], value);
-		ArgonGL.checkGlError("Shader (id="+programId+") setUniformAttribute " + attributeIndex);
+		XenonGL.checkGlError("Shader (id="+programId+") setUniformAttribute " + attributeIndex);
 	}
 
 	/**
