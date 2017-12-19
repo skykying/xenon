@@ -18,6 +18,6 @@ public class LayerOffsetHolder {
 	public void setOffset(Point2 offsetPoint) {
 		offsetX = (int) offsetPoint.x;
 		offsetY = (int) offsetPoint.y;
-
 	}
+
 }

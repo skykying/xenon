@@ -27,7 +27,7 @@
 
         <!-- game activity -->
         <activity android:name="com.abubusoft.xenon.android.XenonActivity4OpenGL" />
-        <activity android:name="com.abubusoft.xenon.game.GameActivity" />
+        <!--<activity android:name="com.abubusoft.xenon.game.GameActivity" />-->
 
     </application>
 </manifest>

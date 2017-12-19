@@ -9,6 +9,6 @@ package com.abubusoft.xenon.android;
  */
 public abstract class XenonGLDebugFlags {
 
-	public static final boolean DISPLAY_ALL_ARGONGL_CONFIGS = false;
+	public static final boolean DISPLAY_ALL_GL_CONFIGS = true;
 	public static final boolean DISPLAY_ALL_OPENGL_EXTENSION = false;
 }

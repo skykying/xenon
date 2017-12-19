@@ -66,8 +66,8 @@ public class GameActivity extends BaseGameActivity {
         // nostro riferimento
         glView = view;
 
-        setContentView(R.layout.argon_game_layout);
-        replace(R.id.argon_game_content, view);
+        setContentView(R.layout.xenon_game_layout);
+        replace(R.id.xenon_game_content, view);
 
         parentView = (FrameLayout) findViewById(R.id.argon_game_container);
     }

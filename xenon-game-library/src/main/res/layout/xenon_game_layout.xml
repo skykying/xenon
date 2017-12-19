@@ -8,7 +8,7 @@
     <!-- Versione base delle preference activity -->
 
     <ViewStub
-        android:id="@+id/argon_game_content"
+        android:id="@+id/xenon_game_content"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 

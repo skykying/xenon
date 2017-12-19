@@ -5,7 +5,8 @@
 	<application>
 		<applicationClazz>com.abubusoft.xenon.tiletest02.TiledTest02Application</applicationClazz>
 		<!-- 		<applicationActivityClazz>org.abubu.tiletest01.NameActivity</applicationActivityClazz> -->
-		<applicationActivityClazz>com.abubusoft.xenon.game.GameActivity</applicationActivityClazz>
+		<!--<applicationActivityClazz>com.abubusoft.xenon.game.GameActivity</applicationActivityClazz>-->
+		<applicationActivityClazz>com.abubusoft.xenon.android.XenonActivity4OpenGL</applicationActivityClazz>
 		<!-- 		<applicationConfigClazz>org.abubu.tiletest01.TileTest01Config</applicationConfigClazz> -->
 		<applicationConfigClazz>com.abubusoft.xenon.tiletest02.WhisperConfig</applicationConfigClazz>
 

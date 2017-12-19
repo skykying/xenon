@@ -116,7 +116,7 @@ public class TiledMap extends PropertiesCollector {
      * Height di default di una tile.
      * </p>
      * <p>
-     * Rappresenta la larghezza della tile nella rappresentazione a window.
+     * Rappresenta l'altezza della tile nella rappresentazione a window.
      * </p>
      */
     public final int tileHeight;

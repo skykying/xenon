@@ -118,8 +118,8 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
 
         //linesDrawer = new LineDrawer();
 
-        //String mapName = "isometric_staggered_simple.tmx";
-        String mapName="isometric_simple.tmx";
+        String mapName = "isometric_staggered_simple.tmx";
+        //String mapName="isometric_simple.tmx";
         //String mapName="orthogonal.tmx";
 
         map = TiledMapFactory.loadFromAsset(getContext(), mapName, TextureFilterType.LINEAR);

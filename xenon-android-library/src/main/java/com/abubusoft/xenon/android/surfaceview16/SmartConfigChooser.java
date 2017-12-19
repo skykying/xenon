@@ -76,7 +76,7 @@ public class SmartConfigChooser implements ArgonConfigChooser16 {
 
 			for (int i = 0; i < configs.length; i++) {
 				currentConfig = configs[i];
-				if (XenonGLDebugFlags.DISPLAY_ALL_ARGONGL_CONFIGS) {
+				if (XenonGLDebugFlags.DISPLAY_ALL_GL_CONFIGS) {
 					ConfigChooserHelper16.printConfig(egl, display, currentConfig);
 				}
 			}

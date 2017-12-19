@@ -112,10 +112,10 @@ public abstract class ISSHelper {
 		// versione fixata
 		// ora convertiamo in centered window con y in alto
 		// da iso window a centered window
-		//workPoint.x = (+isoX + isoY) / 2;
-		//workPoint.y = (-isoX + isoY) / 4;
-		workPoint.x=isoX;
-		workPoint.y=isoY;
+		workPoint.x = (+isoX + isoY) / 2;
+		workPoint.y = (-isoX + isoY) / 4;
+		//workPoint.x=isoX;
+		//workPoint.y=isoY;
 		
 		// per essere applicato al sistema di visualizzazione dobbiamo trasformare gli offset in scale * 2
 		// questo perchè sul sistema della mappa

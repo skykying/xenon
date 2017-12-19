@@ -64,7 +64,7 @@ public class ConfigOptions {
 	 */
 	public DisplayFormatType displayFormat = DisplayFormatType.DONT_CARE;
 
-	public DepthSizeType depthSize = DepthSizeType.NONE;
+	public DepthSizeType depthSize = DepthSizeType.DONT_CARE;
 
 	public StencilSizeType stencilSize = StencilSizeType.NONE;
 
