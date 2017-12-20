@@ -16,7 +16,6 @@ import com.abubusoft.xenon.mesh.tiledmaps.modelcontrollers.MapController;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.MapAttributes;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.loader.SAXUtil;
 import com.abubusoft.xenon.mesh.tiledmaps.tmx.loader.TMXPredefinedProperties;
-import com.abubusoft.xenon.settings.LoggerLevelType;
 import com.abubusoft.xenon.shader.ArgonShaderOptions;
 import com.abubusoft.xenon.shader.ShaderManager;
 import com.abubusoft.xenon.shader.ShaderTiledMap;
@@ -269,7 +268,7 @@ public class TiledMap extends PropertiesCollector {
      */
     public MapController controller;
 
-    private String renderorder;
+    private String renderOrder;
 
     /**
      * view sulla mappa
@@ -316,7 +315,7 @@ public class TiledMap extends PropertiesCollector {
             orientation = MapOrientationType.ORTHOGONAL.toString();
         this.orientation = MapOrientationType.valueOf(orientation.toUpperCase());
 
-        this.renderorder = SAXUtil.getString(atts, MapAttributes.RENDER_ORDER);
+        this.renderOrder = SAXUtil.getString(atts, MapAttributes.RENDER_ORDER);
         this.tileColumns = SAXUtil.getInt(atts, MapAttributes.WIDTH);
         this.tileRows = SAXUtil.getInt(atts, MapAttributes.HEIGHT);
         this.tileWidth = SAXUtil.getInt(atts, MapAttributes.TILE_WIDTH);

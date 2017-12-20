@@ -162,6 +162,9 @@ public class OrthogonalTiledLayerHandler extends TiledLayerHandler {
 		int layerCurrentRow;
 		int layerCurrentColumn;
 
+		startLayerRow-= view.windowBorder;
+		startLayerColumn-= view.windowBorder;
+
 		// facciamo in modo di avere sempre indici positivi e compresi tra 0 e
 		// rows/columns
 		// se è negativo --> row - (modulo), se positivo --> 0 + modulo

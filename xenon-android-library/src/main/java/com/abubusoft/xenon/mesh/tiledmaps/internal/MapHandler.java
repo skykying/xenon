@@ -86,7 +86,7 @@ public interface MapHandler {
 	/**
 	 * Converte un punto da mappa a schermo (view).
 	 * 
-	 * @param viewPoint
+	 * @param offsetHolder
 	 * 			punto nel sistema di coordinate della mappa, quello della griglia di celle per intenderci.
 	 * @param mapX
 	 * 			ascissa sulla view

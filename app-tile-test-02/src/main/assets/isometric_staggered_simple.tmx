@@ -8,7 +8,7 @@
  </tileset>
  <layer name="Livello tile 2" width="20" height="21">
   <data encoding="base64" compression="zlib">
-   eJy1k0sOACEIQxG8/5lnFi5IA7EoLl5iiNbymyIyG9EfAwagC4wjtjR390byTwTzL6vr/UX3LDjvfPr6oRYTY/xFNaj4q/Sy6k8TzZP+qnuL+VfmD+f5hswfxqv78aJ+L/rbMX+v9yPK7XQ/mB4y/m50svplb6rz18kHtxcC7w==
+   eJy1VdEKACEI87T//+a7hw5CDLfSh0HIsumUhoiMQuiHJ4GCPJs5M97PRXjIu2jeVV/Es+Cc6dTJ8Tw0huiLesDoY7xk9ekm54m/utz19TPzZ4XY6fNxdj86+tfhb8X8de9HVNvpfiAeIvpu8rD6mPljgPwfL39DAtY=
   </data>
  </layer>
  <layer name="buildigs" width="20" height="21" visible="0">

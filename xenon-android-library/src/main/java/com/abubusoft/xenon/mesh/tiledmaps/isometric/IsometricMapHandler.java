@@ -127,7 +127,7 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 	 * </p>
 	 * 
 	 * <p>
-	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(boolean, boolean, boolean)})
 	 * </p>
 	 * 
 	 * <pre>
@@ -166,6 +166,8 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 		// impostiamo metodo di riempimento dello schermo
 		view.windowDimension = 0;
 
+		view.windowBorder=1;
+
 		// serve per calcolare la size del diamante su base window/screen
 		float size = 0;
 
@@ -179,8 +181,8 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 			view.mapMaxPositionValueX = 0f;
 			view.mapMaxPositionValueY = 0f;
 
-			view.windowTileColumns = map.tileColumns + 2;
-			view.windowTileRows = map.tileRows + 2;
+			view.windowTileColumns = map.tileColumns + 2*view.windowBorder;
+			view.windowTileRows = map.tileRows + 2*view.windowBorder;
 			break;
 		case FILL_WIDTH:
 			isoWindowSize = isoTileSize * map.tileColumns;
@@ -193,8 +195,8 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 			
 			// view.windowDimension = map.mapWidth * screenInfo.correctionY;
 
-			view.windowTileColumns = map.tileColumns + 2;
-			view.windowTileRows = map.tileRows + 2;
+			view.windowTileColumns = map.tileColumns + 2*view.windowBorder;
+			view.windowTileRows = map.tileRows + 2*view.windowBorder;
 			break;
 		case FILL_CUSTOM_HEIGHT:
 			isoWindowSize = isoTileSize * options.visibleTiles;
@@ -213,8 +215,8 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 			view.mapMaxPositionValueX = map.mapWidth - view.windowDimension;
 			view.mapMaxPositionValueY = map.mapWidth - view.windowDimension;
 
-			view.windowTileColumns = options.visibleTiles + 2;
-			view.windowTileRows = options.visibleTiles + 2;
+			view.windowTileColumns = options.visibleTiles + 2*view.windowBorder;
+			view.windowTileRows = options.visibleTiles + 2*view.windowBorder;
 			break;
 		}
 		view.windowDimension *= options.visiblePercentage;
@@ -283,10 +285,8 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 	 */
 	@Override
 	public void convertRawWindow2MapWindow(Point2 scrollInMap, float rawWindowX, float rawWindowY) {
-
 		// rawWindowY è rivolto verso il basso, prima di passarlo al metodo, bisogna invertire il segno
 		scrollInMap.set(IsometricHelper.convertCenteredWindow2IsoWindow(controller, rawWindowX, -rawWindowY));
-
 	}
 
 	@SuppressWarnings("unchecked")

@@ -12,6 +12,8 @@ import com.abubusoft.xenon.vbo.VertexBuffer;
  */
 public class TiledMapView {
 
+	public int windowBorder;
+
 	public TiledMapView() {
 		windowCenter = new Point2();
 		tileBase=new Point2();

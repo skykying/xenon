@@ -19,6 +19,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.TiledMapOptions;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.LayerOffsetHolder;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
+import com.abubusoft.xenon.mesh.tiledmaps.isometric.IsometricHelper;
 import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.drawers.LineDrawer;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
@@ -120,7 +121,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
      * </p>
      * <p>
      * <p>
-     * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+     * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(boolean, boolean, boolean)})
      * </p>
      * <p>
      * <pre>
@@ -239,9 +240,11 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         int windowRemainderX = 0;//view.windowWidth % map.tileWidth;
         int windowRemainderY = 0;//view.windowHeight % map.tileHeight;
 
+        view.windowBorder=1;
+
         // +2 per i bordi, +1 se la divisione contiene un resto
-        view.windowTileColumns += (windowRemainderX == 0 ? 0 : 0) + 2;
-        view.windowTileRows += (windowRemainderY == 0 ? 0 : 0) + 2;
+        view.windowTileColumns += (windowRemainderX == 0 ? 0 : 0) + view.windowBorder*2;
+        view.windowTileRows += (windowRemainderY == 0 ? 0 : 0) + view.windowBorder*2;
 
         // si sta disegnando dal vertice più in alto del rombo
         view.windowVerticesBuffer = ISSHelper.buildISSVertexBuffer(view.windowTileRows, view.windowTileColumns, map.tileWidth, map.tileHeight * .5f, map.tileWidth, map.tileHeight);
@@ -330,11 +333,11 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         //mapX=a;
         //mapY=b;
 
-        a = (int) (mapX / map.tileWidth);
-        b = (int) (mapY / map.tileHeight);
-
-        offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
-        offsetHolder.tileIndexY=a+b;
+//        a = (int) (mapX / map.tileWidth);
+//        b = (int) (mapY / map.tileHeight);
+//
+//        offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
+//        offsetHolder.tileIndexY=a+b;
 
 
        /* if (offsetHolder.tileIndexY % 2 == 1) {
@@ -345,9 +348,30 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         // soluzione fixata
         //offsetHolder.setOffset(ISSHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
+       // offsetHolder.offsetX=mapX % map.tileHeight;
+        //offsetHolder.offsetY=mapY % map.tileHeight;
+        //XenonLogger.info("Original index %s , %s ***   offset x %s y %s ",offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.offsetX, offsetHolder.offsetY);
+
+        // http://stackoverflow.com/questions/1295424/how-to-convert-float-to-int-with-java
+        offsetHolder.tileIndexX = (int) (mapX / map.tileHeight);
+        offsetHolder.tileIndexY = (int) (mapY / map.tileHeight);
+
+        a = offsetHolder.tileIndexX;
+        b = offsetHolder.tileIndexY;
+
+        offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
+        offsetHolder.tileIndexY=a+b;
+
+        offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
+        offsetHolder.tileIndexY=0;//a+b;
+
+        // soluzione fixata
+        //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
         offsetHolder.offsetX=mapX % map.tileHeight;
-        offsetHolder.offsetY=mapY % map.tileHeight;
-        XenonLogger.info("Original index %s , %s ***   offset x %s y %s ",offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.offsetX, offsetHolder.offsetY);
+        offsetHolder.offsetY=-mapY % map.tileHeight;
+        //offsetHolder.offsetX=0;
+        //offsetHolder.offsetY=0;
+
 
     }
 

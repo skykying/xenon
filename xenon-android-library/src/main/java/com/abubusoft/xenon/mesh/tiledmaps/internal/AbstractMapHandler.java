@@ -40,7 +40,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 	 * </p>
 	 * 
 	 * <p>
-	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(boolean, boolean, boolean)}
 	 * </p>
 	 * 
 	 * <pre>
@@ -83,7 +83,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 				convertMap2ViewLayer(layerOffsetHolder, Math.round(item.layerOffsetX), Math.round(item.layerOffsetY));
 
 				if (item.isDrawable()) {
-					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX - 1, layerOffsetHolder.tileIndexY - 1, layerOffsetHolder.offsetX, layerOffsetHolder.offsetY, modelViewProjection);
+					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX , layerOffsetHolder.tileIndexY , layerOffsetHolder.offsetX, layerOffsetHolder.offsetY, modelViewProjection);
 				}
 			}
 		} else {
@@ -107,7 +107,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 						shader.setTexture(j, item.textureList.get(j));
 					}
 
-					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX - 1, layerOffsetHolder.tileIndexY - 1, layerOffsetHolder.offsetX, layerOffsetHolder.offsetY, modelViewProjection);
+					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX , layerOffsetHolder.tileIndexY, layerOffsetHolder.offsetX, layerOffsetHolder.offsetY, modelViewProjection);
 				}
 			}
 		}
@@ -120,7 +120,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 	 * </p>
 	 * 
 	 * <p>
-	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(android.content.SharedPreferences, boolean, boolean, boolean)})
+	 * Ricordarsi di abilitare il blend prima di questo metodo (tipicamente nel {@link XenonApplication4OpenGL#onSceneReady(boolean, boolean, boolean)}
 	 * </p>
 	 * 
 	 * <pre>
