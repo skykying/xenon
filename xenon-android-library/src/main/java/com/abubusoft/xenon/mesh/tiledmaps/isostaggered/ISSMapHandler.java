@@ -154,8 +154,6 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         lineDrawer.draw(wireWindow, matrixWire);
 
         lineDrawer.end();
-
-
     }
 
     /**
@@ -350,15 +348,26 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
        // offsetHolder.screenOffsetX=mapX % map.tileHeight;
         //offsetHolder.screenOffsetY=mapY % map.tileHeight;
 
+
         // da centered window a iso window
+// da iso window a centered window
+        //workPoint.x = (+isoX + isoY) / 2;
+        //workPoint.y = (-isoX + isoY) / 4;
 
         // http://stackoverflow.com/questions/1295424/how-to-convert-float-to-int-with-java
-        offsetHolder.tileIndexX = (int) (-(mapX - 2f * mapY) / map.tileWidth);
-        offsetHolder.tileIndexY = (int) ((mapX + 2f * mapY) / map.tileWidth);
+        // v1
+//        offsetHolder.tileIndexX = (int) (-(mapX - 2f * mapY) / map.tileWidth);
+//        offsetHolder.tileIndexY = (int) ((mapX + 2f * mapY) / map.tileWidth);
+
+        // v2: ok
+        // passiamo da map a iso diamond
+        offsetHolder.tileIndexX = (int) ((mapX + 2f * mapY) / map.tileWidth);
+        offsetHolder.tileIndexY = (int) (-(mapX - 2f * mapY) / map.tileWidth);
 
         a = offsetHolder.tileIndexX;
         b = offsetHolder.tileIndexY;
 
+        // passiamo da diamon a staggered
         offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
         offsetHolder.tileIndexY=a+b;
 

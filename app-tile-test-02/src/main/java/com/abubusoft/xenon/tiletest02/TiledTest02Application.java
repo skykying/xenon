@@ -124,7 +124,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
 
         map = TiledMapFactory.loadFromAsset(getContext(), mapName, TextureFilterType.LINEAR);
         mapController = map.buildView(camera, TiledMapOptions.build()
-                .fillScreenType(TiledMapFillScreenType.FILL_CUSTOM_HEIGHT, 8)
+                .fillScreenType(TiledMapFillScreenType.FILL_CUSTOM_HEIGHT, 16)
                 .startPosition(TiledMapPositionType.LEFT_TOP)
                 .scrollHorizontalLocked(true)
                 .scrollVerticalLocked(true));
