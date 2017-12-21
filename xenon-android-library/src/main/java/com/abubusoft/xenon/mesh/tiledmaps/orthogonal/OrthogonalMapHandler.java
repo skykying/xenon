@@ -142,8 +142,8 @@ public class OrthogonalMapHandler extends AbstractMapHandler<OrthogonalMapContro
 		offsetHolder.tileIndexX = mapX / map.tileWidth;
 		offsetHolder.tileIndexY = mapY / map.tileHeight;
 		
-		offsetHolder.offsetX = mapX % map.tileWidth;
-		offsetHolder.offsetY = mapY % map.tileHeight;
+		offsetHolder.screenOffsetX = mapX % map.tileWidth;
+		offsetHolder.screenOffsetY = mapY % map.tileHeight;
 	}
 
 }

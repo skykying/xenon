@@ -44,7 +44,7 @@ public class OrthogonalTiledLayerHandler extends TiledLayerHandler {
 	public void drawLayerPart(ShaderTiledMap shader, long deltaTime, ObjClass clazz, Matrix4x4 modelview) {
 		MeshGrid shape = layer.tiledMap.spriteMesh;
 
-		// int startLayerColumn, int startLayerRow, int offsetX, int offsetY, int rowsCount, int colsCount
+		// int startLayerColumn, int startLayerRow, int screenOffsetX, int screenOffsetY, int rowsCount, int colsCount
 
 		// float screenCenterX = tiledMap.windowCenter.x;
 		// float screenCenterY = tiledMap.windowCenter.y;

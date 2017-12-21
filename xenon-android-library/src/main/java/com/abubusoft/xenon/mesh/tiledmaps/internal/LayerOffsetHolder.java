@@ -12,12 +12,17 @@ public class LayerOffsetHolder {
 	public int tileIndexX;
 	public int tileIndexY;
 
-	public int offsetX;
-	public int offsetY;
+	public int screenOffsetX;
+	public int screenOffsetY;
 
 	public void setOffset(Point2 offsetPoint) {
-		offsetX = (int) offsetPoint.x;
-		offsetY = (int) offsetPoint.y;
+		screenOffsetX = (int) offsetPoint.x;
+		screenOffsetY = (int) offsetPoint.y;
+	}
+
+	public void setOffset(int x, int y) {
+		screenOffsetX = x;
+		screenOffsetY = y;
 	}
 
 }

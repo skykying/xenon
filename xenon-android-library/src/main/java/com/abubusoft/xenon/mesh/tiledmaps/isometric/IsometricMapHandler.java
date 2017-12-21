@@ -264,7 +264,7 @@ public class IsometricMapHandler extends AbstractMapHandler<IsometricMapControll
 		view.windowVerticesBuffer.update();
 
 		// recupera gli offset X e mY maggiori (che vanno comunque a ricoprire gli alitr più piccoli)
-		// e li usa per spostare la matrice della maschera. Tutti i tileset devono avere lo stesso offsetX e Y
+		// e li usa per spostare la matrice della maschera. Tutti i tileset devono avere lo stesso screenOffsetX e Y
 		/*
 		 * float maxLayerOffsetX = 0f; float maxLayerOffsetY = 0f; for (int i = 0; i < map.tileSets.size(); i++) { maxLayerOffsetX = XenonMath.max(map.tileSets.get(i).drawOffsetX, maxLayerOffsetX); maxLayerOffsetY =
 		 * XenonMath.max(map.tileSets.get(i).drawOffsetY, maxLayerOffsetY); }

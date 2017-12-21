@@ -127,12 +127,12 @@ public class TiledLayer extends Layer {
 	public int tileHeightMax;
 	
 	/**
-	 * valore dell'offsetX da usare per tutti gli elementi. Se e solo se uniqueOffset=true.
+	 * valore dell'screenOffsetX da usare per tutti gli elementi. Se e solo se uniqueOffset=true.
 	 */
 	public float drawOffsetX=0f;
 	
 	/**
-	 * valore dell'offsetY da usare per tutti gli elementi. Se e solo se uniqueOffset=true.
+	 * valore dell'screenOffsetY da usare per tutti gli elementi. Se e solo se uniqueOffset=true.
 	 */
 	public float drawOffsetY=0f;
 	

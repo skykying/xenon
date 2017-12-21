@@ -170,10 +170,10 @@ public abstract class BitmapResizer {
 
 		Rect src, dest;
 
-		// Logger.error("Offset " + offsetX + "," + offsetY);
+		// Logger.error("Offset " + screenOffsetX + "," + screenOffsetY);
 		offsetX = offsetX > 0 ? offsetX : 0;
 		offsetY = offsetY > 0 ? offsetY : 0;
-		// Logger.error("Offset Fixed " + offsetX + "," + offsetY);
+		// Logger.error("Offset Fixed " + screenOffsetX + "," + screenOffsetY);
 		src = new Rect(0 + offsetX, 0 + offsetY, resizedBitmap.getWidth() - offsetX, resizedBitmap.getHeight() - offsetY);
 		// Logger.error("rect " + resizedBitmap.getWidth() + " startX " +
 		// resizedBitmap.getHeight()); 

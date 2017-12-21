@@ -56,7 +56,7 @@ public class Tile extends TextureRegion {
 	public int drawOffsetX;
 
 	/**
-	 * offsetY del tile
+	 * screenOffsetY del tile
 	 */
 	public int drawOffsetY;
 

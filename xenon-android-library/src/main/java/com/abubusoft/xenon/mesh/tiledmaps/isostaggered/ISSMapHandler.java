@@ -19,7 +19,6 @@ import com.abubusoft.xenon.mesh.tiledmaps.TiledMapOptions;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.LayerOffsetHolder;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
-import com.abubusoft.xenon.mesh.tiledmaps.isometric.IsometricHelper;
 import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.drawers.LineDrawer;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
@@ -253,7 +252,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         view.windowVerticesBuffer.update();
 
         // recupera gli offset X e mY maggiori (che vanno comunque a ricoprire gli alitr più piccoli)
-        // e li usa per spostare la matrice della maschera. Tutti i tileset devono avere lo stesso offsetX e Y
+        // e li usa per spostare la matrice della maschera. Tutti i tileset devono avere lo stesso screenOffsetX e Y
         /*
          * float maxLayerOffsetX = 0f; float maxLayerOffsetY = 0f; for (int i = 0; i < map.tileSets.size(); i++) { maxLayerOffsetX = XenonMath.max(map.tileSets.get(i).drawOffsetX, maxLayerOffsetX); maxLayerOffsetY =
 		 * XenonMath.max(map.tileSets.get(i).drawOffsetY, maxLayerOffsetY); }
@@ -348,13 +347,14 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         // soluzione fixata
         //offsetHolder.setOffset(ISSHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
-       // offsetHolder.offsetX=mapX % map.tileHeight;
-        //offsetHolder.offsetY=mapY % map.tileHeight;
-        //XenonLogger.info("Original index %s , %s ***   offset x %s y %s ",offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.offsetX, offsetHolder.offsetY);
+       // offsetHolder.screenOffsetX=mapX % map.tileHeight;
+        //offsetHolder.screenOffsetY=mapY % map.tileHeight;
+
+        // da centered window a iso window
 
         // http://stackoverflow.com/questions/1295424/how-to-convert-float-to-int-with-java
-        offsetHolder.tileIndexX = (int) (mapX / map.tileHeight);
-        offsetHolder.tileIndexY = (int) (mapY / map.tileHeight);
+        offsetHolder.tileIndexX = (int) (-(mapX - 2f * mapY) / map.tileWidth);
+        offsetHolder.tileIndexY = (int) ((mapX + 2f * mapY) / map.tileWidth);
 
         a = offsetHolder.tileIndexX;
         b = offsetHolder.tileIndexY;
@@ -362,17 +362,18 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
         offsetHolder.tileIndexY=a+b;
 
-        offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
-        offsetHolder.tileIndexY=0;//a+b;
+
+     //  offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
+     //   offsetHolder.tileIndexY=0;//a+b;
 
         // soluzione fixata
         //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
-        offsetHolder.offsetX=mapX % map.tileHeight;
-        offsetHolder.offsetY=-mapY % map.tileHeight;
-        //offsetHolder.offsetX=0;
-        //offsetHolder.offsetY=0;
+        offsetHolder.screenOffsetX =mapX % map.tileWidth;
+        offsetHolder.screenOffsetY =-mapY % map.tileHeight;
+        //offsetHolder.screenOffsetX=0;
+        //offsetHolder.screenOffsetY=0;
 
-
+        XenonLogger.info("map[%s, %s], I[%s, %s] ***, S[%s, %s], Screen offset x %s y %s ",mapX, mapY, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, -offsetHolder.screenOffsetY);
     }
 
 }

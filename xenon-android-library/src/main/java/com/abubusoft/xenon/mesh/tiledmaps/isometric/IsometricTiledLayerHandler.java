@@ -45,7 +45,7 @@ public class IsometricTiledLayerHandler extends TiledLayerHandler {
     public void drawLayerPart(ShaderTiledMap shader, long deltaTime, ObjClass clazz, Matrix4x4 modelview) {
         MeshGrid shape = layer.tiledMap.spriteMesh;
 
-        // int startLayerColumn, int startLayerRow, int offsetX, int offsetY, int rowsCount, int colsCount
+        // int startLayerColumn, int startLayerRow, int screenOffsetX, int screenOffsetY, int rowsCount, int colsCount
 
         // float screenCenterX = tiledMap.windowCenter.x;
         // float screenCenterY = tiledMap.windowCenter.y;
@@ -261,15 +261,15 @@ public class IsometricTiledLayerHandler extends TiledLayerHandler {
         // con gli offset andiamo a spostarli anche dei pixel subtile che
         // servono per
         // considerare lo scroll
-        // matrix.buildTranslationMatrix(-offsetX - screenCenterX, offsetY + screenCenterY, 0);
-        // matrix.buildTranslationMatrix(-offsetX - screenCenterX, offsetY + screenCenterY, 0);
+        // matrix.buildTranslationMatrix(-screenOffsetX - screenCenterX, screenOffsetY + screenCenterY, 0);
+        // matrix.buildTranslationMatrix(-screenOffsetX - screenCenterX, screenOffsetY + screenCenterY, 0);
 
         // matrix.buildTranslationMatrix(- screenCenterX, screenCenterY, 0);
         // matrix.buildTranslationMatrix(0, screenCenterY, 0);
-        // matrix.buildTranslationMatrix(-offsetX - screenCenterX, offsetY + screenCenterY, 0);
+        // matrix.buildTranslationMatrix(-screenOffsetX - screenCenterX, screenOffsetY + screenCenterY, 0);
 
         // tentativo 2
-        //matrix.buildTranslationMatrix(-offsetX, offsetY, 0);
+        //matrix.buildTranslationMatrix(-screenOffsetX, screenOffsetY, 0);
 
         // tentativo X
         // la camera punta già al centro della window.

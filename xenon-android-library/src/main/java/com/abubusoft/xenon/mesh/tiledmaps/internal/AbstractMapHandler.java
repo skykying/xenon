@@ -83,7 +83,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 				convertMap2ViewLayer(layerOffsetHolder, Math.round(item.layerOffsetX), Math.round(item.layerOffsetY));
 
 				if (item.isDrawable()) {
-					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX , layerOffsetHolder.tileIndexY , layerOffsetHolder.offsetX, layerOffsetHolder.offsetY, modelViewProjection);
+					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX , layerOffsetHolder.tileIndexY , layerOffsetHolder.screenOffsetX, layerOffsetHolder.screenOffsetY, modelViewProjection);
 				}
 			}
 		} else {
@@ -95,7 +95,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 				/*
 				 * currentMapOffsetX = Math.round(item.screenOffsetX); currentMapOffsetY = Math.round(item.screenOffsetY);
 				 * 
-				 * offsetX = currentMapOffsetX % map.tileWidth; offsetY = currentMapOffsetY % map.tileWidth;
+				 * screenOffsetX = currentMapOffsetX % map.tileWidth; screenOffsetY = currentMapOffsetY % map.tileWidth;
 				 */
 				convertMap2ViewLayer(layerOffsetHolder, Math.round(item.layerOffsetX), Math.round(item.layerOffsetY));
 
@@ -107,7 +107,7 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 						shader.setTexture(j, item.textureList.get(j));
 					}
 
-					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX , layerOffsetHolder.tileIndexY, layerOffsetHolder.offsetX, layerOffsetHolder.offsetY, modelViewProjection);
+					item.drawer().drawLayer(shader, deltaTime, layerOffsetHolder.tileIndexX , layerOffsetHolder.tileIndexY, layerOffsetHolder.screenOffsetX, layerOffsetHolder.screenOffsetY, modelViewProjection);
 				}
 			}
 		}
