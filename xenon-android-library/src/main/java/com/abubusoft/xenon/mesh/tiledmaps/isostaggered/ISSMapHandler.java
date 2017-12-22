@@ -227,7 +227,9 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // il quadrato della dimensione deve essere costruito sempre sulla dimensione massima
         view.windowDimension = XenonMath.max(view.windowWidth, view.windowHeight) * options.visiblePercentage;
 
-        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 4);
+        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
+        //TODO distanza
+        //view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension*4);
 
         // calcoliamo il centro dello schermo, senza considerare i bordi aggiuntivi
         view.windowCenter.x = view.windowWidth * 0.5f;
@@ -379,6 +381,15 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
         offsetHolder.screenOffsetX =mapX % map.tileWidth;
         offsetHolder.screenOffsetY =-mapY % map.tileHeight;
+
+        if (offsetHolder.tileIndexY % 2 ==1) {
+            offsetHolder.tileIndexY--;
+            offsetHolder.tileIndexX--;
+
+            offsetHolder.screenOffsetX +=map.tileWidth;
+            offsetHolder.screenOffsetY +=map.tileHeight;
+        }
+
         //offsetHolder.screenOffsetX=0;
         //offsetHolder.screenOffsetY=0;
 
