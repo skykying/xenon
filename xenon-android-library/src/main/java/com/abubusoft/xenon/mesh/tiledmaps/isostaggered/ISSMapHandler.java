@@ -19,6 +19,7 @@ import com.abubusoft.xenon.mesh.tiledmaps.TiledMapOptions;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.LayerOffsetHolder;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
+import com.abubusoft.xenon.mesh.tiledmaps.isometric.IsometricHelper;
 import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.drawers.LineDrawer;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
@@ -229,7 +230,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
         //TODO distanza
-        //view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension*4);
+        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension*2);
 
         // calcoliamo il centro dello schermo, senza considerare i bordi aggiuntivi
         view.windowCenter.x = view.windowWidth * 0.5f;
@@ -364,7 +365,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // v2: ok
         // passiamo da map a iso diamond
         offsetHolder.tileIndexX = (int) ((mapX + 2f * mapY) / map.tileWidth);
-        offsetHolder.tileIndexY = (int) (-(mapX - 2f * mapY) / map.tileWidth);
+        offsetHolder.tileIndexY = (int) ((-(mapX - 2f * mapY) / map.tileWidth));
 
         a = offsetHolder.tileIndexX;
         b = offsetHolder.tileIndexY;
@@ -373,27 +374,30 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
         offsetHolder.tileIndexY=a+b;
 
-
      //  offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
      //   offsetHolder.tileIndexY=0;//a+b;
+       // IsometricHelper.convertRawScreen2IsoMap()
 
         // soluzione fixata
         //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
         offsetHolder.screenOffsetX =mapX % map.tileWidth;
         offsetHolder.screenOffsetY =-mapY % map.tileHeight;
+        boolean volo=false;
 
         if (offsetHolder.tileIndexY % 2 ==1) {
-            offsetHolder.tileIndexY--;
-            offsetHolder.tileIndexX--;
+          offsetHolder.tileIndexY--;
+          //offsetHolder.tileIndexX--;
 
-            offsetHolder.screenOffsetX +=map.tileWidth;
-            offsetHolder.screenOffsetY +=map.tileHeight;
+          //offsetHolder.screenOffsetX +=map.tileWidth*.5f;
+          //offsetHolder.screenOffsetY -=map.tileHeight*.5f;
+
+            volo=true;
         }
 
         //offsetHolder.screenOffsetX=0;
         //offsetHolder.screenOffsetY=0;
 
-        XenonLogger.info("map[%s, %s], I[%s, %s] ***, S[%s, %s], Screen offset x %s y %s ",mapX, mapY, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, -offsetHolder.screenOffsetY);
+        XenonLogger.info("map[%s, %s], I[%s, %s] ***, S[%s, %s], Screen offset x %s y %s [%s]",mapX, mapY, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, -offsetHolder.screenOffsetY, volo);
     }
 
 }

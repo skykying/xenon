@@ -178,8 +178,8 @@ public abstract class ISSHelper {
 		VertexBuffer verticesBuffer = BufferManager.instance().createVertexBuffer(cols * rows * VertexBuffer.VERTEX_IN_QUAD_TILE, BufferAllocationType.STATIC);
 
 		// questo serve a metterlo al centro
-		float baseX = -cols * stepWidth*0.5f;
-		float baseY = (rows) * stepHeight * 0.5f ;				
+		float baseX = -cols * stepWidth * 0.5f;
+		float baseY = (rows) * stepHeight * 0.5f;
 
 		for (int i = 0; i < rows; i++) {
 			
