@@ -230,7 +230,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
         //TODO distanza
-        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension*2);
+        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 2);
 
         // calcoliamo il centro dello schermo, senza considerare i bordi aggiuntivi
         view.windowCenter.x = view.windowWidth * 0.5f;
@@ -240,11 +240,11 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         int windowRemainderX = 0;//view.windowWidth % map.tileWidth;
         int windowRemainderY = 0;//view.windowHeight % map.tileHeight;
 
-        view.windowBorder=1;
+        view.windowBorder = 1;
 
         // +2 per i bordi, +1 se la divisione contiene un resto
-        view.windowTileColumns += (windowRemainderX == 0 ? 0 : 0) + view.windowBorder*2;
-        view.windowTileRows += (windowRemainderY == 0 ? 0 : 0) + view.windowBorder*2;
+        view.windowTileColumns += (windowRemainderX == 0 ? 0 : 0) + view.windowBorder * 2;
+        view.windowTileRows += (windowRemainderY == 0 ? 0 : 0) + view.windowBorder * 2;
 
         // si sta disegnando dal vertice più in alto del rombo
         view.windowVerticesBuffer = ISSHelper.buildISSVertexBuffer(view.windowTileRows, view.windowTileColumns, map.tileWidth, map.tileHeight * .5f, map.tileWidth, map.tileHeight);
@@ -348,7 +348,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         // soluzione fixata
         //offsetHolder.setOffset(ISSHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
-       // offsetHolder.screenOffsetX=mapX % map.tileHeight;
+        // offsetHolder.screenOffsetX=mapX % map.tileHeight;
         //offsetHolder.screenOffsetY=mapY % map.tileHeight;
 
 
@@ -362,42 +362,68 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 //        offsetHolder.tileIndexX = (int) (-(mapX - 2f * mapY) / map.tileWidth);
 //        offsetHolder.tileIndexY = (int) ((mapX + 2f * mapY) / map.tileWidth);
 
+        int ix, iy;
+        ix = (mapX + 2 * mapY) / 2;
+        iy = (-mapX + 2 * mapY) / 2;
+
+        // inverso
+        // x = xi - yi
+        // y= (xi+yi) / 2
+
         // v2: ok
         // passiamo da map a iso diamond
-        offsetHolder.tileIndexX = (int) ((mapX + 2f * mapY) / map.tileWidth);
-        offsetHolder.tileIndexY = (int) ((-(mapX - 2f * mapY) / map.tileWidth));
+        offsetHolder.tileIndexX = (int) (ix / map.tileHeight);
+        offsetHolder.tileIndexY = (int) (iy / map.tileHeight);
 
         a = offsetHolder.tileIndexX;
         b = offsetHolder.tileIndexY;
 
         // passiamo da diamon a staggered
-        offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
-        offsetHolder.tileIndexY=a+b;
+        offsetHolder.tileIndexX = (a - b - ((a + b) % 2)) / 2;
+        offsetHolder.tileIndexY = a + b;
 
-     //  offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
-     //   offsetHolder.tileIndexY=0;//a+b;
-       // IsometricHelper.convertRawScreen2IsoMap()
+        //  offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
+        //   offsetHolder.tileIndexY=0;//a+b;
+        // IsometricHelper.convertRawScreen2IsoMap()
 
         // soluzione fixata
+        // v1
         //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
-        offsetHolder.screenOffsetX =mapX % map.tileWidth;
-        offsetHolder.screenOffsetY =-mapY % map.tileHeight;
-        boolean volo=false;
+        // v2
+        offsetHolder.screenOffsetX = mapX % map.tileWidth;
+        offsetHolder.screenOffsetY = -mapY % map.tileHeight;
+        //v3
+        boolean volo = false;
 
-        if (offsetHolder.tileIndexY % 2 ==1) {
-          offsetHolder.tileIndexY--;
-          //offsetHolder.tileIndexX--;
+        if (offsetHolder.tileIndexY % 2 == 1) {
+            offsetHolder.tileIndexY--;
 
-          //offsetHolder.screenOffsetX +=map.tileWidth*.5f;
-          //offsetHolder.screenOffsetY -=map.tileHeight*.5f;
+            int ax=(ix % map.tileHeight)+map.tileHeight;
+            int ay=(iy % map.tileHeight)+map.tileHeight;
 
-            volo=true;
+            int x=ax-ay;
+            int y=(ax+ay)/2;
+
+
+            // x = xi - yi
+            // y= (xi+yi) / 2
+
+            //offsetHolder.tileIndexX--;
+
+            // offsetHolder.screenOffsetX +=map.tileWidth*.25f;
+            //offsetHolder.screenOffsetY +=map.tileHeight;
+
+            volo = true;
+
+            offsetHolder.screenOffsetX +=x;
+            offsetHolder.screenOffsetY +=y;
+
         }
 
         //offsetHolder.screenOffsetX=0;
         //offsetHolder.screenOffsetY=0;
 
-        XenonLogger.info("map[%s, %s], I[%s, %s] ***, S[%s, %s], Screen offset x %s y %s [%s]",mapX, mapY, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, -offsetHolder.screenOffsetY, volo);
+        XenonLogger.info("map[%s, %s] -> iso[%s, %s], I[%s, %s] ***, S[%s, %s], Screen offset x %s y %s [%s]", mapX, mapY, ix, iy,a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, -offsetHolder.screenOffsetY, volo);
     }
 
 }
