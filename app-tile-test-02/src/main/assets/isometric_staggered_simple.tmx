@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="staggered" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="32" staggeraxis="y" staggerindex="odd" nextobjectid="1">
- <tileset firstgid="1" name="isometric_simple" tilewidth="64" tileheight="32" tilecount="4" columns="2">
-  <image source="isometric_simple.png" width="128" height="64"/>
+<map version="1.0" orientation="staggered" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="32" staggeraxis="y" staggerindex="even" nextobjectid="1">
+ <tileset firstgid="1" name="isometric_simple" tilewidth="64" tileheight="32" tilecount="256">
+  <image source="isometric_simple.png" width="1024" height="512"/>
  </tileset>
- <tileset firstgid="5" name="buildings_01" tilewidth="64" tileheight="32" tilecount="100" columns="10">
+ <tileset firstgid="257" name="buildings_01" tilewidth="64" tileheight="32" tilecount="100">
   <image source="buildings_01.png" width="640" height="320"/>
  </tileset>
  <layer name="Livello tile 2" width="20" height="21">
   <data encoding="base64" compression="zlib">
-   eJy1VdEKACEI87T//+a7hw5CDLfSh0HIsumUhoiMQuiHJ4GCPJs5M97PRXjIu2jeVV/Es+Cc6dTJ8Tw0huiLesDoY7xk9ekm54m/utz19TPzZ4XY6fNxdj86+tfhb8X8de9HVNvpfiAeIvpu8rD6mPljgPwfL39DAtY=
+   eJwzZGBgEKIyZiSAmaCYkDoQNoTSgXjUCBJpliKS+wIJmOlIgvsCCZhHjvsIYVLcR4vwG3Xf4HKf4qj7yHafIhKmlvvwmTfYw4/U8tmIihgAIi0QyQ==
   </data>
  </layer>
  <layer name="buildigs" width="20" height="21" visible="0">
   <data encoding="base64" compression="zlib">
-   eJxjYMAOeICYF4ccPmBBhh5ygBgQi+OR5yTRPFYgZiPfORhAAYgVGXCHozCJbuIHYgGquAwV4ApHWSL0IrtJEoilqOUoJKDAAAlHcgC13KQMxCo45NiBmAPKJjXNUQvoArEeDjlBIBaCstHTHBcQc9PKUUjAnAF3uSANxDJQNnqaEwFiUVo5igpADojlB9oRwwwAACxUBGg=
+   eJxjYMAOOBgZGDgZcUjiASZk6CEHCAHtEcZjFyuJ7mAEqmeiottlgGbJMuIOR34i7EJ2EzeQ5qFB2OIKR0ki7EJ2kyiQFqOB+2DhSA6glpvkgWYo4DCHGSjOApUjNc1RC2gC7dXCYTcvUJwPKoee5tiAfHY6uNmYEXe5IA4Ul4DKoac5ASBfcIDClBggBXSb9CB231AEAO0uA9U=
   </data>
  </layer>
 </map>

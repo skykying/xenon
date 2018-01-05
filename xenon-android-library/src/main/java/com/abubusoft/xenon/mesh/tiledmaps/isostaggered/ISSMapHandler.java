@@ -393,16 +393,40 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.screenOffsetX = mapX % map.tileWidth;
         offsetHolder.screenOffsetY = -mapY % map.tileHeight;
         //v3
-        boolean volo = false;
+        int volo = -1;
 
         if (offsetHolder.tileIndexY % 2 == 1) {
-            offsetHolder.tileIndexY--;
 
-            int ax=(ix % map.tileHeight)+map.tileHeight;
-            int ay=(iy % map.tileHeight)+map.tileHeight;
+            if (offsetHolder.screenOffsetX<map.tileWidth/2 && -offsetHolder.screenOffsetY<map.tileHeight/2) {
+                offsetHolder.tileIndexY--;
+                volo = 0;
+            } else if (offsetHolder.screenOffsetX>=map.tileWidth/2 && -offsetHolder.screenOffsetY<map.tileHeight/2) {
+                offsetHolder.tileIndexY--;
+                offsetHolder.tileIndexX++;
 
-            int x=ax-ay;
-            int y=(ax+ay)/2;
+                offsetHolder.screenOffsetX -=map.tileWidth;
+                //offsetHolder.screenOffsetY +=y;
+
+                volo = 1;
+            } else if (offsetHolder.screenOffsetX<map.tileWidth/2  && -offsetHolder.screenOffsetY>=map.tileHeight/2) {
+                offsetHolder.tileIndexY++;
+
+                //offsetHolder.screenOffsetX -=map.tileWidth;
+                //offsetHolder.screenOffsetY -=map.tileHeight;
+
+                volo = 2;
+            } else {
+                volo = 3;
+            }
+
+
+
+            //int ax=(ix % map.tileHeight)+map.tileHeight;
+            //int ay=(iy % map.tileHeight)+map.tileHeight;
+            //int x=ax-ay;
+            //int y=(ax+ay)/2;
+            //offsetHolder.screenOffsetX +=x;
+            //offsetHolder.screenOffsetY +=y;
 
 
             // x = xi - yi
@@ -413,10 +437,9 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
             // offsetHolder.screenOffsetX +=map.tileWidth*.25f;
             //offsetHolder.screenOffsetY +=map.tileHeight;
 
-            volo = true;
+            //volo = true;
 
-            offsetHolder.screenOffsetX +=x;
-            offsetHolder.screenOffsetY +=y;
+
 
         }
 

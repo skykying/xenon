@@ -261,21 +261,6 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 			}
 
 		}
-		// con la definizione in vertex array abbiamo posizionato le tile
-		// corrette
-		// con gli offset andiamo a spostarli anche dei pixel subtile che
-		// servono per
-		// considerare lo scroll
-		// matrix.buildTranslationMatrix(-screenOffsetX - screenCenterX, screenOffsetY + screenCenterY, 0);
-		// matrix.buildTranslationMatrix(-screenOffsetX - screenCenterX, screenOffsetY + screenCenterY, 0);
-
-		// matrix.buildTranslationMatrix(- screenCenterX, screenCenterY, 0);
-		// matrix.buildTranslationMatrix(0, screenCenterY, 0);
-		// matrix.buildTranslationMatrix(-screenOffsetX - screenCenterX, screenOffsetY + screenCenterY, 0);
-
-		// tentativo 2
-		//matrix.buildTranslationMatrix(-screenOffsetX, screenOffsetY, 0);
-		
 		// tentativo X
 		// la camera punta già al centro della window.
 		matrix.buildTranslationMatrix(-offsetX , -offsetY, 0);
@@ -326,12 +311,6 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 			// di un suo vertex buffer
 			// creiamo il vertici del vertex buffer della tiled map. Questo buffer viene condiviso ed utilizzato da tutti
 			// i layer che hanno come dimensione delle tile le stesse di default.
-			/*
-			 * float sceneX; float sceneY; vertexBuffer = BufferManager.instance().createVertexBuffer(view.windowTileColumns * view.windowTileRows * VertexBuffer.VERTEX_IN_QUAD_TILE, BufferAllocationType.STATIC); for (int i = 0; i <
-			 * view.windowTileRows; i++) { for (int j = 0; j < view.windowTileColumns; j++) { sceneX = (j - i) * layer.tiledMap.tileWidth * .5f - layer.tiledMap.tileWidth * .5f; sceneY = (j + i) * layer.tiledMap.tileHeight * .5f;
-			 * 
-			 * VertexQuadModifier.setVertexCoords(vertexBuffer, i * view.windowTileColumns + j, sceneX, -sceneY, layer.tileWidthMax, layer.tileHeightMax, false); } }
-			 */
 			vertexBuffer = ISSHelper.buildISSVertexBuffer(view.windowTileRows, view.windowTileColumns, layer.tiledMap.tileWidth , layer.tiledMap.tileHeight * .5f, layer.tileWidthMax, layer.tileHeightMax);
 			// lo impostiamo una volta per tutte, tanto non verrà mai cambiato
 			vertexBuffer.update();
