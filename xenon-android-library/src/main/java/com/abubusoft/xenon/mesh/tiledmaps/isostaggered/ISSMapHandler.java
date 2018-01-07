@@ -70,6 +70,17 @@ import android.graphics.Color;
 @Uncryptable
 public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
+
+    public enum Status {
+        STANDARD,
+        DISP_0,
+        DISP_1,
+        DISP_2,
+        DISP_3,
+        DISP_4,
+        UNSPOSTR
+    };
+
     /**
      * <p>
      * Dimensione della tile nel sistema di riferimento isometrico della mappa.
@@ -230,7 +241,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
         //TODO distanza
-        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 2);
+        //view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 2);
 
         // calcoliamo il centro dello schermo, senza considerare i bordi aggiuntivi
         view.windowCenter.x = view.windowWidth * 0.5f;
@@ -379,7 +390,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         b = offsetHolder.tileIndexY;
 
         // passiamo da diamon a staggered
-        offsetHolder.tileIndexX = (a - b - ((a + b) % 2)) / 2;
+        offsetHolder.tileIndexX = (a - b + ((a + b) % 2)) / 2;
         offsetHolder.tileIndexY = a + b;
 
         //  offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
@@ -391,33 +402,55 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
         // v2
         offsetHolder.screenOffsetX = mapX % map.tileWidth;
-        offsetHolder.screenOffsetY = -mapY % map.tileHeight;
+        offsetHolder.screenOffsetY = mapY % map.tileHeight;
         //v3
-        int volo = -1;
+        Status volo = Status.STANDARD;
 
         if (offsetHolder.tileIndexY % 2 == 1) {
 
-            if (offsetHolder.screenOffsetX<map.tileWidth/2 && -offsetHolder.screenOffsetY<map.tileHeight/2) {
+            //offsetHolder.screenOffsetX -=map.tileWidth/2;
+            //offsetHolder.screenOffsetY -=map.tileHeight/2;
+
+            volo = Status.UNSPOSTR;
+
+            if (offsetHolder.screenOffsetX<map.tileWidth/2) {
+                volo=Status.DISP_0;
                 offsetHolder.tileIndexY--;
-                volo = 0;
-            } else if (offsetHolder.screenOffsetX>=map.tileWidth/2 && -offsetHolder.screenOffsetY<map.tileHeight/2) {
+
+                offsetHolder.screenOffsetX -=map.tileWidth;
+                offsetHolder.screenOffsetY -=map.tileHeight*.5f;
+            } else {
+                volo=Status.DISP_1;
+                offsetHolder.tileIndexY--;
+                offsetHolder.tileIndexX--;
+
+                offsetHolder.screenOffsetX -=map.tileWidth;
+                offsetHolder.screenOffsetY -=map.tileHeight*.5f;
+
+            }
+            /*if (offsetHolder.screenOffsetX<map.tileWidth/2 && offsetHolder.screenOffsetY<map.tileHeight/2) {
+                offsetHolder.tileIndexX--;
+                offsetHolder.tileIndexY--;
+                offsetHolder.screenOffsetY -=map.tileHeight/2;
+                volo = Status.DISP_0;
+            } *//*else if (offsetHolder.screenOffsetX>=map.tileWidth/2 && offsetHolder.screenOffsetY<map.tileHeight/2) {
                 offsetHolder.tileIndexY--;
                 offsetHolder.tileIndexX++;
 
                 offsetHolder.screenOffsetX -=map.tileWidth;
                 //offsetHolder.screenOffsetY +=y;
 
-                volo = 1;
-            } else if (offsetHolder.screenOffsetX<map.tileWidth/2  && -offsetHolder.screenOffsetY>=map.tileHeight/2) {
+                volo = Status.DISP_1;
+            } else if (offsetHolder.screenOffsetX<map.tileWidth/2  && offsetHolder.screenOffsetY>=map.tileHeight/2) {
                 offsetHolder.tileIndexY++;
 
                 //offsetHolder.screenOffsetX -=map.tileWidth;
                 //offsetHolder.screenOffsetY -=map.tileHeight;
 
-                volo = 2;
+                volo = Status.DISP_2;
             } else {
-                volo = 3;
-            }
+                volo = Status.DISP_3;
+            }*/
 
 
 
@@ -446,7 +479,11 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         //offsetHolder.screenOffsetX=0;
         //offsetHolder.screenOffsetY=0;
 
-        XenonLogger.info("map[%s, %s] -> iso[%s, %s], I[%s, %s] ***, S[%s, %s], Screen offset x %s y %s [%s]", mapX, mapY, ix, iy,a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, -offsetHolder.screenOffsetY, volo);
+        XenonLogger.info("map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s], map off x,y (%s, %s) [%s]", mapX, mapY, ix, iy,a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
+
+        // inverte y
+        //offsetHolder.screenOffsetX = mapX % map.tileWidth;
+        offsetHolder.screenOffsetY = -offsetHolder.screenOffsetY;
     }
 
 }

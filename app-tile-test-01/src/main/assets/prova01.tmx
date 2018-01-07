@@ -9,6 +9,6 @@
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="player" type="player" x="64" y="144" width="32" height="32"/>
+  <object id="1" name="player" type="player" x="45" y="235" width="32" height="32"/>
  </objectgroup>
 </map>

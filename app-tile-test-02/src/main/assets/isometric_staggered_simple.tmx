@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="staggered" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="32" staggeraxis="y" staggerindex="even" nextobjectid="1">
- <tileset firstgid="1" name="isometric_simple" tilewidth="64" tileheight="32" tilecount="256">
+<map version="1.0" tiledversion="1.0.3" orientation="staggered" renderorder="right-down" width="20" height="21" tilewidth="64" tileheight="32" staggeraxis="y" staggerindex="even" nextobjectid="1">
+ <tileset firstgid="1" name="isometric_simple" tilewidth="64" tileheight="32" tilecount="256" columns="16">
   <image source="isometric_simple.png" width="1024" height="512"/>
  </tileset>
- <tileset firstgid="257" name="buildings_01" tilewidth="64" tileheight="32" tilecount="100">
+ <tileset firstgid="257" name="buildings_01" tilewidth="64" tileheight="32" tilecount="100" columns="10">
   <image source="buildings_01.png" width="640" height="320"/>
  </tileset>
  <layer name="Livello tile 2" width="20" height="21">
   <data encoding="base64" compression="zlib">
-   eJwzZGBgEKIyZiSAmaCYkDoQNoTSgXjUCBJpliKS+wIJmOlIgvsCCZhHjvsIYVLcR4vwG3Xf4HKf4qj7yHafIhKmlvvwmTfYw4/U8tmIihgAIi0QyQ==
+   eJwzZGBgEKIyZiSAmaCYkDoQNoTSgXjUCBJpliKS+wIJmOlIgvsCCZhHjvsIYVLchx5+RjRwnxGaueS6zwiLeeS6zwjNHGT2YHAfNcNPkcbxS2n6U8SjZqDdp4iEqeU+fOYN9vAjtXw2oiIGAAxdFAo=
   </data>
  </layer>
  <layer name="buildigs" width="20" height="21" visible="0">
