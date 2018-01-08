@@ -34,7 +34,7 @@ import static com.abubusoft.xenon.context.XenonBeanContext.getContext;
 @XenonBean
 public class TiledTest02Application extends XenonApplication4OpenGLImpl implements ObjectLayerDrawer, TouchEventListener {
 
-    SpriteDrawerBatcher batch;
+    //SpriteDrawerBatcher batch;
 
     private Mesh lines;
 
@@ -48,9 +48,11 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
     // private Matrix4x4 matrixModelview;
     public MapController mapController;
 
-    Matrix4x4 matrixObject;
+    //Matrix4x4 matrixObject;
 
     ObjModelController objPlayerController;
+
+    float position=16;
 
     @Override
     public void onFrameDraw(Phase phase, long enlapsedTime, float speedAdapter) {
@@ -114,7 +116,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
         //TextureAnimationManager.instance().createTextureAnimationAtlasFromAssets(getContext(), "sprite_kino", TextureOptions.build());
         //TextureAnimationManager.instance().createTextureAnimationAtlasFromAssets(getContext(), "player1", TextureOptions.build());
 
-        matrixObject = new Matrix4x4();
+        //matrixObject = new Matrix4x4();
 
         //linesDrawer = new LineDrawer();
 
@@ -136,7 +138,9 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
 
         //lines = MeshFactory.createWireframe(objPlayerController.sprite);
 
-        batch = new SpriteDrawerBatcher();
+        //batch = new SpriteDrawerBatcher();
+
+        mapController.position(position,0);
 
         TouchManager.instance().setListener(this);
     }
@@ -166,11 +170,13 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
         //ElioLogger.info("onTouch %s - THREAD %s", type, Thread.currentThread().getName());
         switch (type) {
             case SCROLL:
-                mapController.scrollFromScreen(x, y);
-                //mapController.touch(x, y);
+                //mapController.scrollFromScreen(x, y);
+                mapController.scrollFromScreen(0, y);
                 break;
             case DOUBLE_TAP:
-                mapController.touch(x, y);
+                position+=16;
+                //mapController.touch(x, y);
+                mapController.position(position, 0);
 
                 //ElioLogger.info("Touch on map x, y = (%s , %s)", point.x, point.y);
                 //objPlayerController.clearActions();

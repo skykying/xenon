@@ -196,14 +196,16 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 			layer.oldStartLayerColumn = startLayerColumn;
 			layer.oldStartLayerRow = startLayerRow;
 
-			for (int i = 0; i < windowRows; i++) {
+			int start=startLayerRow % 2 == 1 ? 1 : 0;
+
+			for (int i = 0+start; i < windowRows; i++) {
 
 				// se siamo oltre le dimensioni del layer, resettiamo la colonna
 				layerCurrentColumn = startLayerColumn;
 				if (layerCurrentColumn >= layer.tileColumns)
 					layerCurrentColumn = 0;
 
-				for (int j = 0; j < windowColumns; j++) {
+				for (int j = 0+start; j < windowColumns; j++) {
 
 					// prende dalla definizione del layer il tile da disegnare
 					layer.tileToDraw = layer.tiles[layerCurrentRow * layer.tileColumns + layerCurrentColumn];

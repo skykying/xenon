@@ -239,9 +239,9 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // il quadrato della dimensione deve essere costruito sempre sulla dimensione massima
         view.windowDimension = XenonMath.max(view.windowWidth, view.windowHeight) * options.visiblePercentage;
 
-        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
-        //TODO distanza
-        //view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 2);
+        //TODO per vedere da più lontano
+        //view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
+        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 2);
 
         // calcoliamo il centro dello schermo, senza considerare i bordi aggiuntivi
         view.windowCenter.x = view.windowWidth * 0.5f;
@@ -403,29 +403,33 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // v2
         offsetHolder.screenOffsetX = mapX % map.tileWidth;
         offsetHolder.screenOffsetY = mapY % map.tileHeight;
+//                offsetHolder.screenOffsetX = 0;
+//        offsetHolder.screenOffsetY = 0;
         //v3
         Status volo = Status.STANDARD;
 
         if (offsetHolder.tileIndexY % 2 == 1) {
 
             //offsetHolder.screenOffsetX -=map.tileWidth/2;
-            //offsetHolder.screenOffsetY -=map.tileHeight/2;
+            //offsetHolder.screenOffsetY +=map.tileHeight/4;
 
             volo = Status.UNSPOSTR;
 
-            if (offsetHolder.screenOffsetX<map.tileWidth/2) {
+            if (offsetHolder.screenOffsetY<map.tileHeight/2) {
                 volo=Status.DISP_0;
-                offsetHolder.tileIndexY--;
+              //  offsetHolder.tileIndexX--;
+//                offsetHolder.tileIndexY--;
 
-                offsetHolder.screenOffsetX -=map.tileWidth;
-                offsetHolder.screenOffsetY -=map.tileHeight*.5f;
+              //  offsetHolder.screenOffsetX -=map.tileWidth;
+                //offsetHolder.screenOffsetY +=map.tileHeight*.5;
+                offsetHolder.screenOffsetY +=map.tileHeight;
             } else {
                 volo=Status.DISP_1;
-                offsetHolder.tileIndexY--;
-                offsetHolder.tileIndexX--;
+           //     offsetHolder.tileIndexY--;
+//                offsetHolder.tileIndexX--;
 
-                offsetHolder.screenOffsetX -=map.tileWidth;
-                offsetHolder.screenOffsetY -=map.tileHeight*.5f;
+  //              offsetHolder.screenOffsetX -=map.tileWidth;
+
 
             }
             /*if (offsetHolder.screenOffsetX<map.tileWidth/2 && offsetHolder.screenOffsetY<map.tileHeight/2) {
