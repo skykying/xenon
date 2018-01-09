@@ -198,14 +198,14 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 
 			int start=startLayerRow % 2 == 1 ? 1 : 0;
 
-			for (int i = 0+start; i < windowRows; i++) {
+			for (int i = 0; i < windowRows; i++) {
 
 				// se siamo oltre le dimensioni del layer, resettiamo la colonna
 				layerCurrentColumn = startLayerColumn;
 				if (layerCurrentColumn >= layer.tileColumns)
 					layerCurrentColumn = 0;
 
-				for (int j = 0+start; j < windowColumns; j++) {
+				for (int j = 0; j < 3/* windowColumns*/; j++) {
 
 					// prende dalla definizione del layer il tile da disegnare
 					layer.tileToDraw = layer.tiles[layerCurrentRow * layer.tileColumns + layerCurrentColumn];
@@ -213,24 +213,11 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 					// aggiungiamo coordinate solo se necessario (tile valida,
 					// ovvero gid !=0)
 					if (layer.tileToDraw.gid != 0) {
-						// sceneX = j * tileToDraw.width;
-						// sceneY = i * tileToDraw.height;
-
-						// old sistema
-						// -------------------------
-						// shape.setVertexCoordsOnCursor(sceneX, -sceneY, tileToDraw);
-						// ottimizzazione (texture index=0)
-						// shape.setTextureCoordsOnCursor(0, tileToDraw);
-
 						// Se abbiamo più di una texture dobbiamo impostare il
 						// selettore di texture
 						if (!layer.tiledMap.onlyOneTexture4Layer) {
 							setTextureSelector(i * windowColumns + j, layer.tileToDraw);
 						}
-
-						// ci posizioniamo sul prossimo tile da disegnare
-						// shape.cursorMove();
-						// -------------------------
 
 						// new sistema
 						TextureQuadModifier.setTextureCoords(textureBuffer, i * windowColumns + j, layer.tileToDraw, false);

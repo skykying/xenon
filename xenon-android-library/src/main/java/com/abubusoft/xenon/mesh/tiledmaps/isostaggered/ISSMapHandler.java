@@ -409,22 +409,29 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         Status volo = Status.STANDARD;
 
         if (offsetHolder.tileIndexY % 2 == 1) {
+            //offsetHolder.screenOffsetX = mapX % (map.tileWidth+map.tileWidth/2);
+            //offsetHolder.screenOffsetY = mapY % (map.tileHeight+map.tileHeight/2);
 
-            //offsetHolder.screenOffsetX -=map.tileWidth/2;
-            //offsetHolder.screenOffsetY +=map.tileHeight/4;
+            // torniamo su di 1
+            offsetHolder.tileIndexY--;
+            if (iy>map.tileHeight) {
+                volo=Status.DISP_0;
+            } else {
+                volo=Status.DISP_1;
+            }
 
-            volo = Status.UNSPOSTR;
+
+            //volo = Status.UNSPOSTR;
 
             if (offsetHolder.screenOffsetY<map.tileHeight/2) {
-                volo=Status.DISP_0;
               //  offsetHolder.tileIndexX--;
 //                offsetHolder.tileIndexY--;
 
               //  offsetHolder.screenOffsetX -=map.tileWidth;
                 //offsetHolder.screenOffsetY +=map.tileHeight*.5;
-                offsetHolder.screenOffsetY +=map.tileHeight;
+               // offsetHolder.screenOffsetY +=map.tileHeight;
             } else {
-                volo=Status.DISP_1;
+                //volo=Status.DISP_1;
            //     offsetHolder.tileIndexY--;
 //                offsetHolder.tileIndexX--;
 
