@@ -382,6 +382,10 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
                     offsetHolder.tileIndexY--;
                     offsetHolder.tileIndexX--;
+
+                    if (mapY/map.tileHeight>offsetHolder.tileIndexY) {
+                        offsetHolder.screenOffsetY+=map.tileHeight;
+                    }
                 }
             } else {
                 if (ix + iy < map.tileHeight) {
