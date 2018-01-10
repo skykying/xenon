@@ -19,7 +19,6 @@ import com.abubusoft.xenon.mesh.tiledmaps.TiledMapOptions;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.AbstractMapHandler;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.LayerOffsetHolder;
 import com.abubusoft.xenon.mesh.tiledmaps.internal.TiledMapView;
-import com.abubusoft.xenon.mesh.tiledmaps.isometric.IsometricHelper;
 import com.abubusoft.xenon.opengl.XenonGL;
 import com.abubusoft.xenon.shader.drawers.LineDrawer;
 import com.abubusoft.xenon.vbo.BufferAllocationType;
@@ -73,13 +72,14 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     public enum Status {
         STANDARD,
-        DISP_0,
-        DISP_1,
-        DISP_2,
-        DISP_3,
-        DISP_4,
+        AREA_A,
+        AREA_B,
+        AREA_C,
+        AREA_D,
         UNSPOSTR
-    };
+    }
+
+    ;
 
     /**
      * <p>
@@ -334,45 +334,6 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     @Override
     public void convertMap2ViewLayer(LayerOffsetHolder offsetHolder, int mapX, int mapY) {
-        // http://stackoverflow.com/questions/1295424/how-to-convert-float-to-int-with-java
-        //offsetHolder.tileIndexX = (int) (mapX - ((mapY*2/map.tileHeight) % 2)*map.tileHeight) / (2* map.tileHeight);
-        //offsetHolder.tileIndexY = (int) (mapY / map.tileHeight);
-        // da centered window a iso window
-
-        //a=mapX-2*mapY;
-        //b=mapX+2*mapY;
-        //mapX=a;
-        //mapY=b;
-
-//        a = (int) (mapX / map.tileWidth);
-//        b = (int) (mapY / map.tileHeight);
-//
-//        offsetHolder.tileIndexX=(a-b-((a+b) %2))/2;
-//        offsetHolder.tileIndexY=a+b;
-
-
-       /* if (offsetHolder.tileIndexY % 2 == 1) {
-            temp=offsetHolder.tileIndexX;
-            offsetHolder.tileIndexX = offsetHolder.tileIndexY;
-            offsetHolder.tileIndexY = temp;
-        }*/
-
-        // soluzione fixata
-        //offsetHolder.setOffset(ISSHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
-        // offsetHolder.screenOffsetX=mapX % map.tileHeight;
-        //offsetHolder.screenOffsetY=mapY % map.tileHeight;
-
-
-        // da centered window a iso window
-// da iso window a centered window
-        //workPoint.x = (+isoX + isoY) / 2;
-        //workPoint.y = (-isoX + isoY) / 4;
-
-        // http://stackoverflow.com/questions/1295424/how-to-convert-float-to-int-with-java
-        // v1
-//        offsetHolder.tileIndexX = (int) (-(mapX - 2f * mapY) / map.tileWidth);
-//        offsetHolder.tileIndexY = (int) ((mapX + 2f * mapY) / map.tileWidth);
-
         int ix, iy;
         ix = (mapX + 2 * mapY) / 2;
         iy = (-mapX + 2 * mapY) / 2;
@@ -405,95 +366,39 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.screenOffsetY = mapY % map.tileHeight;
 //                offsetHolder.screenOffsetX = 0;
 //        offsetHolder.screenOffsetY = 0;
+
         //v3
         Status volo = Status.STANDARD;
 
         if (offsetHolder.tileIndexY % 2 == 1) {
-            //offsetHolder.screenOffsetX = mapX % (map.tileWidth+map.tileWidth/2);
-            //offsetHolder.screenOffsetY = mapY % (map.tileHeight+map.tileHeight/2);
+            //offsetHolder.tileIndexY--;
+            if (ix - iy > 0) {
+                if (ix + iy < map.tileHeight) {
+                    // A
+                    volo = Status.AREA_A;
+                } else {
+                    // D
+                    volo = Status.AREA_D;
 
-            // torniamo su di 1
-            offsetHolder.tileIndexY--;
-            if (iy>map.tileHeight) {
-                volo=Status.DISP_0;
+                    offsetHolder.tileIndexY--;
+                    offsetHolder.tileIndexX--;
+                }
             } else {
-                volo=Status.DISP_1;
+                if (ix + iy < map.tileHeight) {
+                    // B
+                    //offsetHolder.tileIndexY++;
+                    volo = Status.AREA_B;
+                } else {
+                    // C
+
+                    volo = Status.AREA_C;
+                }
             }
-
-
-            //volo = Status.UNSPOSTR;
-
-            if (offsetHolder.screenOffsetY<map.tileHeight/2) {
-              //  offsetHolder.tileIndexX--;
-//                offsetHolder.tileIndexY--;
-
-              //  offsetHolder.screenOffsetX -=map.tileWidth;
-                //offsetHolder.screenOffsetY +=map.tileHeight*.5;
-               // offsetHolder.screenOffsetY +=map.tileHeight;
-            } else {
-                //volo=Status.DISP_1;
-           //     offsetHolder.tileIndexY--;
-//                offsetHolder.tileIndexX--;
-
-  //              offsetHolder.screenOffsetX -=map.tileWidth;
-
-
-            }
-            /*if (offsetHolder.screenOffsetX<map.tileWidth/2 && offsetHolder.screenOffsetY<map.tileHeight/2) {
-                offsetHolder.tileIndexX--;
-                offsetHolder.tileIndexY--;
-                offsetHolder.screenOffsetY -=map.tileHeight/2;
-                volo = Status.DISP_0;
-            } *//*else if (offsetHolder.screenOffsetX>=map.tileWidth/2 && offsetHolder.screenOffsetY<map.tileHeight/2) {
-                offsetHolder.tileIndexY--;
-                offsetHolder.tileIndexX++;
-
-                offsetHolder.screenOffsetX -=map.tileWidth;
-                //offsetHolder.screenOffsetY +=y;
-
-                volo = Status.DISP_1;
-            } else if (offsetHolder.screenOffsetX<map.tileWidth/2  && offsetHolder.screenOffsetY>=map.tileHeight/2) {
-                offsetHolder.tileIndexY++;
-
-                //offsetHolder.screenOffsetX -=map.tileWidth;
-                //offsetHolder.screenOffsetY -=map.tileHeight;
-
-                volo = Status.DISP_2;
-            } else {
-                volo = Status.DISP_3;
-            }*/
-
-
-
-            //int ax=(ix % map.tileHeight)+map.tileHeight;
-            //int ay=(iy % map.tileHeight)+map.tileHeight;
-            //int x=ax-ay;
-            //int y=(ax+ay)/2;
-            //offsetHolder.screenOffsetX +=x;
-            //offsetHolder.screenOffsetY +=y;
-
-
-            // x = xi - yi
-            // y= (xi+yi) / 2
-
-            //offsetHolder.tileIndexX--;
-
-            // offsetHolder.screenOffsetX +=map.tileWidth*.25f;
-            //offsetHolder.screenOffsetY +=map.tileHeight;
-
-            //volo = true;
-
-
-
         }
 
-        //offsetHolder.screenOffsetX=0;
-        //offsetHolder.screenOffsetY=0;
-
-        XenonLogger.info("map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s], map off x,y (%s, %s) [%s]", mapX, mapY, ix, iy,a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
+        XenonLogger.info("map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s], map off x,y (%s, %s) [%s]", mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
 
         // inverte y
-        //offsetHolder.screenOffsetX = mapX % map.tileWidth;
         offsetHolder.screenOffsetY = -offsetHolder.screenOffsetY;
     }
 
