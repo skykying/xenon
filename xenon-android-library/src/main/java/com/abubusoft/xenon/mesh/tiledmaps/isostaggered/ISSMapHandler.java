@@ -354,6 +354,9 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.tileIndexX = (a - b + ((a + b) % 2)) / 2;
         offsetHolder.tileIndexY = a + b;
 
+        int ox=offsetHolder.tileIndexX;
+        int oy=offsetHolder.tileIndexY;
+
         //  offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
         //   offsetHolder.tileIndexY=0;//a+b;
         // IsometricHelper.convertRawScreen2IsoMap()
@@ -383,9 +386,9 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
                     offsetHolder.tileIndexY--;
                     offsetHolder.tileIndexX--;
 
-                    if (mapY/map.tileHeight>offsetHolder.tileIndexY) {
+                   /* if (mapY/map.tileHeight>offsetHolder.tileIndexY) {
                         offsetHolder.screenOffsetY+=map.tileHeight;
-                    }
+                    }*/
                 }
             } else {
                 if (ix + iy < map.tileHeight) {
@@ -400,7 +403,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
             }
         }
 
-        XenonLogger.info("map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s], map off x,y (%s, %s) [%s]", mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
+        XenonLogger.info("map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s]", mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
 
         // inverte y
         offsetHolder.screenOffsetY = -offsetHolder.screenOffsetY;
