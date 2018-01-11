@@ -347,6 +347,10 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.tileIndexX = (int) (ix / map.tileHeight);
         offsetHolder.tileIndexY = (int) (iy / map.tileHeight);
 
+        int sx, sy;
+        sx=(ix % map.tileHeight);
+        sy=(iy % map.tileHeight);
+
         a = offsetHolder.tileIndexX;
         b = offsetHolder.tileIndexY;
 
@@ -375,8 +379,8 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         if (offsetHolder.tileIndexY % 2 == 1) {
             volo = Status.UNSPOSTR;
-            if (iy + ix > 0) {
-                if (iy-ix < map.tileHeight) {
+            if (sx -sy < 0) {
+                if (sx+sy < map.tileHeight) {
                     volo = Status.AREA_A;
 
                     offsetHolder.tileIndexY--;
@@ -388,7 +392,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
                     offsetHolder.tileIndexX--;
                 }
             } else {
-                if (iy-ix < map.tileHeight) {
+                if (sy-sx < map.tileHeight) {
                     volo = Status.AREA_B;
 
                     //offsetHolder.tileIndexY--;
@@ -402,7 +406,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
             }
         }
 
-        XenonLogger.info("map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s]", mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
+        XenonLogger.info("s[%s, %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s]", sx, sy, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
 
         // inverte y
         offsetHolder.screenOffsetY = -offsetHolder.screenOffsetY;
