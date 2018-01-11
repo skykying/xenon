@@ -354,8 +354,8 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.tileIndexX = (a - b + ((a + b) % 2)) / 2;
         offsetHolder.tileIndexY = a + b;
 
-        int ox=offsetHolder.tileIndexX;
-        int oy=offsetHolder.tileIndexY;
+        int ox = offsetHolder.tileIndexX;
+        int oy = offsetHolder.tileIndexY;
 
         //  offsetHolder.tileIndexX=0;//(a-b-((a+b) %2))/2;
         //   offsetHolder.tileIndexY=0;//a+b;
@@ -374,31 +374,30 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         Status volo = Status.STANDARD;
 
         if (offsetHolder.tileIndexY % 2 == 1) {
-            //offsetHolder.tileIndexY--;
-            if (ix - iy > 0) {
-                if (ix + iy < map.tileHeight) {
-                    // A
+            volo = Status.UNSPOSTR;
+            if (iy + ix > 0) {
+                if (iy-ix < map.tileHeight) {
                     volo = Status.AREA_A;
-                } else {
-                    // D
-                    volo = Status.AREA_D;
 
                     offsetHolder.tileIndexY--;
                     offsetHolder.tileIndexX--;
+                } else {
+                    volo = Status.AREA_D;
 
-                   /* if (mapY/map.tileHeight>offsetHolder.tileIndexY) {
-                        offsetHolder.screenOffsetY+=map.tileHeight;
-                    }*/
+                    offsetHolder.tileIndexY++;
+                    offsetHolder.tileIndexX--;
                 }
             } else {
-                if (ix + iy < map.tileHeight) {
-                    // B
-                    //offsetHolder.tileIndexY++;
+                if (iy-ix < map.tileHeight) {
                     volo = Status.AREA_B;
-                } else {
-                    // C
 
+                    //offsetHolder.tileIndexY--;
+                    offsetHolder.tileIndexX--;
+                } else {
                     volo = Status.AREA_C;
+
+                    //offsetHolder.tileIndexY--;
+                    offsetHolder.tileIndexX++;
                 }
             }
         }
