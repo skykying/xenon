@@ -251,9 +251,9 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         int windowRemainderX = 0;//view.windowWidth % map.tileWidth;
         int windowRemainderY = 0;//view.windowHeight % map.tileHeight;
 
-        view.windowBorder = 1;
+        view.windowBorder = 2;
 
-        // +2 per i bordi, +1 se la divisione contiene un resto
+        // +2 per i bordi, +1 se la divisione contiene un resto (aggiungiamo sempre +1 )
         view.windowTileColumns += (windowRemainderX == 0 ? 0 : 0) + view.windowBorder * 2;
         view.windowTileRows += (windowRemainderY == 0 ? 0 : 0) + view.windowBorder * 2;
 
