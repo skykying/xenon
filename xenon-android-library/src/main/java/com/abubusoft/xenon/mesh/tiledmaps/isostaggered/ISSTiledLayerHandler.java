@@ -166,7 +166,7 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 		int layerCurrentColumn;
 
 		//startLayerRow-= view.windowBorder;
-		//startLayerColumn-= view.windowBorder;
+		startLayerColumn-= view.windowBorder;
 
 		// facciamo in modo di avere sempre indici positivi e compresi tra 0 e
 		// rows/columns
@@ -196,7 +196,7 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 			layer.oldStartLayerColumn = startLayerColumn;
 			layer.oldStartLayerRow = startLayerRow;
 
-			int start=startLayerRow % 2 == 1 ? 1 : 0;
+			//int start=startLayerRow % 2 == 1 ? 1 : 0;
 
 			for (int i = 0; i < windowRows; i++) {
 
