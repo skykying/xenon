@@ -174,6 +174,9 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 		startLayerRow = (startLayerRow < 0 ? layer.tileRows : 0) + (startLayerRow % layer.tileRows) ;
 		startLayerColumn = (startLayerColumn < 0 ? layer.tileColumns : 0) + (startLayerColumn % layer.tileColumns);
 
+		startLayerRow= ((startLayerRow / 2) *2);
+		//startLayerColumn= ((startLayerColumn / 2) *2);
+
 		// posizione della tile sullo schermo in base al sistema di origine in
 		// mezzo allo schermo
 		// int sceneX;

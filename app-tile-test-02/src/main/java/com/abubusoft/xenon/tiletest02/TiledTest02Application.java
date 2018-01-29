@@ -52,7 +52,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
 
     ObjModelController objPlayerController;
 
-    float position=16;
+    float position=144;
 
     @Override
     public void onFrameDraw(Phase phase, long enlapsedTime, float speedAdapter) {

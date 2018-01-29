@@ -234,6 +234,9 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         view.mapMaxPositionValueX = map.mapWidth - isoWindowWidth;
         view.mapMaxPositionValueY = map.mapHeight - isoWindowHeight;
 
+        view.mapMaxPositionValueX = view.mapMaxPositionValueX/2-map.tileWidth;
+        view.mapMaxPositionValueY = view.mapMaxPositionValueY/2 -map.tileHeight;
+
         //view.windowDimension *= options.visiblePercentage;
 
         // il quadrato della dimensione deve essere costruito sempre sulla dimensione massima
@@ -348,8 +351,11 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         offsetHolder.tileIndexY = (int) (iy / map.tileHeight);
 
         int sx, sy;
-        sx = (ix % map.tileHeight);
-        sy = (iy % map.tileHeight);
+        sx = ix % map.tileHeight;
+        sy = iy % map.tileHeight;
+
+        if (sx<0) sx=map.tileHeight+sx;
+        if (sy<0) sy=map.tileHeight+sy;
 
         a = offsetHolder.tileIndexX;
         b = offsetHolder.tileIndexY;
@@ -369,8 +375,8 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // v1
         //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
         // v2
-        offsetHolder.screenOffsetX = mapX % map.tileWidth;
-        offsetHolder.screenOffsetY = mapY % map.tileHeight;
+       offsetHolder.screenOffsetX = mapX % map.tileWidth;
+       offsetHolder.screenOffsetY = mapY % map.tileHeight;
 //                offsetHolder.screenOffsetX = 0;
 //        offsetHolder.screenOffsetY = 0;
 
@@ -382,17 +388,18 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
             //if (sy<0) sy*=-1;
 
             volo = Status.UNSPOSTR;
-            if (sx - sy <= 0) {
+            if (sx - sy < 0) {
                 if (sx + sy < map.tileHeight) {
                     volo = Status.AREA_A;
 
                     offsetHolder.tileIndexY--;
-                    offsetHolder.tileIndexX--;
+                    //offsetHolder.tileIndexX--;
                 } else {
                     volo = Status.AREA_D;
 
-                    offsetHolder.tileIndexY++;
-                    offsetHolder.tileIndexX--;
+                    offsetHolder.tileIndexY--;
+                    //offsetHolder.tileIndexY++;
+                    //offsetHolder.tileIndexX--;
                 }
             } else {
                 if (sy + sx < map.tileHeight) {
@@ -400,13 +407,15 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
                     offsetHolder.tileIndexY--;
                     //offsetHolder.tileIndexX--;
-                    //offsetHolder.screenOffsetX-=2*map.tileHeight;
+                    //offsetHolder.screenOffsetX+=map.tileWidth*.5f;
+                    //offsetHolder.screenOffsetY+=map.tileHeight*.5f;
                 } else {
                     volo = Status.AREA_C;
 
-                    offsetHolder.tileIndexY++;
+                    offsetHolder.tileIndexY--;
                     //offsetHolder.tileIndexX--;
                    // offsetHolder.screenOffsetX-=2*map.tileHeight;
+                    //offsetHolder.screenOffsetY-=map.tileHeight;
                 }
             }
         }
