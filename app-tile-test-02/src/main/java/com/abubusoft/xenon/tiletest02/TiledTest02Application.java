@@ -52,7 +52,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
 
     ObjModelController objPlayerController;
 
-    float position=144;
+    float position=0;
 
     @Override
     public void onFrameDraw(Phase phase, long enlapsedTime, float speedAdapter) {
@@ -176,7 +176,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
             case DOUBLE_TAP:
                 position+=16;
                 //mapController.touch(x, y);
-                mapController.position(position, 0);
+                mapController.position(position, position);
 
                 //ElioLogger.info("Touch on map x, y = (%s , %s)", point.x, point.y);
                 //objPlayerController.clearActions();

@@ -231,11 +231,14 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // calcoliamo le dimensioni della window su base isometrica e definiamo i limiti di spostamento
         isoWindowWidth = view.windowTileColumns * isoTileSize;
         isoWindowHeight = view.windowTileRows * isoTileSize;
+
         view.mapMaxPositionValueX = map.mapWidth - isoWindowWidth;
         view.mapMaxPositionValueY = map.mapHeight - isoWindowHeight;
 
         view.mapMaxPositionValueX = view.mapMaxPositionValueX/2-map.tileWidth;
-        view.mapMaxPositionValueY = view.mapMaxPositionValueY/2 -map.tileHeight;
+
+        // limiti y ok
+        view.mapMaxPositionValueY = view.mapMaxPositionValueY/2 -map.tileHeight/2;
 
         //view.windowDimension *= options.visiblePercentage;
 
@@ -376,7 +379,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         //offsetHolder.setOffset(IsometricHelper.convertIsoMapOffset2ScreenOffset(mapX % map.tileHeight, mapY % map.tileHeight));
         // v2
        offsetHolder.screenOffsetX = mapX % map.tileWidth;
-       offsetHolder.screenOffsetY = mapY % map.tileHeight;
+       offsetHolder.screenOffsetY = mapY % (map.tileHeight/2);
 //                offsetHolder.screenOffsetX = 0;
 //        offsetHolder.screenOffsetY = 0;
 
@@ -412,10 +415,10 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
                 } else {
                     volo = Status.AREA_C;
 
-                    offsetHolder.tileIndexY--;
+                    offsetHolder.tileIndexY++;
                     //offsetHolder.tileIndexX--;
                    // offsetHolder.screenOffsetX-=2*map.tileHeight;
-                    //offsetHolder.screenOffsetY-=map.tileHeight;
+                  //  offsetHolder.screenOffsetY=-(map.tileHeight/2-(map.tileHeight-offsetHolder.screenOffsetY));
                 }
             }
         }
