@@ -254,7 +254,7 @@ public abstract class ISSHelper {
 	 * 
 	 * @param controller
 	 * @param screenX
-	 * @param screenY
+	 * @param screenYss
 	 * @return punto con le coordinate iso window
 	 */
 	public static Point2 convertRawScreen2IsoMap(ISSMapController controller, float screenX, float screenY) {
