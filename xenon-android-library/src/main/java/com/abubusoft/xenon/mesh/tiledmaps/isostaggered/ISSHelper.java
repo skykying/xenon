@@ -170,16 +170,16 @@ public abstract class ISSHelper {
 	 *            height delle tiles
 	 * @return vertex buffer
 	 */
-	public static VertexBuffer buildISSVertexBuffer(int rows, int cols, float stepWidth, float stepHeight, float tileWidth, float tileHeight) {
+	public static VertexBuffer buildISSVertexBuffer(float windowDimension, int tiledBorder, int rows, int cols, float stepWidth, float stepHeight, float tileWidth, float tileHeight) {
 		// creiamo il vertici del vertex buffer della tiled map. Questo buffer viene condiviso ed utilizzato da tutti
 		// i layer che hanno come dimensione delle tile le stesse di default.
 		float sceneX;
 		float sceneY;
 		VertexBuffer verticesBuffer = BufferManager.instance().createVertexBuffer(cols * rows * VertexBuffer.VERTEX_IN_QUAD_TILE, BufferAllocationType.STATIC);
 
-		// questo serve a metterlo al centro
-		float baseX = -cols * stepWidth * 0.5f;
-		float baseY = (rows) * stepHeight * 0.5f;//-(tileHeight*0.5f);
+		// con questa posizione mettiamo il vertice più in alto del primo quadrante sul veritice left top del box verde
+		float baseX = -tileWidth*0.5f-windowDimension/2;
+		float baseY =windowDimension/2;//+tiledBorder*tileHeight;
 
 		for (int i = 0; i < rows; i++) {
 			

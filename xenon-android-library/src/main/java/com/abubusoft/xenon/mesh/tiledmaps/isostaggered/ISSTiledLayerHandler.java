@@ -165,8 +165,13 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 		int layerCurrentRow;
 		int layerCurrentColumn;
 
+		// old
 		//startLayerRow-= view.windowBorder;
-		startLayerColumn-= view.windowBorder;
+		//startLayerColumn-= view.windowBorder;
+
+		// new
+		//startLayerRow= 0;
+		//startLayerColumn= 0;
 
 		// facciamo in modo di avere sempre indici positivi e compresi tra 0 e
 		// rows/columns
@@ -303,7 +308,7 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 			// di un suo vertex buffer
 			// creiamo il vertici del vertex buffer della tiled map. Questo buffer viene condiviso ed utilizzato da tutti
 			// i layer che hanno come dimensione delle tile le stesse di default.
-			vertexBuffer = ISSHelper.buildISSVertexBuffer(view.windowTileRows, view.windowTileColumns, layer.tiledMap.tileWidth , layer.tiledMap.tileHeight * .5f, layer.tileWidthMax, layer.tileHeightMax);
+			vertexBuffer = ISSHelper.buildISSVertexBuffer(view.windowDimension, view.windowBorder, view.windowTileRows, view.windowTileColumns, layer.tiledMap.tileWidth , layer.tiledMap.tileHeight * .5f, layer.tileWidthMax, layer.tileHeightMax);
 			// lo impostiamo una volta per tutte, tanto non verrà mai cambiato
 			vertexBuffer.update();
 
