@@ -174,7 +174,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
                 mapController.scrollFromScreen(0, y);
                 break;
             case DOUBLE_TAP:
-                position+=32;
+                position+=16;
                 //mapController.touch(x, y);
                 mapController.position(position, 0);
 

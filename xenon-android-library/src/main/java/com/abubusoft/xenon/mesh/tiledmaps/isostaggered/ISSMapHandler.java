@@ -337,6 +337,10 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     int a, b;
 
+    int roundTileCoord(float value) {
+        return (value >=0f)? (int)value: (int)(value-1);
+    }
+
 
     @Override
     public void convertMap2ViewLayer(LayerOffsetHolder offsetHolder, int mapX, int mapY) {
@@ -348,10 +352,12 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // x = xi - yi
         // y= (xi+yi) / 2
 
+        float temp;
+
         // v2: ok
         // passiamo da map a iso diamond
-        offsetHolder.tileIndexX = Math.round(1.0f*ix / map.tileHeight);
-        offsetHolder.tileIndexY = Math.round(1.0f*iy / map.tileHeight);
+        offsetHolder.tileIndexX = Math.round(1.0f * ix / map.tileHeight);
+        offsetHolder.tileIndexY = Math.round(1.0f * iy / map.tileHeight);
 
         int sx, sy;
         sx = ix % map.tileWidth;
@@ -364,8 +370,8 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         b = offsetHolder.tileIndexY;
 
         // passiamo da diamon a staggered
-        offsetHolder.tileIndexX = (a - b + ((a + b) % 2)) / 2;
-        offsetHolder.tileIndexY = a + b;
+        offsetHolder.tileIndexX = Math.round(a - b + ((a + b) % 2) / 2f);
+        offsetHolder.tileIndexY = Math.round(a + b);
 
         int ox = offsetHolder.tileIndexX;
         int oy = offsetHolder.tileIndexY;
