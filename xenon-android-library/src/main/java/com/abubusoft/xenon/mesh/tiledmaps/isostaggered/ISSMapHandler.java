@@ -337,8 +337,14 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     int a, b;
 
-    int roundTileCoord(float value) {
-        return (value >=0f)? (int)value: (int)(value-1);
+    int roundTileCoord(int num, int denum) {
+        if (num/denum>=0) return num/denum;
+
+        if (Math.abs(num%denum)>0)
+            return num/denum-1;
+        else {
+            return num/denum;
+        }
     }
 
 
@@ -356,12 +362,12 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         // v2: ok
         // passiamo da map a iso diamond
-        offsetHolder.tileIndexX = Math.round(1.0f * ix / map.tileHeight);
-        offsetHolder.tileIndexY = Math.round(1.0f * iy / map.tileHeight);
+        offsetHolder.tileIndexX = roundTileCoord(ix , map.tileHeight);
+        offsetHolder.tileIndexY = roundTileCoord(iy , map.tileHeight);
 
         int sx, sy;
-        sx = ix % map.tileWidth;
-        sy = iy % map.tileWidth;
+        sx = Math.abs(ix % map.tileHeight);
+        sy = Math.abs(iy % map.tileHeight);
       /*  if (sx<0) sx=map.tileHeight+sx;
         if (sy<0) sy=map.tileHeight+sy;*/
         // sx, sy contiene resto delle iso
@@ -370,8 +376,8 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         b = offsetHolder.tileIndexY;
 
         // passiamo da diamon a staggered
-        offsetHolder.tileIndexX = Math.round(a - b + ((a + b) % 2) / 2f);
-        offsetHolder.tileIndexY = Math.round(a + b);
+        offsetHolder.tileIndexX = roundTileCoord((a - b + Math.abs((a + b) % 2)) , 2);
+        offsetHolder.tileIndexY = a + b;
 
         int ox = offsetHolder.tileIndexX;
         int oy = offsetHolder.tileIndexY;
@@ -383,7 +389,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         //v3
         Status volo = Status.STANDARD;
 
-        if (offsetHolder.tileIndexY % 2 == 1) {
+        if (Math.abs(offsetHolder.tileIndexY % 2) == 1) {
            // if (sx<0) sx*=-1;//map.tileHeight-sx;
             //if (sy<0) sy*=-1;
 
@@ -404,14 +410,14 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
                 if (sy + sx < map.tileHeight) {
                     volo = Status.AREA_B;
 
-                    offsetHolder.tileIndexY--;
+                    offsetHolder.tileIndexY++;
                     offsetHolder.tileIndexX--;
                 } else {
                     volo = Status.AREA_C;
 
                     //offsetHolder.screenOffsetY+=map.tileHeight;
                     offsetHolder.tileIndexY++;
-                    offsetHolder.tileIndexX--;
+                    //offsetHolder.tileIndexX--;
                 }
             }
         }
