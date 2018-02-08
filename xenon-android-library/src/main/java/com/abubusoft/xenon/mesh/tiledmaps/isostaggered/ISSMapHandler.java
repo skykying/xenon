@@ -337,13 +337,11 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     int a, b;
 
-    int roundTileCoord(int num, int denum) {
-        if (num/denum>=0) return num/denum;
-
-        if (Math.abs(num%denum)>0)
-            return num/denum-1;
-        else {
-            return num/denum;
+    int addRemind(int value) {
+        if (value>=0) {
+            return 0;
+        } else {
+            return -1;
         }
     }
 
@@ -362,8 +360,8 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         // v2: ok
         // passiamo da map a iso diamond
-        offsetHolder.tileIndexX = roundTileCoord(ix , map.tileHeight);
-        offsetHolder.tileIndexY = roundTileCoord(iy , map.tileHeight);
+        offsetHolder.tileIndexX = ix / map.tileHeight+addRemind(ix % map.tileHeight);
+        offsetHolder.tileIndexY = iy / map.tileHeight+addRemind(iy % map.tileHeight);
 
         int sx, sy;
         sx = Math.abs(ix % map.tileHeight);
@@ -376,7 +374,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         b = offsetHolder.tileIndexY;
 
         // passiamo da diamon a staggered
-        offsetHolder.tileIndexX = roundTileCoord((a - b + Math.abs((a + b) % 2)) , 2);
+        offsetHolder.tileIndexX = (a - b + Math.abs((a + b) % 2))/2;
         offsetHolder.tileIndexY = a + b;
 
         int ox = offsetHolder.tileIndexX;
