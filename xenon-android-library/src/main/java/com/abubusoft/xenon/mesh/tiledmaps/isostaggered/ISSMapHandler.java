@@ -419,6 +419,10 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
                     //offsetHolder.tileIndexX--;
                 }
             }
+        } else {
+            //offsetHolder.screenOffsetX = (mapX-map.tileWidth/2) % map.tileWidth;
+            //offsetHolder.screenOffsetX = (mapX+map.tileWidth/2) % map.tileWidth;
+            //offsetHolder.screenOffsetY = mapY % map.tileHeight;
         }
 
         XenonLogger.info("s[%s, %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s]", sx, sy, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
