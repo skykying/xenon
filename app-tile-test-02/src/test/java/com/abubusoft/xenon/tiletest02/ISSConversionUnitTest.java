@@ -15,32 +15,50 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ISSConversionUnitTest {
+
     @Test
-    public void addition_isCorrect() throws Exception {
-        int pos[][]={
-                {0,0},
-                {16,0},
-                {32,0},
-                {48,0},
-                {96,0},
-                {0,96},
-                {128,0}
+    public void arrotonda() {
+        int base = 32;
+
+        int pos[][] = {
+                {0, 0}, {8, 0}, {16, 0}, {24, 0}, {31, 0}, {32, 1}, {48, 1}, {64, 2},
+                {-1,-1}, {-32,-1}, {-33,-2}
         };
 
-        LayerOffsetHolder holder=new LayerOffsetHolder();
 
-        for (int i=0; i<pos.length;i++) {
+
+        for (int i = 0; i < pos.length; i++) {
+            System.out.println(String.format("%s - index %s", pos[i][0], pos[i][1]));
+            assertTrue(Math.floorDiv(pos[i][0], base) == pos[i][1]);
+        }
+    }
+
+    @Test
+    public void addition_isCorrect() throws Exception {
+        int pos[][] = {
+                {0, 0},
+                {16, 0},
+                {32, 0},
+                {48, 0},
+                {96, 0},
+                {0, 96},
+                {128, 0}
+        };
+
+        LayerOffsetHolder holder = new LayerOffsetHolder();
+
+        for (int i = 0; i < pos.length; i++) {
             convertMap2ViewLayer(holder, pos[i][0], pos[i][1]);
         }
     }
 
-    private int tileHeight=32;
-    private int tileWidth=32;
+    private int tileHeight = 32;
+    private int tileWidth = 32;
 
     public void convertMap2ViewLayer(LayerOffsetHolder offsetHolder, int mapX, int mapY) {
         int ix, iy;
         ix = (mapX + 2 * mapY) / 2;
-        iy = (-mapX + 2 * mapY) /2;
+        iy = (-mapX + 2 * mapY) / 2;
 
         // inverso
         // x = xi - yi
@@ -50,8 +68,8 @@ public class ISSConversionUnitTest {
 
         // v2: ok
         // passiamo da map a iso diamond
-        offsetHolder.tileIndexX = XenonMath.floorDiv(ix , tileHeight);
-        offsetHolder.tileIndexY = XenonMath.floorDiv(iy , tileHeight);
+        offsetHolder.tileIndexX = XenonMath.floorDiv(ix, tileHeight);
+        offsetHolder.tileIndexY = XenonMath.floorDiv(iy, tileHeight);
 
         int sx, sy;
         sx = Math.abs(ix % tileHeight);
@@ -64,7 +82,7 @@ public class ISSConversionUnitTest {
         int b = offsetHolder.tileIndexY;
 
         // passiamo da diamon a staggered
-        offsetHolder.tileIndexX = XenonMath.floorDiv((a - b + Math.abs((a + b) % 2)) , 2);
+        offsetHolder.tileIndexX = XenonMath.floorDiv((a - b + Math.abs((a + b) % 2)), 2);
         offsetHolder.tileIndexY = a + b;
 
         int ox = offsetHolder.tileIndexX;
@@ -87,12 +105,12 @@ public class ISSConversionUnitTest {
                     volo = ISSMapHandler.Status.AREA_A;
 
                     offsetHolder.tileIndexY--;
-                    offsetHolder.screenOffsetX-=tileWidth;
+                    offsetHolder.screenOffsetX -= tileWidth;
                 } else {
                     volo = ISSMapHandler.Status.AREA_D;
 
                     offsetHolder.tileIndexY++;
-                    offsetHolder.screenOffsetX-=tileWidth;
+                    offsetHolder.screenOffsetX -= tileWidth;
                 }
             } else {
                 if (sy + sx < tileHeight) {
