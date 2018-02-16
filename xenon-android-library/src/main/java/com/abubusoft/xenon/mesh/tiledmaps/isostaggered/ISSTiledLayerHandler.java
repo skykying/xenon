@@ -176,10 +176,13 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 		// facciamo in modo di avere sempre indici positivi e compresi tra 0 e
 		// rows/columns
 		// se è negativo --> row - (modulo), se positivo --> 0 + modulo
-		startLayerRow = (startLayerRow < 0 ? layer.tileRows : 0) + (startLayerRow % layer.tileRows) ;
-		startLayerColumn = (startLayerColumn < 0 ? layer.tileColumns : 0) + (startLayerColumn % layer.tileColumns);
+		//startLayerRow = (startLayerRow < 0 ? layer.tileRows : 0) + (startLayerRow % layer.tileRows) ;
+		//startLayerColumn = (startLayerColumn < 0 ? layer.tileColumns : 0) + (startLayerColumn % layer.tileColumns);
+		startLayerRow = (startLayerRow >= 0 ? startLayerRow : 0);
+		startLayerColumn = (startLayerColumn >= 0 ? startLayerColumn : 0);
 
-		startLayerRow= ((startLayerRow / 2) *2);
+
+		//startLayerRow= ((startLayerRow / 2) *2);
 		//startLayerColumn= ((startLayerColumn / 2) *2);
 
 		// posizione della tile sullo schermo in base al sistema di origine in
