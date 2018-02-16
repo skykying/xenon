@@ -171,12 +171,12 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
         switch (type) {
             case SCROLL:
                 //mapController.scrollFromScreen(x, y);
-                mapController.scrollFromScreen(0, y);
+                mapController.scrollFromScreen(x, 0);
                 break;
             case DOUBLE_TAP:
-                position+=16;
+                position+=8;
                 //mapController.touch(x, y);
-                mapController.position(position, 0);
+                mapController.position(0, position);
 
                 //ElioLogger.info("Touch on map x, y = (%s , %s)", point.x, point.y);
                 //objPlayerController.clearActions();
