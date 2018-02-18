@@ -126,7 +126,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
 
         map = TiledMapFactory.loadFromAsset(getContext(), mapName, TextureFilterType.LINEAR);
         mapController = map.buildView(camera, TiledMapOptions.build()
-                .fillScreenType(TiledMapFillScreenType.FILL_CUSTOM_HEIGHT, 16)
+                .fillScreenType(TiledMapFillScreenType.FILL_CUSTOM_HEIGHT, 8)
                 .startPosition(TiledMapPositionType.LEFT_TOP)
                 .scrollHorizontalLocked(true)
                 .scrollVerticalLocked(true));
@@ -172,7 +172,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
         switch (type) {
             case SCROLL:
                 //mapController.scrollFromScreen(x, y);
-                mapController.scrollFromScreen(x, 0);
+                mapController.scrollFromScreen(x, y);
                 break;
             case DOUBLE_TAP:
                 position+=8;

@@ -156,8 +156,6 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 	 * @see com.abubusoft.xenon.mesh.tiledmaps.LayerDrawer#drawLayer(org.abubu.argon .shader.TiledMapShader, long, int, int, int, int, com.abubusoft.xenon.math.Matrix4x4)
 	 */
 	public void drawLayer(ShaderTiledMap shader, long deltaTime, int startLayerColumn, int startLayerRow, int offsetX, int offsetY, Matrix4x4 modelview) {
-		// MeshGrid shape = windowMesh;
-
 		// la griglia
 		int windowColumns = view.windowTileColumns;
 		int windowRows = view.windowTileRows;
@@ -165,30 +163,8 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 		int layerCurrentRow;
 		int layerCurrentColumn;
 
-		// old
-		//startLayerRow-= view.windowBorder;
-		//startLayerColumn-= view.windowBorder;
-
-		// new
-		//startLayerRow= 0;
-		//startLayerColumn= 0;
-
-		// facciamo in modo di avere sempre indici positivi e compresi tra 0 e
-		// rows/columns
-		// se è negativo --> row - (modulo), se positivo --> 0 + modulo
-		//startLayerRow = (startLayerRow < 0 ? layer.tileRows : 0) + (startLayerRow % layer.tileRows) ;
-		//startLayerColumn = (startLayerColumn < 0 ? layer.tileColumns : 0) + (startLayerColumn % layer.tileColumns);
 		startLayerRow = (startLayerRow >= 0 ? startLayerRow : 0);
 		startLayerColumn = (startLayerColumn >= 0 ? startLayerColumn : 0);
-
-
-		//startLayerRow= ((startLayerRow / 2) *2);
-		//startLayerColumn= ((startLayerColumn / 2) *2);
-
-		// posizione della tile sullo schermo in base al sistema di origine in
-		// mezzo allo schermo
-		// int sceneX;
-		// int sceneY;
 
 		if (layer.oldStartLayerColumn != startLayerColumn || layer.oldStartLayerRow != startLayerRow) {
 			// resettiamo cursore
@@ -206,8 +182,6 @@ public class ISSTiledLayerHandler extends TiledLayerHandler {
 
 			layer.oldStartLayerColumn = startLayerColumn;
 			layer.oldStartLayerRow = startLayerRow;
-
-			//int start=startLayerRow % 2 == 1 ? 1 : 0;
 
 			for (int i = 0; i < windowRows; i++) {
 

@@ -72,6 +72,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     public enum Status {
         STANDARD,
+        ODD,
         AREA_A,
         AREA_B,
         AREA_C,
@@ -244,6 +245,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         // il quadrato della dimensione deve essere costruito sempre sulla dimensione massima
         view.windowDimension = XenonMath.max(view.windowWidth, view.windowHeight) * options.visiblePercentage;
 
+
         //TODO per vedere da più lontano
         //view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
         view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 4);
@@ -349,44 +351,30 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     @Override
     public void convertMap2ViewLayer(LayerOffsetHolder offsetHolder, int mapX, int mapY) {
-        int mx, my;
+        int mix, miy;
 
-        // ricaviamo indici su mappa
-        mx=(mapX+map.tileWidth/2) / map.tileWidth;
-        my=mapY / map.tileHeight;
-
+        // ricaviamo indici su mappa direttamente su staggered
+        mix = (mapX + map.tileWidth / 2) / map.tileWidth;
+        miy = (mapY / map.tileHeight) * 2; // moltiplichiamo x 2
 
         // convertiamo da map a iso
         int ix, iy;
         ix = (mapX + 2 * mapY) / 2;
         iy = (-mapX + 2 * mapY) / 2;
 
-        // inverso
-        // x = xi - yi
-        // y= (xi+yi) / 2
-
-        float temp;
-
         // v2: ok
         // tiled iso index
-        offsetHolder.tileIndexX = XenonMath.floorDiv(ix, map.tileHeight);
-        offsetHolder.tileIndexY = XenonMath.floorDiv(iy, map.tileHeight);
-
-        int sx, sy;
-
-        sx = Math.abs(ix % map.tileWidth);
-        sy = Math.abs(iy % map.tileHeight);
-      /*  if (sx<0) sx=map.tileHeight+sx;
-        if (sy<0) sy=map.tileHeight+sy;*/
-        // sx, sy contiene resto delle iso
-
-        a = offsetHolder.tileIndexX;
-        b = offsetHolder.tileIndexY;
+        offsetHolder.tileIndexX = a = XenonMath.floorDiv(ix, map.tileHeight);
+        offsetHolder.tileIndexY = b = XenonMath.floorDiv(iy, map.tileHeight);
 
         // passiamo da diamon a staggered
         offsetHolder.tileIndexX = XenonMath.floorDiv((a - b + Math.abs((a + b) % 2)), 2);
         offsetHolder.tileIndexY = a + b;
-
+/*
+        int sx, sy;
+        sx = Math.abs(ix % map.tileWidth);
+        sy = Math.abs(iy % map.tileHeight);
+*/
         int ox = offsetHolder.tileIndexX;
         int oy = offsetHolder.tileIndexY;
 
@@ -397,43 +385,22 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         Status volo = Status.STANDARD;
 
         if (Math.abs(offsetHolder.tileIndexY % 2) == 1) {
-            offsetHolder.screenOffsetX = mapX % map.tileWidth;
+            volo = Status.ODD;
+            offsetHolder.tileIndexX=mix;
+            offsetHolder.tileIndexY=miy;
 
-            volo = Status.UNSPOSTR;
-            if (sx - sy <= 0) {
-                if (sx + sy <= map.tileHeight) {
-                    // VERIFIED
-                    volo = Status.AREA_A;
+           offsetHolder.screenOffsetX = (mapX ) % map.tileWidth;
 
-                    offsetHolder.tileIndexY--;
-                    offsetHolder.tileIndexX--;
-                    //offsetHolder.screenOffsetX-=map.tileWidth;
-                } else {
-                    volo = Status.AREA_D;
+           if (offsetHolder.screenOffsetX<32) {
 
-                    offsetHolder.tileIndexY++;
-                    offsetHolder.screenOffsetX -= map.tileHeight * 2;
-                    // offsetHolder.screenOffsetX-=map.tileWidth;
-                }
-            } else {
-                if (sy + sx <= map.tileHeight) {
-                    volo = Status.AREA_B;
-                    // ok
-                    offsetHolder.tileIndexY--;
-                    offsetHolder.tileIndexX--;
-                } else {
-                    volo = Status.AREA_C;
-
-                    offsetHolder.screenOffsetX -= map.tileHeight * 2;
-                    offsetHolder.tileIndexY++;
-                    //offsetHolder.tileIndexX--;
-                }
-            }
+           } else {
+               offsetHolder.screenOffsetX-=map.tileWidth;
+           }
         } else {
             offsetHolder.screenOffsetX = ((mapX + map.tileWidth / 2) % map.tileWidth) - map.tileWidth / 2;
         }
 
-        XenonLogger.info("s[%s, %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s] [map idex: %s %s]", sx, sy, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo, mx, my);
+        XenonLogger.info("[offsetHolder.tileIndexX-mix = %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s] [map idex: %s %s]", offsetHolder.tileIndexX-mix, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo, mix, miy);
 
         // inverte y
         offsetHolder.screenOffsetY = -offsetHolder.screenOffsetY;
