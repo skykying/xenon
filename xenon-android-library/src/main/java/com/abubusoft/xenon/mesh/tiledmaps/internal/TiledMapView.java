@@ -14,7 +14,12 @@ public class TiledMapView {
 
 	public int windowBorder;
 
-	public TiledMapView() {
+	/**
+	 * numero di row da considerare come offeset rispetto all'inizio vero e proprio
+	 */
+    public int tileRowOffset;
+
+    public TiledMapView() {
 		windowCenter = new Point2();
 		tileBase=new Point2();
 	}

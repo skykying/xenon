@@ -247,25 +247,26 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
 
         //TODO per vedere da più lontano
-        //view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
-        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 4);
+        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
+       // view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 4);
 
         // calcoliamo il centro dello schermo, senza considerare i bordi aggiuntivi
         view.windowCenter.x = view.windowWidth * 0.5f;
         view.windowCenter.y = view.windowHeight * 0.5f;
 
         // non ci possono essere reminder
-        int windowRemainderX = 0;//view.windowWidth % map.tileWidth;
-        int windowRemainderY = 0;//view.windowHeight % map.tileHeight;
+        view.tileRowOffset = view.windowWidth > view.windowHeight ? 0 : 2;
+        int windowAddCol = view.windowWidth > view.windowHeight ? 0 : 1;
+        int windowAddRow = view.windowWidth > view.windowHeight ? 4 : 2;
 
         view.windowBorder = 1;
 
         // +2 per i bordi, +1 se la divisione contiene un resto (aggiungiamo sempre +1 )
-        view.windowTileColumns += (windowRemainderX == 0 ? 0 : 0) + view.windowBorder * 2 + 1;
-        view.windowTileRows += (windowRemainderY == 0 ? 0 : 0) + view.windowBorder * 2 + 1;
+        view.windowTileColumns += windowAddCol + view.windowBorder * 2;
+        view.windowTileRows += windowAddRow + view.windowBorder * 2;
 
         // si sta disegnando dal vertice più in alto del rombo
-        view.windowVerticesBuffer = ISSHelper.buildISSVertexBuffer(view.windowDimension, view.windowBorder, view.windowTileRows, view.windowTileColumns, map.tileWidth, map.tileHeight * .5f, map.tileWidth, map.tileHeight);
+        view.windowVerticesBuffer = ISSHelper.buildISSVertexBuffer(view.windowDimension, view.tileRowOffset, view.windowTileRows, view.windowTileColumns, map.tileWidth, map.tileHeight * .5f, map.tileWidth, map.tileHeight);
 
         // lo impostiamo una volta per tutte, tanto non verrà mai cambiato
         view.windowVerticesBuffer.update();
@@ -386,21 +387,21 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
         if (Math.abs(offsetHolder.tileIndexY % 2) == 1) {
             volo = Status.ODD;
-            offsetHolder.tileIndexX=mix;
-            offsetHolder.tileIndexY=miy;
+            offsetHolder.tileIndexX = mix;
+            offsetHolder.tileIndexY = miy;
 
-           offsetHolder.screenOffsetX = (mapX ) % map.tileWidth;
+            offsetHolder.screenOffsetX = (mapX) % map.tileWidth;
 
-           if (offsetHolder.screenOffsetX<32) {
+            if (offsetHolder.screenOffsetX < 32) {
 
-           } else {
-               offsetHolder.screenOffsetX-=map.tileWidth;
-           }
+            } else {
+                offsetHolder.screenOffsetX -= map.tileWidth;
+            }
         } else {
             offsetHolder.screenOffsetX = ((mapX + map.tileWidth / 2) % map.tileWidth) - map.tileWidth / 2;
         }
 
-        XenonLogger.info("[offsetHolder.tileIndexX-mix = %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s] [map idex: %s %s]", offsetHolder.tileIndexX-mix, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo, mix, miy);
+        //  XenonLogger.info("[offsetHolder.tileIndexX-mix = %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s] [map idex: %s %s]", offsetHolder.tileIndexX-mix, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo, mix, miy);
 
         // inverte y
         offsetHolder.screenOffsetY = -offsetHolder.screenOffsetY;

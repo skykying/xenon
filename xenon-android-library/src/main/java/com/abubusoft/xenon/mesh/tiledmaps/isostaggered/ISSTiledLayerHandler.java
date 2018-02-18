@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 package com.abubusoft.xenon.mesh.tiledmaps.isostaggered;
 
 import com.abubusoft.xenon.math.Matrix4x4;
+import com.abubusoft.xenon.math.XenonMath;
 import com.abubusoft.xenon.mesh.MeshDrawModeType;
 import com.abubusoft.xenon.mesh.MeshGrid;
 import com.abubusoft.xenon.mesh.modifiers.AttributeQuadModifier;
@@ -22,292 +23,297 @@ import android.opengl.GLES20;
 
 /**
  * @author xcesco
- *
  */
 public class ISSTiledLayerHandler extends TiledLayerHandler {
 
-	private AttributeBuffer offsetBuffer;
+    private AttributeBuffer offsetBuffer;
 
-	public ISSTiledLayerHandler(TiledLayer layer) {
-		super(layer);
+    public ISSTiledLayerHandler(TiledLayer layer) {
+        super(layer);
 
-	}
+    }
 
-	/**
-	 * <p>
-	 * Consente di disegnare solo una porzione della tile. Utile nel caso di oggetti.
-	 * </p>
-	 * 
-	 * @param shader
-	 * 
-	 * @param deltaTime
-	 * 
-	 * @param clazz
-	 * 
-	 * @param modelview
-	 * 
-	 */
-	public void drawLayerPart(ShaderTiledMap shader, long deltaTime, ObjClass clazz, Matrix4x4 modelview) {
-		MeshGrid shape = layer.tiledMap.spriteMesh;
+    /**
+     * <p>
+     * Consente di disegnare solo una porzione della tile. Utile nel caso di oggetti.
+     * </p>
+     *
+     * @param shader
+     * @param deltaTime
+     * @param clazz
+     * @param modelview
+     */
+    public void drawLayerPart(ShaderTiledMap shader, long deltaTime, ObjClass clazz, Matrix4x4 modelview) {
+        MeshGrid shape = layer.tiledMap.spriteMesh;
 
-		// int startLayerColumn, int startLayerRow, int screenOffsetX, int screenOffsetY, int rowsCount, int colsCount
+        // int startLayerColumn, int startLayerRow, int screenOffsetX, int screenOffsetY, int rowsCount, int colsCount
 
-		// float screenCenterX = tiledMap.windowCenter.x;
-		// float screenCenterY = tiledMap.windowCenter.y;
+        // float screenCenterX = tiledMap.windowCenter.x;
+        // float screenCenterY = tiledMap.windowCenter.y;
 
-		int layerCurrentRow;
-		int layerCurrentColumn;
+        int layerCurrentRow;
+        int layerCurrentColumn;
 
-		// facciamo in modo di avere sempre indici positivi e compresi tra 0 e
-		// rows/columns
-		// se è negativo --> row - (modulo), se positivo --> 0 + modulo
-		int startLayerRow = (clazz.shapeRowBegin < 0 ? layer.tileRows : 0) + (clazz.shapeRowBegin % layer.tileRows);
-		int startLayerColumn = (clazz.shapeColBegin < 0 ? layer.tileColumns : 0) + (clazz.shapeColBegin % layer.tileColumns);
+        // facciamo in modo di avere sempre indici positivi e compresi tra 0 e
+        // rows/columns
+        // se è negativo --> row - (modulo), se positivo --> 0 + modulo
+        int startLayerRow = (clazz.shapeRowBegin < 0 ? layer.tileRows : 0) + (clazz.shapeRowBegin % layer.tileRows);
+        int startLayerColumn = (clazz.shapeColBegin < 0 ? layer.tileColumns : 0) + (clazz.shapeColBegin % layer.tileColumns);
 
-		// posizione della tile sullo schermo in base al sistema di origine in
-		// mezzo allo schermo
-		// int sceneX;
-		// int sceneY;
+        // posizione della tile sullo schermo in base al sistema di origine in
+        // mezzo allo schermo
+        // int sceneX;
+        // int sceneY;
 
-		// resettiamo cursore
-		shape.cursorReset();
+        // resettiamo cursore
+        shape.cursorReset();
 
-		// ciclo per disegnare
-		layerCurrentRow = startLayerRow % layer.tileRows;
-		for (int i = 0; i < clazz.shapeRowSize; i++) {
+        // ciclo per disegnare
+        layerCurrentRow = startLayerRow % layer.tileRows;
+        for (int i = 0; i < clazz.shapeRowSize; i++) {
 
-			// se siamo oltre le dimensioni del layer, resettiamo la colonna
-			layerCurrentColumn = startLayerColumn;
-			if (layerCurrentColumn >= layer.tileColumns)
-				layerCurrentColumn = 0;
+            // se siamo oltre le dimensioni del layer, resettiamo la colonna
+            layerCurrentColumn = startLayerColumn;
+            if (layerCurrentColumn >= layer.tileColumns)
+                layerCurrentColumn = 0;
 
-			for (int j = 0; j < clazz.shapeColSize; j++) {
+            for (int j = 0; j < clazz.shapeColSize; j++) {
 
-				// prende dalla definizione del layer il tile da disegnare
-				layer.tileToDraw = layer.tiles[layerCurrentRow * layer.tileColumns + layerCurrentColumn];
+                // prende dalla definizione del layer il tile da disegnare
+                layer.tileToDraw = layer.tiles[layerCurrentRow * layer.tileColumns + layerCurrentColumn];
 
-				// aggiungiamo coordinate solo se necessario (tile valida,
-				// ovvero gid !=0)
-				if (layer.tileToDraw.gid != 0) {
-					shape.setVertexCoordsOnCursor((layerCurrentColumn - startLayerColumn) * layer.tileToDraw.width, -(layerCurrentRow - startLayerRow) * layer.tileToDraw.height, layer.tileToDraw);
+                // aggiungiamo coordinate solo se necessario (tile valida,
+                // ovvero gid !=0)
+                if (layer.tileToDraw.gid != 0) {
+                    shape.setVertexCoordsOnCursor((layerCurrentColumn - startLayerColumn) * layer.tileToDraw.width, -(layerCurrentRow - startLayerRow) * layer.tileToDraw.height, layer.tileToDraw);
 
-					// ottimizzazione (texture index=0)
-					shape.setTextureCoordsOnCursor(0, layer.tileToDraw);
+                    // ottimizzazione (texture index=0)
+                    shape.setTextureCoordsOnCursor(0, layer.tileToDraw);
 
-					// Se abbiamo più di una texture dobbiamo impostare il
-					// selettore di texture
-					if (!layer.tiledMap.onlyOneTexture4Layer) {
-						setTextureSelector(i * clazz.shapeColSize + j, layer.tileToDraw);
-					}
+                    // Se abbiamo più di una texture dobbiamo impostare il
+                    // selettore di texture
+                    if (!layer.tiledMap.onlyOneTexture4Layer) {
+                        setTextureSelector(i * clazz.shapeColSize + j, layer.tileToDraw);
+                    }
 
-					// ci posizioniamo sul prossimo tile da disegnare
-					shape.cursorMove();
-				}
+                    // ci posizioniamo sul prossimo tile da disegnare
+                    shape.cursorMove();
+                }
 
-				layerCurrentColumn = (layerCurrentColumn + 1) % layer.tileColumns;
-			}
+                layerCurrentColumn = (layerCurrentColumn + 1) % layer.tileColumns;
+            }
 
-			layerCurrentRow = (layerCurrentRow + 1) % layer.tileRows;
-		}
+            layerCurrentRow = (layerCurrentRow + 1) % layer.tileRows;
+        }
 
-		// con la definizione in vertex array abbiamo posizionato le tile
-		// corrette
-		// con gli offset andiamo a spostarli anche dei pixel subtile che
-		// servono per
-		// considerare lo scroll
-		matrix.buildTranslationMatrix(-clazz.shapeRowOffset, clazz.shapeColOffset, 0);
-		matrix.multiply(modelview, matrix);
+        // con la definizione in vertex array abbiamo posizionato le tile
+        // corrette
+        // con gli offset andiamo a spostarli anche dei pixel subtile che
+        // servono per
+        // considerare lo scroll
+        matrix.buildTranslationMatrix(-clazz.shapeRowOffset, clazz.shapeColOffset, 0);
+        matrix.multiply(modelview, matrix);
 
-		// utilizziamo il cursore per aggiornare
-		// Se abbiamo più di una texture dobbiamo impostare il selettore di
-		// texture
-		if (!layer.tiledMap.onlyOneTexture4Layer) {
-			textureIndex.put(textureSelector).position(0);
-		}
-		shape.updateBuffersOnCursor();
+        // utilizziamo il cursore per aggiornare
+        // Se abbiamo più di una texture dobbiamo impostare il selettore di
+        // texture
+        if (!layer.tiledMap.onlyOneTexture4Layer) {
+            textureIndex.put(textureSelector).position(0);
+        }
+        shape.updateBuffersOnCursor();
 
-		shader.setOpacity(layer.opacity);
-		shader.setVertexCoordinatesArray(shape.vertices);
-		shader.setModelViewProjectionMatrix(matrix.asFloatBuffer());
+        shader.setOpacity(layer.opacity);
+        shader.setVertexCoordinatesArray(shape.vertices);
+        shader.setModelViewProjectionMatrix(matrix.asFloatBuffer());
 
-		// Se abbiamo più di una texture dobbiamo impostare il selettore di
-		// texture
-		if (!layer.tiledMap.onlyOneTexture4Layer) {
-			shader.setTextureSelectorArray(textureIndex);
-		}
+        // Se abbiamo più di una texture dobbiamo impostare il selettore di
+        // texture
+        if (!layer.tiledMap.onlyOneTexture4Layer) {
+            shader.setTextureSelectorArray(textureIndex);
+        }
 
-		// impostiamo le texture
-		shader.setTextureCoordinatesArray(0, shape.textures[0]);
+        // impostiamo le texture
+        shader.setTextureCoordinatesArray(0, shape.textures[0]);
 
-		shader.setIndexBuffer(shape.indexes);
-		if (shape.indexes.allocation == BufferAllocationType.CLIENT) {
-			GLES20.glDrawElements(shape.drawMode.value, shape.cursor * IndexBuffer.INDEX_IN_QUAD_TILE, GLES20.GL_UNSIGNED_SHORT, shape.indexes.buffer);
-		} else {
-			GLES20.glDrawElements(shape.drawMode.value, shape.cursor * IndexBuffer.INDEX_IN_QUAD_TILE, GLES20.GL_UNSIGNED_SHORT, 0);
-		}
-		shader.unsetIndexBuffer(shape.indexes);
+        shader.setIndexBuffer(shape.indexes);
+        if (shape.indexes.allocation == BufferAllocationType.CLIENT) {
+            GLES20.glDrawElements(shape.drawMode.value, shape.cursor * IndexBuffer.INDEX_IN_QUAD_TILE, GLES20.GL_UNSIGNED_SHORT, shape.indexes.buffer);
+        } else {
+            GLES20.glDrawElements(shape.drawMode.value, shape.cursor * IndexBuffer.INDEX_IN_QUAD_TILE, GLES20.GL_UNSIGNED_SHORT, 0);
+        }
+        shader.unsetIndexBuffer(shape.indexes);
 
-		// GLES20.glDrawArrays(shape.drawMode.value, 0, shape.cursorRead());
-	}
+        // GLES20.glDrawArrays(shape.drawMode.value, 0, shape.cursorRead());
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.abubusoft.xenon.mesh.tiledmaps.LayerDrawer#drawLayer(org.abubu.argon .shader.TiledMapShader, long, int, int, int, int, com.abubusoft.xenon.math.Matrix4x4)
-	 */
-	public void drawLayer(ShaderTiledMap shader, long deltaTime, int startLayerColumn, int startLayerRow, int offsetX, int offsetY, Matrix4x4 modelview) {
-		// la griglia
-		int windowColumns = view.windowTileColumns;
-		int windowRows = view.windowTileRows;
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.abubusoft.xenon.mesh.tiledmaps.LayerDrawer#drawLayer(org.abubu.argon .shader.TiledMapShader, long, int, int, int, int, com.abubusoft.xenon.math.Matrix4x4)
+     */
+    public void drawLayer(ShaderTiledMap shader, long deltaTime, int startLayerColumn, int startLayerRow, int offsetX, int offsetY, Matrix4x4 modelview) {
+        // la griglia
+        int windowColumns = view.windowTileColumns;
+        int windowRows = view.windowTileRows;
 
-		int layerCurrentRow;
-		int layerCurrentColumn;
+        int layerCurrentRow;
+        int layerCurrentColumn;
+        int row;
 
-		startLayerRow = (startLayerRow >= 0 ? startLayerRow : 0);
-		startLayerColumn = (startLayerColumn >= 0 ? startLayerColumn : 0);
+        startLayerRow = (startLayerRow >= 0 ? startLayerRow : 0);
+        startLayerColumn = (startLayerColumn >= 0 ? startLayerColumn : 0);
 
-		if (layer.oldStartLayerColumn != startLayerColumn || layer.oldStartLayerRow != startLayerRow) {
-			// resettiamo cursore
-			// shape.cursorReset();
+        if (layer.oldStartLayerColumn != startLayerColumn || layer.oldStartLayerRow != startLayerRow) {
+            // resettiamo cursore
+            // shape.cursorReset();
 
-			indexBuffer.cursorReset();
-			textureBuffer.cursorReset();
+            indexBuffer.cursorReset();
+            textureBuffer.cursorReset();
 
-			if (!layer.drawOffsetUnique) {
-				offsetBuffer.cursorReset();
-			}
+            if (!layer.drawOffsetUnique) {
+                offsetBuffer.cursorReset();
+            }
 
-			// ciclo per disegnare
-			layerCurrentRow = startLayerRow % layer.tileRows;
+            // ciclo per disegnare
+            layerCurrentRow = startLayerRow % layer.tileRows;
 
-			layer.oldStartLayerColumn = startLayerColumn;
-			layer.oldStartLayerRow = startLayerRow;
+            layer.oldStartLayerColumn = startLayerColumn;
+            layer.oldStartLayerRow = startLayerRow;
 
-			for (int i = 0; i < windowRows; i++) {
+            for (int i = 0; i < windowRows; i++) {
 
-				// se siamo oltre le dimensioni del layer, resettiamo la colonna
-				layerCurrentColumn = startLayerColumn;
-				if (layerCurrentColumn >= layer.tileColumns)
-					layerCurrentColumn = 0;
+                // se siamo oltre le dimensioni del layer, resettiamo la colonna
+                layerCurrentColumn = startLayerColumn;
+                if (layerCurrentColumn >= layer.tileColumns)
+                    layerCurrentColumn = 0;
 
-				for (int j = 0; j < windowColumns; j++) {
+                // row corrente non può essere più piccolo di 0, anche se negativo
+                row = XenonMath.clampI(layerCurrentRow - view.tileRowOffset,0, layer.tileRows-1);
+               /* if (row < 0) {
+                    row = 0;
+                }*/
+                //row = layerCurrentRow;
 
-					// prende dalla definizione del layer il tile da disegnare
-					layer.tileToDraw = layer.tiles[layerCurrentRow * layer.tileColumns + layerCurrentColumn];
+                for (int j = 0; j < windowColumns; j++) {
 
-					// aggiungiamo coordinate solo se necessario (tile valida,
-					// ovvero gid !=0)
-					if (layer.tileToDraw.gid != 0) {
-						// Se abbiamo più di una texture dobbiamo impostare il
-						// selettore di texture
-						if (!layer.tiledMap.onlyOneTexture4Layer) {
-							setTextureSelector(i * windowColumns + j, layer.tileToDraw);
-						}
+                    // prende dalla definizione del layer il tile da disegnare
+                    layer.tileToDraw = layer.tiles[row * layer.tileColumns + layerCurrentColumn];
 
-						// new sistema
-						TextureQuadModifier.setTextureCoords(textureBuffer, i * windowColumns + j, layer.tileToDraw, false);
+                    // aggiungiamo coordinate solo se necessario (tile valida,
+                    // ovvero gid !=0)
+                    if (layer.tileToDraw.gid != 0) {
+                        // Se abbiamo più di una texture dobbiamo impostare il
+                        // selettore di texture
+                        if (!layer.tiledMap.onlyOneTexture4Layer) {
+                            setTextureSelector(i * windowColumns + j, layer.tileToDraw);
+                        }
 
-						IndexQuadModifier.setIndexes(indexBuffer, indexBuffer.cursor, i * windowColumns + j, false);
-						indexBuffer.cursorMove(IndexBuffer.INDEX_IN_QUAD_TILE);
+                        // new sistema
+                        TextureQuadModifier.setTextureCoords(textureBuffer, i * windowColumns + j, layer.tileToDraw, false);
 
-						if (!layer.drawOffsetUnique)
-							AttributeQuadModifier.setVertexAttributes2(offsetBuffer, i * windowColumns + j, layer.tileToDraw.drawOffsetX, layer.tileToDraw.drawOffsetY, false);
-						// textureBuffer.cursorMove(VertexBuffer.VERTEX_IN_QUAD_TILE);
-					}
+                        IndexQuadModifier.setIndexes(indexBuffer, indexBuffer.cursor, i * windowColumns + j, false);
+                        indexBuffer.cursorMove(IndexBuffer.INDEX_IN_QUAD_TILE);
 
-					layerCurrentColumn = (layerCurrentColumn + 1) % layer.tileColumns;
-				}
+                        if (!layer.drawOffsetUnique)
+                            AttributeQuadModifier.setVertexAttributes2(offsetBuffer, i * windowColumns + j, layer.tileToDraw.drawOffsetX, layer.tileToDraw.drawOffsetY, false);
+                    }
 
-				layerCurrentRow = (layerCurrentRow + 1) % layer.tileRows;
+                    layerCurrentColumn = (layerCurrentColumn + 1) % layer.tileColumns;
+                }
 
-			}
+                // incremento, rimanendo comunque entro il limite di tileRows
+                layerCurrentRow++;
+                //if (layerCurrentRow > layer.tileRows-1) layerCurrentRow = layer.tileRows-1;
 
-			indexBuffer.update();
-			textureBuffer.update();
-			
-			if (!layer.drawOffsetUnique) {
-				offsetBuffer.update();
-			}
-			// Se abbiamo più di una texture dobbiamo impostare il selettore di
-			// texture
-			if (!layer.tiledMap.onlyOneTexture4Layer) {
-				textureIndex.put(textureSelector).position(0);
-			}
 
-		}
-		// tentativo X
-		// la camera punta già al centro della window.
-		matrix.buildTranslationMatrix(-offsetX , -offsetY, 0);
+            }
 
-		if (layer.drawOffsetUnique) {
-			//matrix.translate(layer.drawOffsetX, layer.drawOffsetY, 0f);
-		}
-		// matrix.buildScaleMatrix(0.5f, 0.5f, 0.5f);
+            indexBuffer.update();
+            textureBuffer.update();
 
-		matrix.multiply(modelview, matrix);
+            if (!layer.drawOffsetUnique) {
+                offsetBuffer.update();
+            }
+            // Se abbiamo più di una texture dobbiamo impostare il selettore di
+            // texture
+            if (!layer.tiledMap.onlyOneTexture4Layer) {
+                textureIndex.put(textureSelector).position(0);
+            }
 
-		// utilizziamo il cursore per aggiornare
-		// shape.updateOnCursor(tiledMap.onlyOneTexture4Layer);
+        }
+        // tentativo X
+        // la camera punta già al centro della window.
+        matrix.buildTranslationMatrix(-offsetX, -offsetY, 0);
 
-		shader.setOpacity(layer.opacity);
-		shader.setVertexCoordinatesArray(vertexBuffer);
-		shader.setModelViewProjectionMatrix(matrix.asFloatBuffer());
+        if (layer.drawOffsetUnique) {
+            //matrix.translate(layer.drawOffsetX, layer.drawOffsetY, 0f);
+        }
+        // matrix.buildScaleMatrix(0.5f, 0.5f, 0.5f);
 
-		// Se abbiamo più di una texture dobbiamo impostare il selettore di
-		// texture
+        matrix.multiply(modelview, matrix);
 
-		if (!layer.tiledMap.onlyOneTexture4Layer) {
-			shader.setTextureSelectorArray(textureIndex);
-		}
+        // utilizziamo il cursore per aggiornare
+        // shape.updateOnCursor(tiledMap.onlyOneTexture4Layer);
 
-		// impostiamo le texture
-		// shader.setTextureCoordinatesArray(0, shape.textures[0]);
-		shader.setTextureCoordinatesArray(0, textureBuffer);
+        shader.setOpacity(layer.opacity);
+        shader.setVertexCoordinatesArray(vertexBuffer);
+        shader.setModelViewProjectionMatrix(matrix.asFloatBuffer());
 
-		// GLES20.glDrawArrays(shape.drawStyle.value, 0, shape.readCursor());
-		shader.setIndexBuffer(indexBuffer);
+        // Se abbiamo più di una texture dobbiamo impostare il selettore di
+        // texture
 
-		if (indexBuffer.allocation == BufferAllocationType.CLIENT) {
-			GLES20.glDrawElements(MeshDrawModeType.INDEXED_TRIANGLES.value, indexBuffer.cursor, GLES20.GL_UNSIGNED_SHORT, indexBuffer.buffer);
-		} else {
-			GLES20.glDrawElements(MeshDrawModeType.INDEXED_TRIANGLES.value, indexBuffer.cursor, GLES20.GL_UNSIGNED_SHORT, 0);
-		}
+        if (!layer.tiledMap.onlyOneTexture4Layer) {
+            shader.setTextureSelectorArray(textureIndex);
+        }
 
-		shader.unsetIndexBuffer(indexBuffer);
-	}
+        // impostiamo le texture
+        // shader.setTextureCoordinatesArray(0, shape.textures[0]);
+        shader.setTextureCoordinatesArray(0, textureBuffer);
 
-	@Override
-	public void onBuildView(TiledMapView view) {
-		super.onBuildView(view);
+        // GLES20.glDrawArrays(shape.drawStyle.value, 0, shape.readCursor());
+        shader.setIndexBuffer(indexBuffer);
 
-		if (layer.tileWidthMax != layer.tiledMap.tileWidth || layer.tileHeightMax != layer.tiledMap.tileHeight) {
-			// le dimensioni delle tile tra map e layer non coincidono, quindi il layer avrà bisogno
-			// di un suo vertex buffer
-			// creiamo il vertici del vertex buffer della tiled map. Questo buffer viene condiviso ed utilizzato da tutti
-			// i layer che hanno come dimensione delle tile le stesse di default.
-			vertexBuffer = ISSHelper.buildISSVertexBuffer(view.windowDimension, view.windowBorder, view.windowTileRows, view.windowTileColumns, layer.tiledMap.tileWidth , layer.tiledMap.tileHeight * .5f, layer.tileWidthMax, layer.tileHeightMax);
-			// lo impostiamo una volta per tutte, tanto non verrà mai cambiato
-			vertexBuffer.update();
+        if (indexBuffer.allocation == BufferAllocationType.CLIENT) {
+            GLES20.glDrawElements(MeshDrawModeType.INDEXED_TRIANGLES.value, indexBuffer.cursor, GLES20.GL_UNSIGNED_SHORT, indexBuffer.buffer);
+        } else {
+            GLES20.glDrawElements(MeshDrawModeType.INDEXED_TRIANGLES.value, indexBuffer.cursor, GLES20.GL_UNSIGNED_SHORT, 0);
+        }
 
-			if (!layer.drawOffsetUnique) {
-				offsetBuffer = ISSHelper.buildDiamondOffsetAttributeBuffer(view.windowTileColumns, view.windowTileRows);
-			}
+        shader.unsetIndexBuffer(indexBuffer);
+    }
 
-			//TODO abbiamo più di un tileset in questo layer, quindi
-			if (this.layer.textureList.size() > 1) {
+    @Override
+    public void onBuildView(TiledMapView view) {
+        super.onBuildView(view);
 
-			}
-		}
+        if (layer.tileWidthMax != layer.tiledMap.tileWidth || layer.tileHeightMax != layer.tiledMap.tileHeight) {
+            // le dimensioni delle tile tra map e layer non coincidono, quindi il layer avrà bisogno
+            // di un suo vertex buffer
+            // creiamo il vertici del vertex buffer della tiled map. Questo buffer viene condiviso ed utilizzato da tutti
+            // i layer che hanno come dimensione delle tile le stesse di default.
+            vertexBuffer = ISSHelper.buildISSVertexBuffer(view.windowDimension, view.tileRowOffset, view.windowTileRows, view.windowTileColumns, layer.tiledMap.tileWidth, layer.tiledMap.tileHeight * .5f, layer.tileWidthMax, layer.tileHeightMax);
+            // lo impostiamo una volta per tutte, tanto non verrà mai cambiato
+            vertexBuffer.update();
 
-		// MeshOptions options=MeshOptions.build();//.bufferAllocation(BufferAllocationType.STATIC).textureEnabled(false).colorEnabled(false);
+            if (!layer.drawOffsetUnique) {
+                offsetBuffer = ISSHelper.buildDiamondOffsetAttributeBuffer(view.windowTileColumns, view.windowTileRows);
+            }
+
+            //TODO abbiamo più di un tileset in questo layer, quindi
+            if (this.layer.textureList.size() > 1) {
+
+            }
+        }
+
+        // MeshOptions options=MeshOptions.build();//.bufferAllocation(BufferAllocationType.STATIC).textureEnabled(false).colorEnabled(false);
 
 		/*
-		 * windowMesh = MeshFactory.createIsometricTiledGrid(layer.tiledMap.tileWidth * layer.tiledMap.windowTileColumns, layer.tiledMap.tileHeight * layer.tiledMap.windowTileRows, layer.tileWidthMax, layer.tileHeightMax,
+         * windowMesh = MeshFactory.createIsometricTiledGrid(layer.tiledMap.tileWidth * layer.tiledMap.windowTileColumns, layer.tiledMap.tileHeight * layer.tiledMap.windowTileRows, layer.tileWidthMax, layer.tileHeightMax,
 		 * layer.tiledMap.tileWidth, layer.tiledMap.tileHeight, layer.tiledMap.windowTileRows, layer.tiledMap.windowTileColumns, options);
 		 */
 
-		// windowMesh = MeshFactory.createTiledGrid(layer.tiledMap.tileWidth * layer.tiledMap.windowTileColumns, layer.tiledMap.tileHeight * layer.tiledMap.windowTileRows, layer.tiledMap.windowTileRows, layer.tiledMap.windowTileColumns,
-		// MeshOptions.build());
+        // windowMesh = MeshFactory.createTiledGrid(layer.tiledMap.tileWidth * layer.tiledMap.windowTileColumns, layer.tiledMap.tileHeight * layer.tiledMap.windowTileRows, layer.tiledMap.windowTileRows, layer.tiledMap.windowTileColumns,
+        // MeshOptions.build());
 
-	}
+    }
 }
