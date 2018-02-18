@@ -28,6 +28,7 @@ import org.xml.sax.Attributes;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.SparseIntArray;
 
 /**
@@ -63,6 +64,13 @@ import android.util.SparseIntArray;
  */
 public class TiledMap extends PropertiesCollector {
 
+    public final int backgroundColorR;
+
+    public final int backgroundColorG;
+
+    public final int backgroundColorB;
+
+    public final int backgroundColorA;
     /**
      * <p>
      * Shader utilizzato per il rendering della tiledmap. Viene creato quando si crea la mappa mediante lettura da file.
@@ -321,6 +329,13 @@ public class TiledMap extends PropertiesCollector {
         this.tileWidth = SAXUtil.getInt(atts, MapAttributes.TILE_WIDTH);
         this.tileHeight = SAXUtil.getInt(atts, MapAttributes.TILE_HEIGHT);
 
+        int bgColor=Color.parseColor(SAXUtil.getString(atts, MapAttributes.BACKGROUND_COLOR, "#000000FF"));
+
+        this.backgroundColorR=Color.red(bgColor);
+        this.backgroundColorG=Color.green(bgColor);
+        this.backgroundColorB=Color.blue(bgColor);
+        this.backgroundColorA=Color.alpha(bgColor);
+
         // creiamo l'handler
         this.handler = this.orientation.createMapHandler(this);
 
@@ -434,7 +449,7 @@ public class TiledMap extends PropertiesCollector {
                             atlasRow = currentTile.atlasRow;
                             atlasCol = currentTile.atlasColumn;
                         /*
-						 * // come da http://stackoverflow.com/questions/3962385/ android-opengl-es-texture-bleeding
+                         * // come da http://stackoverflow.com/questions/3962385/ android-opengl-es-texture-bleeding
 						 */
 
                             // fix su texel adjustment

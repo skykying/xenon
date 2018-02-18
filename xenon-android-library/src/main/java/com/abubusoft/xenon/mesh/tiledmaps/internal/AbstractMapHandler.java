@@ -3,6 +3,8 @@
  */
 package com.abubusoft.xenon.mesh.tiledmaps.internal;
 
+import android.opengl.GLES20;
+
 import com.abubusoft.xenon.XenonApplication4OpenGL;
 import com.abubusoft.xenon.math.Matrix4x4;
 import com.abubusoft.xenon.mesh.tiledmaps.Layer;
@@ -56,6 +58,10 @@ public abstract class AbstractMapHandler<E extends AbstractMapController> implem
 	 */
 	@Override
 	public void draw(long deltaTime, Matrix4x4 modelViewProjection) {
+		// puliamo schermo
+		GLES20.glClearColor(this.map.backgroundColorR, this.map.backgroundColorG, this.map.backgroundColorB, this.map.backgroundColorA);
+		GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+
 		// aggiorniamo il frame marker per gli oggetti
 		ObjDefinition.updateGlobalFrameMarker();
 

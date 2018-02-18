@@ -247,8 +247,8 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
 
         //TODO per vedere da più lontano
-        view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
-       // view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 4);
+       // view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension);
+       view.distanceFromViewer = XenonMath.zDistanceForSquare(camera, view.windowDimension * 4);
 
         // calcoliamo il centro dello schermo, senza considerare i bordi aggiuntivi
         view.windowCenter.x = view.windowWidth * 0.5f;

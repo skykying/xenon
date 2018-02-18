@@ -56,9 +56,6 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
 
     @Override
     public void onFrameDraw(Phase phase, long enlapsedTime, float speedAdapter) {
-        GLES20.glClearColor(0, 0, 0, 1);
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-
         TiledMapShaderDrawer.draw(map, enlapsedTime);
     }
 
@@ -121,6 +118,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
         //linesDrawer = new LineDrawer();
 
         String mapName = "isometric_staggered_simple.tmx";
+        //String mapName = "stag_city.tmx";
         //String mapName="isometric_simple.tmx";
         //String mapName="orthogonal.tmx";
 
