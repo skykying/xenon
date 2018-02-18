@@ -349,6 +349,14 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
 
     @Override
     public void convertMap2ViewLayer(LayerOffsetHolder offsetHolder, int mapX, int mapY) {
+        int mx, my;
+
+        // ricaviamo indici su mappa
+        mx=(mapX+map.tileWidth/2) / map.tileWidth;
+        my=mapY / map.tileHeight;
+
+
+        // convertiamo da map a iso
         int ix, iy;
         ix = (mapX + 2 * mapY) / 2;
         iy = (-mapX + 2 * mapY) / 2;
@@ -360,7 +368,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
         float temp;
 
         // v2: ok
-        // passiamo da map a iso diamond
+        // tiled iso index
         offsetHolder.tileIndexX = XenonMath.floorDiv(ix, map.tileHeight);
         offsetHolder.tileIndexY = XenonMath.floorDiv(iy, map.tileHeight);
 
@@ -425,7 +433,7 @@ public class ISSMapHandler extends AbstractMapHandler<ISSMapController> {
             offsetHolder.screenOffsetX = ((mapX + map.tileWidth / 2) % map.tileWidth) - map.tileWidth / 2;
         }
 
-        XenonLogger.info("s[%s, %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s]", sx, sy, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo);
+        XenonLogger.info("s[%s, %s], map[%s, %s] -> iso[%s, %s], tiles I[%s, %s] -> S[%s, %s] (OS[%s, %s]), map off x,y (%s, %s) [%s] [map idex: %s %s]", sx, sy, mapX, mapY, ix, iy, a, b, offsetHolder.tileIndexX, offsetHolder.tileIndexY, ox, oy, offsetHolder.screenOffsetX, offsetHolder.screenOffsetY, volo, mx, my);
 
         // inverte y
         offsetHolder.screenOffsetY = -offsetHolder.screenOffsetY;

@@ -167,6 +167,7 @@ public class TiledTest02Application extends XenonApplication4OpenGLImpl implemen
      */
     @Override
     public void onTouch(TouchType type, float x, float y) {
+
         //ElioLogger.info("onTouch %s - THREAD %s", type, Thread.currentThread().getName());
         switch (type) {
             case SCROLL:
