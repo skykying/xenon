@@ -60,17 +60,18 @@ public abstract class TiledMapFactory {
 
 	/**
 	 * Carica da una resource
-	 * 
-	 * @param filename
+	 *
 	 * @param context
+	 * @param sourceId
+	 * @param textureFilter
 	 * @return
 	 * @throws TMXException
 	 */
-	public static TiledMap loadFromResources(Context context, int eesourceId, TextureFilterType textureFilter) throws TMXException {
+	public static TiledMap loadFromResources(Context context, int sourceId, TextureFilterType textureFilter) throws TMXException {
 		try {
 			TMXLoaderHandler loader = new TMXLoaderHandler();
 
-			TiledMap tiledMap = loader.load(context, context.getResources().openRawResource(eesourceId), TMXLoaderType.RES_LOADER, textureFilter);
+			TiledMap tiledMap = loader.load(context, context.getResources().openRawResource(sourceId), TMXLoaderType.RES_LOADER, textureFilter);
 			
 			// creaiamo shader
 			tiledMap.init(context);

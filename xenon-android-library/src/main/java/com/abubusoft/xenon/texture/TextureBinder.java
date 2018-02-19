@@ -430,14 +430,14 @@ public abstract class TextureBinder {
             GLES20.glGenerateMipmap(GLES20.GL_TEXTURE_2D);
         }
 
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, options.textureFilter.minifier);
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, options.textureFilter.magnifier);
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, options.textureFilter.minifier);
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, options.textureFilter.magnifier);
 
         // come da http://www.khronos.org/opengles/sdk/docs/man/xhtml/glTexParameter.xml
         // il wrap può essere di tre tipi:
         // GL_CLAMP_TO_EDGE, GL_MIRRORED_REPEAT, or GL_REPEAT
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, options.textureRepeat.value);
-        GLES20.glTexParameterf(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, options.textureRepeat.value);
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, options.textureRepeat.value);
+        GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, options.textureRepeat.value);
         TextureDimension ret = new TextureDimension(source.getWidth(), source.getHeight(), 1.0f, 1.0f, TextureSizeType.SIZE_UNBOUND);
 
         return ret;
