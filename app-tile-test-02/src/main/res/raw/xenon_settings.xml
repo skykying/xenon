@@ -16,7 +16,7 @@
 
 	<!-- Sezione viewFrustum -->
 	<viewFrustum>
-		<viewFrustumProjection>PERSPECTIVE</viewFrustumProjection>
+		<viewFrustumProjection>ORTHOGONAL</viewFrustumProjection>
 		<viewFrustumFieldOfView>30</viewFrustumFieldOfView>
 		<viewFrustumAlign>HEIGHT_ALIGN</viewFrustumAlign>
 		<viewFrustumZFar>12000</viewFrustumZFar>

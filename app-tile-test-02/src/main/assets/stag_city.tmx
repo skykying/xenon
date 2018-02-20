@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.3" orientation="staggered" renderorder="right-down" width="64" height="64" tilewidth="128" tileheight="64" staggeraxis="y" staggerindex="even" backgroundcolor="#ff00ff" nextobjectid="1">
+ <tileset firstgid="1" name="ground" tilewidth="1" tileheight="1" tilecount="0" columns="0"/>
+ <tileset firstgid="1" name="isometric_simple" tilewidth="64" tileheight="32" tilecount="256" columns="16">
+  <image source="isometric_simple.png" width="1024" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="city" tilewidth="1" tileheight="1" tilecount="0" columns="0"/>
+ <tileset firstgid="257" name="city" tilewidth="1" tileheight="1" tilecount="0" columns="0"/>
+ <tileset firstgid="257" name="stag_city" tilewidth="128" tileheight="64" tilecount="128" columns="8">
+  <image source="stag_city.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Livello tile 1" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt0rENACAMAzCQgP9PZurABVSKB+9J2jXHmMRaDTLw9/7pP1D9T4Msv+5/QvvXBju4f3L36p+8wW6QAQAAAAAAAAAAAAAAAIDXBUwfIEs=
+  </data>
+ </layer>
+ <layer name="Livello tile 2" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt0UENACAMBMH2SVUhDemACkg6o+A2VxlRGSuaOu1z5OsV71Tz/6/O/f7XDwAAAAAAAAAAAAAAAADAPzZHHwMu
+  </data>
+ </layer>
+</map>
